@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <head><title>IGNORED</title></head>
+   <body>
+      <ui:composition template="/templates/masterLayout.xhtml">
+         <ui:define name="windowTitle">
+            View Timesheets
+         </ui:define> 
+         
+         <ui:define name="content">
+	   <h:form>
+         <h3>All available timesheets</h3>   
+         <h:dataTable value="#{timesheetDatabase.employeeTimesheets}" var="timesheets"
+                      captionStyle="font-size: 0.95em; font-style:italic"
+                      style="width: 250px;" border = "1">
+            <h:column headerClass="columnHeader" footerClass="columnFooter">
+               <f:facet name="header">Employee Name</f:facet>
+               <h:outputText value="#{timesheets.employee.name}" rendered="#{not employee.editable}"/>
+               
+            </h:column>
+
+            <h:column headerClass="columnHeader" footerClass="columnFooter">
+               <f:facet name="header">End Week:</f:facet>
+
+               <h:outputText value="#{timesheets.getWeekEnding()}"/>
+               
+            </h:column>
+            
+            <h:column headerClass="columnHeader" footerClass="columnFooter">
+               <f:facet name="header">Week Number:</f:facet>
+               <h:outputText value="#{timesheets.getWeekNumber()}"/>
+
+            </h:column>
+            <h:column>
+               <h:commandLink value="View Timesheet"
+                              action="#{timesheetDatabase.viewTimesheet(timesheets)}"/>
+            </h:column>
+         </h:dataTable>
+         <p><h:commandButton value="#{msgs.btn_back}" action="options"/></p>
+
+
+      </h:form>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

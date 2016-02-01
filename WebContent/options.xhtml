@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+   <head><title>IGNORED</title></head>
+   <body>
+      <ui:composition template="/templates/masterLayout.xhtml">
+         <ui:define name="windowTitle">
+            #{msgs.options_title}
+         </ui:define> 
+         
+         <ui:define name="content">
+	    <h:form>
+      	 <h3>#{msgs.options_welcome} #{employeeDatabase.credentials.userName}</h3>
+         <table>
+            <tr>
+               <td>#{msgs.options_users}</td>
+               <td><h:commandButton value="#{msgs.btn_select}" action="#{employeeDatabase.goToEmployeesPage}"/></td>
+            </tr>
+            <tr>
+               <td>#{msgs.options_newTS}</td>
+               <td><h:commandButton value="#{msgs.btn_select}" action="#{timesheetDatabase.createTimesheet(employeeDatabase.loggedEmployee)}"/></td>
+            </tr>
+            <tr>
+               <td>#{msgs.options_viewTS}</td>
+               <td><h:commandButton value="#{msgs.btn_select}" action="#{timesheetDatabase.viewTimesheets(employeeDatabase.loggedEmployee)}"/></td>
+            </tr>
+            <tr>
+               <td>#{msgs.options_editTS}</td>
+               <td><h:commandButton value="#{msgs.btn_select}" action="#{timesheetDatabase.editTimesheet(employeeDatabase.loggedEmployee)}"/></td>
+            </tr>
+            <tr>
+               <td>#{msgs.options_logout}</td>
+               <td><h:commandButton value="#{msgs.btn_select}" action="#{employeeDatabase.logoutOfSystem}"/></td>
+            </tr>
+         </table>
+
+      </h:form>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>

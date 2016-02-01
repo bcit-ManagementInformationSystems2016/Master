@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+	<application>
+      <locale-config>
+         <default-locale>en</default-locale>
+         <supported-locale>es</supported-locale>
+      </locale-config>
+      <resource-bundle>
+         <base-name>com.corejsf.messages</base-name>
+         <var>msgs</var>
+      </resource-bundle>
+   </application>
+
+
+	<navigation-rule>
+      	<navigation-case>
+         	<from-outcome>employeeAdded</from-outcome>
+         	<to-view-id>/employees.xhtml</to-view-id>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>goToAddEmployee</from-outcome>
+         	<to-view-id>/addEmployee.xhtml</to-view-id>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>logout</from-outcome>
+         	<to-view-id>/login.xhtml</to-view-id>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>successfulLogin</from-outcome>
+         	<to-view-id>/options.xhtml</to-view-id>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>changePassword</from-outcome>
+         	<to-view-id>/changePassword.xhtml</to-view-id>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>passwordChanged</from-outcome>
+         	<to-view-id>/employees.xhtml</to-view-id>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>timesheet</from-outcome>
+         	<to-view-id>/timesheet.xhtml</to-view-id>
+         	<redirect/>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>timesheetAdded</from-outcome>
+         	<to-view-id>/options.xhtml</to-view-id>
+         	<redirect/>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>timesheetTable</from-outcome>
+         	<to-view-id>/viewTimesheets.xhtml</to-view-id>
+         	<redirect/>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>employees</from-outcome>
+         	<to-view-id>/employees.xhtml</to-view-id>
+         	<redirect/>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>changeEmployees</from-outcome>
+         	<to-view-id>/options.xhtml</to-view-id>
+         	<redirect/>
+      	</navigation-case>
+   </navigation-rule>
+   <navigation-rule>
+      	<navigation-case>
+         	<from-outcome>options</from-outcome>
+         	<to-view-id>/options.xhtml</to-view-id>
+         	<redirect/>
+      	</navigation-case>
+   </navigation-rule>
+
+
+
+
+</faces-config>

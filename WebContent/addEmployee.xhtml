@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <head>
+   <h:outputStylesheet library="css" name="styles.css"/>
+   <title>IGNORED</title></head>
+   <body>
+      <ui:composition template="/templates/masterLayout.xhtml">
+         <ui:define name="windowTitle">
+            #{msgs.addEmployees_title}
+         </ui:define> 
+         
+         <ui:define name="content">
+	    <h:form>
+      	 <h3>#{msgs.addEmployee_header}</h3>
+         <table>
+            <tr>
+               <td>#{msgs.addEmployee_name}</td>
+            </tr>
+            <tr>
+               <td>
+               		<h:inputText id="name" value="#{employeeDatabase.newEmployeeName}" required="true"
+               			requiredMessage="#{msgs.addEmployee_nameError}">
+               		<f:validateLength minimum="5"/>
+               		</h:inputText>
+               </td>
+               <td>
+               	<h:message for="name" styleClass="errorMessage"/>
+               </td>
+            </tr>
+            <tr>
+               <td>#{msgs.addEmployee_username}</td>
+            </tr>
+            <tr>
+               <td>
+               		<h:inputText id="username" value="#{employeeDatabase.newEmployeeUsername}" required="true"
+               			requiredMessage="#{msgs.addEmployee_usernameError}">
+               		<f:validateLength minimum="5"/>
+               		</h:inputText>
+               	</td>
+               	<td>
+               	<h:message for="username" styleClass="errorMessage"/>
+               </td>
+            </tr>
+            <tr>
+               <td>#{msgs.addEmployee_password}</td>
+            </tr>
+            <tr>
+               <td><h:inputSecret id="password" value="#{employeeDatabase.newEmployeePassword}" required="true"
+               			requiredMessage="#{msgs.addEmployee_passwordError}">
+               		<f:validateLength minimum="4"/>
+               	</h:inputSecret>
+               </td>
+               <td>
+               	<h:message for="password" styleClass="errorMessage"/>
+               </td>
+            </tr>
+         </table>
+         <h:commandButton value="#{msgs.btn_createEmployee}" action="#{employeeDatabase.newEmployee}"/>
+         <h:commandButton value="#{msgs.btn_back}" action="#employees" immediate="true"/>
+
+      </h:form>
+         </ui:define>
+      </ui:composition>
+   </body>
+</html>
