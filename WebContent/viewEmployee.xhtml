@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+   <h:head>
+      <title>#{msgs.page_title}</title>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+	<h:outputStylesheet library="css" name="main.css" />
+   </h:head>
+   <h:body>
+      <h:form>
+	      <div class="container">
+	      <h5>#{msgs.supervisor_menu}</h5>
+	      <h3>#{msgs.emp_list}</h3>
+      		<h:dataTable  class="table table-hover table-bordered" value="#{employees.list}" var="list">
+      			<h:column>
+	               <f:facet name="header">
+	                  <h:outputText value="#{msgs.edit}"/>
+	               </f:facet>
+	               <h:selectBooleanCheckbox value="#{list.editable}" onclick="submit()"/>
+	            </h:column>
+      			<h:column>
+		            <f:facet name="header">
+		                <h:outputText value="#{msgs.customer_id}"/>
+		            </f:facet>
+		            <h:outputText value="#{list.userId}" rendered="#{not list.editable}" />
+		            <h:inputText value="#{list.userId}" rendered="#{list.editable}" />
+		        </h:column>
+		        <h:column>
+		            <f:facet name="header">
+		                <h:outputText value="#{msgs.first_name}"/>
+		            </f:facet>
+		            <h:outputText value="#{list.fname}" rendered="#{not list.editable}" />
+		            <h:inputText value="#{list.fname}" rendered="#{list.editable}" />
+		        </h:column>
+		        <h:column>
+		            <f:facet name="header">
+		                <h:outputText value="#{msgs.last_name}"/>
+		            </f:facet>
+		            <h:outputText value="#{list.lname}" rendered="#{not list.editable}" />
+		            <h:inputText value="#{list.lname}" rendered="#{list.editable}" />
+		        </h:column>
+		        
+		        <h:column>
+		            <f:facet name="header">
+		                <h:outputText value="#{msgs.password}"/>
+		            </f:facet>
+		            <h:outputText value="#{list.password}" rendered="#{not list.editable}" />
+		            <h:inputText value="#{list.password}" rendered="#{list.editable}" />
+		        </h:column>
+		        
+		        <h:column>
+		            <f:facet name="header">
+		                <h:outputText value="#{msgs.email}"/>
+		            </f:facet>
+		            <h:outputText value="#{list.username}" rendered="#{not list.editable}" />
+		            <h:inputText value="#{list.username}" rendered="#{list.editable}" />
+		        </h:column>
+		        <h:column>
+	               <h:commandLink value="#{msgs.delete}" 
+	                              action="#{employees.removeUser(list)}"/>
+	            </h:column>
+		     </h:dataTable>
+	         <div class="form-group">
+			    <div class="col-sm-offset-0 col-sm-12">
+		      		<h:commandButton value="#{msgs.save_changes}" action="#{employees.save}" class="btn btn-default"/>&nbsp;&nbsp;
+		      		<h:commandButton value="#{msgs.create_user}" action="createEmployee" class="btn btn-default"/>&nbsp;&nbsp;
+		        	<h:commandButton value="#{msgs.home}" action="viewTimesheet" class="btn btn-default"/>
+	 			</div>
+		  	 </div>
+         </div>
+      </h:form>
+   </h:body>
+</html>
