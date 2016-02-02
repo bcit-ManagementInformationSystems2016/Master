@@ -109,6 +109,16 @@ public class EmployeeData implements Serializable {
 		}
 		return null;
 	}
+	
+	public boolean validateLogin(String username, String pw) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getUsername().equals(username) && list.get(i).getPassword().
+			        equals(pw)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * Gets the employee id by looping through list of employees.
