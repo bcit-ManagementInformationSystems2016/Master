@@ -1,201 +1,159 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 
-/**
- * Class that contains information about Employee.
- * @author Calvin Yee
- */
-@SessionScoped
-@Named("employee")
-public class Employee implements Serializable {
-    /**
-     * Whether the field is in editable mode or not.
-     */
-    private boolean editable;
-    /** Employee ID. */
-    private Integer userId;
-    /**
-     * Employee first name.
-     */
-    private String fname;
-    /**
-     * Employee last name.
-     */
-    private String lname;
-    /**
-     * Employee password.
-     */
-    private String password;
-    /**
-     * Employee login user name.
-     */
-    private String username;
-    /**
-     * Whether or not employee is supervisor.
-     */
-    private boolean isSupervisor;
-    
-    private int supervisorId;
-    
-    private Date startDate;
-    
-    private PayLevel paylevel;
-    
-    private Vacation vacation;
-    
-    
-
-    public int getSupervisorId() {
-		return supervisorId;
-	}
-
-	public void setSupervisorId(int supervisorId) {
-		this.supervisorId = supervisorId;
-	}
-
-	public Date getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
-	}
-
-	public PayLevel getPaylevel() {
-		return paylevel;
-	}
-
-	public void setPaylevel(PayLevel paylevel) {
-		this.paylevel = paylevel;
-	}
-
-	public Vacation getVacation() {
-		return vacation;
-	}
-
-	public void setVacation(Vacation vacation) {
-		this.vacation = vacation;
-	}
-
-	public void setSupervisor(boolean isSupervisor) {
-		this.isSupervisor = isSupervisor;
-	}
+@Named 
+public class Employee implements Serializable{
+	
+	private int EmpID;
+	
+	private int PayLevelID;
+	
+	private int SupervisorID;
+	
+	private int ValidatorID;
+	
+	private int RoleID;
+	
+	private Double Salary;
+	
+	private String FirstName;
+	
+	private String LastName;
+	
+	private Boolean isActive;
 
 	/**
-     * Gets the first name.
-     * @return fname First name of employee
-     */
-    public String getFname() {
-        return fname;
-    }
-
-    /**
-     * Sets the first name.
-     * @param name Name you want to set it to
-     */
-	public void setFname(String name) {
-		fname = name;
-	}
-
-	/**
-	 * Gets the last name.
-	 * @return lname Last name of employee
+	 * @return the empID
 	 */
-	public String getLname() {
-		return lname;
+	public int getEmpID() {
+		return EmpID;
 	}
 
 	/**
-	 * Sets the last name.
-	 * @param name Name you want to set it to
+	 * @param empID the empID to set
 	 */
-	public void setLname(String name) {
-		lname = name;
+	public void setEmpID(int empID) {
+		EmpID = empID;
 	}
 
 	/**
-	 * Gets whether the field is in editable mode.
-	 * @return editable Is the field editable
+	 * @return the payLevelID
 	 */
-	public boolean getEditable() {
-		return editable;
+	public int getPayLevelID() {
+		return PayLevelID;
 	}
 
 	/**
-	 * Sets whether the fields are in editable mode.
-	 * @param editable New editable boolean
+	 * @param payLevelID the payLevelID to set
 	 */
-	public void setEditable(boolean editable) {
-		this.editable = editable;
+	public void setPayLevelID(int payLevelID) {
+		PayLevelID = payLevelID;
 	}
 
 	/**
-	 * Gets the user id.
-	 * @return userId ID of the employee
+	 * @return the supervisorID
 	 */
-	public Integer getUserId() {
-		return userId;
+	public int getSupervisorID() {
+		return SupervisorID;
 	}
 
 	/**
-	 * Sets the user id.
-	 * @param userId ID to be set
+	 * @param supervisorID the supervisorID to set
 	 */
-	public void setUserId(Integer userId) {
-		this.userId = userId;
+	public void setSupervisorID(int supervisorID) {
+		SupervisorID = supervisorID;
 	}
 
 	/**
-	 * Gets the password.
-	 * @return password Password of the employee
+	 * @return the validatorID
 	 */
-	public String getPassword() {
-		return password;
+	public int getValidatorID() {
+		return ValidatorID;
 	}
 
 	/**
-	 * Sets the password.
-	 * @param password Password to be set
+	 * @param validatorID the validatorID to set
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setValidatorID(int validatorID) {
+		ValidatorID = validatorID;
 	}
 
 	/**
-	 * Gets the username.
-	 * @return username Username of the employee
+	 * @return the roleID
 	 */
-	public String getUsername() {
-		return username;
+	public int getRoleID() {
+		return RoleID;
 	}
 
 	/**
-	 * Sets the username.
-	 * @param username to be set
+	 * @param roleID the roleID to set
 	 */
-	public void setUsername(String username) {
-		this.username = username;
+	public void setRoleID(int roleID) {
+		RoleID = roleID;
 	}
 
 	/**
-	 * Gets if employee is supervisor or not.
-	 * @return if the employee is a supervisor
+	 * @return the salary
 	 */
-    public boolean getIsSupervisor() {
-        return isSupervisor;
-    }
+	public Double getSalary() {
+		return Salary;
+	}
 
-    /**
-     * Sets if the employee is supervisor.
-     * @param isSupervisor whether employee is supervisor or not
-     */
-    public void setIsSupervisor(boolean isSupervisor) {
-        this.isSupervisor = isSupervisor;
-    }
+	/**
+	 * @param salary the salary to set
+	 */
+	public void setSalary(Double salary) {
+		Salary = salary;
+	}
+
+	/**
+	 * @return the firstName
+	 */
+	public String getFirstName() {
+		return FirstName;
+	}
+
+	/**
+	 * @param firstName the firstName to set
+	 */
+	public void setFirstName(String firstName) {
+		FirstName = firstName;
+	}
+
+	/**
+	 * @return the lastName
+	 */
+	public String getLastName() {
+		return LastName;
+	}
+
+	/**
+	 * @param lastName the lastName to set
+	 */
+	public void setLastName(String lastName) {
+		LastName = lastName;
+	}
+
+	/**
+	 * @return the isActive
+	 */
+	public Boolean getIsActive() {
+		return isActive;
+	}
+
+	/**
+	 * @param isActive the isActive to set
+	 */
+	public void setIsActive(Boolean isActive) {
+		this.isActive = isActive;
+	}
+	
+	
+	
+	
+	
 
 }

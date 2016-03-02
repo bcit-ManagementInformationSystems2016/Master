@@ -1,28 +1,62 @@
+/**
+ * 
+ */
 package ca.bcit.infosys.models;
 
-import java.io.Serializable;
-
-public class Credential implements Serializable{
+/**
+ * @author nguyen
+ *
+ */
+public class Credential {
 	
-	private String userName;
+	private int CredentialID;
+	
+	private int EmpID;
 	
 	private String password;
 
-	public String getUserName() {
-		return userName;
+	/**
+	 * @return the credentialID
+	 */
+	public int getCredentialID() {
+		return CredentialID;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	/**
+	 * @param credentialID the credentialID to set
+	 */
+	public void setCredentialID(int credentialID) {
+		CredentialID = credentialID;
 	}
 
+	/**
+	 * @return the empID
+	 */
+	public int getEmpID() {
+		return EmpID;
+	}
+
+	/**
+	 * @param empID the empID to set
+	 */
+	public void setEmpID(int empID) {
+		EmpID = empID;
+	}
+
+	/**
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * @param password the password to set
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	
 	
 
