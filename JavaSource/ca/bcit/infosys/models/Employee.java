@@ -1,6 +1,8 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -39,6 +41,10 @@ public class Employee implements Serializable {
 	//bi-directional one-to-one association to Credential
 	@OneToOne(mappedBy="employee")
 	private Credential credential;
+	
+	// used for one-to-many mapping between projects and project managers
+	@OneToMany(mappedBy="projectManager")
+	private List<Project> projectManagers;
 
 	public Employee() {
 	}
