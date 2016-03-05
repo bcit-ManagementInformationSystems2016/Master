@@ -1,159 +1,98 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+import javax.persistence.*;
 
-import javax.inject.Named;
 
-@Named 
-public class Employee implements Serializable{
+/**
+ * The persistent class for the Employees database table.
+ * 
+ */
+@Entity
+@Table(name="Employees")
+@NamedQuery(name="Employee.findAll", query="SELECT e FROM Employee e")
+public class Employee implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="EmployeeID")
+	private int employeeID;
+
+	@Column(name="FirstName")
+	private String firstName;
+
+	@Transient
+	private boolean isActive;
+
+	@Column(name="LastName")
+	private String lastName;
+
 	
-	private int EmpID;
+
+
+	@Column(name="Salary")
+	private double salary;
+
 	
-	private int PayLevelID;
-	
-	private int SupervisorID;
-	
-	private int ValidatorID;
-	
-	private int RoleID;
-	
-	private Double Salary;
-	
-	private String FirstName;
-	
-	private String LastName;
-	
-	private Boolean isActive;
 
-	/**
-	 * @return the empID
-	 */
-	public int getEmpID() {
-		return EmpID;
+	//bi-directional one-to-one association to Credential
+	@OneToOne(mappedBy="employee")
+	private Credential credential;
+
+	public Employee() {
 	}
 
-	/**
-	 * @param empID the empID to set
-	 */
-	public void setEmpID(int empID) {
-		EmpID = empID;
+	public int getEmployeeID() {
+		return this.employeeID;
 	}
 
-	/**
-	 * @return the payLevelID
-	 */
-	public int getPayLevelID() {
-		return PayLevelID;
+	public void setEmployeeID(int employeeID) {
+		this.employeeID = employeeID;
 	}
 
-	/**
-	 * @param payLevelID the payLevelID to set
-	 */
-	public void setPayLevelID(int payLevelID) {
-		PayLevelID = payLevelID;
-	}
-
-	/**
-	 * @return the supervisorID
-	 */
-	public int getSupervisorID() {
-		return SupervisorID;
-	}
-
-	/**
-	 * @param supervisorID the supervisorID to set
-	 */
-	public void setSupervisorID(int supervisorID) {
-		SupervisorID = supervisorID;
-	}
-
-	/**
-	 * @return the validatorID
-	 */
-	public int getValidatorID() {
-		return ValidatorID;
-	}
-
-	/**
-	 * @param validatorID the validatorID to set
-	 */
-	public void setValidatorID(int validatorID) {
-		ValidatorID = validatorID;
-	}
-
-	/**
-	 * @return the roleID
-	 */
-	public int getRoleID() {
-		return RoleID;
-	}
-
-	/**
-	 * @param roleID the roleID to set
-	 */
-	public void setRoleID(int roleID) {
-		RoleID = roleID;
-	}
-
-	/**
-	 * @return the salary
-	 */
-	public Double getSalary() {
-		return Salary;
-	}
-
-	/**
-	 * @param salary the salary to set
-	 */
-	public void setSalary(Double salary) {
-		Salary = salary;
-	}
-
-	/**
-	 * @return the firstName
-	 */
 	public String getFirstName() {
-		return FirstName;
+		return this.firstName;
 	}
 
-	/**
-	 * @param firstName the firstName to set
-	 */
 	public void setFirstName(String firstName) {
-		FirstName = firstName;
+		this.firstName = firstName;
 	}
 
-	/**
-	 * @return the lastName
-	 */
-	public String getLastName() {
-		return LastName;
+	public boolean getIsActive() {
+		return this.isActive;
 	}
 
-	/**
-	 * @param lastName the lastName to set
-	 */
-	public void setLastName(String lastName) {
-		LastName = lastName;
-	}
-
-	/**
-	 * @return the isActive
-	 */
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	/**
-	 * @param isActive the isActive to set
-	 */
-	public void setIsActive(Boolean isActive) {
+	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+	public String getLastName() {
+		return this.lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+
+	public double getSalary() {
+		return this.salary;
+	}
+
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+
 	
-	
-	
-	
-	
+
+
+	public Credential getCredential() {
+		return this.credential;
+	}
+
+	public void setCredential(Credential credential) {
+		this.credential = credential;
+	}
 
 }

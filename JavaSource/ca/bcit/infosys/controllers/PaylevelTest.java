@@ -43,7 +43,7 @@ public class PaylevelTest implements Serializable {
 			System.out.println("con not null");
 		}
 		stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT FirstName FROM Employees");
+		ResultSet rs = stmt.executeQuery("SELECT FirstName FROM Roles");
 		if (rs == null) {
 			System.out.println("rs null");
 		} else {
