@@ -2,6 +2,7 @@ package ca.bcit.infosys.models;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -42,13 +42,17 @@ public class Project implements Serializable{
 	@Column(name="Description")
 	private String description;
 	
-	//bi0-directional one-to-many association to Customer
+	//bi-directional one-to-many association to Customer
 	// insert code here later
 
-	//bi-directional one-to-one association to Credential
+	//bi-directional one-to-one association to Employee (who will act as Project Manager)
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ProjectManager")
 	private Employee projectManager;
+	
+	//bi-directional one-to-many association with Work Packages
+	@OneToMany(mappedBy="workingProject")
+	private List<WorkPackage> workPackages;
 	
 	// Ctor
 	public Project() {}
