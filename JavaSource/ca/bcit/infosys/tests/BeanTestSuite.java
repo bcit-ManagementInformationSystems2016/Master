@@ -6,7 +6,9 @@ import org.junit.runners.Suite;
 //JUnit Suite Test
 @RunWith(Suite.class)
 @Suite.SuiteClasses({ 
-   CredentialBeanTest.class, EmployeeBeanTest.class
+   CredentialBeanTest.class, 
+   EmployeeBeanTest.class,
+   CustomerBeanTest.class
 })
 public class BeanTestSuite {
 }
