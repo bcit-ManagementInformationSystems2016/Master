@@ -29,6 +29,9 @@ public class WorkPackage implements Serializable{
 	@Column(name="WorkPackageID")
 	private String wpID;
 	
+	@Column(name="WPParentID")
+	private String parentWPID;
+	
 	@Column(name="EstimatedHours")
 	private double estimatedHours;
 
@@ -55,6 +58,14 @@ public class WorkPackage implements Serializable{
 
 	public void setWpID(String wpID) {
 		this.wpID = wpID;
+	}
+	
+	public String getParentWPID() {
+		return parentWPID;
+	}
+	
+	public void setParentWPID(String parentWPID) {
+		this.parentWPID = parentWPID;
 	}
 
 	public double getEstimatedHours() {
