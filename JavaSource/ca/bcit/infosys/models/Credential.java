@@ -16,35 +16,37 @@ public class Credential implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="CredentialsID")
-	private int credentialsID;
-
 	@Column(name="EmployeeID")
 	private int employeeID;
 
 	@Column(name="Password")
 	private String password;
+	
+	@Column(name="EmpUserName")
+	private String username;
 
 	//bi-directional one-to-one association to Employee
 	@OneToOne
-	@JoinColumn(name="CredentialsID")
+	@JoinColumn(name="EmployeeID")
 	private Employee employee;
 
 	public Credential() {
 	}
 	
-	public Credential(int credID, int empID, String password) {
-		this.credentialsID = credID;
+	public Credential(int empID, String password, String username) {
+		this.username = username;
 		this.employeeID = empID;
 		this.password = password;
 	}
 
-	public int getCredentialsID() {
-		return this.credentialsID;
+	
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setCredentialsID(int credentialsID) {
-		this.credentialsID = credentialsID;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getEmployeeID() {

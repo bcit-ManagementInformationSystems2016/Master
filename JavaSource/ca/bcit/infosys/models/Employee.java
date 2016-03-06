@@ -30,7 +30,8 @@ public class Employee implements Serializable {
 	@Column(name="LastName")
 	private String lastName;
 
-	
+	@Column(name="ValidatorID")
+	private int validatorID;
 
 
 	@Column(name="Salary")
@@ -79,6 +80,14 @@ public class Employee implements Serializable {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public int getValidatorID() {
+		return validatorID;
+	}
+
+	public void setValidatorID(int validatorID) {
+		this.validatorID = validatorID;
 	}
 
 

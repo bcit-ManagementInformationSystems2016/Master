@@ -14,11 +14,10 @@ import ca.bcit.infosys.models.Employee;
 
 @Named("account")
 @SessionScoped
-public class AccountController implements Serializable{
-	
+public class AccountController implements Serializable {
 	@Inject
 	private EmployeeManager empmgr;
-	
+
 	@Inject
 	private CredentialManager crmgr;
 	
@@ -26,14 +25,17 @@ public class AccountController implements Serializable{
 		System.out.println("test");
 		return empmgr.getAll();
 	}
-	
+
 	public Credential[] getAllCred() {
 		return crmgr.getAll();
 	}
-	
+
 	public void login(String userName, String password) {
-		
-		
+		System.out.println("Login");
 	}
 
+	public Employee[] getValidating() {
+		System.out.println("valid");
+		return empmgr.getValidating();
+	}
 }

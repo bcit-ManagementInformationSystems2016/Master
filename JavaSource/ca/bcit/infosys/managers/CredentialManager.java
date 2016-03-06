@@ -60,7 +60,7 @@ public class CredentialManager {
 	     */
 	    public void remove(Credential credential) {
 	        //attach category
-	        credential = find(credential.getCredentialsID());
+	        credential = find(credential.getEmployeeID());
 	        em.remove(credential);
 	    }
 
