@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>#{msgs.employeeTitle}</title>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+</h:head>
+<h:body>
+	<h3>#{msgs.page_title}</h3>
+	<h5>#{msgs.emp_num}&emsp;<h:outputText value="#{Credentials.EmployeeID}"/>&emsp;&emsp;&emsp;&emsp;
+	
+	     	#{msgs.wk_num}&emsp;<h:outputText value="#"/>&emsp;&emsp;&emsp;&emsp;
+	     	#{msgs.wk_end}&emsp;<h:outputText value="#"/>&emsp;&emsp;&emsp;&emsp;
+			#{msgs.name}&emsp;<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" />&nbsp;&nbsp;
+							  <h:outputText value="#{Employees.LastName}" style="font-weight: bold" /></h5>
+	<h:form>
+	<h:dataTable value="#{timesheet.allTimesheet}" var="ts"
+			 class="table table-hover table-bordered" cellspacing="0"
+			 footerClass="list-footer" headerClass="list-header" columnClasses="odd,even">
+			<h:column>
+					<f:facet name="header">
+						<h:outputText value="#{msgs.editColumn}" style="font-weight: bold" />
+					</f:facet>
+					<h:selectBooleanCheckbox value="#" onclick="submit()" />
+					<f:facet name="footer">
+		   				<h:commandButton value="#{msgs.add}" action="#" class="btn btn-default"/>
+				    </f:facet>
+				</h:column>
+								
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.timeSheetID}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText  value="#{ts.timesheetID}" rendered="#{p.editable}"
+					size="10" required="true">
+				</h:inputText>
+				<h:outputText value="#{ts.timesheetID}" rendered="#{not p.editable}" />
+			</h:column>
+				<h:column>
+					<f:facet name="header">EmployeeID</f:facet>
+					<h:outputText value="#{ts.employeeID}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Submitted</f:facet>
+					<h:outputText value="#{ts.submitted}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Approved</f:facet>
+					<h:outputText value="#{ts.approved}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">startDAte</f:facet>
+					<h:outputText value="#{ts.startDate}"/>
+				</h:column>
+				
+							
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.timeSheetRowId}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#" rendered="#{p.editable}"
+					size="10" required="true">
+				</h:inputText>
+				<h:outputText value="#" rendered="#{not p.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.wp}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#" rendered="#{p.editable}"
+					size="10" required="true">
+				</h:inputText>
+				<h:outputText value="#"
+					rendered="#{not p.editable}" />
+				<f:facet name="footer">
+			                <h:outputText value="#{msgs.total}"/>
+			    </f:facet>	
+			</h:column>
+	        <h:column>
+	            <f:facet name="header">
+	                <h:outputText value="#{msgs.total}"/>
+	            </f:facet>
+	            <h:outputText value="#" rendered="#{not list.editable}"/>
+	            <f:facet name="footer">
+	                <h:outputText value="#"/>
+	            </f:facet>
+	        </h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.sun}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#"
+					rendered="#{p.editable}" size="10">
+  					 <f:validateLongRange minimum="0" maximum="8" />
+  				</h:inputText>	
+				<h:outputText value="#"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.mon}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:inputText value="#"
+					rendered="#{p.editable}" size="10">
+  					 <f:validateLongRange minimum="0" maximum="8" />
+  				</h:inputText>	 
+				<h:outputText value="#"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:commandLink value="#{msgs.delete}"
+					action="#" />
+			</h:column>
+			</h:dataTable>
+		
+		
+	</h:form>
+	<ui:debug/>
+</h:body>
+</html>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>#{msgs.employeeTitle}</title>
+	<h:outputStylesheet library="css" name="bootstrap.css" />
+</h:head>
+<h:body>
+	<h3>#{msgs.page_title}</h3>
+	<h:form>
+		<h5>#{msgs.emp_num}&emsp;<h:outputText value="#{Credentials.EmployeeID}"/>&emsp;&emsp;&emsp;&emsp;
+	    
+	     	#{msgs.wk_num}&emsp;<h:outputText value="#{timesheetListForm.getWeekNumber()}"/>&emsp;&emsp;&emsp;&emsp;
+	     	#{msgs.wk_end}&emsp;<h:outputText value="#{timesheetListForm.getWeekEnding()}"/>&emsp;&emsp;&emsp;&emsp;
+			#{msgs.name}&emsp;<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" />&nbsp;&nbsp;
+							  <h:outputText value="#{Employees.LastName}" style="font-weight: bold" /></h5>
+		<h:dataTable value="#{timesheetListForm.list}" var="p"
+			 class="table table-hover table-bordered" cellspacing="0"
+			 footerClass="list-footer" headerClass="list-header" columnClasses="odd,even">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.weekDate}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.endWeek}" rendered="#{not p.editable}"  />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.project_id}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.projectId}" rendered="#{not p.editable}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.wp}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.workPackage}"
+					rendered="#{not p.editable}" />
+				<f:facet name="footer">
+			                <h:outputText value="#{msgs.total}"/>
+			    </f:facet>	
+			</h:column>
+	        <h:column>
+	            <f:facet name="header">
+	                <h:outputText value="#{msgs.total}"/>
+	            </f:facet>
+	            <h:outputText value="#{p.timesheet.totalDay}" rendered="#{not list.editable}"/>
+	            <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalTotal()}"/>
+	            </f:facet>
+	        </h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.sat}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.sat}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalSat()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.sun}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.sun}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalSun()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.mon}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.mon}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalMon()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.tue}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.tue}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalTue()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.wed}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.wed}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalWed()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.thu}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.thu}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalThu()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.fri}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.fri}"
+					rendered="#{not p.editable}" />
+	           <f:facet name="footer">
+	                <h:outputText value="#{timesheetListForm.totalFri()}"/>
+	            </f:facet>
+			</h:column>	
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="#{msgs.notes}"
+						style="font-weight: bold" />
+				</f:facet>
+				<h:outputText value="#{p.timesheet.notes}"
+					rendered="#{not p.editable}" />
+			</h:column>				
+			
+		</h:dataTable>
+		<div class="form-group">
+		    <div class="col-sm-offset-0 col-sm-12">
+	        	<h:commandButton value="#{msgs.home}" action="displayTimesheet" class="btn btn-default"/>
+		  	  <h:commandButton value="#{msgs.logout}" action="#{Credentials.logout()}" class="btn btn-default"/>&nbsp;&nbsp;&nbsp;&nbsp;
+ 			</div>
+  		</div>
+	</h:form>
+	<ui:debug/>
+</h:body>
+</html>
