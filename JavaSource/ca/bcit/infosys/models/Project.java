@@ -43,13 +43,16 @@ public class Project implements Serializable{
 	private String description;
 	
 	//bi-directional one-to-many association to Customer
-	// insert code here later
 
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="CustomerID")
+    private Customer cust;  
+	
 	//bi-directional one-to-one association to Employee (who will act as Project Manager)
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ProjectManager")
 	private Employee projectManager;
-	
+
 	//bi-directional one-to-many association with Work Packages
 	@OneToMany(mappedBy="workingProject")
 	private List<WorkPackage> workPackages;
@@ -97,6 +100,11 @@ public class Project implements Serializable{
 	public void setProjectManager(Employee projectManager) {
 		this.projectManager = projectManager;
 	}
-	
+	public void setCust(Customer cust){
+	    this.cust = cust;
+	}
+	public Customer getCust(){
+	    return cust;
+	}
 	
 }
