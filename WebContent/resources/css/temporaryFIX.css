@@ -1,29 +1,36 @@
+@CHARSET "ISO-8859-1";
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
-
-html, body, a, div, p, span, 
-figurecaption, h1, h2, 
-h3, h4, h5, h6, h7 {
-    font-family: 'Exo', sans-serif;
+/*
+ ***********************************************************************************************
+ * NOTE: This file is ONLY to temporarily fix style bugs in certain views for the presentation *
+ *       This file will be REMOVED after the presentation									   *
+ ********************************************************************************************* *
+ */
+.container {	
+	width: 100%;
+    text-align: center;
+    position: absolute;
+	top: 150px;   
 }
-.cs-style div {
-
+.grid li {
+	display: inline-block;
+	width: 200px;
 	margin: 0;
 	padding: 50px;
 	text-align: left;
-}
-figure.menuIcon  {
-	margin: 0;
-	/*Was causing small green bg
-	position: relative;*/
-}
-figure.menuIcon img {
-	max-width: 100%;
-	display: block;
-    margin: 0 auto;
 	position: relative;
 }
-.menuIcon figcaption {
+.grid figure {
+	margin: 0;
+	position: relative;
+}
+.grid figure img {
+	max-width: 100%;
+	display: block;
+	position: relative;
+}
+.grid figcaption {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -31,10 +38,15 @@ figure.menuIcon img {
 	background: #07E883;
 	color: white;
 }
-.menuIcon figcaption h1 {
+.grid figcaption h1 {
 	margin: 0;
 	padding: 0;
+	font-family: 'Exo', sans-serif;
 	color: #FFFEEE;
+}
+
+.test {
+	font-family: 'Exo', sans-serif;
 }
 
 /* Caption Style 5 */
@@ -78,74 +90,4 @@ figure.menuIcon img {
 	position: absolute;
 	bottom: 20px;
 	right: 20px;
-}
-
-
-.header-user-menu{
-	position: absolute;
-	float:right;
-	background-color:#2E0000;
-	width:120px;
-	height:40px;
-	border-radius:2px;
-	right:30px;
-}
-
-#wrap > div.header-fixed > div > div > p {
-	padding: 9px;
-	color: #07E883;
-	font-weight: bold;
-}
-.header-user-menu:before{
-	content:'';
-	width:0;
-	height:0;
-	top: 18px;
-	left: 15px;
-	position:absolute;
-	border:5px solid transparent;
-	border-top-color:#07E883;
-}
-
-.header-user-menu ul{
-	display: none;
-	font:bold 13px Arial, Helvetica, sans-serif;
-	background-color: #07E883;
-	list-style: none;
-	position: absolute;
-	text-align: center;
-	width: 125px;
-	top: 25px;
-	right: 0;
-	padding: 10px;
-	border-radius: 2px;
-	box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
-	box-sizing: border-box;
-}
-
-.header-user-menu:active ul,
-.header-user-menu:hover ul,
-.header-user-menu.show ul{
-	display:block;
-}
-
-.header-user-menu ul li{
-	padding:5px;
-	color: #07E883;
-}
-
-.header-user-menu ul li a:hover{
-	opacity:0.9;
-}
-
-.header-user-menu ul li a.highlight{
-	color:#07E883;
-}
-
-.header-user-menu img{
-	border-radius:50%;
-	position:absolute;
-	top:6px;
-	max-width: 28px;
-	right:10px;
 }

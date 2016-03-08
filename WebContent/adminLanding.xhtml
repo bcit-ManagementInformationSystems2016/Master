@@ -17,51 +17,48 @@
         </ui:define>
         <ui:define name="content">
             <div class="container">
-            	
-    			
-                <ul class="grid cs-style">
-                    <li>
-                        <h:link outcome="timesheetAdmin">
-                            <figure>
-                                <h:graphicImage library="images" name="timesheet-icon.png" />
-                                <figcaption>
-                                    <h1>Timesheet</h1>
-                                </figcaption>
-                            </figure>
-                        </h:link>
-                    </li>
-                    <li>
-                        <h:link outcome="showAllProjects">
-                            <figure>
-                                <h:graphicImage library="images" name="project-icon.png" />
-                                <figcaption>
-                                    <h1>Project</h1>
-                                </figcaption>
-                            </figure>
-                        </h:link>
-                    </li>
-                    <li>
-
-                        <a href="#">
-                            <figure>
-                                <h:graphicImage library="images" name="workpackage-icon.png" />
-                                <figcaption>
-                                    <h1>Workpackage</h1>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <figure>
-                                <h:graphicImage library="images" name="view-users.png" />
-                                <figcaption>
-                                    <h1>Employee</h1>
-                                </figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                </ul>
+		        <div class="row cs-style">
+		            <div class="col-lg-3 col-md-6 col-sm-12">
+		            <h:link outcome="timesheetAdmin">
+		                <figure class="menuIcon">
+		                    <h:graphicImage library="images" name="timesheet-icon.png" />
+		                    <figcaption>
+		                            <h1>Timesheet</h1>
+		                    </figcaption>
+		                </figure>
+		            </h:link>
+		            </div>
+		            <div class="col-lg-3 col-md-6 col-sm-12">
+		            <h:link outcome="showAllProjects">
+		                <figure class="menuIcon">
+		                    <h:graphicImage library="images" name="project-icon.png" />
+		                    <figcaption>
+		                        <h1>Project</h1>
+		                    </figcaption>
+		                </figure>
+		            </h:link>            
+		            </div>
+		            <div class="col-lg-3 col-md-6 col-sm-12">
+		            <a href="#">
+		                <figure class="menuIcon">
+		                    <h:graphicImage library="images" name="workpackage-icon.png" />
+		                    <figcaption>
+		                        <h1>Workpackage</h1>
+		                    </figcaption>
+		                </figure>
+		            </a>
+		            </div>
+		            <div class="col-lg-3 col-md-6 col-sm-12">
+		            <a href="#">
+		                <figure class="menuIcon">
+		                    <h:graphicImage library="images" name="settings-icon.png" />
+		                    <figcaption>
+		                        <h1>Settings</h1>
+		                    </figcaption>
+		                </figure>
+		            </a>            
+		            </div>
+		        </div>    
             </div>
         </ui:define>
     </ui:composition>
