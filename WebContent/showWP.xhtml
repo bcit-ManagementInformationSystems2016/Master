@@ -26,10 +26,13 @@
 					<f:facet name="header">Parent</f:facet>
 					<h:outputText value="#{wp.parentWPID}"/>
 				</h:column>
-
+				
+				<h:column>
+					<h:commandLink value="See Child WPs" action="#{projectController.goToShowWPChild(wp)}" rendered="#{not projectController.showAllwps}"/>
+				</h:column>
 				
 			</h:dataTable>
-		
+			<h:commandLink value="Go Back" action="#{projectController.goToShowWPParent()}"/>
 		</h:form>
 		
 	</h:body>

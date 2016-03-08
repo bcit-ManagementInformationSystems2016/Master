@@ -9,6 +9,7 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#showWP.xhtml" PATH="/showWP.xhtml"
+<<<<<<< Updated upstream
   SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#humanResources.xhtml"
   PATH="/humanResources.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
@@ -35,6 +36,14 @@
    <PROCESS-ITEM-OUTPUT ID="created::#humanResources.xhtml"
     NAME="output" PATH="/humanResources.xhtml"
     TARGET="rules:#humanResources.xhtml" TITLE="created" model-entity="JSFProcessItemOutput"/>
+=======
+  SHAPE="240,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#showWP.xhtml:0" NAME="item"
+   PATH="/showWP.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="showProjects::#showAllProjects.xhtml"
+    NAME="output" PATH="/showAllProjects.xhtml"
+    TARGET="rules:#showAllProjects.xhtml" TITLE="showProjects" model-entity="JSFProcessItemOutput"/>
+>>>>>>> Stashed changes
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>

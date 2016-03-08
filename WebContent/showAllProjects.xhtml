@@ -23,7 +23,11 @@
 				</h:column>
 				
 				<h:column>
-               		<h:commandLink value="See Work Packages" action="#{projectController.goToShowWP(pro)}"/>
+               		<h:commandLink value="See All WPs" action="#{projectController.goToShowWP(pro)}"/>
+            	</h:column>
+            	
+            	<h:column>
+            		<h:commandLink value="See WP Tree" action="#{projectController.goToShowWPTree(pro)}"/>
             	</h:column>
 				
 			</h:dataTable>

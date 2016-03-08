@@ -73,5 +73,15 @@ public class WorkPackageManager {
 		}
 		return wpArray;	
 	}
+	
+	public WorkPackage[] getParentProjectWorkPackages(int projectID, String parentID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = " + parentID, WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		WorkPackage[] wpArray = new WorkPackage[wps.size()];
+		for (int i=0; i < wpArray.length; i++) {
+			wpArray[i] = wps.get(i);
+		}
+		return wpArray;	
+	}
 
 }
