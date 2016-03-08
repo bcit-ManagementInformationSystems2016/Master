@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>CustomerAddressBook</title>
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:dataTable value="#{customerController.allCustomers}" var="cust">
+				<h:column>
+					<f:facet name="header">Index</f:facet>
+					<h:outputText value="#{cust.customerID}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">First Name</f:facet>
+					<h:outputText value="#{cust.contactFName}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Last Name</f:facet>
+					<h:outputText value="#{cust.contactLName}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">CompanyName</f:facet>
+					<h:outputText value="#{cust.companyName}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">CompanyDescription</f:facet>
+					<h:outputText value="#{cust.description}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">CreateAProject</f:facet>
+					<h:outputText value="#{cust.description}"/>
+				</h:column>
+			</h:dataTable>
+		
+		</h:form>
+		
+	</h:body>
+</html>
