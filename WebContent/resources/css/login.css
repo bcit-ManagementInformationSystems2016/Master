@@ -1,0 +1,112 @@
+@CHARSET "EUC-KR";
+@import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+* {
+	box-sizing: border-box;
+}
+
+*:focus {
+	outline: none;
+}
+
+body {
+	font-family: Arial;
+	background-image: url(http://images7.alphacoders.com/500/500046.jpg);
+	padding: 50px;
+}
+
+.login {
+	margin: 20px auto;
+	width: 300px;
+}
+
+.login-screen {
+	background-color: #FFFEEE;
+	padding: 20px;
+	border-radius: 5px
+}
+
+.app-title {
+	text-align: center;
+	color: #777;
+}
+
+.login-form {
+	text-align: center;		
+}
+
+.control-group {
+	margin-bottom: 10px;
+}
+
+input {
+	text-align: center;
+	background-color: #ECF0F1;
+	border: 2px solid transparent;
+	border-radius: 3px;
+	font-size: 16px;
+	font-weight: 200;
+	padding: 10px 0;
+	width: 250px;
+	transition: border .5s;
+}
+
+input:focus {
+	border: 2px solid #3498DB;
+	box-shadow: none;
+}
+
+.btn {
+	border: 2px solid transparent;
+	background: #07E883;
+	color: #ffffff;
+	font-size: 16px;
+	line-height: 25px;
+	padding: 10px 0;
+	text-decoration: none;
+	text-shadow: none;
+	border-radius: 3px;
+	box-shadow: none;
+	transition: 0.25s;
+	display: block;
+	width: 250px;
+	margin: 0 auto;
+}
+
+.btn:hover {
+	background-color: #08FFD5;
+}
+
+.login-link {
+	font-size: 12px;
+	color: #444;
+	display: block;
+	margin-top: 12px;
+}
+
+p {
+	text-align: center;
+	font-size: 50px;	
+	font-weight: 700;
+}
+
+span {
+	color: #07E883;	
+}
+
+h1, input, p, a {
+    font-family: 'Exo', sans-serif;
+}
+::-webkit-input-placeholder {
+    font-family: 'Exo', sans-serif;
+}
+:-moz-placeholder {
+    font-family: 'Exo', sans-serif;
+}
+::-moz-placeholder {
+    font-family: 'Exo', sans-serif;
+}
+:-ms-input-placeholder {
+    font-family: 'Exo', sans-serif;
+}

@@ -59,7 +59,7 @@ public class Login implements Serializable {
 			}
 			else
 				System.out.println("Successful Login");
-				return "valid";
+				return "adminLanding";
 		}
 		return "invalid";
 	}

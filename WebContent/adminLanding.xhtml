@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+    <title>IGNORED</title>
+</head>
+
+<body>
+    <ui:composition template="/templates/masterLayout.xhtml">
+        <ui:define name="windowTitle">
+            #{msgs.admin}
+        </ui:define>
+        <ui:define name="content">
+            <div class="container">
+                <ul class="grid cs-style">
+                    <li>
+                        <h:link outcome="timesheetAdmin">
+                            <figure>
+                                <h:graphicImage library="images" name="timesheet-icon.png" />
+                                <figcaption>
+                                    <h1>Timesheet</h1>
+                                </figcaption>
+                            </figure>
+                        </h:link>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <figure>
+                                <h:graphicImage library="images" name="project-icon.png" />
+                                <figcaption>
+                                    <h1>Project</h1>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li>
+
+                        <a href="#">
+                            <figure>
+                                <h:graphicImage library="images" name="workpackage-icon.png" />
+                                <figcaption>
+                                    <h1>Workpackage</h1>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <figure>
+                                <h:graphicImage library="images" name="settings-icon.png" />
+                                <figcaption>
+                                    <h1>Settings</h1>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

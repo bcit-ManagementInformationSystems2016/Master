@@ -1,27 +1,44 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-    <title>login</title>
-</h:head>
-<h:body>
-    <h:form>
-        <h3>Employee Login</h3>
-        <h:outputText value="Username" />
-        <br />
-        <h:inputText id="username" value="#{login.username}"></h:inputText>
-        <h:message for="username"></h:message>
-        <br /><br />
-         
-        <h:outputText value="Password" />
-        <br />
-        <h:inputSecret id="password" value="#{login.password}"></h:inputSecret>
-        <h:message for="password"></h:message>
-        <br /><br />
-         
-        <h:commandButton action="#{login.validate}"
-            value="displayTimesheet"></h:commandButton>
-    </h:form>
-</h:body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+    <ui:composition template="/templates/loginLayout.xhtml">
+        <ui:define name="windowTitle">
+            #{msgs.login}
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form styleClass="form-horizontal" xmlns:h="http://java.sun.com/jsf/html">
+                <p>Panda<span>Timesheets</span></p>
+                <div class="login">
+                    <div class="login-screen">
+                        <div class="app-title">
+                            <h1>Login</h1>
+                        </div>
+                        <div class="login-form">
+                            <div class="control-group">
+                                <h:inputText value="#{login.username}" class="login-field" 
+                                		     required="true" p:placeholder="Username" />
+                            </div>
+                            <div class="control-group">
+                                <h:inputSecret value="#{login.password}" class="login-field" 
+                                			   required="true" p:placeholder="Password" />
+                            </div>
+                            <h:commandButton action="#{login.validate}" value="Login" 
+                            				 styleClass="btn btn-primary btn-lg btn-block" />
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</body>
+
 </html>

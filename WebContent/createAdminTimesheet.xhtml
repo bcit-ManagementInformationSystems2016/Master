@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">      
+<head>
+    <title>IGNORED</title>    
+</head>
+
+<body>
+    <ui:composition template="/templates/masterLayout.xhtml">      
+        <ui:define name="content">
+        <h:form>
+  <b:panelGrid colSpans="6,6">
+     <b:panel look="info" title="Current Timesheet" collapsible="false">
+       <h3 class="panel-title test">                
+			#{msgs.nameusername}<h:outputText value="#{credit.userName}"/><br/><br/>                      
+			#{msgs.employeenumber}<h:outputText value="#{storage.empNum}"/><br/><br/>                     
+			#{msgs.weeknumber} <h:outputText value="#{timesheetData.getWeekNumber()}"/><br/><br/>
+			#{msgs.weekending} <h:outputText value="#{timesheetData.getWeekEnding()}"/>
+		</h3>
+     </b:panel>
+     <b:panel look="info" title="Info" collapsible="false" class="test">                             	
+        	<h:outputText value="Flextime :"/><br/><br/>  
+        	<h:outputText value="Overtime :"/><br/><br/> 
+                            <h:commandButton value="#{msgs.submit}" action="#{timesheetData.save}" styleClass="btn btn-info" /> 
+                            <h:commandButton value="#{msgs.addrow}" action="#{timesheetData.addRow}" styleClass="btn btn-info" />
+                            <h:commandButton value="#{msgs.new}" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
+        
+     </b:panel>
+   </b:panelGrid>
+</h:form>
+            <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+                <h:form>
+                    <div class="panel panel-warning">
+                        <b:dataTable value="#{timesheetData.list}" var="list" styleClass="table table-striped table-bordered" style="width:100%">                           
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Project" />
+                                </f:facet>   
+                                <b:inputText span="1" value="#{list.projectID}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="WP" />
+                                </f:facet>
+                                <b:inputText span="1" value="#{list.workPackage}"/>                                
+                                <f:facet name="footer">
+                                    <h:outputText value="Total" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Total" />
+                                </f:facet>
+                                <h:outputText value="#{list.total}" />
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.allTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sat" />
+                                </f:facet>                                
+                                <b:inputText span="1" value="#{list.sat}">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="sat" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.satTotal()}" />
+                                </f:facet>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Sun" />
+                                </f:facet>      
+                                <b:inputText span="1" value="#{list.sun}">       
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="sun" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.sunTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Mon" />
+                                </f:facet>
+                                <b:inputText span="1" value="#{list.mon}">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="mon" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.monTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Tue" />
+                                </f:facet>
+                                <b:inputText span="1" value="#{list.tue}">                                
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="tue" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.tuesTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Wed" />
+                                </f:facet>
+                                <b:inputText span="1" value="#{list.wed}">                              
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="wed" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.wedTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Thu" />
+                                </f:facet>
+                                <b:inputText span="1" value="#{list.thu}">                                
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="thu" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.thuTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Fri" />
+                                </f:facet>
+                                <b:inputText span="1" value="#{list.fri}">                                
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="fri" />
+                                </b:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.friTotal()}" />
+                                </f:facet>
+                            </h:column>                           
+                            <h:column>                       
+                                <h:commandLink value="Delete" action="#{timesheetData.removeRow(list)}" />                                 
+                            </h:column>
+                        </b:dataTable>                        
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

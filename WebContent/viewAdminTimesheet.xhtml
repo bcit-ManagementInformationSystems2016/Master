@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">  
+<head>
+    <title>IGNORED</title>
+</head>
+
+<body>
+    <ui:composition template="/templates/noIconLayout.xhtml">
+        <ui:define name="windowTitle">
+            #{msgs.timesheet}
+        </ui:define>
+        <ui:define name="heading">
+            <ui:include src="/sections/admin/timesheetHeader.xhtml" />
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+                <h:form>
+                    <div class="panel panel-warning">
+
+                        <h:form>
+                            <b:panelGrid colSpans="6,6">
+                                <b:panel look="info" title="Current Timesheet" collapsible="false">
+                                    <h3 class="panel-title test">
+										#{msgs.weeknumber} <h:outputText value="#{timesheetData.getWeekNumber()}"/><br/><br/>
+										#{msgs.weekending} <h:outputText value="#{timesheetData.getWeekEnding()}"/>
+									</h3>
+                                </b:panel>
+                                <b:panel look="info" title="Info" collapsible="false" class="test">
+                                    <h:outputText value="Total Pending :" /><br/><br/>
+                                    <h:outputText value="Total Approved :" /><br/><br/>                                   
+                                </b:panel>
+                            </b:panelGrid>
+                        </h:form>
+                        <b:dataTable value="#{timesheetData.list}" var="list" styleClass="table table-hover">
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="ProjectID" />
+                                </f:facet>
+                                <h:outputText value="#{list.projectID}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.projectID}" rendered="#{list.editable}" />
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="WP" />
+                                </f:facet>
+                                <h:outputText value="#{list.workPackage}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.workPackage}" rendered="#{list.editable}" />
+                                <f:facet name="footer">
+                                    <h:outputText value="Total" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Total" />
+                                </f:facet>
+                                <h:outputText value="#{list.total}" rendered="#{not list.editable}" />
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.allTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Sat" />
+                                </f:facet>
+                                <h:outputText value="#{list.sat}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.sat}" rendered="#{list.editable}" id="sat">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="sat" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.satTotal()}" />
+                                </f:facet>
+                            </h:column>
+
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Sun" />
+                                </f:facet>
+                                <h:outputText value="#{list.sun}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.sun}" rendered="#{list.editable}" id="sun">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="sun" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.sunTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Mon" />
+                                </f:facet>
+                                <h:outputText value="#{list.mon}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.mon}" rendered="#{list.editable}" id="mon">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="mon" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.monTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Tue" />
+                                </f:facet>
+                                <h:outputText value="#{list.tue}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.tue}" rendered="#{list.editable}" id="tue">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="tue" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.tuesTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Wed" />
+                                </f:facet>
+                                <h:outputText value="#{list.wed}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.wed}" rendered="#{list.editable}" id="wed">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="wed" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.wedTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Thu" />
+                                </f:facet>
+                                <h:outputText value="#{list.thu}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.thu}" rendered="#{list.editable}" id="thu">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="thu" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.thuTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Fri" />
+                                </f:facet>
+                                <h:outputText value="#{list.fri}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.fri}" rendered="#{list.editable}" id="fri">
+                                    <f:validateDoubleRange minimum="0" maximum="24" />
+                                    <h:message for="fri" />
+                                </h:inputText>
+                                <f:facet name="footer">
+                                    <h:outputText value="#{timesheetData.friTotal()}" />
+                                </f:facet>
+                            </h:column>
+                            <h:column headerClass="columnHeader">
+                                <f:facet name="header">
+                                    <h:outputText value="Notes" />
+                                </f:facet>
+                                <h:outputText value="#{list.notes}" rendered="#{not list.editable}" />
+                                <h:inputText value="#{list.notes}" rendered="#{list.editable}" />
+                            </h:column>
+                        </b:dataTable>
+
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

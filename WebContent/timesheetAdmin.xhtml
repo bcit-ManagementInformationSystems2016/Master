@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+    <title>IGNORED</title>
+</head>
+
+<body>
+    <ui:composition template="/templates/masterLayout.xhtml">
+        <ui:define name="windowTitle">
+            #{msgs.admin}
+        </ui:define>
+        <ui:define name="content">
+            <div class="container">
+                <ul class="grid cs-style">
+                    <li>
+                        <h:link outcome="createAdminTimesheet">
+                            <figure>
+                                <h:graphicImage library="images" name="create-timesheet-icon.png" />
+                                <figcaption>
+                                    <h1>Create</h1>
+                                </figcaption>
+                            </figure>
+                        </h:link>
+                    </li>
+                    <li>
+                        <h:link outcome="viewAdminTimesheet">
+                            <figure>
+                                <h:graphicImage library="images" name="view-timesheet-icon.png" />
+                                <figcaption>
+                                    <h1>View/Edit</h1>
+                                </figcaption>
+                            </figure>
+                        </h:link>
+                    </li>                   
+                </ul>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

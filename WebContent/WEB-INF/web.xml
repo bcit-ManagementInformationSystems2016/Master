@@ -5,7 +5,7 @@
  <display-name>PandaTimesheets</display-name>
 
   <welcome-file-list>
-    <welcome-file>faces/humanResources.xhtml</welcome-file>
+    <welcome-file>faces/login.xhtml</welcome-file>
   </welcome-file-list>
 
  <servlet>
@@ -23,7 +23,10 @@
   <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>*.faces</url-pattern>
  </servlet-mapping>
- 
+ <context-param>
+  <param-name>net.bootsfaces.blockUI</param-name>
+  <param-value>true</param-value>
+</context-param>
  <servlet-mapping>
   <servlet-name>Faces Servlet</servlet-name>
   <url-pattern>/faces/*</url-pattern>
