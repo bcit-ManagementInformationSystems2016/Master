@@ -11,6 +11,7 @@
 	</h:head>
 	<h:body>
 		<h:form>
+			<h:outputLabel value="PROJECT: #{projectController.editableProject.projectName}"/>
 			<h:dataTable value="#{projectController.workPackagesForProject}" var="wp">
 				<h:column>
 					<f:facet name="header">ID</f:facet>
@@ -33,6 +34,7 @@
 				
 			</h:dataTable>
 			<h:commandLink value="Go Back" action="#{projectController.goToShowWPParent()}"/>
+			<h:commandButton value="Create WP" action="#{projectController.createNewWorkPackage()}"></h:commandButton>
 		</h:form>
 		
 	</h:body>

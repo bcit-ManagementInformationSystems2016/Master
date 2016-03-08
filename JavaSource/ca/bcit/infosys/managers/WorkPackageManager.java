@@ -83,5 +83,19 @@ public class WorkPackageManager {
 		}
 		return wpArray;	
 	}
+	
+	public int getWorkPackageCount(int projectID, String parentID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = " + parentID, WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		int arraySize = wps.size();
+		return arraySize;
+	}
+	
+	public int getWorkPackageCountWithNull(int projectID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID IS NULL", WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		int arraySize = wps.size();
+		return arraySize;
+	}
 
 }
