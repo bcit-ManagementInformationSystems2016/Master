@@ -53,7 +53,7 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.wp}" />
                                 </f:facet>
-                                <b:inputText span="1" value="#{tsr.workPackageID}"/>                                
+                                <h:outputText span="1" value="#{tsr.workPackageID}"/>                                
                                 <f:facet name="footer">
                                     <h:outputText value="#{msgs.total}" />
                                 </f:facet>
@@ -71,10 +71,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.mon}" />
                                 </f:facet>                                
-                                <b:inputText span="1" value="#{tsr.hoursMon}">
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="mon" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursMon}">
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>
@@ -84,10 +82,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.tue}" />
                                 </f:facet>      
-                                <b:inputText span="1" value="#{tsr.hoursTues}">       
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="tue" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursTues}">     
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>
@@ -96,10 +92,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.wed}" />
                                 </f:facet>
-                                <b:inputText span="1" value="#{tsr.hoursWed}">
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="wed" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursWed}">
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>
@@ -108,10 +102,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.thu}" />
                                 </f:facet>
-                                <b:inputText span="1" value="#{tsr.hoursThurs}">                                
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="thu" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursThurs}">   
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>
@@ -120,10 +112,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.fri}" />
                                 </f:facet>
-                                <b:inputText span="1" value="#{tsr.hoursFri}">                              
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="fri" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursFri}">       
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>
@@ -132,10 +122,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.sat}" />
                                 </f:facet>
-                                <b:inputText span="1" value="#{tsr.hoursSat}">                                
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="sat" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursSat}">   
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>
@@ -144,10 +132,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.sun}" />
                                 </f:facet>
-                                <b:inputText span="1" value="#{tsr.hoursSun}">                                
-                                    <f:validateLongRange minimum="0" maximum="8" />
-                                    <h:message for="sun" />
-                                </b:inputText>
+                                <h:outputText span="1" value="#{tsr.hoursSun}">  
+                                </h:outputText>
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>

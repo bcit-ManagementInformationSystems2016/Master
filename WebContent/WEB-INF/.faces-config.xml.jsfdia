@@ -44,22 +44,22 @@
     TARGET="rules:#humanResources.xhtml" TITLE="created" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#displayTimesheet.xhtml"
-  PATH="/displayTimesheet.xhtml" SHAPE="240,369,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#displayTimesheet.xhtml:0" NAME="item"
-   PATH="/displayTimesheet.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="edit::#editTimesheetRow.xhtml" NAME="output"
-    PATH="/editTimesheetRow.xhtml"
-    TARGET="rules:#editTimesheetRow.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#editTimesheetRow.xhtml"
   PATH="/editTimesheetRow.xhtml" SHAPE="32,353,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#editTimesheetRow.xhtml:0" NAME="item"
    PATH="/editTimesheetRow.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="updated::#displayTimesheet.xhtml"
-    NAME="output" PATH="/displayTimesheet.xhtml"
-    TARGET="rules:#displayTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="updated::#createAdminTimesheet.xhtml"
+    NAME="output" PATH="/createAdminTimesheet.xhtml"
+    TARGET="rules:#createAdminTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#createAdminTimesheet.xhtml"
+  PATH="/createAdminTimesheet.xhtml" SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#createAdminTimesheet.xhtml:0" NAME="item"
+   PATH="/createAdminTimesheet.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="edit::#editTimesheetRow.xhtml" NAME="output"
+    PATH="/editTimesheetRow.xhtml"
+    TARGET="rules:#editTimesheetRow.xhtml" TITLE="edit" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
