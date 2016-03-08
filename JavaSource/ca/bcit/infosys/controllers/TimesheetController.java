@@ -27,6 +27,38 @@ public class TimesheetController  implements Serializable {
     @Inject private TimesheetManager timesheetManager;
     /** Manager from Product objects.*/
     @Inject private TimesheetRowManager timesheetRowManager;
+    private TimesheetRow tsr = new TimesheetRow();
+
+    public TimesheetRow getTsr() {
+        return tsr;
+    }
+
+    public void setTsr(TimesheetRow tsr) {
+        this.tsr = tsr;
+    }
+
+    public String editTsr(TimesheetRow tsr) {
+        setTsr(tsr);
+        System.out.println("Edit timesheet");
+        return "edit";
+    }
+    
+    public String updateTsr(TimesheetRow tsr){
+        timesheetRowManager.merge(tsr);
+        tsr = null;
+        return "updated";
+    }
+    
+    public String createTsr(TimesheetRow tsr){
+        timesheetRowManager.persist(tsr);
+        return "created";
+    }
+    
+    public String deleteTsr(TimesheetRow tsr) {
+        timesheetRowManager.remove(tsr);
+        //list.remove(tsr);
+        return null;
+    }
     
     public Timesheet[] getAllTimesheet() {
         return timesheetManager.getAll();

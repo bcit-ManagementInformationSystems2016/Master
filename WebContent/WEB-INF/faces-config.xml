@@ -1,50 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-
-
-	<navigation-rule>
-		<from-view-id>/showAllProjects.xhtml</from-view-id>
-      	<navigation-case>
-         	<from-outcome>wpDetails</from-outcome>
-         	<to-view-id>/showWP.xhtml</to-view-id>
-      	</navigation-case>
-   </navigation-rule>
-   <navigation-rule>
-		<from-view-id>/showWP.xhtml</from-view-id>
-      	<navigation-case>
-         	<from-outcome>showProjects</from-outcome>
-         	<to-view-id>/showAllProjects.xhtml</to-view-id>
-      	</navigation-case>
-   </navigation-rule>
-
-	<navigation-rule>
-		<from-view-id>/humanResources.xhtml</from-view-id>
-      	<navigation-case>
-         	<from-outcome>employee</from-outcome>
-         	<to-view-id>/editEmployee.xhtml</to-view-id>
-      	</navigation-case>
-   </navigation-rule>
-	<navigation-rule>
-		<from-view-id>/editEmployee.xhtml</from-view-id>
-      	<navigation-case>
-         	<from-outcome>updated</from-outcome>
-         	<to-view-id>/humanResources.xhtml</to-view-id>
-      	</navigation-case>
-   </navigation-rule>
-   	<navigation-rule>
-		<from-view-id>/createEmployee.xhtml</from-view-id>
-      	<navigation-case>
-         	<from-outcome>created</from-outcome>
-         	<to-view-id>/humanResources.xhtml</to-view-id>
-      	</navigation-case>
-   </navigation-rule>
-   <application>
-      <resource-bundle>
-         <base-name>META-INF.messages</base-name>
-         <var>msgs</var>
-      </resource-bundle>
-   </application>
-
+ <navigation-rule>
+  <from-view-id>/showAllProjects.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>wpDetails</from-outcome>
+   <to-view-id>/showWP.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/showWP.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>showProjects</from-outcome>
+   <to-view-id>/showAllProjects.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/humanResources.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>employee</from-outcome>
+   <to-view-id>/editEmployee.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/editEmployee.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>updated</from-outcome>
+   <to-view-id>/humanResources.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/createEmployee.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>created</from-outcome>
+   <to-view-id>/humanResources.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/displayTimesheet.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>edit</from-outcome>
+   <to-view-id>/editTimesheetRow.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <navigation-rule>
+  <from-view-id>/editTimesheetRow.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>updated</from-outcome>
+   <to-view-id>/displayTimesheet.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+ <application>
+  <resource-bundle>
+   <base-name>META-INF.messages</base-name>
+   <var>msgs</var>
+  </resource-bundle>
+ </application>
 </faces-config>

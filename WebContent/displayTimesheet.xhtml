@@ -173,6 +173,12 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
       </h:column>
       <h:column>
         <f:facet name="header">
+          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
+        </f:facet>
+		  <h:commandLink value="Edit" action="#{timesheet.editTsr(tsr)}" />
+	  </h:column>  
+      <h:column>
+        <f:facet name="header">
           <h:outputText value="#" style="font-weight: bold" />
         </f:facet>
         <h:commandLink value="#{msgs.delete}" action="#" />
