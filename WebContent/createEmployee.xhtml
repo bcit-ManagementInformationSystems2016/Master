@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Create Employee</title>
+	<h3>Enter Employee Details</h3>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputText value="First Name" />
+		<br />
+		<h:inputText value="#{hrController.emp.firstName}"></h:inputText>
+		<br />
+		<h:outputText value="Last Name" />
+		<br />
+		<h:inputText value="#{hrController.emp.lastName}"></h:inputText>
+		<br />
+		<h:outputText value="Validator ID" />
+		<br />
+		<h:inputText value="#{hrController.emp.validatorID}"></h:inputText>
+		<br />
+		<h:outputText value="Salary" />
+		<br />
+		<h:inputText value="#{hrController.emp.salary}"></h:inputText>
+		<br />
+		<h:outputText value="Role ID" />
+		<br />
+		<h:inputText value="#{hrController.emp.roleID}"></h:inputText>
+		<br />
+		<h:outputText value="Supervisor ID" />
+		<br />
+		<h:inputText value="#{hrController.emp.supervisorID}"></h:inputText>
+		<br />
+		<h:outputText value="Pay Level ID" />
+		<br />
+		<h:inputText value="#{hrController.emp.payLevelID}"></h:inputText>
+		<br />
+		<h:outputText value="Is Active" />
+		<br />
+		<h:inputText value="#{hrController.emp.isActive}"></h:inputText>
+		<br />
+		<h:commandButton value="Save Updates" action="#{hrController.createEmp(hrController.emp)}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

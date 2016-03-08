@@ -10,4 +10,31 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#showWP.xhtml" PATH="/showWP.xhtml"
   SHAPE="240,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#humanResources.xhtml"
+  PATH="/humanResources.xhtml" SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#humanResources.xhtml:0" NAME="item"
+   PATH="/humanResources.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="employee::#editEmployee.xhtml" NAME="output"
+    PATH="/editEmployee.xhtml" TARGET="rules:#editEmployee.xhtml"
+    TITLE="employee" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#editEmployee.xhtml"
+  PATH="/editEmployee.xhtml" SHAPE="240,145,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#editEmployee.xhtml:0" NAME="item"
+   PATH="/editEmployee.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="updated::#humanResources.xhtml"
+    NAME="output" PATH="/humanResources.xhtml"
+    TARGET="rules:#humanResources.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#createEmployee.xhtml"
+  PATH="/createEmployee.xhtml" SHAPE="48,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#createEmployee.xhtml:0" NAME="item"
+   PATH="/createEmployee.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="created::#humanResources.xhtml"
+    NAME="output" PATH="/humanResources.xhtml"
+    TARGET="rules:#humanResources.xhtml" TITLE="created" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

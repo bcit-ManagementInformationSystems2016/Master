@@ -22,7 +22,7 @@ public class AccountController implements Serializable {
 	private CredentialManager crmgr;
 	
 	public Employee[] getAllEmp() {
-		System.out.println("test");
+		System.out.println("inside get all accountcontroller");
 		return empmgr.getAll();
 	}
 

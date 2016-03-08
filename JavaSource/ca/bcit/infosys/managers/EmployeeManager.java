@@ -79,12 +79,9 @@ public class EmployeeManager {
 	 * @return Employee[] of all records in Employees table
 	 */
 	public Employee[] getAll() {
-		System.out.println("get all method");
+		System.out.println("inside getAll employeemanager");
 		TypedQuery<Employee> query = em.createQuery("select c from Employee c", Employee.class);
-		System.out.println("query created: " + query.toString());
-		java.util.List<Employee> categories = query.getResultList();
-		System.out.println("categories size: " + categories.size());
-		System.out.println("employee 1 name: " + categories.get(1).getFirstName());
+		java.util.List<Employee> categories = query.getResultList();	
 		Employee[] emparray = new Employee[categories.size()];
 		for (int i = 0; i < emparray.length; i++) {
 			emparray[i] = categories.get(i);
