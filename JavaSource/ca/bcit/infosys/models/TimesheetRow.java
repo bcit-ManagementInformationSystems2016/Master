@@ -34,6 +34,12 @@ public class TimesheetRow implements Serializable {
 	@Column(name="HoursWed")
 	private double hoursWed;
 
+    @Column(name="HoursSat")
+    private double hoursSat;
+
+    @Column(name="HoursSun")
+    private double hoursSun;
+    
 	@Column(name="TimesheetID")
 	private int timesheetID;
 
@@ -48,7 +54,7 @@ public class TimesheetRow implements Serializable {
 	public TimesheetRow() {
 	}
 	
-	public TimesheetRow(int tsrowID, int tsID, double hourMon, double hoursTues, double hoursWed, double hoursThrus, double hoursFri){
+	public TimesheetRow(int tsrowID, int tsID, double hourMon, double hoursTues, double hoursWed, double hoursThrus, double hoursFri, double hoursSat, double hoursSun){
 	    this.timesheetRowID = tsrowID;
 	    this.timesheetID = tsID;
 	    this.hoursMon = hourMon;
@@ -56,10 +62,12 @@ public class TimesheetRow implements Serializable {
 	    this.hoursWed = hoursWed;
 	    this.hoursThurs = hoursThrus;
 	    this.hoursFri = hoursFri;
+        this.hoursSat = hoursSat;
+        this.hoursSun = hoursSun;
 	    
 	}
-
-	public int getTimesheetRowID() {
+	
+    public int getTimesheetRowID() {
 		return this.timesheetRowID;
 	}
 
@@ -106,6 +114,22 @@ public class TimesheetRow implements Serializable {
 	public void setHoursWed(double hoursWed) {
 		this.hoursWed = hoursWed;
 	}
+
+    public double getHoursSat() {
+        return hoursSat;
+    }
+
+    public void setHoursSat(double hoursSat) {
+        this.hoursSat = hoursSat;
+    }
+
+    public double getHoursSun() {
+        return hoursSun;
+    }
+
+    public void setHoursSun(double hoursSun) {
+        this.hoursSun = hoursSun;
+    }
 
 	public int getTimesheetID() {
 		return this.timesheetID;
