@@ -75,7 +75,17 @@ public class WorkPackageManager {
 	}
 	
 	public WorkPackage[] getParentProjectWorkPackages(int projectID, String parentID) {
-		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = " + parentID, WorkPackage.class);
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = '" + parentID + "'", WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		WorkPackage[] wpArray = new WorkPackage[wps.size()];
+		for (int i=0; i < wpArray.length; i++) {
+			wpArray[i] = wps.get(i);
+		}
+		return wpArray;	
+	}
+	
+	public WorkPackage[] getParentProjectWorkPackagesNull(int projectID, String parentID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = " + parentID + "", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();
 		WorkPackage[] wpArray = new WorkPackage[wps.size()];
 		for (int i=0; i < wpArray.length; i++) {
@@ -85,7 +95,7 @@ public class WorkPackageManager {
 	}
 	
 	public int getWorkPackageCount(int projectID, String parentID) {
-		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = " + parentID, WorkPackage.class);
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = '" + parentID + "'", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();
 		int arraySize = wps.size();
 		return arraySize;
