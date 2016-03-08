@@ -24,6 +24,7 @@ public class ProjectController implements Serializable {
 	private WorkPackage parentWP;
 	private WorkPackage newWP;
 	
+	
 	// Getters and Setters
 	public void setEditableProject(Project editableProject) {
 		this.editableProject = editableProject;
@@ -49,6 +50,7 @@ public class ProjectController implements Serializable {
 	public WorkPackage getNewWP() {
 		return newWP;
 	}
+	
 	
 	// Other methods
 	public Project[] getAllProjects() {
@@ -104,8 +106,6 @@ public class ProjectController implements Serializable {
 	}
 	
 	public String createNewWorkPackage() {
-		//System.out.println("Parent ID: " + getParentWP().getParentWPID());
-		//System.out.println("ID: " + getParentWP().getWpID());
 		WorkPackage wp = new WorkPackage();
 		if (parentWP == null) {
 			wp.setParentWPID(null);
@@ -117,10 +117,11 @@ public class ProjectController implements Serializable {
 		int nextWP = 0;
 		if (parentWP == null || getParentWP().getParentWPID() == null) {
 			nextWP = wpmgr.getWorkPackageCountWithNull(editableProject.getProjectID()) + 1;
+			wp.setWpID("" + nextWP);
 		} else {
 			nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), getParentWP().getWpID()) + 1;
+			wp.setWpID(wp.getParentWPID() + "." + nextWP);
 		}
-		wp.setWpID(wp.getParentWPID() + "." + nextWP);
 		wp.setWorkingProject(editableProject);
 		setNewWP(wp);
 		return "createWP";
