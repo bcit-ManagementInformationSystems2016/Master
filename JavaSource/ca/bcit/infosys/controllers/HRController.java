@@ -31,15 +31,17 @@ public class HRController implements Serializable {
 	public String editEmp(Employee e) {
 		setEmp(e);
 		System.out.println("edit emp");
+		
 		return "employee";
 	}
 	public String updateEmp(Employee e){
 		empmgr.merge(e);
-		emp = null;
+		AccountController.e = empmgr.getAll();
 		return "updated";
 	}
 	public String createEmp(Employee e){
 		empmgr.persist(e);
+		AccountController.e = empmgr.getAll();
 		return "created";
 	}
 }

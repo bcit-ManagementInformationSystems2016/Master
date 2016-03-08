@@ -20,10 +20,15 @@ public class AccountController implements Serializable {
 
 	@Inject
 	private CredentialManager crmgr;
-	
+
+	static Employee[] e;
+
 	public Employee[] getAllEmp() {
 		System.out.println("inside get all accountcontroller");
-		return empmgr.getAll();
+		if (e == null)
+			e = empmgr.getAll();
+		return e;
+
 	}
 
 	public Credential[] getAllCred() {
