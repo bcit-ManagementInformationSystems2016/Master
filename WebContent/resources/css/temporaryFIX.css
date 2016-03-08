@@ -8,10 +8,10 @@
  ********************************************************************************************* *
  */
 .container {	
-	width: 100%;
+/* 	width: 100%; */
     text-align: center;
-    position: absolute;
-	top: 150px;   
+/*     position: absolute; */
+/* 	top: 150px;    */
 }
 .grid li {
 	display: inline-block;
