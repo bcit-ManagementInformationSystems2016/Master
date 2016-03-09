@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -54,7 +55,7 @@ public class Project implements Serializable{
 	private Employee projectManager;
 
 	//bi-directional one-to-many association with Work Packages
-	@OneToMany(mappedBy="workingProject")
+	@OneToMany(targetEntity=WorkPackage.class,mappedBy="workingProject",cascade={CascadeType.ALL},orphanRemoval=true)
 	private List<WorkPackage> workPackages;
 	
 	// Ctor

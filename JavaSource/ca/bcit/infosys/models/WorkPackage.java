@@ -25,7 +25,6 @@ public class WorkPackage implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="WorkPackageID")
 	private String wpID;
 	
@@ -42,12 +41,19 @@ public class WorkPackage implements Serializable{
 	private String description;
 	
 	//bi-directional one-to-one association to Projects
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(targetEntity=Project.class,fetch=FetchType.LAZY)
 	@JoinColumn(name="ProjectID")
 	private Project workingProject;
 	
 	// CTOR
 	public WorkPackage() {}
+	
+	public WorkPackage(String wpID, String parentWPID, Project workingProject) {
+		this.wpID = wpID;
+		this.parentWPID = parentWPID;
+		this.workingProject = workingProject;
+		System.out.println("WP CREATED");
+	}
 	
 	
 	// Getters and Setters

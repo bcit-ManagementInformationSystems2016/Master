@@ -25,9 +25,14 @@ public class ProjectController implements Serializable {
 	private Project editableProject;
 	private boolean showAllwps;
 	private WorkPackage parentWP;
-	private WorkPackage newWP;
 	private int savedProjectID;
 	private String savedWPID;
+	
+	// variables to create new Work Packages
+	private WorkPackage wpToAdd = new WorkPackage();
+	private Project projectToAdd = new Project();
+	private String newWPID;
+	private String newWPPID;
 	
 	// Getters and Setters
 	public void setEditableProject(Project editableProject) {
@@ -48,13 +53,7 @@ public class ProjectController implements Serializable {
 	public void setParentWP(WorkPackage parentWP) {
 		this.parentWP = parentWP;
 	}
-	public void setNewWP(WorkPackage newWP) {
-		this.newWP = newWP;
-	}
-	public WorkPackage getNewWP() {
-		return newWP;
-	}
-		public static Project[] getPro() {
+	public static Project[] getPro() {
 		return pro;
 	}
 	public static void setPro(Project[] pro) {
@@ -78,6 +77,31 @@ public class ProjectController implements Serializable {
 	public void setSavedWPID(String savedWPID) {
 		this.savedWPID = savedWPID;
 	}
+	public String getNewWPID() {
+		return newWPID;
+	}
+	public void setNewWPID(String newWPID) {
+		this.newWPID = newWPID;
+	}
+	public String getNewWPPID() {
+		return newWPPID;
+	}
+	public void setNewWPPID(String newWPPID) {
+		this.newWPPID = newWPPID;
+	}
+	public void setWpToAdd(WorkPackage wpToAdd) {
+		this.wpToAdd = wpToAdd;
+	}
+	public WorkPackage getWpToAdd() {
+		return wpToAdd;
+	}
+	public Project getProjectToAdd() {
+		return projectToAdd;
+	}
+	public void setProjectToAdd(Project projectToAdd) {
+		this.projectToAdd = projectToAdd;
+	}
+	
 	
 	// Other methods
 	public Project[] getAllProjects() {
@@ -88,12 +112,16 @@ public class ProjectController implements Serializable {
 	}
 	
 	public WorkPackage[] getWorkPackagesForProject() {
+		setWpArray();
+		return wp;
+	}
+	
+	public void setWpArray() {
 		if (getShowAllwps()) {
 			if ( getSavedProjectID() != editableProject.getProjectID() ) {
 				wp = wpmgr.getProjectWorkPackages(editableProject.getProjectID());
 				setSavedProjectID(editableProject.getProjectID());
 			}
-			return wp;
 		}
 		else if (getParentWP() == null){
 			if ( getSavedProjectID() != editableProject.getProjectID() ||  getSavedWPID() != null )  {
@@ -101,7 +129,6 @@ public class ProjectController implements Serializable {
 				setSavedProjectID(editableProject.getProjectID());
 				setSavedWPID(null);
 			}
-			return wp;
 		}
 		else {
 			if ( getSavedProjectID() != editableProject.getProjectID() ||  getSavedWPID() != getParentWP().getWpID() ) {
@@ -109,9 +136,8 @@ public class ProjectController implements Serializable {
 				setSavedProjectID(editableProject.getProjectID());
 				setSavedWPID(getParentWP().getWpID());
 			}
-			return wp;
 		}
-	} 
+	}
 	
 	public String goToShowWP(Project project) {
 		setEditableProject(project);
@@ -151,28 +177,34 @@ public class ProjectController implements Serializable {
 	}
 	
 	public String createNewWorkPackage() {
-		WorkPackage wp = new WorkPackage();
 		if (parentWP == null) {
-			wp.setParentWPID(null);
+			setNewWPPID(null);
 		} 
 		else {
-			wp.setParentWPID(getParentWP().getWpID());
+			setNewWPPID(getParentWP().getWpID());
 		}
 		int nextWP = 0;
 		if (parentWP == null) {
 			nextWP = wpmgr.getWorkPackageCountWithNull(editableProject.getProjectID()) + 1;
-			wp.setWpID("" + nextWP);
+			setNewWPID("" + nextWP);
 		} else {
 			nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), getParentWP().getWpID()) + 1;
-			wp.setWpID(wp.getParentWPID() + "." + nextWP);
+			setNewWPID(getParentWP().getWpID() + "." + nextWP);
 		}
-		wp.setWorkingProject(editableProject);
-		setNewWP(wp);
 		return "createWP";
 	}
 	
-	public String saveNewWP() {
-		wpmgr.addWP(newWP);
+	public String saveNewWP(WorkPackage w) {
+		setProjectToAdd(editableProject);
+		getWpToAdd().setWpID(getNewWPID());
+		getWpToAdd().setParentWPID(newWPPID);
+		getWpToAdd().setWorkingProject(projectToAdd);
+		wpmgr.persist(w);
+		if (getParentWP() == null) {
+			wp = wpmgr.getParentProjectWorkPackagesNull(editableProject.getProjectID(), null);
+		} else {
+			wp = wpmgr.getParentProjectWorkPackages(editableProject.getProjectID(), getParentWP().getWpID());
+		}
 		return "wpDetails";
 	}
 }

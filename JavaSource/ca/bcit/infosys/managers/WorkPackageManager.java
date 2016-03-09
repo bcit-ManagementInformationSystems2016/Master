@@ -55,8 +55,19 @@ public class WorkPackageManager {
 	}
 	
 	public void addWP(WorkPackage wp) {
-		WorkPackage newWP = wp;
-		em.persist(newWP);
+		/* WorkPackage newWP = new WorkPackage();
+		newWP.setWpID(wp.getWpID());
+		newWP.setWorkingProject(wp.getWorkingProject());
+		newWP.setParentWPID(wp.getParentWPID());
+		newWP.setDescription(wp.getDescription());
+		newWP.setEstimatedHours(wp.getEstimatedHours());
+		newWP.setWpName(wp.getWpName()); */
+		//WorkPackage newWP = new WorkPackage(wp.getWpID(), wp.getParentWPID(), wp.getEstimatedHours(), wp.getWpName(), wp.getDescription(), wp.getWorkingProject());
+		//em.getTransaction().begin();
+		//System.out.println("create new WP: " + newWP.getWpID() + " - " + newWP.getWpName());
+		//em.persist(newWP);
+		System.out.println("did it persist?");
+		//em.getTransaction().commit();
 	}
 	
 	public WorkPackage[] getAll() {
@@ -112,5 +123,10 @@ public class WorkPackageManager {
 		int arraySize = wps.size();
 		return arraySize;
 	}
+	
+	/*public void insertWP(WorkPackage wp) {		
+		INSERT INTO Customers (CustomerName, City, Country)
+		VALUES ('Cardinal', 'Stavanger', 'Norway');
+	} */
 
 }

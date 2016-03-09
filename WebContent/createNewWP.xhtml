@@ -13,33 +13,33 @@
 	<h:form>
 		<h:outputText value="Project Name" />
 		<br />
-		<strong><h:outputText value="#{projectController.newWP.workingProject.projectName}"></h:outputText></strong>
+		<strong><h:outputText value="#{projectController.editableProject.projectName}"></h:outputText></strong>
 		<br />
 		<h:outputText value="Project ID"></h:outputText>
 		<br />
-		<strong><h:outputText value="#{projectController.newWP.workingProject.projectID}"></h:outputText></strong>
+		<strong><h:outputText value="#{projectController.editableProject.projectID}"></h:outputText></strong>
 		<br />
 		<h:outputText value="Work Package ID" />
 		<br />
-		<strong><h:outputText value="#{projectController.newWP.wpID}" /></strong>
+		<strong><h:outputText value="#{projectController.newWPID}" /></strong>
 		<br />
 		<h:outputText value="Parent Work Package ID" />
 		<br />
-		<strong><h:outputText value="#{projectController.newWP.parentWPID}"/></strong>
+		<strong><h:outputText value="#{projectController.newWPPID}"/></strong>
 		<br />
 		<h:outputText value="Estimated Hours" />
 		<br />
-		<h:inputText value="#{projectController.newWP.estimatedHours}" />
+		<h:inputText value="#{projectController.wpToAdd.estimatedHours}" />
 		<br />
 		<h:outputText value="Work Package Name" />
 		<br />
-		<h:inputText value="#{projectController.newWP.wpName}" />
+		<h:inputText value="#{projectController.wpToAdd.wpName}" />
 		<br />
 		<h:outputText value="Work Package Description" />
 		<br />
-		<h:inputTextarea value="#{projectController.newWP.description}" />
+		<h:inputTextarea value="#{projectController.wpToAdd.description}" />
 
-		<h:commandButton value="Save Updates" action="#{projectController.saveNewWP}"></h:commandButton>
+		<h:commandButton value="Save Updates" action="#{projectController.saveNewWP(projectController.wpToAdd)}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>
