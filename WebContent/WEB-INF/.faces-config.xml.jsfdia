@@ -51,7 +51,13 @@
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#createNewWP.xhtml" PATH="/createNewWP.xhtml"
-  SHAPE="464,17,0,0" model-entity="JSFProcessGroup"/>
+  SHAPE="464,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#createNewWP.xhtml:0" NAME="item"
+   PATH="/createNewWP.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="wpDetails::#showWP.xhtml" NAME="output"
+    PATH="/showWP.xhtml" TARGET="rules:#showWP.xhtml" TITLE="wpDetails" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#createAdminTimesheet.xhtml"
   PATH="/createAdminTimesheet.xhtml" SHAPE="240,289,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#createAdminTimesheet.xhtml:0" NAME="item"

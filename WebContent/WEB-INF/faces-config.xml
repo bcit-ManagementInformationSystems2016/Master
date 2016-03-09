@@ -58,6 +58,13 @@
         <to-view-id>/createNewWP.xhtml</to-view-id>
      </navigation-case>
 </navigation-rule>
+<navigation-rule>
+	<from-view-id>/createNewWP.xhtml</from-view-id>
+	<navigation-case>
+    	<from-outcome>wpDetails</from-outcome>
+        <to-view-id>/showWP.xhtml</to-view-id>
+     </navigation-case>
+</navigation-rule>
 
 <application>
 	<resource-bundle>

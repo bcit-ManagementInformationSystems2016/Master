@@ -27,35 +27,19 @@
 		<br />
 		<strong><h:outputText value="#{projectController.newWP.parentWPID}"/></strong>
 		<br />
-		<!-- <h:outputText value="Last Name" />
+		<h:outputText value="Estimated Hours" />
 		<br />
-		<h:inputText value="#{hrController.emp.lastName}"></h:inputText>
+		<h:inputText value="#{projectController.newWP.estimatedHours}" />
 		<br />
-		<h:outputText value="Validator ID" />
+		<h:outputText value="Work Package Name" />
 		<br />
-		<h:inputText value="#{hrController.emp.validatorID}"></h:inputText>
+		<h:inputText value="#{projectController.newWP.wpName}" />
 		<br />
-		<h:outputText value="Salary" />
+		<h:outputText value="Work Package Description" />
 		<br />
-		<h:inputText value="#{hrController.emp.salary}"></h:inputText>
-		<br />
-		<h:outputText value="Role ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.roleID}"></h:inputText>
-		<br />
-		<h:outputText value="Supervisor ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.supervisorID}"></h:inputText>
-		<br />
-		<h:outputText value="Pay Level ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.payLevelID}"></h:inputText>
-		<br />
-		<h:outputText value="Is Active" />
-		<br />
-		<h:inputText value="#{hrController.emp.isActive}"></h:inputText>
-		<br />  -->
-		<h:commandButton value="Save Updates" action="showAllProjects.xhtml"></h:commandButton>
+		<h:inputTextarea value="#{projectController.newWP.description}" />
+
+		<h:commandButton value="Save Updates" action="#{projectController.saveNewWP}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>

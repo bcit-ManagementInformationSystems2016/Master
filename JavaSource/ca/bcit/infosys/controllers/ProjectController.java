@@ -171,4 +171,9 @@ public class ProjectController implements Serializable {
 		setNewWP(wp);
 		return "createWP";
 	}
+	
+	public String saveNewWP() {
+		wpmgr.persist(newWP);
+		return "wpDetails";
+	}
 }
