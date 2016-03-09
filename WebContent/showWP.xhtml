@@ -34,7 +34,10 @@
 				
 			</h:dataTable>
 			<h:commandLink value="Go Back" action="#{projectController.goToShowWPParent()}"/>
+			<br />
 			<h:commandButton value="Create WP" action="#{projectController.createNewWorkPackage()}" rendered="#{not projectController.showAllwps}"></h:commandButton>
+			<br />
+			<h:commandButton value="go to projects page" action="#{projectController.exit()}"></h:commandButton>
 		</h:form>
 		
 	</h:body>

@@ -24,6 +24,7 @@ public class ProjectController implements Serializable {
 	// variable to save the current project
 	private Project editableProject;
 	private boolean showAllwps;
+	private boolean showAllPros;
 	private WorkPackage parentWP;
 	private int savedProjectID;
 	private String savedWPID;
@@ -100,6 +101,12 @@ public class ProjectController implements Serializable {
 	}
 	public void setProjectToAdd(Project projectToAdd) {
 		this.projectToAdd = projectToAdd;
+	}	
+	public boolean isShowAllPros() {
+		return showAllPros;
+	}
+	public void setShowAllPros(boolean showAllPros) {
+		this.showAllPros = showAllPros;
 	}
 	
 	
@@ -137,6 +144,17 @@ public class ProjectController implements Serializable {
 				setSavedWPID(getParentWP().getWpID());
 			}
 		}
+	}
+	
+	public String exit() {
+		setSavedProjectID(-1);
+		setParentWP(null);
+		return "exitToProjectsLandingPage";
+	}
+	
+	public String showAllProjects() {
+		setShowAllPros(true);
+		return "showProjects";
 	}
 	
 	public String goToShowWP(Project project) {

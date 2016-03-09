@@ -79,6 +79,16 @@ public class ProjectManager {
 	        }
 	        return catarray;
 	    }
+	    
+	    public Project[] getSome(int empID) {
+	        TypedQuery<Project> query = em.createQuery("SELECT c FROM Project c WHERE ProjectManager = " + empID + "", Project.class); 
+	        java.util.List<Project> categories = query.getResultList();
+	        Project[] catarray = new Project[categories.size()];
+	        for (int i=0; i < catarray.length; i++) {
+	            catarray[i] = categories.get(i);
+	        }
+	        return catarray;
+	    }
 	
 
 }
