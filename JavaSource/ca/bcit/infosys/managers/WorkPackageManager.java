@@ -54,6 +54,11 @@ public class WorkPackageManager {
 		em.remove(wp);
 	}
 	
+	public void addWP(WorkPackage wp) {
+		WorkPackage newWP = wp;
+		em.persist(newWP);
+	}
+	
 	public WorkPackage[] getAll() {
 		TypedQuery<WorkPackage> query = em.createQuery("select c from WorkPackage c", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();

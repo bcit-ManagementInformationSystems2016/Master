@@ -154,13 +154,12 @@ public class ProjectController implements Serializable {
 		WorkPackage wp = new WorkPackage();
 		if (parentWP == null) {
 			wp.setParentWPID(null);
-		} else if (getParentWP().getParentWPID() == null) {
-			wp.setParentWPID(null);
-		} else {
+		} 
+		else {
 			wp.setParentWPID(getParentWP().getWpID());
 		}
 		int nextWP = 0;
-		if (parentWP == null || getParentWP().getParentWPID() == null) {
+		if (parentWP == null) {
 			nextWP = wpmgr.getWorkPackageCountWithNull(editableProject.getProjectID()) + 1;
 			wp.setWpID("" + nextWP);
 		} else {
@@ -173,7 +172,7 @@ public class ProjectController implements Serializable {
 	}
 	
 	public String saveNewWP() {
-		wpmgr.persist(newWP);
+		wpmgr.addWP(newWP);
 		return "wpDetails";
 	}
 }
