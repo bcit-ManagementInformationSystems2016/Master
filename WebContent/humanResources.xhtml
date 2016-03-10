@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>HR</title>
+
+</h:head>
+<h:body>
+	<h:form>
+		<h3>All Employees</h3>
+		<h:dataTable value="#{account.allEmp}" var="emp">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{emp.employeeID}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">First Name</f:facet>
+				<h:outputText value="#{emp.firstName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Last Name</f:facet>
+				<h:outputText value="#{emp.lastName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Salary</f:facet>
+				<h:outputText value="#{emp.salary}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Role ID</f:facet>
+				<h:outputText value="#{emp.roleID}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Validator ID</f:facet>
+				<h:outputText value="#{emp.validatorID}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Pay Level ID</f:facet>
+				<h:outputText value="#{emp.payLevelID}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Is Active</f:facet>
+				<h:outputText value="#{emp.isActive}" />
+			</h:column>
+			<h:column>
+				<h:commandLink value="Edit" action="#{hrController.editEmp(emp)}" />
+			</h:column>
+
+		</h:dataTable>
+		<h:commandButton value="Add New Employee"
+			action="createEmployee.xhtml"></h:commandButton>
+	</h:form>
+
+</h:body>
+</html>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Edit TimesheetRow</title>
+	<h3>Edit TimesheetRow Details</h3>
+</h:head>
+<h:body>
+	<h:form>
+		<br />
+		<h:outputText value="#{msgs.wp}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.workPackageID}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.mon}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursMon}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.tue}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursTues}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.wed}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursWed}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.thu}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursThurs}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.fri}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursFri}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.sat}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursSat}"></h:inputText>
+		<br />
+		<h:outputText value="#{msgs.sun}" />
+		<br />
+		<h:inputText value="#{timesheet.tsr.hoursSun}"></h:inputText>
+		<br />
+		
+		<h:commandButton value="Save Updates" action="#{timesheet.updateTsr(timesheet.tsr)}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

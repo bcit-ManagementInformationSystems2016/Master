@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Projects</title>
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:outputLabel value="PROJECT: #{projectController.editableProject.projectName}"/>
+			<h:dataTable value="#{projectController.workPackagesForProject}" var="wp">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{wp.wpID}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{wp.wpName}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Parent</f:facet>
+					<h:outputText value="#{wp.parentWPID}"/>
+				</h:column>
+				
+				<h:column>
+					<h:commandLink value="See Child WPs" action="#{projectController.goToShowWPChild(wp)}" rendered="#{not projectController.showAllwps}"/>
+				</h:column>
+				
+			</h:dataTable>
+			<h:commandLink value="Go Back" action="#{projectController.goToShowWPParent()}"/>
+			<br />
+			<h:commandButton value="Create WP" action="#{projectController.createNewWorkPackage()}" rendered="#{not projectController.showAllwps}"></h:commandButton>
+			<br />
+			<h:commandButton value="go to projects page" action="#{projectController.exit()}"></h:commandButton>
+		</h:form>
+		
+	</h:body>
+</html>

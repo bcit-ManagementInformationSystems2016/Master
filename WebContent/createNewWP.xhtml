@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Create Work Package</title>
+	<h3>Enter Work Package Details</h3>
+</h:head>
+<h:body>
+	<h:form>
+		<h:outputText value="Project Name" />
+		<br />
+		<strong><h:outputText value="#{projectController.editableProject.projectName}"></h:outputText></strong>
+		<br />
+		<h:outputText value="Project ID"></h:outputText>
+		<br />
+		<strong><h:outputText value="#{projectController.editableProject.projectID}"></h:outputText></strong>
+		<br />
+		<h:outputText value="Work Package ID" />
+		<br />
+		<strong><h:outputText value="#{projectController.newWPID}" /></strong>
+		<br />
+		<h:outputText value="Parent Work Package ID" />
+		<br />
+		<strong><h:outputText value="#{projectController.newWPPID}"/></strong>
+		<br />
+		<h:outputText value="Estimated Hours" />
+		<br />
+		<h:inputText value="#{projectController.wpToAdd.estimatedHours}" />
+		<br />
+		<h:outputText value="Work Package Name" />
+		<br />
+		<h:inputText value="#{projectController.wpToAdd.wpName}" />
+		<br />
+		<h:outputText value="Work Package Description" />
+		<br />
+		<h:inputTextarea value="#{projectController.wpToAdd.description}" />
+
+		<h:commandButton value="Save Updates" action="#{projectController.saveNewWP(projectController.wpToAdd)}"></h:commandButton>
+	</h:form>
+</h:body>
+</html>

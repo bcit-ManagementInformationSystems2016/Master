@@ -6,8 +6,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-	<title>Create Employee</title>
-	<h3>Enter Employee Details</h3>
+	<title>Edit Employee</title>
+	<h3>Edit Employee Details</h3>
 </h:head>
 <h:body>
 	<h:form>
@@ -43,7 +43,7 @@
 		<br />
 		<h:inputText value="#{hrController.emp.isActive}"></h:inputText>
 		<br />
-		<h:commandButton value="Save Updates" action="#{hrController.createEmp(hrController.emp)}"></h:commandButton>
+		<h:commandButton value="Save Updates" action="#{hrController.updateEmp(hrController.emp)}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>

@@ -1,40 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-		<title>#{msgs.page_title}</title>
-		<h:outputStylesheet library="css" name="bootstrap.css" />
-		<h:outputStylesheet library="css" name="main.css" />
-	</h:head>
-	<h:body>
-		<h:form>
-			<div class="container">
-				<h:graphicImage library="images" name="ko_flag.gif" size="5"
-				                     style="border: 0px; margin-right: 1em;"/>
-				<h:graphicImage library="images"  size="5"
-				                  name="en_flag.gif" style="border: 0px"/>
-				<div class="page-header">
-			     	<h3>#{msgs.login}</h3><br/>   
-			     	<h5>#{msgs.q1}</h5>   
-				</div>
-				<table class="form-group">
-				   <tr>
-				      <td class="col-sm-2"><label for="inputEmail3"  class="control-label">#{msgs.username}</label></td>
-				      <td class="col-sm-10"><h:inputText class="form-control" value="#{login.userName}" placeholder="UserName"/></td>
-				   </tr>
-				   <tr>
-				      <td class="col-sm-2"><label for="inputEmail3"  class="control-label">#{msgs.password}</label></td>
-				      <td class="col-sm-10"><h:inputSecret class="form-control" value="#{login.password}" placeholder="Password"/></td>
-				   </tr>
-				</table>
-				<div class="form-group">
-					 <div class="col-sm-12">
-						<h:commandButton value="#{msgs.login}" action="#{employees.validateLogin()}" class="btn btn-default"/>
-					</div>
-				</div>
-			</div>   
-		</h:form>
-	</h:body>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	  xmlns:ui="http://java.sun.com/jsf/facelets" 
+	  xmlns:h="http://java.sun.com/jsf/html" 
+	  xmlns:f="http://java.sun.com/jsf/core" 
+	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<head>
+    <title>Login</title>
+</head>
+
+<body>
+    <ui:composition template="/templates/loginLayout.xhtml">
+        <ui:define name="windowTitle">
+            #{msgs.login}
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form styleClass="form-horizontal" xmlns:h="http://java.sun.com/jsf/html">
+                <p>Panda<span>Timesheets</span></p>
+                <div class="login">
+                    <div class="login-screen">
+                        <div class="app-title">
+                            <h1>Login</h1>
+                        </div>
+                        <div class="login-form">
+                            <div class="control-group">
+                                <h:inputText value="#{login.username}" class="login-field" 
+                                		     required="true" p:placeholder="Username" />
+                            </div>
+                            <div class="control-group">
+                                <h:inputSecret value="#{login.password}" class="login-field" 
+                                			   required="true" p:placeholder="Password" />
+                            </div>
+                            <h:commandButton action="#{login.validate}" value="Login" 
+                            				 styleClass="btn btn-primary btn-lg btn-block" />
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</body>
+
 </html>
