@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({ 
    CredentialBeanTest.class, 
    EmployeeBeanTest.class,
-   CustomerBeanTest.class
+   CustomerBeanTest.class,
+   ProjectBeanTest.class
 })
 public class BeanTestSuite {
 }
