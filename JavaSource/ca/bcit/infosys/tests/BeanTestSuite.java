@@ -11,7 +11,8 @@ import org.junit.runners.Suite;
    CustomerBeanTest.class,
    ProjectBeanTest.class,
    TimesheetBeanTest.class,
-   TimesheetRowBeanTest.class
+   TimesheetRowBeanTest.class,
+   WorkPackageBeanTest.class
 })
 public class BeanTestSuite {
 }

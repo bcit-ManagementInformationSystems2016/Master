@@ -24,7 +24,7 @@ public class TimesheetRowBeanTest {
 		final String workPackageID = "workPackageID";
 		final Timesheet timesheet = new Timesheet();
 		
-		// creating the timesheet object
+		// creating the timesheet row object
 		final TimesheetRow timesheetRow = new TimesheetRow();
 		
 		// test setters
