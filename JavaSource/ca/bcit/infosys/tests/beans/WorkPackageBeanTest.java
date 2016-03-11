@@ -1,4 +1,4 @@
-package ca.bcit.infosys.tests;
+package ca.bcit.infosys.tests.beans;
 
 import ca.bcit.infosys.models.*;
 import junit.framework.TestCase;
