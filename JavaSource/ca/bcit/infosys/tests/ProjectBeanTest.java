@@ -3,9 +3,7 @@ package ca.bcit.infosys.tests;
 import junit.framework.TestCase;
 
 import java.util.Date;
-
 import org.junit.Test;
-
 import ca.bcit.infosys.models.*;
 
 public class ProjectBeanTest {
@@ -20,8 +18,7 @@ public class ProjectBeanTest {
 		 final String description = "description";
 		 final Customer cust = new Customer();
 		 final Employee projectManager = new Employee();
-		 // TODO add list of work packages
-		 
+		  
 		 // creating the credential object
 		 final Project project = new Project();
 		 

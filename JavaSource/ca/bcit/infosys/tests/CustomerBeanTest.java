@@ -18,8 +18,7 @@ public class CustomerBeanTest {
 		 final String contactLName = "Doe";
 		 final String companyName = "company";
 		 final String description = "desc";
-		 // TODO add list of projects
-		 
+		 		 
 		 // test setters for employee bean
 		 final Customer customer = new Customer();
 		 customer.setCustomerID(customerID);
