@@ -9,7 +9,8 @@ import org.junit.runners.Suite;
    CredentialBeanTest.class, 
    EmployeeBeanTest.class,
    CustomerBeanTest.class,
-   ProjectBeanTest.class
+   ProjectBeanTest.class,
+   TimesheetBeanTest.class
 })
 public class BeanTestSuite {
 }

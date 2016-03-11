@@ -3,7 +3,6 @@ package ca.bcit.infosys.tests;
 import junit.framework.TestCase;
 
 import java.util.Date;
-import java.util.List;
 
 import org.junit.Test;
 
