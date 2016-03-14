@@ -84,7 +84,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
         </f:facet>
         <h:outputText value="#{tsr.totalHours}" rendered="#{not list.editable}" />
         <f:facet name="footer">
-          <h:outputText value="#" />
+          <h:outputText value="#{timesheet.allTotalHours}" />
         </f:facet>
       </h:column>
       <h:column>
@@ -95,9 +95,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursMon}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+        
       </h:column>
       <h:column>
         <f:facet name="header">
@@ -107,9 +105,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursTues}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+       
       </h:column>
       <h:column>
         <f:facet name="header">
@@ -119,9 +115,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursWed}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+        
       </h:column>
       <h:column>
         <f:facet name="header">
@@ -131,9 +125,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursThurs}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+        
       </h:column>
       <h:column>
         <f:facet name="header">
@@ -143,9 +135,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursFri}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+        
       </h:column>
       <h:column>
         <f:facet name="header">
@@ -155,9 +145,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursSat}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+        
       </h:column>
       <h:column>
         <f:facet name="header">
@@ -167,9 +155,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
           <f:validateLongRange minimum="0" maximum="8" />
         </h:inputText>
         <h:outputText value="#{tsr.hoursSun}" rendered="#{not p.editable}" />
-        <f:facet name="footer">
-          <h:outputText value="#" />
-        </f:facet>
+        
       </h:column>
       <h:column>
         <f:facet name="header">

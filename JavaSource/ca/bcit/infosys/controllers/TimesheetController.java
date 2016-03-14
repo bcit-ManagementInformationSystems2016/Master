@@ -68,15 +68,14 @@ public class TimesheetController  implements Serializable {
         return timesheetRowManager.getAll();
     }
     
-    public double getAllHours() {
-    	double totalHours = 0.0;
-    	
-    	
-    	totalHours += tsr.getHoursMon() + tsr.getHoursFri() + tsr.getHoursSat() + tsr.getHoursSun()
-    				  + tsr.getHoursThurs() + tsr.getHoursTues() + tsr.getHoursWed();
-    	return totalHours;
-    	
-    }
-
+   public double getAllTotalHours() {
+	   double allHours = 0.0;
+	   TimesheetRow[] rows = timesheetRowManager.getAll();
+	   for (int i=0; i < rows.length; i++) {
+		   allHours += rows[i].getTotalHours();
+	   }
+	   
+	   return allHours;
+   }
     
 }

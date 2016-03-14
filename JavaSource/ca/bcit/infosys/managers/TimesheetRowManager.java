@@ -82,5 +82,24 @@ public class TimesheetRowManager {
 	        return catarray;
 	    }
 	    
+	    /**
+	     * Return total hours of all timesheet rows
+	     * 
+	     * @return all hours of all records in TimesheetRow table
+	     */
+	    public double getAllHours() {
+	    	double allHours = 0.0;
+	    	TypedQuery<TimesheetRow> query = em.createQuery("select c from TimesheetRow c", TimesheetRow.class); 
+	    	java.util.List<TimesheetRow> tsrows = query.getResultList();
+	    	TimesheetRow[] tsrowarray = new TimesheetRow[tsrows.size()];
+	    	for (int i = 0; i< tsrowarray.length; i++) {
+	    		allHours += tsrowarray[i].getTotalHours();	    	
+	    	}
+	    	
+	    	return allHours;
+	    	
+	    	
+	    }
+	    
 
 }
