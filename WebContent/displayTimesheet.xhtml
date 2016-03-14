@@ -82,7 +82,7 @@ xmlns:ui="http://java.sun.com/jsf/facelets">
         <f:facet name="header">
           <h:outputText value="#{msgs.total}" />
         </f:facet>
-        <h:outputText value="#" rendered="#{not list.editable}" />
+        <h:outputText value="#{tsr.totalHours}" rendered="#{not list.editable}" />
         <f:facet name="footer">
           <h:outputText value="#" />
         </f:facet>

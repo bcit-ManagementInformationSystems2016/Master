@@ -17,6 +17,9 @@ public class TimesheetRow implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TimesheetRowID")
 	private int timesheetRowID;
+	
+	@Transient
+	private double totalHours;
 
 
 	@Column(name="HoursFri")
@@ -67,7 +70,24 @@ public class TimesheetRow implements Serializable {
 	    
 	}
 	
-    public int getTimesheetRowID() {
+	
+	
+    /**
+	 * @return the totalHours
+	 */
+	public double getTotalHours() {
+		totalHours = hoursMon + hoursTues + hoursWed + hoursThurs + hoursFri + hoursSat + hoursSun; 
+		return totalHours;
+	}
+
+	/**
+	 * @param totalHours the totalHours to set
+	 */
+	public void setTotalHours(double totalHours) {
+		this.totalHours = totalHours;
+	}
+
+	public int getTimesheetRowID() {
 		return this.timesheetRowID;
 	}
 
