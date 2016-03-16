@@ -93,6 +93,18 @@ public class EmployeeManager {
 		return emparray;
 	}
 	
+	public Employee[] getAllMinions(int empID) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE SupervisorID = " + empID, Employee.class);
+		java.util.List<Employee> categories = query.getResultList();	
+		Employee[] emparray = new Employee[categories.size()];
+		for (int i = 0; i < emparray.length; i++) {
+			emparray[i] = categories.get(i);
+			// System.out.println("This is being added to array: " +
+			// categories.get(i).getRoleID());
+		}
+		return emparray;
+	}
+	
 	public Employee[] getAllWithinProject(int projectID) {
 		System.out.println("inside getAllWithinProject employeeManager");
 		TypedQuery<ProjectEmployees> query = em.createQuery("SELECT c FROM ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class);

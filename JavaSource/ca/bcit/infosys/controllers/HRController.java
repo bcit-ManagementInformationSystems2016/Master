@@ -80,4 +80,8 @@ public class HRController implements Serializable {
 		crd = new Credential();
 		return "created";
 	}
+	
+	public Employee[] getMinions(int empID) {
+		return empmgr.getAllMinions(Login.currentID);
+	}
 }

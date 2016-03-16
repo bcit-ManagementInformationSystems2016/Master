@@ -11,8 +11,8 @@
 	</h:head>
 	<h:body>
 		<h:form>
-			<h:outputLabel value="PROJECT: #{projectEmployeesController.viewableProject.projectName}"/>
-			<h:dataTable value="#{projectEmployeesController.allEmployeesForProject()}" var="emp">
+			<h:outputLabel value="Your subordinates:"/>
+			<h:dataTable value="#{employeeController.allEmployeesForProject()}" var="emp">
 				<h:column>
 					<f:facet name="header">ID</f:facet>
 					<h:outputText value="#{emp.employeeID}"/>

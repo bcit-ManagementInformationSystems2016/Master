@@ -11,9 +11,9 @@ import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 
-@Named("employeeProjectsController")
+@Named("projectEmployeesController")
 @SessionScoped
-public class EmployeeProjectsController implements Serializable {
+public class ProjectEmployeesController implements Serializable {
 
 	@Inject
 	private ProjectManager pjtmgr;
