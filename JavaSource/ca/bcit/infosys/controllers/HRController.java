@@ -49,9 +49,8 @@ public class HRController implements Serializable {
 
 	public String editEmp(Employee e) {
 		setEmp(e);
-		TypedQuery<Credential> query = em.createQuery(
-				"select c from Credential c where c.employeeID = " + e.getEmployeeID(),
-				Credential.class);
+		TypedQuery<Credential> query = em
+				.createQuery("select c from Credential c where c.employeeID = " + e.getEmployeeID(), Credential.class);
 		List<Credential> cred = query.getResultList();
 		Credential[] crarray = new Credential[cred.size()];
 		for (int i = 0; i < crarray.length; i++) {
@@ -67,6 +66,8 @@ public class HRController implements Serializable {
 		crd.setEmployeeID(e.getEmployeeID());
 		crdmgr.merge(crd);
 		AccountController.e = empmgr.getAll();
+		emp = new Employee();
+		crd = new Credential();
 		return "updated";
 	}
 
@@ -75,6 +76,8 @@ public class HRController implements Serializable {
 		crd.setEmployeeID(e.getEmployeeID());
 		crdmgr.merge(crd);
 		AccountController.e = empmgr.getAll();
+		emp = new Employee();
+		crd = new Credential();
 		return "created";
 	}
 }

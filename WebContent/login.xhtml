@@ -1,44 +1,51 @@
-<html xmlns="http://www.w3.org/1999/xhtml" 
-	  xmlns:ui="http://java.sun.com/jsf/facelets" 
-	  xmlns:h="http://java.sun.com/jsf/html" 
-	  xmlns:f="http://java.sun.com/jsf/core" 
-	  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 
 <head>
-    <title>Login</title>
+<title>Login</title>
 </head>
 
 <body>
-    <ui:composition template="/templates/loginLayout.xhtml">
-        <ui:define name="windowTitle">
+	<ui:composition template="/templates/loginLayout.xhtml">
+		<ui:define name="windowTitle">
             #{msgs.login}
         </ui:define>
 
-        <ui:define name="content">
-            <h:form styleClass="form-horizontal" xmlns:h="http://java.sun.com/jsf/html">
-                <p>Panda<span>Timesheets</span></p>
-                <div class="login">
-                    <div class="login-screen">
-                        <div class="app-title">
-                            <h1>Login</h1>
-                        </div>
-                        <div class="login-form">
-                            <div class="control-group">
-                                <h:inputText value="#{login.username}" class="login-field" 
-                                		     required="true" p:placeholder="Username" />
-                            </div>
-                            <div class="control-group">
-                                <h:inputSecret value="#{login.password}" class="login-field" 
-                                			   required="true" p:placeholder="Password" />
-                            </div>
-                            <h:commandButton action="#{login.validate}" value="Login" 
-                            				 styleClass="btn btn-primary btn-lg btn-block" />
-                        </div>
-                    </div>
-                </div>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+		<ui:define name="content">
+			<h:form styleClass="form-horizontal"
+				xmlns:h="http://java.sun.com/jsf/html">
+				<p>
+					Panda<span>Timesheets</span>
+				</p>
+				<div class="login">
+					<div class="login-screen">
+						<div class="app-title">
+							<h1>Login</h1>
+						</div>
+						<div class="login-form">
+							<div class="control-group">
+								<h:inputText id="username" value="#{login.username}"
+									class="login-field" required="true"
+									requiredMessage="Username is required" p:placeholder="Username" />
+								<h:message for="username" />
+							</div>
+							<div class="control-group">
+								<h:inputSecret id="password" value="#{login.password}"
+									class="login-field" required="true"
+									requiredMessage="Password is required" p:placeholder="Password" />
+								<h:message for="password" />
+							</div>
+							<h:commandButton action="#{login.validate}" value="Login"
+								styleClass="btn btn-primary btn-lg btn-block" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </body>
 
 </html>
