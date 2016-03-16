@@ -102,7 +102,7 @@ public class ProjectController implements Serializable {
 	public void setProjectToAdd(Project projectToAdd) {
 		this.projectToAdd = projectToAdd;
 	}	
-	public boolean isShowAllPros() {
+	public boolean getShowAllPros() {
 		return showAllPros;
 	}
 	public void setShowAllPros(boolean showAllPros) {
@@ -113,7 +113,12 @@ public class ProjectController implements Serializable {
 	// Other methods
 	public Project[] getAllProjects() {
 		if (pro == null) {
-			return pjtmgr.getAll();
+			if (getShowAllPros()) {
+				return pjtmgr.getAll();
+			}
+			else {
+				return pjtmgr.getSome(Login.currentID);
+			}
 		}
 		return pro;	
 	}
@@ -149,12 +154,17 @@ public class ProjectController implements Serializable {
 	public String exit() {
 		setSavedProjectID(-1);
 		setParentWP(null);
-		return "exitToProjectsLandingPage";
+		return "projectsLanding";
 	}
 	
 	public String showAllProjects() {
 		setShowAllPros(true);
-		return "showProjects";
+		return "showAllProjects";
+	}
+	
+	public String showYourProjects() {
+		setShowAllPros(false);
+		return "showAllProjects";
 	}
 	
 	public String goToShowWP(Project project) {

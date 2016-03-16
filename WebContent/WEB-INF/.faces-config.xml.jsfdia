@@ -22,13 +22,6 @@
     PATH="/createNewWP.xhtml" TARGET="rules:#createNewWP.xhtml"
     TITLE="createWP" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
-  <PROCESS-ITEM ID="rules:#showWP.xhtml:2" NAME="item2"
-   PATH="/showWP.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="exitToProjectsLandingPage::#projectsLanding.xhtml" NAME="output"
-    PATH="/projectsLanding.xhtml" TARGET="rules:#projectsLanding.xhtml"
-    TITLE="exitToProjectsLandingPage" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#humanResources.xhtml"
   PATH="/humanResources.xhtml" SHAPE="256,145,0,0" model-entity="JSFProcessGroup">
@@ -83,6 +76,4 @@
     TARGET="rules:#createAdminTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#projectsLanding.xhtml"
-  PATH="/projectsLanding.xhtml" SHAPE="496,305,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

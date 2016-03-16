@@ -12,9 +12,9 @@
 	<h:body>
 		<h:form>
 			
-			<h:commandButton value="Show All Projects" action="showAllProjects.xhtml"></h:commandButton>
+			<h:commandButton value="Show All Projects" action="#{projectController.showAllProjects()}"></h:commandButton>
 			<br />
-			<h:commandButton value="Show Your Projects" action="showAllProjects.xhtml"></h:commandButton>
+			<h:commandButton value="Show Your Projects" action="#{projectController.showYourProjects()}"></h:commandButton>
 			<br />
 			<h:commandButton value="Assign Employees to Projects" action="projectsLanding.xhtml"></h:commandButton>
 			<br />
