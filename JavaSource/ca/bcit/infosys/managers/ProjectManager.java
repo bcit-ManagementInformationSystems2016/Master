@@ -3,13 +3,17 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.ProjectEmployees;
 
 /**
  * Handles CRUD actions for Project
@@ -90,5 +94,16 @@ public class ProjectManager {
 	        return catarray;
 	    }
 	
+	    public Project[] getAllProjectsForEmp (int empID) {
+			TypedQuery<ProjectEmployees> query = em.createQuery("SELECT c FROM ProjectEmployees c WHERE EmployeeID = " + empID + "", ProjectEmployees.class);
+			List<ProjectEmployees> wps = query.getResultList();
+			Project[] proArray = new Project[wps.size()];
+			for (int i=0; i < proArray.length; i++) {
+				TypedQuery<Project> empQuery = em.createQuery("SELECT c FROM Project c WHERE ProjectID = " + wps.get(i).getPro().getProjectID() + "", Project.class);
+				Project proToAdd = empQuery.getSingleResult();
+				proArray[i] = proToAdd;
+			}
+			return proArray;	
+		}
 
 }

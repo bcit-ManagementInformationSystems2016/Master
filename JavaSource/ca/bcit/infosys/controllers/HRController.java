@@ -26,6 +26,9 @@ public class HRController implements Serializable {
 
 	@Inject
 	private CredentialManager crdmgr;
+	
+	// variable to view specific employee data
+	private Employee viewableEmp;
 
 	// variable to save the current employee
 	private Employee emp = new Employee();
@@ -45,6 +48,12 @@ public class HRController implements Serializable {
 
 	public void setEmp(Employee emp) {
 		this.emp = emp;
+	}
+	public Employee getViewableEmp() {
+		return viewableEmp;
+	}
+	public void setViewableEmp(Employee emp) {
+		viewableEmp = emp;
 	}
 
 	public String editEmp(Employee e) {

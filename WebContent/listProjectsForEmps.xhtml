@@ -6,32 +6,26 @@
 	  xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 	<h:head>
-		<title>Employees Assigned to Project</title>
+		<title>Projects Assigned to Employee</title>
 
 	</h:head>
 	<h:body>
 		<h:form>
-			<h:outputLabel value="Your subordinates:"/>
-			<h:dataTable value="#{hrController.getMinions()}" var="emp">
+			<h:outputLabel value="Employee: #{projectEmployeesController.viewableEmployee.firstName} #{projectEmployeesController.viewableEmployee.lastName}"/>
+			<h:dataTable value="#{projectEmployeesController.allProjectsForEmployee()}" var="pro">
 				<h:column>
 					<f:facet name="header">ID</f:facet>
-					<h:outputText value="#{emp.employeeID}"/>
+					<h:outputText value="#{pro.projectID}"/>
 				</h:column>
 				
 				<h:column>
 					<f:facet name="header">Name</f:facet>
-					<h:outputText value="#{emp.firstName} #{emp.lastName}"/>
-				</h:column>
-				
-				<h:column>
-					<h:commandLink value="View Assigned Projects" action="#{projectEmployeesController.showAssignedProjects(emp)}"/>
+					<h:outputText value="#{pro.projectName}"/>
 				</h:column>
 				
 			</h:dataTable>
 			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml"></h:commandButton>
 			<br />
-		
 		</h:form>
-		
 	</h:body>
 </html>

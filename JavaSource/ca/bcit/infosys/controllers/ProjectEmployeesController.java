@@ -22,25 +22,39 @@ public class ProjectEmployeesController implements Serializable {
 	
 	// variables
 	private Project viewableProject;
+	private Employee viewableEmployee;
 	
 	//Getters and Setters
 	public Project getViewableProject() {
 		return viewableProject;
 	}
-
 	public void setViewableProject(Project viewableProject) {
 		this.viewableProject = viewableProject;
+	}	
+	public Employee getViewableEmployee() {
+		return viewableEmployee;
 	}
-	
-	
+	public void setViewableEmployee(Employee viewableEmployee) {
+		this.viewableEmployee = viewableEmployee;
+	}
+
 	// Other Methods
 	public String showAssignedEmps(Project p) {
 		setViewableProject(p);
 		return "listEmpsForProject";
 	}
 	
+	public String showAssignedProjects(Employee e) {
+		setViewableEmployee(e);
+		return "listProjectsForEmps";
+	}
+	
 	public Employee[] allEmployeesForProject() {
 		return empmgr.getAllWithinProject(viewableProject.getProjectID());
+	}
+	
+	public Project[] allProjectsForEmployee() {
+		return pjtmgr.getAllProjectsForEmp(viewableEmployee.getEmployeeID());
 	}
 
 	
