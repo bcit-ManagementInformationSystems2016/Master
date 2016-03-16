@@ -39,7 +39,7 @@ public class TimesheetController  implements Serializable {
 
     public String editTsr(TimesheetRow tsr) {
         setTsr(tsr);
-        System.out.println("Edit timesheet");
+        System.out.println("Edit timesheetRow");
         return "edit";
     }
     
@@ -51,11 +51,13 @@ public class TimesheetController  implements Serializable {
     
     public String createTsr(TimesheetRow tsr){
         timesheetRowManager.persist(tsr);
+        System.out.println("Created timesheetRow");
         return "created";
     }
     
     public String deleteTsr(TimesheetRow tsr) {
         timesheetRowManager.remove(tsr);
+        System.out.println("Delete timesheetRow ");
         //list.remove(tsr);
         return null;
     }

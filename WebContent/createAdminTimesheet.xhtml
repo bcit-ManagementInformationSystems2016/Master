@@ -33,12 +33,13 @@
             #{msgs.totalWed} <h:outputText value="#{timesheet.wedTotalHours}" />  
             #{msgs.totalThu} <h:outputText value="#{timesheet.thursTotalHours}" /><br/>  
             #{msgs.totalFri} <h:outputText value="#{timesheet.friTotalHours}" />     
-            #{msgs.totalSat} <h:outputText value="#{timesheet.satTotalHours}" />
+            #{msgs.totalSat} <h:outputText value="#{timesheet.satTotalHours}" /><br/>
             <!-- 
                             <h:commandButton value="#{msgs.submit}" action="#{timesheetData.save}" styleClass="btn btn-info" /> 
                             <h:commandButton value="#{msgs.addrow}" action="#{timesheetData.addRow}" styleClass="btn btn-info" />
                             <h:commandButton value="#{msgs.new}" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
          	-->
+		<h:commandButton value="Add New TimesheetRow" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
      </b:panel>
    </b:panelGrid>
 </h:form>
@@ -135,10 +136,7 @@
                            		<f:facet name="header">
                                     <h:outputText value="Delete" />
                                 </f:facet>                       
-                                <h:commandLink value="Delete" action="#" />
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>                                 
+                                <h:commandLink value="Delete" action="#{timesheet.deleteTsr(tsr)}" />
                             </h:column>
                         </b:dataTable> 
                 </h:form>
