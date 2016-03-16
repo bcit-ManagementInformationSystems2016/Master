@@ -81,7 +81,11 @@ public class HRController implements Serializable {
 		return "created";
 	}
 	
-	public Employee[] getMinions(int empID) {
+	public Employee[] getMinions() {
 		return empmgr.getAllMinions(Login.currentID);
+	}
+	
+	public String viewMinionsPage() {
+		return "viewMinions";
 	}
 }

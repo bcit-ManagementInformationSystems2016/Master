@@ -60,8 +60,10 @@
 		            </h:link>           
 		            </div>		            
 		        </div>
-		        <h:commandButton value="Admin" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
-		            <h:commandButton value="Validator" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
+		        <h:form>
+		        <h:commandButton value="Admin" action="viewMinions.xhtml" class="btn btn-info"/>
+		        <h:commandButton value="Validator" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
+		        </h:form>
 	        </div>    
             </div>
         </ui:define>

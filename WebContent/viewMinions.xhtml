@@ -12,7 +12,7 @@
 	<h:body>
 		<h:form>
 			<h:outputLabel value="Your subordinates:"/>
-			<h:dataTable value="#{employeeController.allEmployeesForProject()}" var="emp">
+			<h:dataTable value="#{hrController.getMinions()}" var="emp">
 				<h:column>
 					<f:facet name="header">ID</f:facet>
 					<h:outputText value="#{emp.employeeID}"/>
@@ -24,7 +24,7 @@
 				</h:column>
 				
 			</h:dataTable>
-			<h:commandButton value="Go To Home Page" action="projectsLanding.xhtml"></h:commandButton>
+			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml"></h:commandButton>
 			<br />
 		
 		</h:form>
