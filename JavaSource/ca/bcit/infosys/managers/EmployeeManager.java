@@ -82,7 +82,6 @@ public class EmployeeManager {
 	 * @return Employee[] of all records in Employees table
 	 */
 	public Employee[] getAll() {
-		System.out.println("inside getAll employeemanager");
 		TypedQuery<Employee> query = em.createQuery("select c from Employee c", Employee.class);
 		java.util.List<Employee> categories = query.getResultList();	
 		Employee[] emparray = new Employee[categories.size()];

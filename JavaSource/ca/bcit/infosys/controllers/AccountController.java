@@ -24,7 +24,6 @@ public class AccountController implements Serializable {
 	static Employee[] e;
 
 	public Employee[] getAllEmp() {
-		System.out.println("inside get all accountcontroller");
 		if (e == null)
 			e = empmgr.getAll();
 		return e;
