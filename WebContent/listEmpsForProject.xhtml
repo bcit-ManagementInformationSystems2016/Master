@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Employees Assigned to Project</title>
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:outputLabel value="PROJECT: #{employeeProjectsController.viewableProject.projectName}"/>
+			<h:dataTable value="#{employeeProjectsController.allEmployeesForProject()}" var="emp">
+				<h:column>
+					<f:facet name="header">ID</f:facet>
+					<h:outputText value="#{emp.employeeID}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">Name</f:facet>
+					<h:outputText value="#{emp.firstName} #{emp.lastName}"/>
+				</h:column>
+				
+			</h:dataTable>
+			<h:commandButton value="Go To Home Page" action="projectsLanding.xhtml"></h:commandButton>
+			<br />
+		
+		</h:form>
+		
+	</h:body>
+</html>

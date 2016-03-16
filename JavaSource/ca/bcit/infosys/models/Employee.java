@@ -51,6 +51,10 @@ public class Employee implements Serializable {
 	// used for one-to-many mapping between projects and project managers
 	@OneToMany(mappedBy = "projectManager")
 	private List<Project> projectManagers;
+	
+	//bi-directional one-to-many association with ProjectEmployees
+	@OneToMany(targetEntity=ProjectEmployees.class,mappedBy="emp",cascade={CascadeType.ALL},orphanRemoval=true)
+	private List<ProjectEmployees> assignedProjects;
 
 	public Employee() {
 	}

@@ -3,6 +3,8 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.ProjectEmployees;
 
 /**
  * Handles CRUD action for Employees
@@ -89,6 +92,19 @@ public class EmployeeManager {
 			// categories.get(i).getRoleID());
 		}
 		return emparray;
+	}
+	
+	public Employee[] getAllWithinProject(int projectID) {
+		System.out.println("inside getAllWithinProject employeeManager");
+		TypedQuery<ProjectEmployees> query = em.createQuery("SELECT c FROM ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class);
+		List<ProjectEmployees> wps = query.getResultList();
+		Employee[] empArray = new Employee[wps.size()];
+		for (int i=0; i < empArray.length; i++) {
+			TypedQuery<Employee> empQuery = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + wps.get(i).getEmp().getEmployeeID() + "", Employee.class);
+			Employee empToAdd = empQuery.getSingleResult();
+			empArray[i] = empToAdd;
+		}
+		return empArray;	
 	}
 
 	public Employee[] getValidating() {
