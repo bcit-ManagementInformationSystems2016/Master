@@ -93,13 +93,11 @@ public class TimesheetRowManager {
 	    	java.util.List<TimesheetRow> tsrows = query.getResultList();
 	    	TimesheetRow[] tsrowarray = new TimesheetRow[tsrows.size()];
 	    	for (int i = 0; i< tsrowarray.length; i++) {
-	    		allHours += tsrowarray[i].getTotalHours();	    	
+	    		allHours += tsrowarray[i].getTotalHours();  	
 	    	}
-	    	
 	    	return allHours;
-	    	
-	    	
 	    }
+	    
 	    
 
 }

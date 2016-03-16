@@ -24,9 +24,17 @@
 		</h3>
      </b:panel>
      <b:panel look="info" title="Info" collapsible="false" class="test">                             	
-        	<h:outputText value="Flextime :"/><br/><br/>  
-        	<h:outputText value="Overtime :"/><br/><br/> 
-        	<!-- 
+        	<h:outputText value="Flextime :"/>         
+        	<h:outputText value="Overtime :"/><br/>
+            #{msgs.allTotal} <h:outputText value="#{timesheet.allTotalHours}" />    
+            #{msgs.totalSun} <h:outputText value="#{timesheet.sunTotalHours}" /><br/>  
+        	#{msgs.totalMon} <h:outputText value="#{timesheet.monTotalHours}" />   
+            #{msgs.totalTue} <h:outputText value="#{timesheet.tuesTotalHours}" /><br/>  
+            #{msgs.totalWed} <h:outputText value="#{timesheet.wedTotalHours}" />  
+            #{msgs.totalThu} <h:outputText value="#{timesheet.thursTotalHours}" /><br/>  
+            #{msgs.totalFri} <h:outputText value="#{timesheet.friTotalHours}" />     
+            #{msgs.totalSat} <h:outputText value="#{timesheet.satTotalHours}" />
+            <!-- 
                             <h:commandButton value="#{msgs.submit}" action="#{timesheetData.save}" styleClass="btn btn-info" /> 
                             <h:commandButton value="#{msgs.addrow}" action="#{timesheetData.addRow}" styleClass="btn btn-info" />
                             <h:commandButton value="#{msgs.new}" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
@@ -37,17 +45,24 @@
             <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
                 <h:form>
                     <div class="panel panel-warning">
-                        <b:dataTable value="#{timesheet.allTimesheetRow}" var="tsr" styleClass="table table-striped table-bordered" style="width:100%">                           
+                        <b:dataTable value="#{timesheet.allTimesheetRow}" var="tsr" styleClass="table table-striped table-bordered" footerClass="list-footer" style="width:100%">                           
 	                       <h:column>
 						      <f:facet name="header">
 						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
 						      </f:facet>
 								  <h:commandLink value="Edit" action="#{timesheet.editTsr(tsr)}" />
+							  <f:facet name="footer">
+                                   <h:outputText value="#" />
+                               </f:facet>
 							</h:column>  
                             <h:column>                           
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.timeSheetRowId}" />
-                                </f:facet>                               
+                                </f:facet> 
+                                <h:outputText span="1" value="#{tsr.timesheetID}"/>        
+                              <f:facet name="footer">
+                                    <h:outputText value="#" />
+                                </f:facet>                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -62,10 +77,8 @@
                                 <f:facet name="header">
                                     <h:outputText value="#{msgs.total}" />
                                 </f:facet>
-                                <h:outputText value="#" />
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
+                                <h:outputText value="#{tsr.totalHours}" />
+                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -73,9 +86,6 @@
                                 </f:facet>                                
                                 <h:outputText span="1" value="#{tsr.hoursMon}">
                                 </h:outputText>
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
                             </h:column>
 
                             <h:column>
@@ -84,9 +94,7 @@
                                 </f:facet>      
                                 <h:outputText span="1" value="#{tsr.hoursTues}">     
                                 </h:outputText>
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
+                                
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -94,9 +102,6 @@
                                 </f:facet>
                                 <h:outputText span="1" value="#{tsr.hoursWed}">
                                 </h:outputText>
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -104,9 +109,6 @@
                                 </f:facet>
                                 <h:outputText span="1" value="#{tsr.hoursThurs}">   
                                 </h:outputText>
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -114,9 +116,6 @@
                                 </f:facet>
                                 <h:outputText span="1" value="#{tsr.hoursFri}">       
                                 </h:outputText>
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -124,9 +123,6 @@
                                 </f:facet>
                                 <h:outputText span="1" value="#{tsr.hoursSat}">   
                                 </h:outputText>
-                                <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">
@@ -134,12 +130,15 @@
                                 </f:facet>
                                 <h:outputText span="1" value="#{tsr.hoursSun}">  
                                 </h:outputText>
+                            </h:column>                           
+                            <h:column>
+                           		<f:facet name="header">
+                                    <h:outputText value="Delete" />
+                                </f:facet>                       
+                                <h:commandLink value="Delete" action="#" />
                                 <f:facet name="footer">
                                     <h:outputText value="#" />
-                                </f:facet>
-                            </h:column>                           
-                            <h:column>                       
-                                <h:commandLink value="Delete" action="#" />                                 
+                                </f:facet>                                 
                             </h:column>
                         </b:dataTable>                        
                     </div>

@@ -71,11 +71,69 @@ public class TimesheetController  implements Serializable {
    public double getAllTotalHours() {
 	   double allHours = 0.0;
 	   TimesheetRow[] rows = timesheetRowManager.getAll();
+
+       System.out.println("rowslength: " + rows.length);
 	   for (int i=0; i < rows.length; i++) {
 		   allHours += rows[i].getTotalHours();
+		   System.out.println("time: " + allHours);
 	   }
-	   
 	   return allHours;
    }
-    
+
+   public double getSunTotalHours() {
+       double sunHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           sunHours += rows[i].getHoursSun();
+       }
+       return sunHours;
+   }
+   public double getTuesTotalHours() {
+       double tuesHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           tuesHours += rows[i].getHoursTues();
+       }
+       return tuesHours;
+   }
+   public double getMonTotalHours() {
+       double monHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           monHours += rows[i].getHoursMon();
+       }
+       return monHours;
+   }
+   public double getWedTotalHours() {
+       double wedHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           wedHours += rows[i].getHoursWed();
+       }
+       return wedHours;
+   }
+   public double getThursTotalHours() {
+       double thursHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           thursHours += rows[i].getHoursThurs();
+       }
+       return thursHours;
+   }
+   public double getFriTotalHours() {
+       double friHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           friHours += rows[i].getHoursFri();
+       }
+       return friHours;
+   }
+   public double getSatTotalHours() {
+       double satHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getAll();
+       for (int i=0; i < rows.length; i++) {
+           satHours += rows[i].getHoursSat();
+       }
+       return satHours;
+   }
 }
