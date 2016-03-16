@@ -17,6 +17,15 @@ public class Login implements Serializable {
 	EntityManager em;
 	private String username;
 	private String password;
+	public static int currentID;
+
+	public int getCurrentID() {
+		return currentID;
+	}
+
+	public void setCurrentID(int currentID) {
+		this.currentID = currentID;
+	}
 
 	public String getUsername() {
 		return username;
@@ -35,29 +44,37 @@ public class Login implements Serializable {
 	}
 
 	public String validate() {
-		String jpaQuery = "select c.username, c.password from Credential c";
+		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";
 		List<Object[]> resultList = em.createQuery(jpaQuery).getResultList();
-
+		// contains username and password
 		Map<String, String> map = new HashMap<String, String>();
 		for (Object[] object : resultList) {
 			map.put((String) object[0], (String) object[1]);
 		}
-		System.out.println("Print hashmap to test");
-		for (Map.Entry<String, String> entry : map.entrySet()) {
-			System.out.println(entry.getKey() + " : " + entry.getValue());
+		// contains username and employeeID
+		Map<String, Integer> map2 = new HashMap<String, Integer>();
+		for (Object[] object : resultList) {
+			map2.put((String) object[0], (Integer) object[2]);
 		}
+		/*
+		 * System.out.println("Print hashmap to test"); for (Map.Entry<String,
+		 * String> entry : map.entrySet()) { System.out.println(entry.getKey() +
+		 * " : " + entry.getValue()); }
+		 */
 		System.out.println("Entered Username: " + username);
 		if (map.containsKey(username)) {
 			System.out.println("found user");
 			String value = map.get(username);
 			if (!value.equals(password)) {
 				System.out.println("Incorrect Password");
-			}
-			else
+			} else {
+				setCurrentID(map2.get(username));
+				System.out.println("Current ID: " + currentID);
 				System.out.println("Successful Login");
-				return "adminLanding";
+			}
+			return "adminLanding";
 		}
 		return "invalid";
 	}
-	
+
 }

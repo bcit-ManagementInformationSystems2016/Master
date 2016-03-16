@@ -29,7 +29,7 @@ public class HRController implements Serializable {
 	}
 
 	public String editEmp(Employee e) {
-		setEmp(e);
+		setEmp(e);	
 		System.out.println("edit emp");
 		
 		return "employee";
