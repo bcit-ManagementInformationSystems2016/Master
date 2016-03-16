@@ -147,3 +147,39 @@ figure.menuIcon img {
 	max-width: 28px;
 	right:10px;
 }
+
+#j_idt24\3a j_idt26 > div.panel-heading {
+	background-color: #07E883;	
+	color: black;	
+}
+
+#j_idt24\3a j_idt38 > div.panel-heading {
+	background-color: #07E883;
+	color: black;		
+}
+
+#j_idt24\3a j_idt26 {
+	border-color: #07E883;
+}
+
+#j_idt24\3a j_idt38 {
+	border-color: #07E883;
+}
+
+#j_idt20\3a j_idt22\3a j_idt24 > div.panel-heading {
+	background-color: #07E883;	
+	color: black;	
+}
+
+#j_idt20\3a j_idt22\3a j_idt24 {
+	border-color: #07E883;
+}
+
+#j_idt20\3a j_idt22\3a j_idt30 > div.panel-heading {
+	background-color: #07E883;	
+	color: black;	
+}
+
+#j_idt20\3a j_idt22\3a j_idt30 {
+	border-color: #07E883;
+}

@@ -43,9 +43,14 @@
    </b:panelGrid>
 </h:form>
             <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+<<<<<<< Updated upstream
                 <h:form>
                     <div class="panel panel-warning">
                         <b:dataTable value="#{timesheet.allTimesheetRow}" var="tsr" styleClass="table table-striped table-bordered" footerClass="list-footer" style="width:100%">                           
+=======
+                <h:form>                    
+                        <b:dataTable value="#{timesheet.allTimesheetRow}" var="tsr" styleClass="table table-striped table-bordered" style="width:100%">                           
+>>>>>>> Stashed changes
 	                       <h:column>
 						      <f:facet name="header">
 						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
@@ -140,8 +145,7 @@
                                     <h:outputText value="#" />
                                 </f:facet>                                 
                             </h:column>
-                        </b:dataTable>                        
-                    </div>
+                        </b:dataTable> 
                 </h:form>
             </h:panelGroup>
         </ui:define>

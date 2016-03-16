@@ -20,8 +20,6 @@
         <ui:define name="content">
             <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
                 <h:form>
-                    <div class="panel panel-warning">
-
                         <h:form>
                             <b:panelGrid colSpans="6,6">
                                 <b:panel look="info" title="Current Timesheet" collapsible="false">
@@ -67,8 +65,7 @@
                                 </f:facet>
                                 <h:outputText value="#{ts.startDate}"/>                               
                             </h:column>                           
-                        </b:dataTable>
-                    </div>
+                        </b:dataTable>                 
                 </h:form>
             </h:panelGroup>
         </ui:define>
