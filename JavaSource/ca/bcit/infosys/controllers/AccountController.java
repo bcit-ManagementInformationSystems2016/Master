@@ -39,7 +39,8 @@ public class AccountController implements Serializable {
 	}
 
 	public Employee[] getValidating() {
-		System.out.println("valid");
-		return empmgr.getValidating();
+		if (e == null)
+			e = empmgr.getValidating();
+		return e;
 	}
 }
