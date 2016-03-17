@@ -29,7 +29,6 @@ public class HRController implements Serializable {
 
 	// variable to view specific employee data
 	private Employee viewableEmp;
-	private Project assignedProject;
 
 	// variable to save the current employee
 	private Employee emp = new Employee();
@@ -58,14 +57,6 @@ public class HRController implements Serializable {
 
 	public void setViewableEmp(Employee emp) {
 		viewableEmp = emp;
-	}
-
-	public Project getAssignedProject() {
-		return assignedProject;
-	}
-
-	public void setAssignedProject(Project assignedProject) {
-		this.assignedProject = assignedProject;
 	}
 
 	// Other Methods

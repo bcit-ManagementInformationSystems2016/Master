@@ -11,15 +11,15 @@
 	</h:head>
 	<h:body>
 		<h:form>
-			<h:outputLabel value="Select Project to Assign Employee #{hrController.viewableEmp.firstName}"/>
+			<h:outputLabel value="Select Project to Assign Employee #{projectEmployeesController.viewableEmployee.firstName}"/>
 			<br />
 			<br />
 			<h:outputLabel value="PROJECT:" />
 			<br />
-			<h:selectOneMenu value="#{bean.userName}">
-			    <f:selectItems value="#{bean.users}" var="user" itemValue="#{user.name}" />
+			<h:selectOneMenu value="#{projectEmployeesController.assignedProject}">
+			    <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
 			</h:selectOneMenu>
-			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml"></h:commandButton>
+			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml" immediate="true"></h:commandButton>
 			<br />
 		
 		</h:form>

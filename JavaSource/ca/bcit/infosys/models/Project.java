@@ -112,4 +112,8 @@ public class Project implements Serializable{
 	    return cust;
 	}
 	
+	public String toString() {
+		return "ID: " + this.projectID + " Name: " + this.projectName;
+	}
+	
 }
