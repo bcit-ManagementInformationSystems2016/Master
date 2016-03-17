@@ -24,7 +24,12 @@
 			<h:outputText value="Flextime :"/><br/>        
         	<h:outputText value="Overtime :"/><br/><br/>
 		</h3>
-		<h:commandButton value="Add New TimesheetRow" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
+		<div class="buttons" >
+			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
+			<h:commandButton value="Reset" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
+			<h:commandButton value="Save" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
+			<h:commandButton value="Submit" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
+		</div>
      </b:panel>
      <b:panel look="info" title="#{msgs.allTotal} #{timesheet.allTotalHours}" collapsible="false" class="test">
             #{msgs.totalSun} <h:outputText value="#{timesheet.sunTotalHours}" /><br/>

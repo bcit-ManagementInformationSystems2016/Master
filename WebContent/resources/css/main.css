@@ -213,3 +213,7 @@ figure.menuIcon img {
 	background-color: #07E883;	
 	color: white;
 }
+
+.buttons {
+	border-spacing: 10px;
+}
