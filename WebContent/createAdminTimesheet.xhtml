@@ -23,13 +23,11 @@
 			#{msgs.wk_end}<h:outputText value="#"/><br/><br/>
 			<h:outputText value="Flextime :"/><br/>        
         	<h:outputText value="Overtime :"/><br/><br/>
-		</h3>
-		<div class="buttons" >
-			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
-			<h:commandButton value="Reset" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
-			<h:commandButton value="Save" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
-			<h:commandButton value="Submit" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
-		</div>
+		</h3>		
+			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+			<h:commandButton value="Reset" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+			<h:commandButton value="Save" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+			<h:commandButton value="Submit" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
      </b:panel>
      <b:panel look="info" title="#{msgs.allTotal} #{timesheet.allTotalHours}" collapsible="false" class="test">
             #{msgs.totalSun} <h:outputText value="#{timesheet.sunTotalHours}" /><br/>
@@ -55,7 +53,9 @@
 						      <f:facet name="header">
 						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
 						      </f:facet>
-								  <h:commandLink value="Edit" action="#{timesheet.editTsr(tsr)}" />
+								  <h:commandLink action="#{timesheet.editTsr(tsr)}">
+								  	<b:iconAwesome name="pencil-square-o" />
+								  </h:commandLink>
 							</h:column>  
                             <h:column>                           
                                 <f:facet name="header">
@@ -137,7 +137,9 @@
                            		<f:facet name="header">
                                     <h:outputText value="Delete" />
                                 </f:facet>                       
-                                <h:commandLink value="Delete" action="#{timesheet.deleteTsr(tsr)}" />
+                                <h:commandLink action="#{timesheet.deleteTsr(tsr)}">
+                                	<b:iconAwesome name="fa-times" />
+                                </h:commandLink>                                
                             </h:column>
                         </b:dataTable> 
                 </h:form>
