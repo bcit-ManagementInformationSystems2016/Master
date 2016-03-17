@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,9 +17,11 @@ import javax.persistence.PersistenceContext;
 public class Login implements Serializable {
 	@PersistenceContext(unitName = "BluehostTesty")
 	EntityManager em;
-	private String username;
+	public static String username;
 	private String password;
 	public static int currentID;
+	@Inject
+	private Conversation conversation;
 
 	public int getCurrentID() {
 		return currentID;
@@ -68,13 +72,19 @@ public class Login implements Serializable {
 			if (!value.equals(password)) {
 				System.out.println("Incorrect Password");
 			} else {
+				conversation.begin();
 				setCurrentID(map2.get(username));
 				System.out.println("Current ID: " + currentID);
 				System.out.println("Successful Login");
+				return "adminLanding";
 			}
-			return "adminLanding";
 		}
 		return "invalid";
 	}
 
+	public String logout() {
+		System.out.println("logout");
+		conversation.end();
+		return "logout";
+	}
 }

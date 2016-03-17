@@ -26,7 +26,7 @@ public class HRController implements Serializable {
 
 	@Inject
 	private CredentialManager crdmgr;
-	
+
 	// variable to view specific employee data
 	private Employee viewableEmp;
 	private Project assignedProject;
@@ -39,24 +39,31 @@ public class HRController implements Serializable {
 	public Credential getCrd() {
 		return crd;
 	}
+
 	public void setCrd(Credential crd) {
 		this.crd = crd;
 	}
+
 	public Employee getEmp() {
 		return emp;
 	}
+
 	public void setEmp(Employee emp) {
 		this.emp = emp;
 	}
+
 	public Employee getViewableEmp() {
 		return viewableEmp;
 	}
+
 	public void setViewableEmp(Employee emp) {
 		viewableEmp = emp;
 	}
+
 	public Project getAssignedProject() {
 		return assignedProject;
 	}
+
 	public void setAssignedProject(Project assignedProject) {
 		this.assignedProject = assignedProject;
 	}
@@ -95,17 +102,24 @@ public class HRController implements Serializable {
 		crd = new Credential();
 		return "created";
 	}
-	
+
 	public Employee[] getMinions() {
 		return empmgr.getAllMinions(Login.currentID);
 	}
-	
+
 	public String viewMinionsPage() {
 		return "viewMinions";
 	}
-	
+
 	public String goToAssignPage(Employee e) {
 		setViewableEmp(e);
 		return "assignEmpToProject";
+	}
+
+	public void changePassword() {
+		crd.setEmployeeID(Login.currentID);
+		crd.setUsername(Login.username);
+		crdmgr.merge(crd);
+		crd = new Credential();
 	}
 }
