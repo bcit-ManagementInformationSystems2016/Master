@@ -29,23 +29,22 @@ public class HRController implements Serializable {
 	
 	// variable to view specific employee data
 	private Employee viewableEmp;
+	private Project assignedProject;
 
 	// variable to save the current employee
 	private Employee emp = new Employee();
 	private Credential crd = new Credential();
 
+	// GETTERS AND SETTERS
 	public Credential getCrd() {
 		return crd;
 	}
-
 	public void setCrd(Credential crd) {
 		this.crd = crd;
 	}
-
 	public Employee getEmp() {
 		return emp;
 	}
-
 	public void setEmp(Employee emp) {
 		this.emp = emp;
 	}
@@ -55,7 +54,14 @@ public class HRController implements Serializable {
 	public void setViewableEmp(Employee emp) {
 		viewableEmp = emp;
 	}
+	public Project getAssignedProject() {
+		return assignedProject;
+	}
+	public void setAssignedProject(Project assignedProject) {
+		this.assignedProject = assignedProject;
+	}
 
+	// Other Methods
 	public String editEmp(Employee e) {
 		setEmp(e);
 		TypedQuery<Credential> query = em
@@ -96,5 +102,10 @@ public class HRController implements Serializable {
 	
 	public String viewMinionsPage() {
 		return "viewMinions";
+	}
+	
+	public String goToAssignPage(Employee e) {
+		setViewableEmp(e);
+		return "assignEmpToProject";
 	}
 }

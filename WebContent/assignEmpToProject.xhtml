@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Assign Employee to project</title>
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:outputLabel value="Select Project to Assign Employee #{hrController.viewableEmp.firstName}"/>
+			<br />
+			<br />
+			<h:outputLabel value="PROJECT:" />
+			<br />
+			<h:selectOneMenu value="#{bean.userName}">
+			    <f:selectItems value="#{bean.users}" var="user" itemValue="#{user.name}" />
+			</h:selectOneMenu>
+			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml"></h:commandButton>
+			<br />
+		
+		</h:form>
+		
+	</h:body>
+</html>
