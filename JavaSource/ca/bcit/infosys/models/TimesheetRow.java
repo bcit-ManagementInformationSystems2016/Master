@@ -50,7 +50,7 @@ public class TimesheetRow implements Serializable {
 	private String workPackageID;
 
 	//bi-directional many-to-one association to Timesheet
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="timesheetID", updatable = false, insertable = false)
 	private Timesheet timesheet;
 
