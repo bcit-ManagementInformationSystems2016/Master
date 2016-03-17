@@ -16,30 +16,30 @@
   <b:panelGrid colSpans="6,6">
      <b:panel look="info" title="Current Timesheet" collapsible="false">
        <h3 class="panel-title test">
-       		#{msgs.emp_num}<h:outputText value="#{Credentials.EmployeeID}"/><br/><br/>                
-			#{msgs.name}<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" /><br/><br/>   
+       		#{msgs.emp_num}<h:outputText value="#{Credentials.EmployeeID}"/><br/>             
+			#{msgs.name}<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" /><br/>  
 					    <h:outputText value="#{Employees.LastName}" style="font-weight: bold" />
-			#{msgs.wk_num}<h:outputText value="#"/><br/><br/>
-			#{msgs.wk_end}<h:outputText value="#"/>
+			#{msgs.wk_num}<h:outputText value="#"/><br/>
+			#{msgs.wk_end}<h:outputText value="#"/><br/><br/>
+			<h:outputText value="Flextime :"/><br/>        
+        	<h:outputText value="Overtime :"/><br/><br/>
 		</h3>
+		<h:commandButton value="Add New TimesheetRow" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
      </b:panel>
-     <b:panel look="info" title="Info" collapsible="false" class="test">                             	
-        	<h:outputText value="Flextime :"/>         
-        	<h:outputText value="Overtime :"/><br/>
-            #{msgs.allTotal} <h:outputText value="#{timesheet.allTotalHours}" />    
-            #{msgs.totalSun} <h:outputText value="#{timesheet.sunTotalHours}" /><br/>  
-        	#{msgs.totalMon} <h:outputText value="#{timesheet.monTotalHours}" />   
-            #{msgs.totalTue} <h:outputText value="#{timesheet.tuesTotalHours}" /><br/>  
-            #{msgs.totalWed} <h:outputText value="#{timesheet.wedTotalHours}" />  
-            #{msgs.totalThu} <h:outputText value="#{timesheet.thursTotalHours}" /><br/>  
-            #{msgs.totalFri} <h:outputText value="#{timesheet.friTotalHours}" />     
-            #{msgs.totalSat} <h:outputText value="#{timesheet.satTotalHours}" /><br/>
+     <b:panel look="info" title="#{msgs.allTotal} #{timesheet.allTotalHours}" collapsible="false" class="test">
+            #{msgs.totalSun} <h:outputText value="#{timesheet.sunTotalHours}" /><br/>
+        	#{msgs.totalMon} <h:outputText value="#{timesheet.monTotalHours}" /><br/>  
+            #{msgs.totalTue} <h:outputText value="#{timesheet.tuesTotalHours}" /><br/>
+            #{msgs.totalWed} <h:outputText value="#{timesheet.wedTotalHours}" /><br/>  
+            #{msgs.totalThu} <h:outputText value="#{timesheet.thursTotalHours}" /><br/>
+            #{msgs.totalFri} <h:outputText value="#{timesheet.friTotalHours}" /><br/> 
+            #{msgs.totalSat} <h:outputText value="#{timesheet.satTotalHours}" />
             <!-- 
                 <h:commandButton value="#{msgs.submit}" action="#{timesheetData.save}" styleClass="btn btn-info" /> 
                 <h:commandButton value="#{msgs.addrow}" action="#{timesheetData.addRow}" styleClass="btn btn-info" />
                 <h:commandButton value="#{msgs.new}" action="#{timesheetData.makeNew()}" class="btn btn-info"/>
          	-->
-		<h:commandButton value="Add New TimesheetRow" action="createTimesheetRow.xhtml" styleClass="btn btn-info"></h:commandButton>
+		
      </b:panel>
    </b:panelGrid>
 </h:form>
