@@ -34,7 +34,13 @@
                                 </b:panel>
                             </b:panelGrid>
                         </h:form>
-                        <b:dataTable value="#{timesheet.allTimesheet}" var="ts" styleClass="table table-hover">                            
+                        <b:dataTable value="#{timesheet.allTimesheet}" var="ts" styleClass="table table-hover">
+                        	<h:column>
+						      <f:facet name="header">
+						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
+						      </f:facet>
+								  <h:commandLink value="Edit" action="#{timesheet.editTs(ts)}" />
+							</h:column>    
                             <h:column headerClass="columnHeader">
                                 <f:facet name="header">
                                     <h:outputText value="EmployeeID" />

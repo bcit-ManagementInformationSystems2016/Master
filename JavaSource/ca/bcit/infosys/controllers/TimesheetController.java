@@ -28,6 +28,7 @@ public class TimesheetController  implements Serializable {
     /** Manager from Product objects.*/
     @Inject private TimesheetRowManager timesheetRowManager;
     private TimesheetRow tsr = new TimesheetRow();
+    private Timesheet ts = new Timesheet();
 
     public TimesheetRow getTsr() {
         return tsr;
@@ -37,24 +38,44 @@ public class TimesheetController  implements Serializable {
         this.tsr = tsr;
     }
 
+    public Timesheet getTs() {
+        return ts;
+    }
+
+    public void setTs(Timesheet ts) {
+        this.ts = ts;
+    }
+    public String editTs(Timesheet ts) {
+        setTs(ts);
+        System.out.println("Edit timesheet");
+        return "edit";
+    }
+    
     public String editTsr(TimesheetRow tsr) {
         setTsr(tsr);
         System.out.println("Edit timesheetRow");
         return "edit";
     }
-    
+    public String updateTs(Timesheet ts){
+        timesheetManager.merge(ts);
+        ts = null;
+        return "updated";
+    }
     public String updateTsr(TimesheetRow tsr){
         timesheetRowManager.merge(tsr);
         tsr = null;
         return "updated";
     }
-    
+    public String createTs(Timesheet ts){
+        timesheetManager.persist(ts);
+        System.out.println("Created timesheet");
+        return "created";
+    }
     public String createTsr(TimesheetRow tsr){
         timesheetRowManager.persist(tsr);
         System.out.println("Created timesheetRow");
         return "created";
     }
-    
     public String deleteTsr(TimesheetRow tsr) {
         timesheetRowManager.remove(tsr);
         System.out.println("Delete timesheetRow ");

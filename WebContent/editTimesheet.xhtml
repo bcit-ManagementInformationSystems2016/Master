@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Edit Timesheet</title>
+	<h3>Edit Timesheet Details</h3>
+</h:head>
+<h:body>
+<h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+	<h:form>
+	
+		<br />
+		<h:outputText value="approved" />
+		<br />
+		<h:inputText value="#{timesheet.ts.approved}"></h:inputText>
+		<br />
+		<h:outputText value="employeeID" />
+		<br />
+		<h:inputText value="#{timesheet.ts.employeeID}"></h:inputText>
+		<br />
+		<h:outputText value="startDate" />
+		<br />
+		<h:inputText value="#{timesheet.ts.startDate}">
+		<f:convertDateTime pattern="yyyy-MM-dd" />
+		</h:inputText>
+		<br />
+		<h:outputText value="submitted" />
+		<br />
+		<h:inputText value="#{timesheet.ts.submitted}"></h:inputText>
+		<br />
+		<h:commandButton value="Save Updates" action="#{timesheet.updateTs(timesheet.ts)}"></h:commandButton>
+	</h:form>
+	 </h:panelGroup>
+</h:body>
+</html>

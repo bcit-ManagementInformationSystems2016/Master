@@ -45,10 +45,10 @@
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>
-  	<from-view-id>/createAdminTimesheet.xhtml</from-view-id>
+  	<from-view-id>/viewAdminTimesheet.xhtml</from-view-id>
   	<navigation-case>
    		<from-outcome>edit</from-outcome>
-   		<to-view-id>/editTimesheetRow.xhtml</to-view-id>
+   		<to-view-id>/editTimesheet.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>
@@ -65,12 +65,18 @@
    		<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
-
 <navigation-rule>
   	<from-view-id>/editTimesheetRow.xhtml</from-view-id>
   	<navigation-case>
    		<from-outcome>updated</from-outcome>
    		<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+  	<from-view-id>/editTimesheet.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>updated</from-outcome>
+   		<to-view-id>/viewAdminTimesheet.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>
