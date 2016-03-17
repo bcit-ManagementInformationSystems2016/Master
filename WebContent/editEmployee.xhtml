@@ -45,7 +45,10 @@
 		<br />
 		<h:outputText value="Username" />
 		<br />
-		<h:inputText value="#{hrController.crd.username}"></h:inputText>
+		<h:inputText id="usernameInput" value="#{hrController.crd.username}">
+			<f:validator validatorId="hrValidator" />
+		</h:inputText>
+		<h:message for="usernameInput" style="color:red" />
 		<br />
 		<h:outputText value="Password" />
 		<br />

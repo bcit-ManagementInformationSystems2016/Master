@@ -27,7 +27,6 @@ public class AccountController implements Serializable {
 		if (e == null)
 			e = empmgr.getAll();
 		return e;
-
 	}
 
 	public Credential[] getAllCred() {

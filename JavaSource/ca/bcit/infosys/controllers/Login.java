@@ -46,7 +46,7 @@ public class Login implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	static Map<String, Integer> map2 = new HashMap<String, Integer>();
 	public String validate() {
 		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";
 		List<Object[]> resultList = em.createQuery(jpaQuery).getResultList();
@@ -56,7 +56,7 @@ public class Login implements Serializable {
 			map.put((String) object[0], (String) object[1]);
 		}
 		// contains username and employeeID
-		Map<String, Integer> map2 = new HashMap<String, Integer>();
+		
 		for (Object[] object : resultList) {
 			map2.put((String) object[0], (Integer) object[2]);
 		}

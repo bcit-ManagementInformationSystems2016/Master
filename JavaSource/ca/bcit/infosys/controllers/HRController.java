@@ -31,7 +31,7 @@ public class HRController implements Serializable {
 	private Employee viewableEmp;
 
 	// variable to save the current employee
-	private Employee emp = new Employee();
+	static Employee emp = new Employee();
 	private Credential crd = new Credential();
 
 	// GETTERS AND SETTERS
