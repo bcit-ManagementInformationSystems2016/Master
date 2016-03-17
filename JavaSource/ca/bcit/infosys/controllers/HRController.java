@@ -116,10 +116,11 @@ public class HRController implements Serializable {
 		return "assignEmpToProject";
 	}
 
-	public void changePassword() {
+	public String changePassword() {
 		crd.setEmployeeID(Login.currentID);
 		crd.setUsername(Login.username);
 		crdmgr.merge(crd);
 		crd = new Credential();
+		return "changed";
 	}
 }
