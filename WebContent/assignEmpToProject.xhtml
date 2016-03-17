@@ -19,7 +19,9 @@
 			<h:selectOneMenu value="#{projectEmployeesController.assignedProject}">
 			    <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
 			</h:selectOneMenu>
+			<br />
 			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml" immediate="true"></h:commandButton>
+			<h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}"></h:commandButton>
 			<br />
 		
 		</h:form>

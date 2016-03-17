@@ -3,6 +3,7 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -11,6 +12,7 @@ import ca.bcit.infosys.managers.ProjectEmployeesManager;
 import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.ProjectEmployees;
 
 @Named("projectEmployeesController")
 @SessionScoped
@@ -26,7 +28,8 @@ public class ProjectEmployeesController implements Serializable {
 	// variables
 	private Project viewableProject;
 	private Employee viewableEmployee;
-	private Project assignedProject;
+	private String assignedProject;
+	private int assignedProjectID;
 	
 	//Getters and Setters
 	public Project getViewableProject() {
@@ -41,11 +44,17 @@ public class ProjectEmployeesController implements Serializable {
 	public void setViewableEmployee(Employee viewableEmployee) {
 		this.viewableEmployee = viewableEmployee;
 	}
-	public Project getAssignedProject() {
+	public String getAssignedProject() {
 		return assignedProject;
 	}
-	public void setAssignedProject(Project assignedProject) {
+	public void setAssignedProject(String assignedProject) {
 		this.assignedProject = assignedProject;
+	}
+	public int getAssignedProjectID() {
+		return assignedProjectID;
+	}
+	public void setAssignedProjectID(int assignedProjectID) {
+		this.assignedProjectID = assignedProjectID;
 	}
 	
 	// Other Methods
@@ -72,7 +81,7 @@ public class ProjectEmployeesController implements Serializable {
 		return pjtmgr.getAllProjectsForEmp(viewableEmployee.getEmployeeID());
 	}
 	
-	public java.util.List<Project> getDropdownForProjects() {
+	public java.util.List<SelectItem> getDropdownForProjects() {
 		if (viewableEmployee == null) {
 			System.out.println("There is no employee yet");
 		} else {
@@ -80,6 +89,16 @@ public class ProjectEmployeesController implements Serializable {
 		}
 		System.out.println("Employee using: " + this.viewableEmployee.getFirstName());
 		return pjtEmpMgr.getAllAvailableProjects(this.viewableEmployee.getEmployeeID());
+	}
+	
+	public String assignEmployee() {
+		int n = new Integer(assignedProject);
+		ProjectEmployees pe = new ProjectEmployees();
+		pe.setEmp(viewableEmployee);
+		pe.setPro(pjtmgr.find(n));
+		pjtEmpMgr.persist(pe);
+		System.out.println("The assigned Project ID: " + n);		
+		return "viewMinions";
 	}
 	
 }

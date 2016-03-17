@@ -113,7 +113,7 @@ public class Project implements Serializable{
 	}
 	
 	public String toString() {
-		return "ID: " + this.projectID + " Name: " + this.projectName;
+		return this.projectID + "";
 	}
 	
 }

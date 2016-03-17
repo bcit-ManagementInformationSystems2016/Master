@@ -11,7 +11,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
 
@@ -34,8 +33,16 @@ public class ProjectManager {
 	     * @return the Category record with key = id, null if not found.
 	     */
 	    public Project find(int id) {
-	        return em.find(Project.class, id);
+	    	System.out.println("The id is: " + id);
+	    	Project p = em.find(Project.class, id); 
+	        if (p == null) {
+	        	System.out.println("The database did not find ");
 	        }
+	        else {
+	        	System.out.println("The database FOUND!!");
+	        }
+	        return p;
+	    }
 
 	    /**
 	     * Persist Project record into database. id must be unique.

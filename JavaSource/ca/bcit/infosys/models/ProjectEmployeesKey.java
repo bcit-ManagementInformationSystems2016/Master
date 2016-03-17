@@ -25,6 +25,5 @@ public class ProjectEmployeesKey implements Serializable {
 	public void setEmpID(int empID) {
 		this.empID = empID;
 	}
-
 	
 }

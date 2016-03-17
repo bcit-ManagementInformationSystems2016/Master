@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -77,7 +78,7 @@ public class ProjectEmployeesManager {
         return catarray;
     }
     
-    public List<Project> getAllAvailableProjects(int empID) {
+    public List<SelectItem> getAllAvailableProjects(int empID) {
     	System.out.println("Start of method with ID of " + empID);
     	TypedQuery<Project> proQuery = em.createQuery("select c from Project c", Project.class); 
         List<Project> projects = proQuery.getResultList();
@@ -85,7 +86,7 @@ public class ProjectEmployeesManager {
         TypedQuery<ProjectEmployees> proEmpQuery = em.createQuery("SELECT c FROM ProjectEmployees c WHERE EmployeeID = " + empID + "", ProjectEmployees.class);
         List<ProjectEmployees> preassignedProjects = proEmpQuery.getResultList();
         System.out.println("# of projects working size = " + preassignedProjects.size());
-        List<Project> availableProjects = new ArrayList<Project>();
+        List<SelectItem> availableProjects = new ArrayList<SelectItem>();
         for (int i=0; i < projects.size(); i++) {
         	boolean contains = false;
         	for (int j=0; j < preassignedProjects.size(); j++) {
@@ -95,7 +96,7 @@ public class ProjectEmployeesManager {
         		}
         	}
         	if (!contains) {
-        		availableProjects.add(projects.get(i));
+        		availableProjects.add(new SelectItem(projects.get(i), projects.get(i).getProjectName()));
         		System.out.println("ADDED: " + projects.get(i).getProjectName());
         	}
         }
