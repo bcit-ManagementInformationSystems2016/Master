@@ -29,7 +29,8 @@ public class TimesheetController  implements Serializable {
     @Inject private TimesheetRowManager timesheetRowManager;
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts = new Timesheet();
-
+    private static TimesheetRow[] rows;
+    
     public TimesheetRow getTsr() {
         return tsr;
     }
@@ -88,7 +89,24 @@ public class TimesheetController  implements Serializable {
     }
 
     public TimesheetRow[] getAllTimesheetRow() {
-        return timesheetRowManager.getAll();
+    	if (rows == null) {
+    		rows = timesheetRowManager.getAll();
+    	}
+        return rows;
+    }
+    
+    public void resetTimesheet() {
+    	for (int i = 0; i < rows.length; i++) {
+    		TimesheetRow row = rows[i];
+    		row.setWorkPackageID("");
+    		row.setHoursSun(0);
+    		row.setHoursMon(0);
+    		row.setHoursTues(0);
+    		row.setHoursWed(0);
+    		row.setHoursThurs(0);
+    		row.setHoursFri(0);
+    		row.setHoursSat(0);
+    	}
     }
     
    public double getAllTotalHours() {
