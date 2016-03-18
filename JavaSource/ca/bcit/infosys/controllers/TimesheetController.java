@@ -40,6 +40,30 @@ public class TimesheetController  implements Serializable {
     public TimesheetRow getTsr() {
         return tsr;
     }
+    
+    /**
+     * Initialize the local data for the timesheet including the timesheet
+     * and all the timesheet rows associated with this timesheet.
+     * 
+     * This includes the local timesheet (ts), the local timesheet rows (arr)
+     * and the local arraylist so we can add and delete from rows more easily.
+     * 
+     * Best to convert all data to arraylist but will figure that out later
+     */
+    public void init() {
+    	if (getTs() == null) {
+	    	int empId = Login.currentID;
+	    	setTs(timesheetManager.getTimesheetEmpId(empId));
+    	}
+    	
+    	if (rows == null) {
+    		Timesheet ts = getTs();
+        	int timesheetID = ts.getTimesheetID();
+    		TimesheetRow[] arr = timesheetRowManager.getRowsWithTimesheetId(timesheetID);
+    		localRows = new ArrayList<TimesheetRow>(Arrays.asList(arr));
+    		rows = arr;
+    	}
+    }
 
     public void setTsr(TimesheetRow tsr) {
         this.tsr = tsr;
@@ -100,18 +124,7 @@ public class TimesheetController  implements Serializable {
 
     public TimesheetRow[] getAllTimesheetRow() {
     	// set the current timesheet to be the current timesheet of the employee
-    	if (getTs() == null) {
-	    	int empId = Login.currentID;
-	    	setTs(timesheetManager.getTimesheetEmpId(empId));
-    	}
-    	
-    	if (rows == null) {
-    		Timesheet ts = getTs();
-        	int timesheetID = ts.getTimesheetID();
-    		TimesheetRow[] arr = timesheetRowManager.getRowsWithTimesheetId(timesheetID);
-    		localRows = new ArrayList<TimesheetRow>(Arrays.asList(arr));
-    		rows = arr;
-    	}
+    	init();
         return rows;
     }
     
@@ -199,7 +212,7 @@ public class TimesheetController  implements Serializable {
    }
    
    public int getWeekNumber() throws ParseException{
-	   TimesheetRow[] rows = getAllTimesheetRow();
+	   init();
 	   Date date = ts.getStartDate();
 	   Calendar cal = Calendar.getInstance();
 	   cal.setTime(date);
