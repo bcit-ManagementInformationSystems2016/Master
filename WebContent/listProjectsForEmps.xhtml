@@ -23,8 +23,12 @@
 					<h:outputText value="#{pro.projectName}"/>
 				</h:column>
 				
+				<h:column>
+					<h:commandLink value="Unassign Employee" action="#{projectEmployeesController.unassignEmployee(pro)}" />
+				</h:column>
+				
 			</h:dataTable>
-			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml"></h:commandButton>
+			<h:commandButton value="Go To Home Page" action="viewMinions.xhtml"></h:commandButton>
 			<br />
 		</h:form>
 	</h:body>

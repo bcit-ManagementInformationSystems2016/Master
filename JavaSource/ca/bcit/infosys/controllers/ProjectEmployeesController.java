@@ -13,6 +13,7 @@ import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
+import ca.bcit.infosys.models.ProjectEmployeesKey;
 
 @Named("projectEmployeesController")
 @SessionScoped
@@ -98,6 +99,11 @@ public class ProjectEmployeesController implements Serializable {
 		pe.setPro(pjtmgr.find(n));
 		pjtEmpMgr.persist(pe);
 		System.out.println("The assigned Project ID: " + n);		
+		return "viewMinions";
+	}
+	
+	public String unassignEmployee(Project p) {
+		pjtEmpMgr.remove(p, viewableEmployee);
 		return "viewMinions";
 	}
 	

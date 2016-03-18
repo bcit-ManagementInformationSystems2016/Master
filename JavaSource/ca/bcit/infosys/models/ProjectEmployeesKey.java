@@ -5,25 +5,49 @@ import java.io.Serializable;
 public class ProjectEmployeesKey implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	int projID;
-    int empID;
+	Project project;
+    Employee employee;
     
-    public ProjectEmployeesKey(int empID, int projID) {
-    	this.projID = projID;
-    	this.empID = empID;
+    public ProjectEmployeesKey(Project project, Employee employee) {
+    	this.project = project;
+    	this.employee = employee;
     }
     
-	public int getProjID() {
-		return projID;
+	public Project getProject() {
+		return project;
 	}
-	public void setProjID(int projID) {
-		this.projID = projID;
+	public void setProject(Project project) {
+		this.project = project;
 	}
-	public int getEmpID() {
-		return empID;
+	public Employee getEmployee() {
+		return employee;
 	}
-	public void setEmpID(int empID) {
-		this.empID = empID;
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
+	
+	@Override
+    public boolean equals(Object obj) {
+        if(obj instanceof ProjectEmployeesKey){
+        	ProjectEmployeesKey carPk = (ProjectEmployeesKey) obj;
+ 
+            if(!(carPk.getProject().equals(project))){
+                return false;
+            }
+ 
+            if(!(carPk.getEmployee().equals(employee))){
+                return false;
+            }
+ 
+            return true;
+        }
+ 
+        return false;
+    }
+ 
+    @Override
+    public int hashCode() {
+        return project.hashCode() + employee.hashCode();
+    }
 	
 }

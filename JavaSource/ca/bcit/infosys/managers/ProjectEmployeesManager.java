@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
 import ca.bcit.infosys.models.ProjectEmployeesKey;
@@ -26,8 +27,8 @@ public class ProjectEmployeesManager {
      *            primary key for record.
      * @return the Category record with key = id, null if not found.
      */
-    public ProjectEmployees find(int empID, int projID) {
-    	ProjectEmployeesKey key = new ProjectEmployeesKey(empID, projID);
+    public ProjectEmployees find(Project p, Employee e) {
+    	ProjectEmployeesKey key = new ProjectEmployeesKey(p, e);
         return em.find(ProjectEmployees.class, key);
         }
 
@@ -57,9 +58,8 @@ public class ProjectEmployeesManager {
      * @param proj
      *            record to be removed from database
      */
-    public void remove(ProjectEmployees proj) {
-        //attach category
-        proj = find(proj.getEmp().getEmployeeID(), proj.getPro().getProjectID());
+    public void remove(Project p, Employee e) {
+        ProjectEmployees proj = find(p, e);
         em.remove(proj);
     }
 
