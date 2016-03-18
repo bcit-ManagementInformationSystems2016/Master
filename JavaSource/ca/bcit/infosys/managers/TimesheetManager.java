@@ -82,5 +82,19 @@ public class TimesheetManager {
 	        return catarray;
 	    }
 	    
-	 
+	    public Timesheet getTimesheetEmpId(int empId) {
+	    	TypedQuery<Timesheet> query = em.createQuery("select c from Timesheet c where c.employeeID = :empId and c.approved = false", Timesheet.class);
+	    	java.util.List<Timesheet> categories = query.setParameter("empId", empId).getResultList();
+	    	if (categories.size() > 0) {
+	    		Timesheet[] catarray = new Timesheet[categories.size()];
+		    	for (int i=0; i < catarray.length; i++) {
+		            catarray[i] = categories.get(i);
+		        }
+		    	return catarray[0];
+	    	} else {
+	    		// create new timesheet
+	    		return new Timesheet();
+	    	}
+	    }
+
 }

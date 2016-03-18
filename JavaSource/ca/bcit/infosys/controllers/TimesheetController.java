@@ -17,6 +17,7 @@ import javax.inject.Named;
 import ca.bcit.infosys.controllers.EditableTimesheet;
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
+import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
@@ -29,8 +30,9 @@ public class TimesheetController  implements Serializable {
     @Inject private TimesheetManager timesheetManager;
     /** Manager from Product objects.*/
     @Inject private TimesheetRowManager timesheetRowManager;
+    
     private TimesheetRow tsr = new TimesheetRow();
-    private Timesheet ts = new Timesheet();
+    private Timesheet ts;
     private static TimesheetRow[] rows;
     
     public TimesheetRow getTsr() {
@@ -91,8 +93,18 @@ public class TimesheetController  implements Serializable {
     }
 
     public TimesheetRow[] getAllTimesheetRow() {
+    	// set the current timesheet to be the current timesheet of the employee
+    	if (getTs() == null) {
+	    	int empId = Login.currentID;
+	    	setTs(timesheetManager.getTimesheetEmpId(empId));
+    	}
+    	
     	if (rows == null) {
-    		rows = timesheetRowManager.getAll();
+    		Timesheet ts = getTs();
+        	int timesheetID = ts.getTimesheetID();
+        	
+    		TimesheetRow[] arr = timesheetRowManager.getRowsWithTimesheetId(timesheetID);
+    		rows = arr;
     	}
         return rows;
     }
@@ -113,7 +125,7 @@ public class TimesheetController  implements Serializable {
     
    public double getAllTotalHours() {
 	   double allHours = 0.0;
-	   TimesheetRow[] rows = timesheetRowManager.getAll();
+	   TimesheetRow[] rows = getAllTimesheetRow();
 
        System.out.println("rowslength: " + rows.length);
 	   for (int i=0; i < rows.length; i++) {
@@ -125,7 +137,7 @@ public class TimesheetController  implements Serializable {
 
    public double getSunTotalHours() {
        double sunHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            sunHours += rows[i].getHoursSun();
        }
@@ -133,7 +145,7 @@ public class TimesheetController  implements Serializable {
    }
    public double getTuesTotalHours() {
        double tuesHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            tuesHours += rows[i].getHoursTues();
        }
@@ -141,7 +153,7 @@ public class TimesheetController  implements Serializable {
    }
    public double getMonTotalHours() {
        double monHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            monHours += rows[i].getHoursMon();
        }
@@ -149,7 +161,7 @@ public class TimesheetController  implements Serializable {
    }
    public double getWedTotalHours() {
        double wedHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            wedHours += rows[i].getHoursWed();
        }
@@ -157,7 +169,7 @@ public class TimesheetController  implements Serializable {
    }
    public double getThursTotalHours() {
        double thursHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            thursHours += rows[i].getHoursThurs();
        }
@@ -165,7 +177,7 @@ public class TimesheetController  implements Serializable {
    }
    public double getFriTotalHours() {
        double friHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            friHours += rows[i].getHoursFri();
        }
@@ -173,7 +185,7 @@ public class TimesheetController  implements Serializable {
    }
    public double getSatTotalHours() {
        double satHours = 0.0;
-       TimesheetRow[] rows = timesheetRowManager.getAll();
+       TimesheetRow[] rows = getAllTimesheetRow();
        for (int i=0; i < rows.length; i++) {
            satHours += rows[i].getHoursSat();
        }
@@ -181,6 +193,7 @@ public class TimesheetController  implements Serializable {
    }
    
    public int getWeekNumber() throws ParseException{
+	   TimesheetRow[] rows = getAllTimesheetRow();
 	   Date date = ts.getStartDate();
 	   Calendar cal = Calendar.getInstance();
 	   cal.setTime(date);

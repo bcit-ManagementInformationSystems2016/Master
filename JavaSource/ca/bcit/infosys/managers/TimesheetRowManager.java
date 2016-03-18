@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
 
 /**
@@ -98,6 +99,14 @@ public class TimesheetRowManager {
 	    	return allHours;
 	    }
 	    
-	    
+	    public TimesheetRow[] getRowsWithTimesheetId(int timesheetID) {
+	    	TypedQuery<TimesheetRow> query = em.createQuery("select c from TimesheetRow c where c.timesheetID = :timesheetID", TimesheetRow.class);
+	    	java.util.List<TimesheetRow> categories = query.setParameter("timesheetID", timesheetID).getResultList();
+	    	TimesheetRow[] catarray = new TimesheetRow[categories.size()];
+		    for (int i=0; i < catarray.length; i++) {
+		        catarray[i] = categories.get(i);
+		    }
+		    return catarray;
+	    }
 
 }
