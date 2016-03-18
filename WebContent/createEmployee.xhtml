@@ -12,53 +12,6 @@
 <ui:composition template="/templates/masterLayout.xhtml">      
         <ui:define name="content">
 	<h:form>
-<<<<<<< Updated upstream
-		<h:outputText value="First Name" />
-		<br />
-		<h:inputText value="#{hrController.emp.firstName}"></h:inputText>
-		<br />
-		<h:outputText value="Last Name" />
-		<br />
-		<h:inputText value="#{hrController.emp.lastName}"></h:inputText>
-		<br />
-		<h:outputText value="Validator ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.validatorID}"></h:inputText>
-		<br />
-		<h:outputText value="Salary" />
-		<br />
-		<h:inputText value="#{hrController.emp.salary}"></h:inputText>
-		<br />
-		<h:outputText value="Role ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.roleID}"></h:inputText>
-		<br />
-		<h:outputText value="Supervisor ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.supervisorID}"></h:inputText>
-		<br />
-		<h:outputText value="Pay Level ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.payLevelID}"></h:inputText>
-		<br />
-		<h:outputText value="Is Active" />
-		<br />
-		<h:inputText value="#{hrController.emp.isActive}"></h:inputText>
-		<br />
-		<h:outputText value="Username" />
-		<br />
-		<h:inputText id="usernameInput" value="#{hrController.crd.username}">
-			<f:validator validatorId="hrValidator" />
-		</h:inputText>
-		<h:message for="usernameInput" style="color:red" />
-		<br />
-		<h:outputText value="Password" />
-		<br />
-		<h:inputText value="#{hrController.crd.password}"></h:inputText>
-		<br />
-		<h:commandButton value="Save Updates"
-			action="#{hrController.createEmp(hrController.emp)}"></h:commandButton>
-=======
 	<b:panelGrid colSpans="3,9">
 	<b:panel look="info" title="Enter Employee Details" collapsible="false">
 		<b:inputText value="#{hrController.emp.firstName}">
