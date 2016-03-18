@@ -1,18 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
-<h:head>
-	<title>HR</title>
-
-</h:head>
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">      
+<head>
+    <title>HR</title>    
+</head>
 <h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+        <ui:define name="content">
 	<h:form>
-		<h3>All Employees</h3>
-		<h:dataTable value="#{account.allEmp}" var="emp">
+	
+     <b:panel look="info" title="All Employees" collapsible="false">
+      <b:dataTable value="#{account.allEmp}" var="emp">
 			<h:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputText value="#{emp.employeeID}" />
@@ -53,13 +55,19 @@
 				<h:outputText value="#{emp.isActive}" />
 			</h:column>
 			<h:column>
-				<h:commandLink value="Edit" action="#{hrController.editEmp(emp)}" />
+			<f:facet name="header">Edit</f:facet>
+				<h:commandLink action="#{hrController.editEmp(emp)}">
+					<b:iconAwesome name="pencil-square-o" />
+				</h:commandLink>
 			</h:column>
 
-		</h:dataTable>
-		<h:commandButton value="Add New Employee"
-			action="createEmployee.xhtml"></h:commandButton>
+		</b:dataTable>		
+			<h:commandButton value="Add New Employee" action="createEmployee.xhtml" styleClass="btn btn-info"></h:commandButton>					
+     </b:panel>    
+  
+		
 	</h:form>
-
+ </ui:define>
+    </ui:composition>
 </h:body>
 </html>
