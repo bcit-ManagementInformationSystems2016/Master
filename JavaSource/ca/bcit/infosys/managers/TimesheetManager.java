@@ -93,6 +93,7 @@ public class TimesheetManager {
 		    	return catarray[0];
 	    	} else {
 	    		// create new timesheet
+	    		//TODO create new timesheet properly and persist into database
 	    		return new Timesheet();
 	    	}
 	    }
