@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -34,6 +35,7 @@ public class TimesheetController  implements Serializable {
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts;
     private static TimesheetRow[] rows;
+    private static ArrayList<TimesheetRow> localRows;
     
     public TimesheetRow getTsr() {
         return tsr;
@@ -77,10 +79,14 @@ public class TimesheetController  implements Serializable {
         return "created";
     }
     public String createTsr(TimesheetRow tsr){
-        timesheetRowManager.persist(tsr);
+        //timesheetRowManager.persist(tsr);
+        localRows.add(tsr);
+        TimesheetRow[] newRows = new TimesheetRow[localRows.size()];
+        rows = localRows.toArray(newRows);
         System.out.println("Created timesheetRow");
         return "created";
     }
+    
     public String deleteTsr(TimesheetRow tsr) {
         timesheetRowManager.remove(tsr);
         System.out.println("Delete timesheetRow ");
@@ -102,8 +108,8 @@ public class TimesheetController  implements Serializable {
     	if (rows == null) {
     		Timesheet ts = getTs();
         	int timesheetID = ts.getTimesheetID();
-        	
     		TimesheetRow[] arr = timesheetRowManager.getRowsWithTimesheetId(timesheetID);
+    		localRows = new ArrayList<TimesheetRow>(Arrays.asList(arr));
     		rows = arr;
     	}
         return rows;
