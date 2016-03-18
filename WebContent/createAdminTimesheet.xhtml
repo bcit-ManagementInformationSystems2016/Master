@@ -16,11 +16,11 @@
   <b:panelGrid colSpans="6,6">
      <b:panel look="info" title="Current Timesheet" collapsible="false">
        <h3 class="panel-title test">
-       		#{msgs.emp_num}<h:outputText value="#{Credentials.EmployeeID}"/><br/>             
+       		#{msgs.emp_num}<h:outputText value="#{login.username}"/><br/>             
 			#{msgs.name}<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" /><br/>  
 					    <h:outputText value="#{Employees.LastName}" style="font-weight: bold" />
-			#{msgs.wk_num}<h:outputText value="#"/><br/>
-			#{msgs.wk_end}<h:outputText value="#"/><br/><br/>
+			#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
+			#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}"/><br/><br/>
 			<h:outputText value="Flextime :"/><br/>        
         	<h:outputText value="Overtime :"/><br/><br/>
 

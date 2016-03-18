@@ -3,6 +3,8 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.Date;
+
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
@@ -79,5 +81,6 @@ public class TimesheetManager {
 	        }
 	        return catarray;
 	    }
-
+	    
+	 
 }

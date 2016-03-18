@@ -1,6 +1,8 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -176,5 +178,25 @@ public class TimesheetController  implements Serializable {
            satHours += rows[i].getHoursSat();
        }
        return satHours;
+   }
+   
+   public int getWeekNumber() throws ParseException{
+	   Date date = ts.getStartDate();
+	   Calendar cal = Calendar.getInstance();
+	   cal.setTime(date);
+	   int week = cal.get(Calendar.WEEK_OF_YEAR);
+	   return week;
+	   
+   }
+   
+   public Date getWeekEnding() throws ParseException {
+	   Date date = ts.getStartDate();
+	   
+//	   SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+//	   String weekEnd = sdf.format(date);
+//	   Calendar c = Calendar.getInstance();
+//	   c.setTime(sdf.parse(weekEnd));
+//	   c.add(Calendar.DATE, 6);
+	   return date;
    }
 }

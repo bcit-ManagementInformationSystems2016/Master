@@ -1,9 +1,16 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.persistence.*;
+
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 /**
@@ -64,8 +71,13 @@ public class Timesheet implements Serializable {
 	public void setEmployeeID(int employeeID) {
 		this.employeeID = employeeID;
 	}
+	
 
-	public Date getStartDate() {
+	public Date getStartDate() throws ParseException {
+		DateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+		Date date = new Date();
+		String now = dateformat.format(date);
+		startDate = dateformat.parse(now);
 		return this.startDate;
 	}
 
