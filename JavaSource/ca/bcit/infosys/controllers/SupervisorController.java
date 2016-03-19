@@ -3,6 +3,7 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -19,6 +20,7 @@ public class SupervisorController implements Serializable {
 	//local variables
 	private Employee viewableEmployee;
 	private Employee timesheetValidator;
+	private Employee newTimesheetValidator;
 	
 	// GETTERS AND SETTERS
 	public Employee getViewableEmployee() {
@@ -33,6 +35,12 @@ public class SupervisorController implements Serializable {
 	public void setTimesheetValidator(Employee timesheetValidator) {
 		this.timesheetValidator = timesheetValidator;
 	}
+	public Employee getNewTimesheetValidator() {
+		return newTimesheetValidator;
+	}
+	public void setNewTimesheetValidator(Employee newTimesheetValidator) {
+		this.newTimesheetValidator = newTimesheetValidator;
+	}
 	
 	// OTHER METHODS
 	
@@ -45,4 +53,15 @@ public class SupervisorController implements Serializable {
 		System.out.println("The Timesheet emp is " + getTimesheetValidator().getFirstName());
 		return "assignTimesheetValidator";
 	}
+	
+	public java.util.List<SelectItem> getDropdownForValidators() {
+		if (viewableEmployee == null) {
+			System.out.println("There is no employee yet");
+		} else {
+			System.out.println("This is the one " + viewableEmployee.getFirstName());
+		}
+		System.out.println("Employee using: " + this.viewableEmployee.getFirstName());
+		return empmgr.getListOfEmployees(this.viewableEmployee.getEmployeeID());
+	}
+	
 }

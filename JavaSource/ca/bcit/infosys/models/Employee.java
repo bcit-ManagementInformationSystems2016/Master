@@ -151,5 +151,9 @@ public class Employee implements Serializable {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+	
+	public String toString() {
+		return this.employeeID + "";
+	}
 
 }

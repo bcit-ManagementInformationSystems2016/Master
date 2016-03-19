@@ -3,16 +3,19 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
 
 /**
@@ -132,4 +135,20 @@ public class EmployeeManager {
 		System.out.println("The found employee is " + e.getFirstName());
 		return e;
 	}
+	
+	public List<SelectItem> getListOfEmployees(int empID) {
+    	System.out.println("Start of method with ID of " + empID);
+    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
+        List<Employee> employees = proQuery.getResultList();
+        System.out.println("employees size: " + employees.size());
+        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+        for (int i=0; i < employees.size(); i++) {
+        	if (employees.get(i).getEmployeeID() == empID) {
+        		continue;
+        	}
+        	selectableEmployees.add(new SelectItem(employees.get(i), employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
+        }
+        System.out.println("available projects size: " + selectableEmployees.size());
+        return selectableEmployees;
+    }
 }
