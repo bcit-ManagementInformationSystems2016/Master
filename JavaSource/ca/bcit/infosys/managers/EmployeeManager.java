@@ -124,4 +124,12 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
+	
+	public Employee getTimesheetValidator(int empID) {
+		System.out.println("The empmgr method has started");
+		TypedQuery<Employee> queryOne = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + empID + "", Employee.class);
+		Employee e = queryOne.getSingleResult();
+		System.out.println("The found employee is " + e.getFirstName());
+		return e;
+	}
 }
