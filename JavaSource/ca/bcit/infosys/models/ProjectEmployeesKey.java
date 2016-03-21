@@ -1,53 +1,69 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+import javax.persistence.IdClass; 
 
 public class ProjectEmployeesKey implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	Project project;
-    Employee employee;
+	Project pro;
+    Employee emp;
     
-    public ProjectEmployeesKey(Project project, Employee employee) {
-    	this.project = project;
-    	this.employee = employee;
+    public ProjectEmployeesKey() {
+
     }
     
-	public Project getProject() {
-		return project;
+    public ProjectEmployeesKey(Project p, Employee e) {
+    	this.emp = e;
+    	this.pro = p;
+    }
+    
+	public Project getPro() {
+		return pro;
 	}
-	public void setProject(Project project) {
-		this.project = project;
+	public void setPro(Project project) {
+		this.pro = project;
 	}
-	public Employee getEmployee() {
-		return employee;
+	public Employee getEmp() {
+		return emp;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setEmp(Employee employee) {
+		this.emp = employee;
 	}
 	
 	@Override
     public boolean equals(Object obj) {
-        if(obj instanceof ProjectEmployeesKey){
-        	ProjectEmployeesKey carPk = (ProjectEmployeesKey) obj;
- 
-            if(!(carPk.getProject().equals(project))){
-                return false;
-            }
- 
-            if(!(carPk.getEmployee().equals(employee))){
-                return false;
-            }
- 
-            return true;
-        }
- 
-        return false;
+		if (this == obj) 
+	         return true; 
+	      if (obj == null) 
+	         return false; 
+	      if (getClass() != obj.getClass()) 
+	         return false; 
+	      ProjectEmployeesKey other = (ProjectEmployeesKey) obj; 
+	      if (pro == null) 
+	      { 
+	         if (other.pro != null) 
+	            return false; 
+	      } 
+	      else if (!pro.equals(other.pro)) 
+	         return false; 
+	      if (emp == null) 
+	      { 
+	         if (other.emp != null) 
+	            return false; 
+	      } 
+	      else if (!emp.equals(other.emp)) 
+	         return false; 
+	      return true; 
     }
  
     @Override
     public int hashCode() {
-        return project.hashCode() + employee.hashCode();
+    	final int prime = 31; 
+        int result = 1; 
+        result = prime * result + ((pro == null) ? 0 : pro.hashCode()); 
+        result = prime * result + ((emp == null) ? 0 : emp.hashCode()); 
+        return result; 
     }
 	
 }
