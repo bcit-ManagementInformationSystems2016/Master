@@ -129,18 +129,14 @@ public class EmployeeManager {
 	}
 	
 	public Employee getTimesheetValidator(int empID) {
-		System.out.println("The empmgr method has started");
 		TypedQuery<Employee> queryOne = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + empID + "", Employee.class);
 		Employee e = queryOne.getSingleResult();
-		System.out.println("The found employee is " + e.getFirstName());
 		return e;
 	}
 	
 	public List<SelectItem> getListOfEmployees(int empID) {
-    	System.out.println("Start of method with ID of " + empID);
     	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
         List<Employee> employees = proQuery.getResultList();
-        System.out.println("employees size: " + employees.size());
         List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
         for (int i=0; i < employees.size(); i++) {
         	if (employees.get(i).getEmployeeID() == empID) {
@@ -148,7 +144,6 @@ public class EmployeeManager {
         	}
         	selectableEmployees.add(new SelectItem(employees.get(i), employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
         }
-        System.out.println("available projects size: " + selectableEmployees.size());
         return selectableEmployees;
     }
 }

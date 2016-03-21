@@ -46,30 +46,22 @@ public class SupervisorController implements Serializable {
 	// OTHER METHODS
 	
 	public String assignTimesheetValidator(Employee e) {
-		System.out.println("method started");
-		System.out.println("Employee is: " + e.getFirstName() + " " + e.getLastName());
 		setViewableEmployee(e);
-		System.out.println("The viewable emp is " + getViewableEmployee().getFirstName());
 		setTimesheetValidator(empmgr.getTimesheetValidator(e.getValidatorID()));
-		System.out.println("The Timesheet emp is " + getTimesheetValidator().getFirstName());
 		return "assignTimesheetValidator";
 	}
 	
 	public java.util.List<SelectItem> getDropdownForValidators() {
 		if (viewableEmployee == null) {
-			System.out.println("There is no employee yet");
-		} else {
-			System.out.println("This is the one " + viewableEmployee.getFirstName());
+			System.out.println("SupervisorController - There is no employee yet");
 		}
-		System.out.println("Employee using: " + this.viewableEmployee.getFirstName());
 		return empmgr.getListOfEmployees(this.viewableEmployee.getEmployeeID());
 	}
 	
 	public String assignValidator() {
 		int n = new Integer(newTimesheetValidator);
 		getViewableEmployee().setValidatorID(n);
-		empmgr.merge(viewableEmployee);
-		System.out.println("The new validator ID: " + n);		
+		empmgr.merge(viewableEmployee);	
 		return "viewMinions";
 	}
 	

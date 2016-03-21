@@ -84,11 +84,8 @@ public class ProjectEmployeesController implements Serializable {
 	
 	public java.util.List<SelectItem> getDropdownForProjects() {
 		if (viewableEmployee == null) {
-			System.out.println("There is no employee yet");
-		} else {
-			System.out.println("This is the one " + viewableEmployee.getFirstName());
+			System.out.println("ProjectEmployeesController - There is no employee yet");
 		}
-		System.out.println("Employee using: " + this.viewableEmployee.getFirstName());
 		return pjtEmpMgr.getAllAvailableProjects(this.viewableEmployee.getEmployeeID());
 	}
 	
@@ -97,8 +94,7 @@ public class ProjectEmployeesController implements Serializable {
 		ProjectEmployees pe = new ProjectEmployees();
 		pe.setEmp(viewableEmployee);
 		pe.setPro(pjtmgr.find(n));
-		pjtEmpMgr.persist(pe);
-		System.out.println("The assigned Project ID: " + n);		
+		pjtEmpMgr.persist(pe);	
 		return "viewMinions";
 	}
 	
