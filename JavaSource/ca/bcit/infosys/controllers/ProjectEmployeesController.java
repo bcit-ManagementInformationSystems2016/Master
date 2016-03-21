@@ -13,12 +13,13 @@ import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
-import ca.bcit.infosys.models.ProjectEmployeesKey;
+//import ca.bcit.infosys.models.ProjectEmployeesKey;
 
 @Named("projectEmployeesController")
 @SessionScoped
 public class ProjectEmployeesController implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	@Inject
 	private ProjectManager pjtmgr;
 	@Inject
@@ -31,6 +32,9 @@ public class ProjectEmployeesController implements Serializable {
 	private Employee viewableEmployee;
 	private String assignedProject;
 	private int assignedProjectID;
+	
+	// variables used for caching
+	
 	
 	//Getters and Setters
 	public Project getViewableProject() {
