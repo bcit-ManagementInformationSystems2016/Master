@@ -11,6 +11,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.ProjectEmployees;
 import ca.bcit.infosys.models.Timesheet;
 
 /**
@@ -96,6 +98,19 @@ public class TimesheetManager {
 	    		//TODO create new timesheet properly and persist into database
 	    		return new Timesheet();
 	    	}
+	    }
+	    
+	    public Timesheet[] getUnapprovedTimesheets(Employee[] validatees) {
+	    	java.util.List<Timesheet> categories  = new java.util.ArrayList<Timesheet>();
+	    	for (int i = 0; i < validatees.length; i++) {
+	    		TypedQuery<Timesheet> query = em.createQuery("SELECT c FROM Timesheet c WHERE EmployeeID = " + validatees[i].getEmployeeID() + " AND approved = false AND Submitted = true", Timesheet.class);
+	    		categories.addAll(query.getResultList());
+	    	}
+	    	Timesheet[] catarray = new Timesheet[categories.size()];
+	        for (int i=0; i < catarray.length; i++) {
+	            catarray[i] = categories.get(i);
+	        }
+	        return catarray;
 	    }
 
 }

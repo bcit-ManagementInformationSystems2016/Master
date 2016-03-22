@@ -62,6 +62,16 @@ public class TimesheetValidatorController implements Serializable {
 		return validatees;
 	}
 	
+	public Timesheet[] getYouUnapprovedTimesheets() {
+		if (validatees == null) {
+			setValidatees(empmgr.getValidatees(Login.currentID));
+		}
+		if (unapprovedTimesheets == null) {
+			setUnapprovedTimesheets(tsmgr.getUnapprovedTimesheets(validatees));
+		}
+		return unapprovedTimesheets;
+	}
+	
 	public String viewValidatees() {
 		setCurrentEmployee(empmgr.find(Login.currentID));
 		return "getValidating";
