@@ -1,6 +1,7 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -35,6 +36,7 @@ public class ProjectEmployeesController implements Serializable {
 	
 	// variables used for caching
 	private static Project[] pros;
+	private static List<SelectItem> availableProjects;
 	
 	//Getters and Setters
 	public Project getViewableProject() {
@@ -66,7 +68,14 @@ public class ProjectEmployeesController implements Serializable {
 	}
 	public Project[] getPros() {
 		return pros;
+	}	
+	public static List<SelectItem> getAvailableProjects() {
+		return availableProjects;
 	}
+	public static void setAvailableProjects(List<SelectItem> availableProjects) {
+		ProjectEmployeesController.availableProjects = availableProjects;
+	}
+	
 	
 	// Other Methods
 	public String showAssignedEmps(Project p) {
@@ -95,11 +104,14 @@ public class ProjectEmployeesController implements Serializable {
 		return pros;
 	}
 	
-	public java.util.List<SelectItem> getDropdownForProjects() {
+	public List<SelectItem> getDropdownForProjects() {
 		if (viewableEmployee == null) {
 			System.out.println("ProjectEmployeesController - There is no employee yet");
 		}
-		return pjtEmpMgr.getAllAvailableProjects(this.viewableEmployee.getEmployeeID());
+		if (availableProjects == null) {
+			setAvailableProjects(pjtEmpMgr.getAllAvailableProjects(this.viewableEmployee.getEmployeeID()));
+		}
+		return availableProjects;
 	}
 	
 	public String assignEmployee() {
@@ -109,7 +121,8 @@ public class ProjectEmployeesController implements Serializable {
 		e = empmgr.getTimesheetValidator(viewableEmployee.getEmployeeID());
 		pe.setEmp(e);
 		pe.setPro(pjtmgr.find(n));
-		pjtEmpMgr.merge(pe);	
+		pjtEmpMgr.merge(pe);
+		setAvailableProjects(null);
 		return "viewMinions";
 	}
 	
@@ -120,6 +133,11 @@ public class ProjectEmployeesController implements Serializable {
 	
 	public String goToViewMinionsPage() {
 		setPros(null);
+		return "viewMinions";
+	}
+	
+	public String cancelAssignment() {
+		setAvailableProjects(null);
 		return "viewMinions";
 	}
 	

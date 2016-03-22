@@ -48,7 +48,7 @@ public class HRController implements Serializable {
 		return emp;
 	}
 	public void setEmp(Employee emp) {
-		this.emp = emp;
+		HRController.emp = emp;
 	}
 	public Employee getViewableEmp() {
 		return viewableEmp;
@@ -100,11 +100,7 @@ public class HRController implements Serializable {
 	
 	public Employee[] getYourMinions() {
 		if (minions == null) {
-			System.out.println("Return from Database");
 			setMinions(empmgr.getAllMinions(Login.currentID));
-		}
-		else {
-			System.out.println("not needed");
 		}
 		return minions;
 	}
