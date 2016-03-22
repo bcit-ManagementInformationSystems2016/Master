@@ -1,8 +1,12 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+
+import javax.enterprise.context.SessionScoped;
 import javax.persistence.IdClass; 
 
+@IdClass(ProjectEmployeesKey.class)
+@SessionScoped
 public class ProjectEmployeesKey implements Serializable {
 
 	private static final long serialVersionUID = 1L;

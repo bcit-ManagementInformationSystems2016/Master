@@ -33,32 +33,36 @@ public class HRController implements Serializable {
 	// variable to save the current employee
 	static Employee emp = new Employee();
 	private Credential crd = new Credential();
+	
+	// variables used for caching
+	private static Employee[] minions;
 
 	// GETTERS AND SETTERS
 	public Credential getCrd() {
 		return crd;
 	}
-
 	public void setCrd(Credential crd) {
 		this.crd = crd;
 	}
-
 	public Employee getEmp() {
 		return emp;
 	}
-
 	public void setEmp(Employee emp) {
 		this.emp = emp;
 	}
-
 	public Employee getViewableEmp() {
 		return viewableEmp;
 	}
-
 	public void setViewableEmp(Employee emp) {
 		viewableEmp = emp;
 	}
-
+	public static void setMinions(Employee[] minions) {
+		HRController.minions = minions;
+	}
+	public Employee[] getMinions() {
+		return empmgr.getAllMinions(Login.currentID);
+	}
+	
 	// Other Methods
 	public String editEmp(Employee e) {
 		setEmp(e);
@@ -93,9 +97,21 @@ public class HRController implements Serializable {
 		crd = new Credential();
 		return "created";
 	}
-
-	public Employee[] getMinions() {
-		return empmgr.getAllMinions(Login.currentID);
+	
+	public Employee[] getYourMinions() {
+		if (minions == null) {
+			System.out.println("Return from Database");
+			setMinions(empmgr.getAllMinions(Login.currentID));
+		}
+		else {
+			System.out.println("not needed");
+		}
+		return minions;
+	}
+	
+	public String leaveMinionsPage() {
+		setMinions(null);
+		return "adminLanding";
 	}
 
 	public String viewMinionsPage() {

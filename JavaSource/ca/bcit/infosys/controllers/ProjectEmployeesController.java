@@ -96,9 +96,11 @@ public class ProjectEmployeesController implements Serializable {
 	public String assignEmployee() {
 		int n = new Integer(assignedProject);
 		ProjectEmployees pe = new ProjectEmployees();
-		pe.setEmp(viewableEmployee);
+		Employee e = new Employee();
+		e = empmgr.getTimesheetValidator(viewableEmployee.getEmployeeID());
+		pe.setEmp(e);
 		pe.setPro(pjtmgr.find(n));
-		pjtEmpMgr.persist(pe);	
+		pjtEmpMgr.merge(pe);	
 		return "viewMinions";
 	}
 	
