@@ -23,6 +23,16 @@ public class Login implements Serializable {
 	@Inject
 	private Conversation conversation;
 
+	private boolean hr = false;
+
+	public boolean isHr() {
+		return hr;
+	}
+
+	public void setHr(boolean hr) {
+		this.hr = hr;
+	}
+
 	public int getCurrentID() {
 		return currentID;
 	}
@@ -46,7 +56,9 @@ public class Login implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	static Map<String, Integer> map2 = new HashMap<String, Integer>();
+
 	public String validate() {
 		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";
 		List<Object[]> resultList = em.createQuery(jpaQuery).getResultList();
@@ -56,7 +68,7 @@ public class Login implements Serializable {
 			map.put((String) object[0], (String) object[1]);
 		}
 		// contains username and employeeID
-		
+
 		for (Object[] object : resultList) {
 			map2.put((String) object[0], (Integer) object[2]);
 		}
@@ -76,6 +88,15 @@ public class Login implements Serializable {
 				setCurrentID(map2.get(username));
 				System.out.println("Current ID: " + currentID);
 				System.out.println("Successful Login");
+				String jpaQuery3 = "select e.employeeID, e.roleID from Employee e where e.employeeID ="
+						+ getCurrentID();
+				List<Object[]> roleList = em.createQuery(jpaQuery3).getResultList();
+				for (Object[] object : roleList) {
+					if ((int) object[1] == 1) {
+						setHr(true);
+					}
+				}
+
 				return "adminLanding";
 			}
 		}

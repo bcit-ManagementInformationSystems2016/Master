@@ -16,65 +16,67 @@
             #{msgs.admin}
         </ui:define>
         <ui:define name="content">
-            <div class="container">
-            <div id="wrap">
-		        <div class="row cs-style">
-		            <div class="col-lg-3 col-md-6 col-sm-12">
-		            <h:link outcome="timesheetAdmin">
-		                <figure class="menuIcon">
-		                    <h:graphicImage library="images" name="timesheet-icon.png" />
-		                    <figcaption>
-		                            <h1>Timesheet</h1>
-		                    </figcaption>
-		                </figure>
-		            </h:link>
-		            </div>
-		            <!-- /Icon -->
-		            
-		            <div class="col-lg-3 col-md-6 col-sm-12">
-		            <h:link outcome="projectsLanding">
-		                <figure class="menuIcon">
-		                    <h:graphicImage library="images" name="project-icon.png" />
-		                    <figcaption>
-		                        <h1>Project</h1>
-		                    </figcaption>
-		                </figure>
-		            </h:link>            
-		            </div>
-		            <!-- /Icon -->
-		            
-		            <div class="col-lg-3 col-md-6 col-sm-12">
-		            <a href="#">
-		                <figure class="menuIcon">
-		                    <h:graphicImage library="images" name="workpackage-icon.png" />
-		                    <figcaption>
-		                        <h1>Workpackage</h1>
-		                    </figcaption>
-		                </figure>
-		            </a>
-		            </div>
-		            <!-- /Icon -->
-		            
-		            <div class="col-lg-3 col-md-6 col-sm-12">
-		            <h:link outcome="humanResources">
-		                <figure class="menuIcon">
-		                    <h:graphicImage library="images" name="view-users.png" />
-		                    <figcaption>
-		                        <h1>Employee</h1>
-		                    </figcaption>
-		                </figure>
-		            </h:link>           
-		            </div>
-		            <!-- /Icon -->		            
-		        </div>
-		        <h:form>
-		        <h:commandButton value="Supervisor" action="viewMinions.xhtml" class="btn btn-info btn-margin"/>
-		        <h:commandButton value="Validator" action="getValidating.xhtml" class="btn btn-info btn-margin"/>
-		        </h:form>
-	        </div>    
-            </div>
-        </ui:define>
-    </ui:composition>
+			<div class="container">
+				<div id="wrap">
+					<div class="row cs-style">
+						<div class="col-lg-3 col-md-6 col-sm-12">
+							<h:link outcome="timesheetAdmin">
+								<figure class="menuIcon">
+									<h:graphicImage library="images" name="timesheet-icon.png" />
+									<figcaption>
+										<h1>Timesheet</h1>
+									</figcaption>
+								</figure>
+							</h:link>
+						</div>
+						<!-- /Icon -->
 
+						<div class="col-lg-3 col-md-6 col-sm-12">
+							<h:link outcome="projectsLanding">
+								<figure class="menuIcon">
+									<h:graphicImage library="images" name="project-icon.png" />
+									<figcaption>
+										<h1>Project</h1>
+									</figcaption>
+								</figure>
+							</h:link>
+						</div>
+						<!-- /Icon -->
+
+						<div class="col-lg-3 col-md-6 col-sm-12">
+							<a href="#">
+								<figure class="menuIcon">
+									<h:graphicImage library="images" name="workpackage-icon.png" />
+									<figcaption>
+										<h1>Workpackage</h1>
+									</figcaption>
+								</figure>
+							</a>
+						</div>
+						<!-- /Icon -->
+						<h:panelGroup rendered="#{login.hr}">
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<h:link outcome="humanResources">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="view-users.png" />
+										<figcaption>
+											<h1>Employee</h1>
+										</figcaption>
+									</figure>
+								</h:link>
+							</div>
+						</h:panelGroup>
+						<!-- /Icon -->
+					</div>
+					<h:form>
+						<h:commandButton value="Supervisor" action="viewMinions.xhtml"
+							class="btn btn-info btn-margin" />
+						<h:commandButton value="Validator" action="getValidating.xhtml"
+							class="btn btn-info btn-margin" />
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
 </body>
 </html>

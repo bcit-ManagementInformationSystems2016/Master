@@ -30,13 +30,13 @@
 								<h:inputText id="username" value="#{login.username}"
 									class="login-field" required="true"
 									requiredMessage="Username is required" p:placeholder="Username" />
-								<h:message for="username" />
+								<h:message for="username" style="color:red"/>
 							</div>
 							<div class="control-group">
 								<h:inputSecret id="password" value="#{login.password}"
 									class="login-field" required="true"
 									requiredMessage="Password is required" p:placeholder="Password" />
-								<h:message for="password" />
+								<h:message for="password" style="color:red" />
 							</div>
 							<h:commandButton action="#{login.validate}" value="Login"
 								styleClass="btn btn-primary btn-lg btn-block" />

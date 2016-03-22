@@ -44,10 +44,13 @@
 						<h:outputText value="#{login.username}"></h:outputText>
 					</p>
 					<ul>
-						<li><a href=""><i class="fa fa-cog fa-spin"></i>Settings</a></li>
+						<!-- <li><a href=""><i class="fa fa-cog fa-spin"></i>Settings</a></li> -->
 						<li><a href="changePassword.xhtml"><i class=""></i>Change
-								Password</a></li>
-						<li><a href="login.xhtml"><i class="fa fa-sign-out"></i>Logout</a></li>
+								Password</a></li> 
+						<h:form>
+							<li><h:commandLink action="#{login.logout}" value="Logout" class="fa fa-sign-out"/></li>
+						</h:form>
+						<!-- <li><a href="login.xhtml"><i class="fa fa-sign-out"></i>Logout</a></li>-->
 					</ul>
 				</div>
 			</div>

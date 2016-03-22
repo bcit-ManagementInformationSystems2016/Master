@@ -9,7 +9,7 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
+import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.managers.CredentialManager;
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.models.Credential;
