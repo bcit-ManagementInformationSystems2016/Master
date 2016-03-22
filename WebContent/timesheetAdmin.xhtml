@@ -12,30 +12,40 @@
             #{msgs.admin}
         </ui:define>
         <ui:define name="content">
-            <div class="container">
-                <ul class="grid cs-style">
-                    <li>
-                        <h:link outcome="createAdminTimesheet">
-                            <figure>
-                                <h:graphicImage library="images" name="create-timesheet-icon.png" />
-                                <figcaption>
-                                    <h1>Create</h1>
-                                </figcaption>
-                            </figure>
-                        </h:link>
-                    </li>
-                    <li>
-                        <h:link outcome="archivedTimesheet">
-                            <figure>
-                                <h:graphicImage library="images" name="view-timesheet-icon.png" />
-                                <figcaption>
-                                    <h1>Archived</h1>
-                                </figcaption>
-                            </figure>
-                        </h:link>
-                    </li>                   
-                </ul>
-            </div>
+        	<div class="container">
+        		<div class="wrap">
+        			<div class="row cs-style">
+        				<div class="col-lg-3 col-md-6 col-sm-12">
+        				</div><!-- Only used to align icons in the middle -->
+        				
+		            	<div class="col-lg-3 col-md-6 col-sm-12">
+	            		<h:link outcome="createAdminTimesheet">
+			                <figure class="menuIcon">
+			                    <h:graphicImage library="images" name="create-timesheet-icon.png" />
+			                    <figcaption>
+			                            <h1>Create</h1>
+			                    </figcaption>
+			                </figure>
+		            	</h:link>
+		            	</div>
+		            	<!-- /Icon -->
+		            	
+		            	<div class="col-lg-3 col-md-6 col-sm-12">
+	            		<h:link outcome="archivedTimesheet">
+			                <figure class="menuIcon">
+			                    <h:graphicImage library="images" name="view-timesheet-icon.png" />
+			                    <figcaption>
+			                            <h1>Archived</h1>
+			                    </figcaption>
+			                </figure>
+		            	</h:link>
+		            	</div>
+		            	<!-- /Icon -->
+		            	<div class="col-lg-3 col-md-6 col-sm-12">
+		            	</div><!-- Only used to align icons in the middle -->
+	            	</div>
+        		</div>
+        	</div>
         </ui:define>
     </ui:composition>
 </body>
