@@ -7,7 +7,10 @@ import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
+import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.WorkPackage;
+import ca.bcit.infosys.models.WorkPackageKey;
 
 /**
  * Handles CRUD actions for Work Packages
@@ -25,8 +28,9 @@ public class WorkPackageManager {
 	 * @param id primary key for record
 	 * @return the WorkPackage with key = id, null if not found
 	 */
-	public WorkPackage find(String id) {
-		return em.find(WorkPackage.class, id);
+	public WorkPackage find(Project p, String id) {
+		WorkPackageKey key = new WorkPackageKey(p, id);
+		return em.find(WorkPackage.class, key);
 	}
 	
 	/**
@@ -49,8 +53,8 @@ public class WorkPackageManager {
 	 * remove Work Package from database
 	 * @param wp record to be removed from the database
 	 */
-	public void remove(WorkPackage wp) {
-		wp = find(wp.getWpID());
+	public void remove(Project p, String id) {
+		WorkPackage wp = find(p, id);
 		em.remove(wp);
 	}
 	

@@ -198,7 +198,7 @@ public class ProjectController implements Serializable {
 		if (getParentWP().getParentWPID() == null) {
 			setParentWP(null);
 		} else {
-			WorkPackage parent = wpmgr.find(getParentWP().getParentWPID());
+			WorkPackage parent = wpmgr.find(editableProject, getParentWP().getParentWPID());
 			setParentWP(parent);
 		}
 		return "wpDetails";
@@ -227,7 +227,7 @@ public class ProjectController implements Serializable {
 		getWpToAdd().setWpID(getNewWPID());
 		getWpToAdd().setParentWPID(newWPPID);
 		getWpToAdd().setWorkingProject(projectToAdd);
-		wpmgr.persist(w);
+		wpmgr.merge(w);
 		if (getParentWP() == null) {
 			wp = wpmgr.getParentProjectWorkPackagesNull(editableProject.getProjectID(), null);
 		} else {

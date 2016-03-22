@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -20,6 +21,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="WorkPackages")
+@IdClass(WorkPackageKey.class)
 public class WorkPackage implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -41,6 +43,7 @@ public class WorkPackage implements Serializable{
 	private String description;
 	
 	//bi-directional one-to-one association to Projects
+	@Id
 	@ManyToOne(targetEntity=Project.class,fetch=FetchType.LAZY)
 	@JoinColumn(name="ProjectID")
 	private Project workingProject;
