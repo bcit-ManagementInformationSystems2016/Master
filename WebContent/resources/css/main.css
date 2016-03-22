@@ -165,3 +165,6 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 	color: white !important;	
     border-color: #07E883 !important;	
 }
+.btn-margin {
+	margin:10px 5px;
+}
