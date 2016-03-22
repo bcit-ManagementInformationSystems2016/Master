@@ -73,7 +73,13 @@
                                     <h:outputText value="startDAte" />
                                 </f:facet>
                                 <h:outputText value="#{ts.startDate}"/>                               
-                            </h:column>                           
+                            </h:column>                                                        
+                            <h:column>
+                           		<f:facet name="header">
+                                    <h:outputText value="Delete" />
+                                </f:facet>                       
+                                <h:commandLink value="Delete" action="#{timesheet.deleteTs(ts)}" />
+                            </h:column>                            
                         </b:dataTable>                 
                 </h:form>
             </h:panelGroup>

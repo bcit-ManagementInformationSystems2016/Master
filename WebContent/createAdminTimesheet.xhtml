@@ -27,7 +27,7 @@
 		</h3>		
 			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 			<h:commandButton value="Reset" action="#{timesheet.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Save" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+			<h:commandButton value="Save" action="#{timesheet.saveAllTimesheetRows}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 			<h:commandButton value="Submit" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
 
      </b:panel>
@@ -67,6 +67,15 @@
                               <f:facet name="footer">
                                     <h:outputText value="#" />
                                 </f:facet>                                
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{msgs.wp}" />
+                                </f:facet>
+                                <h:outputText span="1" value="#{tsr.timesheetRowID}"/>                                
+                                <f:facet name="footer">
+                                    <h:outputText value="#{msgs.total}" />
+                                </f:facet>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">

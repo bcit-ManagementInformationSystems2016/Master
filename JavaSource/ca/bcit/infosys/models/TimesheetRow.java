@@ -21,11 +21,13 @@ public class TimesheetRow implements Serializable {
 	@Transient
 	private double totalHours;
 
+	@Transient
+	private String status;
 
 	@Column(name="HoursFri")
 	private double hoursFri;
 
-	@Column(name="HoursMon")
+    @Column(name="HoursMon")
 	private double hoursMon;
 
 	@Column(name="HoursThurs")
@@ -174,5 +176,13 @@ public class TimesheetRow implements Serializable {
 	public void setTimesheet(Timesheet timesheet) {
 		this.timesheet = timesheet;
 	}
+	
+	public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }
