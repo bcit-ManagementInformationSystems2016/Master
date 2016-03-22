@@ -35,7 +35,7 @@ public class WorkPackageKey implements Serializable {
 		this.wpID = wpID;
 	}
 	
-	// Overriden methods
+	// Overridden methods
 	@Override
     public boolean equals(Object obj) {
 		if (this == obj) 

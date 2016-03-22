@@ -1,16 +1,17 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -48,6 +49,10 @@ public class WorkPackage implements Serializable{
 	@JoinColumn(name="ProjectID")
 	private Project workingProject;
 	
+	//bi-directional one-to-many association with EmployeeWP
+	@OneToMany(targetEntity=EmployeeWP.class,mappedBy="wp",cascade={CascadeType.ALL},orphanRemoval=true)
+	private List<EmployeeWP> assignedWorkPackages;
+	
 	// CTOR
 	public WorkPackage() {}
 	
@@ -64,49 +69,44 @@ public class WorkPackage implements Serializable{
 	public String getWpID() {
 		return wpID;
 	}
-
 	public void setWpID(String wpID) {
 		this.wpID = wpID;
 	}
-	
 	public String getParentWPID() {
 		return parentWPID;
 	}
-	
 	public void setParentWPID(String parentWPID) {
 		this.parentWPID = parentWPID;
 	}
-
 	public double getEstimatedHours() {
 		return estimatedHours;
 	}
-
 	public void setEstimatedHours(double estimatedHours) {
 		this.estimatedHours = estimatedHours;
 	}
-
 	public String getWpName() {
 		return wpName;
 	}
-
 	public void setWpName(String wpName) {
 		this.wpName = wpName;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 	public Project getWorkingProject() {
 		return workingProject;
 	}
-
 	public void setWorkingProject(Project workingProject) {
 		this.workingProject = workingProject;
+	}
+	public List<EmployeeWP> getAssignedWorkPackages() {
+		return assignedWorkPackages;
+	}
+	public void setAssignedWorkPackages(List<EmployeeWP> assignedWorkPackages) {
+		this.assignedWorkPackages = assignedWorkPackages;
 	}
 
 } 
