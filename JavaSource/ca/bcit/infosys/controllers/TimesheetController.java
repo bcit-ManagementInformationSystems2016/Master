@@ -78,17 +78,6 @@ public class TimesheetController  implements Serializable {
     public void setTs(Timesheet ts) {
         this.ts = ts;
     }
-    public String editTs(Timesheet ts) {
-        setTs(ts);
-        System.out.println("Edit timesheet");
-        return "edit";
-    }
-    
-    public String editTsr(TimesheetRow tsr) {
-        setTsr(tsr);
-        System.out.println("Edit timesheetRow");
-        return "edit";
-    }
     public String updateTs(Timesheet ts){
         timesheetManager.merge(ts);
         ts = null;
@@ -133,7 +122,7 @@ public class TimesheetController  implements Serializable {
             databaseRows.remove(tsr);
         } else {
             for (int i = 0; i < databaseRows.size(); i++) {
-                if (databaseRows.get(i).getTimesheetRowID() == tsr.getTimesheetID()) {
+                if (databaseRows.get(i).getTimesheetRowID() == tsr.getTimesheetRowID()) {
                     databaseRows.get(i).setStatus("old-deleted");
                 }
             }
