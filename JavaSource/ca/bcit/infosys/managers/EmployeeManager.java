@@ -128,6 +128,18 @@ public class EmployeeManager {
 		return emparray;
 	}
 	
+	public Employee[] getValidatees(int empID) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + empID, Employee.class);
+		java.util.List<Employee> categories = query.getResultList();
+		Employee[] emparray = new Employee[categories.size()];
+		for (int i = 0; i < emparray.length; i++) {
+			emparray[i] = categories.get(i);
+			// System.out.println("This is being added to array: " +
+			// categories.get(i).getRoleID());
+		}
+		return emparray;
+	}
+	
 	public Employee getTimesheetValidator(int empID) {
 		TypedQuery<Employee> queryOne = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + empID + "", Employee.class);
 		Employee e = queryOne.getSingleResult();

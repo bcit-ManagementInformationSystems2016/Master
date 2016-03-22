@@ -11,7 +11,9 @@
 </h:head>
 <h:body>
 	<h:form>
-		<h:dataTable value="#{account.validating}" var="emp">
+		<h:outputLabel value="Timesheet Validation for #{timesheetValidatorController.currentEmployee.firstName}"/>
+		<br />
+		<h:dataTable value="#{timesheetValidatorController.getYourValidatees()}" var="emp" style="border: 1px solid black;">
 			<h:column>
 				<f:facet name="header">Employee ID</f:facet>
 				<h:outputText value="#{emp.employeeID}" />
@@ -32,7 +34,33 @@
 				<h:outputText value="#{emp.validatorID}" />
 			</h:column>
 		</h:dataTable>
+		<br />
+		<h:outputLabel value="Timesheets needing to be approved"/>
+		<h:dataTable value="#{timesheetValidatorController.getYourValidatees()}" var="emp" style="border: 1px solid black;">
+			<h:column>
+				<f:facet name="header">Employee ID</f:facet>
+				<h:outputText value="#{emp.employeeID}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">First Name</f:facet>
+				<h:outputText value="#{emp.firstName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Last Name</f:facet>
+				<h:outputText value="#{emp.lastName}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Validator ID</f:facet>
+				<h:outputText value="#{emp.validatorID}" />
+			</h:column>
+		</h:dataTable>
+		<br />
 		<h:commandButton value="View Timesheets to Validate"></h:commandButton>
+		<br />
+		<h:commandButton value="Back" action="#{timesheetValidatorController.leaveTimesheetValidating()}"></h:commandButton>
 
 	</h:form>
 
