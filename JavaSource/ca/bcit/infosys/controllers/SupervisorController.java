@@ -1,6 +1,7 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
@@ -23,6 +24,9 @@ public class SupervisorController implements Serializable {
 	private Employee timesheetValidator;
 	private String newTimesheetValidator;
 	
+	// variable used for caching
+	private static List<SelectItem> availableValidators;
+	
 	// GETTERS AND SETTERS
 	public Employee getViewableEmployee() {
 		return viewableEmployee;
@@ -42,26 +46,43 @@ public class SupervisorController implements Serializable {
 	public void setNewTimesheetValidator(String newTimesheetValidator) {
 		this.newTimesheetValidator = newTimesheetValidator;
 	}
+	public static List<SelectItem> getAvailableValidators() {
+		return availableValidators;
+	}
+	public static void setAvailableValidators(List<SelectItem> availableValidators) {
+		SupervisorController.availableValidators = availableValidators;
+	}
 	
 	// OTHER METHODS
-	
 	public String assignTimesheetValidator(Employee e) {
 		setViewableEmployee(e);
 		setTimesheetValidator(empmgr.getTimesheetValidator(e.getValidatorID()));
 		return "assignTimesheetValidator";
 	}
 	
-	public java.util.List<SelectItem> getDropdownForValidators() {
+	public List<SelectItem> getDropdownForValidators() {
 		if (viewableEmployee == null) {
 			System.out.println("SupervisorController - There is no employee yet");
 		}
-		return empmgr.getListOfEmployees(this.viewableEmployee.getEmployeeID());
+		if (availableValidators == null) {
+			System.out.println("Got from database");
+			setAvailableValidators(empmgr.getListOfEmployees(this.viewableEmployee.getEmployeeID()));
+		} else {
+			System.out.println("skipped query");
+		}
+		return availableValidators;
 	}
 	
 	public String assignValidator() {
 		int n = new Integer(newTimesheetValidator);
 		getViewableEmployee().setValidatorID(n);
 		empmgr.merge(viewableEmployee);	
+		setAvailableValidators(null);
+		return "viewMinions";
+	}
+	
+	public String cancelAssignment() {
+		setAvailableValidators(null);
 		return "viewMinions";
 	}
 	

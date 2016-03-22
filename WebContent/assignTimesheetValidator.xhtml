@@ -20,10 +20,9 @@
 			    <f:selectItems value="#{supervisorController.getDropdownForValidators()}" />
 			</h:selectOneMenu>
 			<br />
-			<h:commandButton value="Back" action="viewMinions.xhtml" immediate="true"></h:commandButton>
+			<h:commandButton value="Back" action="#{supervisorController.cancelAssignment()}"></h:commandButton>
 			<h:commandButton value="Save" action="#{supervisorController.assignValidator()}"></h:commandButton>
 			<br />
-		
 		</h:form>
 		
 	</h:body>
