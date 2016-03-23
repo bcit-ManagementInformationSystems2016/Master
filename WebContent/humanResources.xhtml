@@ -10,26 +10,22 @@
 </head>
 <h:body>
 <ui:composition template="/templates/masterLayout.xhtml">      
-        <ui:define name="content">
-	<h:form>
-	
+    <ui:define name="content">
+	<h:form>	
      <b:panel look="info" title="All Employees" collapsible="false">
       <b:dataTable value="#{account.allEmp}" var="emp">
 			<h:column>
 				<f:facet name="header">ID</f:facet>
 				<h:outputText value="#{emp.employeeID}" />
 			</h:column>
-
 			<h:column>
 				<f:facet name="header">First Name</f:facet>
 				<h:outputText value="#{emp.firstName}" />
 			</h:column>
-
 			<h:column>
 				<f:facet name="header">Last Name</f:facet>
 				<h:outputText value="#{emp.lastName}" />
 			</h:column>
-
 			<h:column>
 				<f:facet name="header">Salary</f:facet>
 				<h:outputText value="#{emp.salary}" />
@@ -60,14 +56,11 @@
 					<b:iconAwesome name="pencil-square-o" />
 				</h:commandLink>
 			</h:column>
-
-		</b:dataTable>		
-			<h:commandButton value="Add New Employee" action="createEmployee.xhtml" styleClass="btn btn-info"></h:commandButton>					
-     </b:panel>    
-  
-		
+	  </b:dataTable>		
+	 <h:commandButton value="Add New Employee" action="createEmployee.xhtml" styleClass="btn btn-info"></h:commandButton>					
+     </b:panel>		
 	</h:form>
  </ui:define>
-    </ui:composition>
+</ui:composition>
 </h:body>
 </html>
