@@ -1,19 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
 <h:head>
 	<title>Validating</title>
 
 </h:head>
 <h:body>
-	<h:form>
-		<h:outputLabel value="Timesheet Validation for #{timesheetValidatorController.currentEmployee.firstName}"/>
-		<br />
-		<h:dataTable value="#{timesheetValidatorController.getYourValidatees()}" var="emp" style="border: 1px solid black;">
+<ui:composition template="/templates/masterLayout.xhtml">
+	<ui:define name="content">
+		<form>
+		<b:panel look="info" title="Timesheet Validation for #{timesheetValidatorController.currentEmployee.firstName}" collapsible="false">
+     		<b:dataTable value="#{timesheetValidatorController.getYourValidatees()}" var="emp">
 			<h:column>
 				<f:facet name="header">Employee ID</f:facet>
 				<h:outputText value="#{emp.employeeID}" />
@@ -33,10 +34,11 @@
 				<f:facet name="header">Validator ID</f:facet>
 				<h:outputText value="#{emp.validatorID}" />
 			</h:column>
-		</h:dataTable>
-		<br />
-		<h:outputLabel value="Timesheets needing to be approved"/>
-		<h:dataTable value="#{timesheetValidatorController.getYouUnapprovedTimesheets()}" var="ts" style="border: 1px solid black;">
+			</b:dataTable>
+		</b:panel>
+		<br/>
+		<b:panel look="info" title="Timesheets needing to be approved" collapsible="false">
+     		<b:dataTable value="#{timesheetValidatorController.getYouUnapprovedTimesheets()}" var="ts">
 			<h:column>
 				<f:facet name="header">Timesheet ID</f:facet>
 				<h:outputText value="#{ts.timesheetID}" />
@@ -56,13 +58,17 @@
 				<f:facet name="header">Is Approved</f:facet>
 				<h:outputText value="#{ts.approved}" />
 			</h:column>
-		</h:dataTable>
+			</b:dataTable>
+		</b:panel>		 					
+		</form>
+		<h:form>
+		<br />
 		<br />
 		<h:commandButton value="View Timesheets to Validate"></h:commandButton>
 		<br />
 		<h:commandButton value="Back" action="#{timesheetValidatorController.leaveTimesheetValidating()}"></h:commandButton>
-
-	</h:form>
-
+		</h:form>
+	</ui:define>
+</ui:composition>
 </h:body>
 </html>
