@@ -14,8 +14,10 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import ca.bcit.infosys.controllers.EditableTimesheet;
+import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.models.Credential;
@@ -25,6 +27,7 @@ import ca.bcit.infosys.models.TimesheetRow;
 
 @Named("timesheet")
 @SessionScoped
+<<<<<<< Updated upstream
 public class TimesheetController implements Serializable {
 	/** Manager from Product objects. */
 	@Inject
@@ -297,4 +300,114 @@ public class TimesheetController implements Serializable {
 		return "archive";
 	}
 
+=======
+public class TimesheetController  implements Serializable {
+    /** Manager from Product objects.*/
+    @Inject private TimesheetManager timesheetManager;
+    
+    @Inject private EmployeeManager employeeManager;
+    
+    private Timesheet ts;
+    private Employee em;
+
+    private Employee[] employeeRows;
+    public Employee getEm(){
+        return em;
+    }
+    public void setEm(Employee em) {
+        this.em = em;
+    }
+    public Employee[] getAllEmployee() {
+        return employeeManager.getAll();
+    }
+    
+    public String getFirstName() {
+       String firstName=null;      
+       Employee[] rows = getAllEmployee();
+        for (int i = 0; i < rows.length; i++) {
+            if(rows[i].getEmployeeID() == Login.currentID)
+                firstName = rows[i].getFirstName();
+        }
+        return firstName;
+    }
+    public String getLastName() {
+        String lastName=null;      
+        Employee[] rows = getAllEmployee();
+         for (int i = 0; i < rows.length; i++) {
+             if(rows[i].getEmployeeID() == Login.currentID)
+                 lastName = rows[i].getLastName();
+         }
+         return lastName;
+     }
+    /**
+     * Initialize the local data for the timesheet including the timesheet
+     * and all the timesheet rows associated with this timesheet.
+     * 
+     * This includes the local timesheet (ts), the local timesheet rows (arr)
+     * and the local arraylist so we can add and delete from rows more easily.
+     * 
+     * Best to convert all data to arraylist but will figure that out later
+     */
+    public void init() {
+    	if (getTs() == null) {
+	    	int empId = Login.currentID;
+	    	setTs(timesheetManager.getTimesheetEmpId(empId));
+    	}
+    }
+    public Timesheet getTs() {
+        return ts;
+    }
+    public void setTs(Timesheet ts) {
+        this.ts = ts;
+    }
+    public String editTs(Timesheet ts) {
+        setTs(ts);
+        System.out.println("Edit timesheet");
+        return "edit";
+    }
+    public String updateTs(Timesheet ts){
+        timesheetManager.merge(ts);
+        ts = null;
+        return "updated";
+    }
+
+    public String createTs(Timesheet ts){
+        timesheetManager.persist(ts);
+        System.out.println("Created timesheet");
+        return "created";
+    }
+
+    
+    public String deleteTs(Timesheet ts) {
+        timesheetManager.remove(ts);
+        System.out.println("Delete timesheet ");
+        //list.remove(ts);
+        return null;
+    }
+    public Timesheet[] getAllTimesheet() {
+        return timesheetManager.getAll();
+    }
+
+   
+   public int getWeekNumber() throws ParseException{
+	   init();
+	   Date date = ts.getStartDate();
+	   Calendar cal = Calendar.getInstance();
+	   cal.setTime(date);
+	   int week = cal.get(Calendar.WEEK_OF_YEAR);
+	   return week;
+	   
+   }
+   
+   public Date getWeekEnding() throws ParseException {
+	   Date date = ts.getStartDate();
+	   
+//	   SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+//	   String weekEnd = sdf.format(date);
+//	   Calendar c = Calendar.getInstance();
+//	   c.setTime(sdf.parse(weekEnd));
+//	   c.add(Calendar.DATE, 6);
+	   return date;
+   }
+>>>>>>> Stashed changes
 }

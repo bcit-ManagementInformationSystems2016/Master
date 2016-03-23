@@ -50,7 +50,7 @@
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>
-  	<from-view-id>/viewAdminTimesheet.xhtml</from-view-id>
+  	<from-view-id>/archivedTimesheet.xhtml</from-view-id>
   	<navigation-case>
    		<from-outcome>edit</from-outcome>
    		<to-view-id>/editTimesheet.xhtml</to-view-id>
@@ -81,7 +81,7 @@
   	<from-view-id>/editTimesheet.xhtml</from-view-id>
   	<navigation-case>
    		<from-outcome>updated</from-outcome>
-   		<to-view-id>/viewAdminTimesheet.xhtml</to-view-id>
+   		<to-view-id>/archivedAdminTimesheet.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>

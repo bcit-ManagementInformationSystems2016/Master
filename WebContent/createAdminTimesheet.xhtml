@@ -17,8 +17,9 @@
      <b:panel look="info" title="Current Timesheet" collapsible="false">
        <h3 class="panel-title test">
        		#{msgs.emp_num}<h:outputText value="#{login.username}"/><br/>             
-			#{msgs.name}<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" /><br/>  
-					    <h:outputText value="#{Employees.LastName}" style="font-weight: bold" />
+			EmployeeUserName: <h:outputText value="#{login.username}" style="font-weight: bold" /><br/> 
+			EmployeeName: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" />
+						  <h:outputText value="#{timesheet.lastName}" /><br/>
 			#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
 			#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}"/><br/><br/>
 			<h:outputText value="Flextime :"/><br/>        
@@ -26,19 +27,19 @@
 
 		</h3>		
 			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Reset" action="#{timesheet.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Save" action="#{timesheet.saveAllTimesheetRows}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+			<h:commandButton value="Reset" action="#{timesheetRow.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+			<h:commandButton value="Save" action="#{timesheetRow.saveAllTimesheetRows}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 			<h:commandButton value="Submit" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
 
      </b:panel>
-     <b:panel look="info" title="#{msgs.allTotal} #{timesheet.allTotalHours}" collapsible="false" class="test">
-            #{msgs.totalSun} <h:outputText value="#{timesheet.sunTotalHours}" /><br/>
-        	#{msgs.totalMon} <h:outputText value="#{timesheet.monTotalHours}" /><br/>  
-            #{msgs.totalTue} <h:outputText value="#{timesheet.tuesTotalHours}" /><br/>
-            #{msgs.totalWed} <h:outputText value="#{timesheet.wedTotalHours}" /><br/>  
-            #{msgs.totalThu} <h:outputText value="#{timesheet.thursTotalHours}" /><br/>
-            #{msgs.totalFri} <h:outputText value="#{timesheet.friTotalHours}" /><br/> 
-            #{msgs.totalSat} <h:outputText value="#{timesheet.satTotalHours}" />
+     <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allTotalHours}" collapsible="false" class="test">
+            #{msgs.totalSun} <h:outputText value="#{timesheetRow.sunTotalHours}" /><br/>
+        	#{msgs.totalMon} <h:outputText value="#{timesheetRow.monTotalHours}" /><br/>  
+            #{msgs.totalTue} <h:outputText value="#{timesheetRow.tuesTotalHours}" /><br/>
+            #{msgs.totalWed} <h:outputText value="#{timesheetRow.wedTotalHours}" /><br/>  
+            #{msgs.totalThu} <h:outputText value="#{timesheetRow.thursTotalHours}" /><br/>
+            #{msgs.totalFri} <h:outputText value="#{timesheetRow.friTotalHours}" /><br/> 
+            #{msgs.totalSat} <h:outputText value="#{timesheetRow.satTotalHours}" />
             <!-- 
                 <h:commandButton value="#{msgs.submit}" action="#{timesheetData.save}" styleClass="btn btn-info" /> 
                 <h:commandButton value="#{msgs.addrow}" action="#{timesheetData.addRow}" styleClass="btn btn-info" />
@@ -50,12 +51,12 @@
 </h:form>
             <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
                 <h:form>                    
-                        <b:dataTable value="#{timesheet.allTimesheetRow}" var="tsr" styleClass="table table-striped table-bordered" style="width:100%">                          
+                        <b:dataTable value="#{timesheetRow.allTimesheetRow}" var="tsr" styleClass="table table-striped table-bordered" style="width:100%">                          
 							<h:column>
 						      <f:facet name="header">
 						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
 						      </f:facet>
-								  <h:commandLink action="#{timesheet.editTsr(tsr)}">
+								  <h:commandLink action="#{timesheetRow.editTsr(tsr)}">
 								  	<b:iconAwesome name="pencil-square-o" />
 								  </h:commandLink>
 							</h:column>  
@@ -148,7 +149,7 @@
                            		<f:facet name="header">
                                     <h:outputText value="Delete" />
                                 </f:facet>                       
-                                <h:commandLink action="#{timesheet.deleteTsr(tsr)}">
+                                <h:commandLink action="#{timesheetRow.deleteTsr(tsr)}">
                                 	<b:iconAwesome name="fa-times" />
                                 </h:commandLink>                                
                             </h:column>

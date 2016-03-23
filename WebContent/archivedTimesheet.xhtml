@@ -12,7 +12,7 @@
 <body>
     <ui:composition template="/templates/noIconLayout.xhtml">
         <ui:define name="windowTitle">
-            #{msgs.timesheet}
+            Timesheet
         </ui:define>
         <ui:define name="heading">
             <ui:include src="/sections/admin/timesheetHeader.xhtml" />
@@ -24,11 +24,12 @@
                             <b:panelGrid colSpans="6,6">
                                 <b:panel look="info" title="Info" collapsible="false">
                                     <h3 class="panel-title test">
-										#{msgs.emp_num}<h:outputText value="#{Credentials.EmployeeID}"/><br/>             
-										#{msgs.name}<h:outputText value="#{Employees.FirstName}" style="font-weight: bold" /><br/>  
-												    <h:outputText value="#{Employees.LastName}" style="font-weight: bold" />
-										#{msgs.wk_num}<h:outputText value="#"/><br/>
-										#{msgs.wk_end}<h:outputText value="#"/><br/><br/>
+										EmployeeId: <h:outputText value="#{login.currentID}"/><br/>             
+										EmployeeUserName: <h:outputText value="#{login.username}" style="font-weight: bold" /><br/> 
+										EmployeeName: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" /> 
+													  <h:outputText value="#{timesheet.lastName}" /><br/>
+										#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
+										#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}"/><br/><br/>
 									</h3>
                                 </b:panel>
                                 <b:panel look="info" title="Info" collapsible="false" class="test">

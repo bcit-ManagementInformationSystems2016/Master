@@ -145,7 +145,7 @@ public class EmployeeManager {
 		Employee e = queryOne.getSingleResult();
 		return e;
 	}
-	
+
 	public List<SelectItem> getListOfEmployees(int empID) {
     	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
         List<Employee> employees = proQuery.getResultList();

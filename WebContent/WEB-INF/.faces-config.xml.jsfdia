@@ -76,15 +76,6 @@
     TARGET="rules:#createAdminTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#viewAdminTimesheet.xhtml"
-  PATH="/viewAdminTimesheet.xhtml" SHAPE="32,529,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#viewAdminTimesheet.xhtml:0" NAME="item"
-   PATH="/viewAdminTimesheet.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="edit::#editTimesheet.xhtml" NAME="output"
-    PATH="/editTimesheet.xhtml" TARGET="rules:#editTimesheet.xhtml"
-    TITLE="edit" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#createTimesheetRow.xhtml"
   PATH="/createTimesheetRow.xhtml" SHAPE="48,417,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#createTimesheetRow.xhtml:0" NAME="item"
@@ -98,9 +89,9 @@
   PATH="/editTimesheet.xhtml" SHAPE="240,545,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#editTimesheet.xhtml:0" NAME="item"
    PATH="/editTimesheet.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="updated::#viewAdminTimesheet.xhtml"
-    NAME="output" PATH="/viewAdminTimesheet.xhtml"
-    TARGET="rules:#viewAdminTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="updated::#archivedAdminTimesheet.xhtml"
+    NAME="output" PATH="/archivedAdminTimesheet.xhtml"
+    TARGET="rules:#archivedAdminTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,609,0,0" model-entity="JSFProcessGroup">
@@ -119,6 +110,7 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
   SHAPE="256,625,0,0" model-entity="JSFProcessGroup"/>
+<<<<<<< Updated upstream
  <PROCESS-ITEM NAME="rules:#*:1" PATH="/*" SHAPE="32,833,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#*:1" NAME="item" PATH="/*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="home::#adminLanding.xhtml" NAME="output"
@@ -166,4 +158,17 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#archivedTimesheet.xhtml"
   PATH="/archivedTimesheet.xhtml" SHAPE="736,1137,0,0" model-entity="JSFProcessGroup"/>
+=======
+ <PROCESS-ITEM NAME="rules:#archivedTimesheet.xhtml"
+  PATH="/archivedTimesheet.xhtml" SHAPE="32,833,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#archivedTimesheet.xhtml:0" NAME="item"
+   PATH="/archivedTimesheet.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="edit::#editTimesheet.xhtml" NAME="output"
+    PATH="/editTimesheet.xhtml" TARGET="rules:#editTimesheet.xhtml"
+    TITLE="edit" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#archivedAdminTimesheet.xhtml"
+  PATH="/archivedAdminTimesheet.xhtml" SHAPE="448,497,0,0" model-entity="JSFProcessGroup"/>
+>>>>>>> Stashed changes
 </PROCESS>
