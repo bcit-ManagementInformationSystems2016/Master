@@ -79,6 +79,8 @@ public class TimesheetValidatorController implements Serializable {
 	
 	public String leaveTimesheetValidating() {
 		setCurrentEmployee(null);
+		setUnapprovedTimesheets(null);
+		setValidatees(null);
 		return "adminLanding";
 	}
 }
