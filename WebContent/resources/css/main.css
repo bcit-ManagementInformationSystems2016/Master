@@ -2,6 +2,8 @@
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
+@import url("icomoon.css");
+
 html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li, ul, input {
 	font-family: 'Exo', sans-serif;
 }
