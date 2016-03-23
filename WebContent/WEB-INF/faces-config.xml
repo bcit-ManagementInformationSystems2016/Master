@@ -112,6 +112,48 @@
    		<to-view-id>/login.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
+<navigation-rule>
+	<from-view-id>/*</from-view-id>
+  	<navigation-case>
+   		<from-outcome>home</from-outcome>
+   		<to-view-id>/adminLanding.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/adminLanding.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>projectsLanding</from-outcome>
+   		<to-view-id>/projectsLanding.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/adminLanding.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>timesheetLanding</from-outcome>
+   		<to-view-id>/timesheetAdmin.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/adminLanding.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>hrLanding</from-outcome>
+   		<to-view-id>/humanResources.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/timesheetAdmin.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>create</from-outcome>
+   		<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
+	<from-view-id>/timesheetAdmin.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>archive</from-outcome>
+   		<to-view-id>/archivedTimesheet.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
 <application>
 	<resource-bundle>
    		<base-name>META-INF.messages</base-name>

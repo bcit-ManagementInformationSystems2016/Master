@@ -85,6 +85,7 @@ public class Login implements Serializable {
 				System.out.println("Incorrect Password");
 			} else {
 				conversation.begin();
+				System.out.println("conversation begin");
 				setCurrentID(map2.get(username));
 				System.out.println("Current ID: " + currentID);
 				System.out.println("Successful Login");
@@ -107,5 +108,9 @@ public class Login implements Serializable {
 		System.out.println("logout");
 		conversation.end();
 		return "logout";
+	}
+
+	public String goHome() {
+		return "home";
 	}
 }

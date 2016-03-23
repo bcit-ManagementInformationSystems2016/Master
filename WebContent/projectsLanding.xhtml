@@ -1,54 +1,53 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 
 <head>
-    <title>ProjectLanding</title>
+<title>ProjectLanding</title>
 </head>
 
 <body>
-    <ui:composition template="/templates/masterLayout.xhtml">
-        <ui:define name="windowTitle">
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">
             #{msgs.admin}
         </ui:define>
-        <ui:define name="content">
-        	<div class="container">
-        		<div class="wrap">
-        			<div class="row cs-style">
-        				<div class="col-lg-3 col-md-6 col-sm-12">
-        				</div><!-- Only used to align icons in the middle -->
-        				<h:form>
-		            	<div class="col-lg-3 col-md-6 col-sm-12">
-	            		<h:commandLink action="#{projectController.showAllProjects()}">
-			                <figure class="menuIcon">
-			                    <h:graphicImage library="images" name="view-project-icon.png" />
-			                    <figcaption>
-			                            <h1>Show All</h1>
-			                    </figcaption>
-			                </figure>
-		            	</h:commandLink>
-		            	</div>
-		            	<!-- /Icon -->
-		            	
-		            	<div class="col-lg-3 col-md-6 col-sm-12">
-	            		<h:commandLink action="#{projectController.showYourProjects()}">
-			                <figure class="menuIcon">
-			                    <h:graphicImage library="images" name="my-project-icon.png" />
-			                    <figcaption>
-			                            <h1>Show Mine</h1>
-			                    </figcaption>
-			                </figure>
-		            	</h:commandLink>
-		            	</div>
-		            	</h:form>
-		            	<!-- /Icon -->
-		            	<div class="col-lg-3 col-md-6 col-sm-12">
-		            	</div><!-- Only used to align icons in the middle -->
-	            	</div>
-        		</div>
-        	</div>
-        </ui:define>
-    </ui:composition>
+		<ui:define name="content">
+			<div class="container">
+				<div class="wrap">
+					<div class="row cs-style">
+						<div class="col-lg-3 col-md-6 col-sm-12"></div>
+						<!-- Only used to align icons in the middle -->
+						<h:form>
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<h:commandLink action="#{projectController.showAllProjects()}">
+									<figure class="menuIcon"> <h:graphicImage
+										library="images" name="view-project-icon.png" /> <figcaption>
+									<h1>Show All</h1>
+									</figcaption> </figure>
+								</h:commandLink>
+							</div>
+							<!-- /Icon -->
+
+							<div class="col-lg-3 col-md-6 col-sm-12">
+								<h:commandLink action="#{projectController.showYourProjects()}">
+									<figure class="menuIcon"> <h:graphicImage
+										library="images" name="my-project-icon.png" /> <figcaption>
+									<h1>Show Mine</h1>
+									</figcaption> </figure>
+								</h:commandLink>
+							</div>
+						</h:form>
+						<!-- /Icon -->
+						<div class="col-lg-3 col-md-6 col-sm-12"></div>
+						<!-- Only used to align icons in the middle -->
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
 </body>
 
 </html>

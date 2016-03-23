@@ -15,31 +15,35 @@
 		<ui:define name="windowTitle">
             #{msgs.admin}
         </ui:define>
-        <ui:define name="content">
+		<ui:define name="content">
 			<div class="container">
 				<div id="wrap">
 					<div class="row cs-style">
 						<div class="col-lg-3 col-md-6 col-sm-12">
-							<h:link outcome="timesheetAdmin">
-								<figure class="menuIcon">
-									<h:graphicImage library="images" name="timesheet-icon.png" />
-									<figcaption>
-										<h1>Timesheet</h1>
-									</figcaption>
-								</figure>
-							</h:link>
+							<h:form>
+								<h:commandLink action="#{timesheet.timesheetLanding}">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="timesheet-icon.png" />
+										<figcaption>
+											<h1>Timesheet</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+							</h:form>
 						</div>
 						<!-- /Icon -->
 
 						<div class="col-lg-3 col-md-6 col-sm-12">
-							<h:link outcome="projectsLanding">
-								<figure class="menuIcon">
-									<h:graphicImage library="images" name="project-icon.png" />
-									<figcaption>
-										<h1>Project</h1>
-									</figcaption>
-								</figure>
-							</h:link>
+							<h:form>
+								<h:commandLink action="#{projectController.projectsLanding}">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="project-icon.png" />
+										<figcaption>
+											<h1>Project</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+							</h:form>
 						</div>
 						<!-- /Icon -->
 
@@ -56,14 +60,16 @@
 						<!-- /Icon -->
 						<h:panelGroup rendered="#{login.hr}">
 							<div class="col-lg-3 col-md-6 col-sm-12">
-								<h:link outcome="humanResources">
+							<h:form>
+								<h:commandLink action="#{hrController.hrLanding}">
 									<figure class="menuIcon">
 										<h:graphicImage library="images" name="view-users.png" />
 										<figcaption>
 											<h1>Employee</h1>
 										</figcaption>
 									</figure>
-								</h:link>
+								</h:commandLink>
+								</h:form>
 							</div>
 						</h:panelGroup>
 						<!-- /Icon -->
@@ -71,7 +77,8 @@
 					<h:form>
 						<h:commandButton value="Supervisor" action="viewMinions.xhtml"
 							class="btn btn-info btn-margin" />
-						<h:commandButton value="Validator" action="#{timesheetValidatorController.viewValidatees()}"
+						<h:commandButton value="Validator"
+							action="#{timesheetValidatorController.viewValidatees()}"
 							class="btn btn-info btn-margin" />
 					</h:form>
 				</div>

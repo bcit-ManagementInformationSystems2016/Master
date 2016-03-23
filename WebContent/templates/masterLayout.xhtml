@@ -33,12 +33,13 @@
 	<div id="wrap">
 		<div class="header-fixed">
 			<div class="header-limiter">
-				<h:link outcome="adminLanding">
-					<h1>
-						Panda<span>Timesheets</span>
-					</h1>
-				</h:link>
-
+				<h:form>
+					<h:commandLink action="#{login.goHome}">
+						<h1>
+							Panda<span>Timesheets</span>
+						</h1>
+					</h:commandLink>
+				</h:form>
 				<div class="header-user-menu">
 					<p>
 						<h:outputText value="#{login.username}"></h:outputText>
@@ -46,12 +47,10 @@
 					<ul>
 						<!-- <li><a href=""><i class="fa fa-cog fa-spin"></i>Settings</a></li> -->
 						<li><a href="changePassword.xhtml"><i class=""></i>Change
-								Password</a></li> 
+								Password</a></li>
 						<h:form>
-							<li>
-								<span class="fa fa-sign-out white-txt">
-								</span><h:commandLink action="#{login.logout}" value="Logout"/>
-							</li>
+							<li><span class="fa fa-sign-out white-txt"> </span> <h:commandLink
+									action="#{login.logout}" value="Logout" /></li>
 						</h:form>
 						<!-- <li><a href="login.xhtml"><i class="fa fa-sign-out"></i>Logout</a></li>-->
 					</ul>

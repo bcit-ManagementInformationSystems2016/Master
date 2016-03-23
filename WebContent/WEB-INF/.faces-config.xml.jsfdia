@@ -119,4 +119,51 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
   SHAPE="256,625,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#*:1" PATH="/*" SHAPE="32,833,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:1" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="home::#adminLanding.xhtml" NAME="output"
+    PATH="/adminLanding.xhtml" TARGET="rules:#adminLanding.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#adminLanding.xhtml"
+  PATH="/adminLanding.xhtml" SHAPE="240,849,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#adminLanding.xhtml:0" NAME="item"
+   PATH="/adminLanding.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="projectsLanding::#projectsLanding.xhtml"
+    NAME="output" PATH="/projectsLanding.xhtml"
+    TARGET="rules:#projectsLanding.xhtml" TITLE="projectsLanding" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#adminLanding.xhtml:1" NAME="item1"
+   PATH="/adminLanding.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="timesheetLanding::#timesheetAdmin.xhtml"
+    NAME="output" PATH="/timesheetAdmin.xhtml"
+    TARGET="rules:#timesheetAdmin.xhtml" TITLE="timesheetLanding" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#adminLanding.xhtml:2" NAME="item2"
+   PATH="/adminLanding.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="hrLanding::#humanResources.xhtml"
+    NAME="output" PATH="/humanResources.xhtml"
+    TARGET="rules:#humanResources.xhtml" TITLE="hrLanding" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#projectsLanding.xhtml"
+  PATH="/projectsLanding.xhtml" SHAPE="448,833,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#timesheetAdmin.xhtml"
+  PATH="/timesheetAdmin.xhtml" SHAPE="480,1009,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#timesheetAdmin.xhtml:0" NAME="item"
+   PATH="/timesheetAdmin.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="create::#createAdminTimesheet.xhtml"
+    NAME="output" PATH="/createAdminTimesheet.xhtml"
+    TARGET="rules:#createAdminTimesheet.xhtml" TITLE="create" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#timesheetAdmin.xhtml:1" NAME="item1"
+   PATH="/timesheetAdmin.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="archive::#archivedTimesheet.xhtml"
+    NAME="output" PATH="/archivedTimesheet.xhtml"
+    TARGET="rules:#archivedTimesheet.xhtml" TITLE="archive" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#archivedTimesheet.xhtml"
+  PATH="/archivedTimesheet.xhtml" SHAPE="736,1137,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
