@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-		<title>Assign Employee to project</title>
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Assign Employee to project</title>
 
-	</h:head>
-	<h:body>
-		<h:form>
-			<h:outputLabel value="Select Project to Assign Employee #{projectEmployeesController.viewableEmployee.firstName}"/>
-			<br />
-			<br />
-			<h:outputLabel value="PROJECT:" />
-			<br />
-			<h:selectOneMenu value="#{projectEmployeesController.assignedProject}">
-			    <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
-			</h:selectOneMenu>
-			<br />
-			<h:commandButton value="Back" action="#{projectEmployeesController.cancelAssignment()}"></h:commandButton>
-			<h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}"></h:commandButton>
-			<br />
-		
-		</h:form>
-		
-	</h:body>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Select Project to Assign to #{projectEmployeesController.viewableEmployee.firstName}  #{projectEmployeesController.viewableEmployee.lastName}" collapsible="false">
+	  <h:outputLabel value="PROJECT:" />
+	  <br />
+	  <h:selectOneMenu value="#{projectEmployeesController.assignedProject}">
+		  <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
+	  </h:selectOneMenu>
+	  <br/><br/>
+	  <h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}"></h:commandButton>		
+	  <h:commandButton value="Back" action="#{projectEmployeesController.cancelAssignment()}"></h:commandButton>			
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>	
+</h:body>
 </html>

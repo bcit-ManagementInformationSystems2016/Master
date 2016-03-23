@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-		<title>Assign Timesheet Validator</title>
-
-	</h:head>
-	<h:body>
-		<h:form>
-			<h:outputLabel value="Current Timesheet Validator: #{supervisorController.timesheetValidator.firstName} #{supervisorController.timesheetValidator.lastName}"/>
-			<br />
-			<br />
-			<h:outputLabel value="New Timesheet Validator" />
-			<br />
-			<h:selectOneMenu value="#{supervisorController.newTimesheetValidator}">
-			    <f:selectItems value="#{supervisorController.getDropdownForValidators()}" />
-			</h:selectOneMenu>
-			<br />
-			<h:commandButton value="Back" action="#{supervisorController.cancelAssignment()}"></h:commandButton>
-			<h:commandButton value="Save" action="#{supervisorController.assignValidator()}"></h:commandButton>
-			<br />
-		</h:form>
-		
-	</h:body>
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Assign Timesheet Validator</title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Current Timesheet Validator: #{supervisorController.timesheetValidator.firstName} #{supervisorController.timesheetValidator.lastName}" collapsible="false">
+	  <h:outputLabel value="New Timesheet Validator:" />
+	  <br />
+		<h:selectOneMenu value="#{supervisorController.newTimesheetValidator}">
+		    <f:selectItems value="#{supervisorController.getDropdownForValidators()}" />
+		</h:selectOneMenu>
+		<br /><br/>
+		<h:commandButton value="Back" action="#{supervisorController.cancelAssignment()}"></h:commandButton>
+		<h:commandButton value="Save" action="#{supervisorController.assignValidator()}"></h:commandButton>			
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>
+</h:body>
 </html>
