@@ -175,6 +175,15 @@ button, html input[type="button"], input[type="reset"], input[type="submit"]
 	border-color: #07E883 !important;
 }
 
+button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover
+	{
+	-webkit-appearance: button;
+	cursor: pointer;
+	background-color: #05B767 !important;
+	color: white !important;
+	border-color: #05B767 !important;
+}
+
 .btn-margin {
 	margin: 10px 5px; button , html input[type="button"],
 	input[type="reset"], input[type="submit"] { -webkit-appearance : button;
