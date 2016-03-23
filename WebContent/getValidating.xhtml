@@ -36,25 +36,25 @@
 		</h:dataTable>
 		<br />
 		<h:outputLabel value="Timesheets needing to be approved"/>
-		<h:dataTable value="#{timesheetValidatorController.getYourValidatees()}" var="emp" style="border: 1px solid black;">
+		<h:dataTable value="#{timesheetValidatorController.getYouUnapprovedTimesheets()}" var="ts" style="border: 1px solid black;">
+			<h:column>
+				<f:facet name="header">Timesheet ID</f:facet>
+				<h:outputText value="#{ts.timesheetID}" />
+			</h:column>
+
 			<h:column>
 				<f:facet name="header">Employee ID</f:facet>
-				<h:outputText value="#{emp.employeeID}" />
+				<h:outputText value="#{ts.employeeID}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">First Name</f:facet>
-				<h:outputText value="#{emp.firstName}" />
+				<f:facet name="header">Is Submitted</f:facet>
+				<h:outputText value="#{ts.submitted}" />
 			</h:column>
 
 			<h:column>
-				<f:facet name="header">Last Name</f:facet>
-				<h:outputText value="#{emp.lastName}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Validator ID</f:facet>
-				<h:outputText value="#{emp.validatorID}" />
+				<f:facet name="header">Is Approved</f:facet>
+				<h:outputText value="#{ts.approved}" />
 			</h:column>
 		</h:dataTable>
 		<br />

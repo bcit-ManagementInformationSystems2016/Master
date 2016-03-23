@@ -2,10 +2,12 @@
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
-html, body, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7 {
+html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li, ul, input {
 	font-family: 'Exo', sans-serif;
 }
-
+.white-txt{
+	color:#ffffff;
+}
 .cs-style div {
 	margin: 0;
 	padding: 50px;
@@ -92,6 +94,7 @@ figure.menuIcon img {
 	height: 40px;
 	border-radius: 2px;
 	right: 30px;
+	font-family: 'Exo', sans-serif;
 }
 
 #wrap>div.header-fixed>div>div>p {

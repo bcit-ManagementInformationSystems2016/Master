@@ -39,6 +39,7 @@ body{
 .header-fixed .header-limiter a {
 	color: #ffffff;
 	text-decoration: none;
+	font-family: 'Exo', sans-serif;
 }
 
 body > div.header-fixed > div > a > h1 {

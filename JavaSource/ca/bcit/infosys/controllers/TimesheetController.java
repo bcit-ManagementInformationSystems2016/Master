@@ -34,8 +34,8 @@ public class TimesheetController  implements Serializable {
     
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts;
-    private static TimesheetRow[] rows;
     private static ArrayList<TimesheetRow> localRows;
+    private static ArrayList<TimesheetRow> databaseRows;
     
     public TimesheetRow getTsr() {
         return tsr;
@@ -55,13 +55,15 @@ public class TimesheetController  implements Serializable {
 	    	int empId = Login.currentID;
 	    	setTs(timesheetManager.getTimesheetEmpId(empId));
     	}
-    	
-    	if (rows == null) {
+    	if (localRows == null) {
     		Timesheet ts = getTs();
         	int timesheetID = ts.getTimesheetID();
     		TimesheetRow[] arr = timesheetRowManager.getRowsWithTimesheetId(timesheetID);
     		localRows = new ArrayList<TimesheetRow>(Arrays.asList(arr));
-    		rows = arr;
+    		databaseRows = new ArrayList<TimesheetRow>(Arrays.asList(arr));
+    		for (int i = 0; i < databaseRows.size(); i++) {
+    		    databaseRows.get(i).setStatus("old");
+    		}
     	}
     }
 
@@ -76,25 +78,27 @@ public class TimesheetController  implements Serializable {
     public void setTs(Timesheet ts) {
         this.ts = ts;
     }
-    public String editTs(Timesheet ts) {
-        setTs(ts);
-        System.out.println("Edit timesheet");
-        return "edit";
-    }
-    
-    public String editTsr(TimesheetRow tsr) {
-        setTsr(tsr);
-        System.out.println("Edit timesheetRow");
-        return "edit";
-    }
     public String updateTs(Timesheet ts){
         timesheetManager.merge(ts);
         ts = null;
         return "updated";
     }
     public String updateTsr(TimesheetRow tsr){
-        timesheetRowManager.merge(tsr);
-        tsr = null;
+        for (int i = 0; i < localRows.size(); i++) {
+            if (localRows.get(i).getTimesheetRowID() == tsr.getTimesheetRowID()) {
+                localRows.set(i, tsr);
+            }
+        }
+        for (int i = 0; i < databaseRows.size(); i++) {
+            if (localRows.get(i).getTimesheetRowID() == tsr.getTimesheetRowID()) {
+                databaseRows.set(i, tsr);
+                if (!(tsr.getStatus() == "new")) {
+                    System.out.println("set status to old editted");
+                    databaseRows.get(i).setStatus("old-editted");
+                }
+            }
+        }
+        System.out.println("Updated timesheetRow");
         return "updated";
     }
     public String createTs(Timesheet ts){
@@ -105,32 +109,68 @@ public class TimesheetController  implements Serializable {
     public String createTsr(TimesheetRow tsr){
         //timesheetRowManager.persist(tsr);
         localRows.add(tsr);
-        TimesheetRow[] newRows = new TimesheetRow[localRows.size()];
-        rows = localRows.toArray(newRows);
+        tsr.setStatus("new");
+        databaseRows.add(tsr);
         System.out.println("Created timesheetRow");
         return "created";
     }
     
     public String deleteTsr(TimesheetRow tsr) {
-        timesheetRowManager.remove(tsr);
+        //timesheetRowManager.remove(tsr);
+        localRows.remove(tsr);
+        if (tsr.getStatus() == "new") {
+            databaseRows.remove(tsr);
+        } else {
+            for (int i = 0; i < databaseRows.size(); i++) {
+                if (databaseRows.get(i).getTimesheetRowID() == tsr.getTimesheetRowID()) {
+                    databaseRows.get(i).setStatus("old-deleted");
+                }
+            }
+        }
         System.out.println("Delete timesheetRow ");
         //list.remove(tsr);
         return null;
     }
     
+    public void saveAllTimesheetRows() {
+        for (int i = 0; i < databaseRows.size(); i++) {
+            TimesheetRow row = databaseRows.get(i);
+            switch (row.getStatus()) {
+            case "new":
+                System.out.println("call persist");
+                timesheetRowManager.persist(row);
+                break;
+            case "old":
+                break;
+            case "old-editted":
+                System.out.println("call merge");
+                timesheetRowManager.merge(row);
+                break;
+            case "old-deleted":
+                timesheetRowManager.remove(row);
+                break;
+            }
+        } 
+    }
+    public String deleteTs(Timesheet ts) {
+        timesheetManager.remove(ts);
+        System.out.println("Delete timesheet ");
+        //list.remove(ts);
+        return null;
+    }
     public Timesheet[] getAllTimesheet() {
         return timesheetManager.getAll();
     }
 
-    public TimesheetRow[] getAllTimesheetRow() {
+    public ArrayList<TimesheetRow> getAllTimesheetRow() {
     	// set the current timesheet to be the current timesheet of the employee
     	init();
-        return rows;
+        return localRows;
     }
     
     public void resetTimesheet() {
-    	for (int i = 0; i < rows.length; i++) {
-    		TimesheetRow row = rows[i];
+    	for (int i = 0; i < localRows.size(); i++) {
+    		TimesheetRow row = localRows.get(i);
     		row.setWorkPackageID("");
     		row.setHoursSun(0);
     		row.setHoursMon(0);
@@ -144,11 +184,11 @@ public class TimesheetController  implements Serializable {
     
    public double getAllTotalHours() {
 	   double allHours = 0.0;
-	   TimesheetRow[] rows = getAllTimesheetRow();
+	   ArrayList<TimesheetRow> rows = getAllTimesheetRow();
 
-       System.out.println("rowslength: " + rows.length);
-	   for (int i=0; i < rows.length; i++) {
-		   allHours += rows[i].getTotalHours();
+       System.out.println("rowslength: " + rows.size());
+	   for (int i=0; i < rows.size(); i++) {
+		   allHours += rows.get(i).getTotalHours();
 		   System.out.println("time: " + allHours);
 	   }
 	   return allHours;
@@ -156,57 +196,57 @@ public class TimesheetController  implements Serializable {
 
    public double getSunTotalHours() {
        double sunHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           sunHours += rows[i].getHoursSun();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           sunHours += rows.get(i).getHoursSun();
        }
        return sunHours;
    }
    public double getTuesTotalHours() {
        double tuesHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           tuesHours += rows[i].getHoursTues();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           tuesHours += rows.get(i).getHoursTues();
        }
        return tuesHours;
    }
    public double getMonTotalHours() {
        double monHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           monHours += rows[i].getHoursMon();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           monHours += rows.get(i).getHoursMon();
        }
        return monHours;
    }
    public double getWedTotalHours() {
        double wedHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           wedHours += rows[i].getHoursWed();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           wedHours += rows.get(i).getHoursWed();
        }
        return wedHours;
    }
    public double getThursTotalHours() {
        double thursHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           thursHours += rows[i].getHoursThurs();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           thursHours += rows.get(i).getHoursThurs();
        }
        return thursHours;
    }
    public double getFriTotalHours() {
        double friHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           friHours += rows[i].getHoursFri();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           friHours += rows.get(i).getHoursFri();
        }
        return friHours;
    }
    public double getSatTotalHours() {
        double satHours = 0.0;
-       TimesheetRow[] rows = getAllTimesheetRow();
-       for (int i=0; i < rows.length; i++) {
-           satHours += rows[i].getHoursSat();
+       ArrayList<TimesheetRow> rows = getAllTimesheetRow();
+       for (int i=0; i < rows.size(); i++) {
+           satHours += rows.get(i).getHoursSat();
        }
        return satHours;
    }

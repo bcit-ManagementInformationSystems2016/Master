@@ -42,7 +42,7 @@ public class Timesheet implements Serializable {
 	private boolean submitted;
 
 	//bi-directional many-to-one association to TimesheetRow
-	@OneToMany(mappedBy="timesheet")
+	@OneToMany(mappedBy="timesheet", cascade = {CascadeType.ALL})
 	private List<TimesheetRow> timesheetRows;
 
 	public Timesheet() {
