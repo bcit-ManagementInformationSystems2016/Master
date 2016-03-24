@@ -7,6 +7,9 @@
 html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li, ul, input {
 	font-family: 'Exo', sans-serif;
 }
+.white-space{
+	padding-top:1em;
+}
 .white-txt{
 	color:#ffffff;
 }
@@ -187,10 +190,49 @@ button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[
 }
 
 .btn-margin {
-	margin: 10px 5px; button , html input[type="button"],
-	input[type="reset"], input[type="submit"] { -webkit-appearance : button;
+	margin: 10px 5px;
+	-webkit-appearance : button;
 	cursor: pointer;
 	background-color: #07E883 !important;
 	color: white !important;
 	border-color: #07E883 !important;
+}
+.backBtn-padding{
+	padding-left:66px;
+}
+@media all and (max-width: 970px) {
+	.backBtn-padding{
+		padding-left:36px;
+	}
+}
+@media all and (max-width: 600px) {
+	.backBtn-padding{
+		padding-left:10px;
+	}
+}
+.backBtn-ico, .backBtn-txt{
+	color:#07E883;
+	vertical-align: middle;
+}
+.backBtn-padding:hover a{
+	text-decoration:none;
+}
+.backBtn-padding:hover a span{
+	color:#05B767;
+}
+.backBtn-padding:hover a span.backBtn-txt{
+	opacity:1;
+	margin:0;
+}
+.backBtn-ico{
+	font-size:3em;
+}
+.backBtn-txt{
+	transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
+    -moz-transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
+    -webkit-transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
+    opacity:0;
+    margin-left:-100px;
+	font-size: 2.5em;    
+    padding-left: 5px;
 }

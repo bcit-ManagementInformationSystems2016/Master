@@ -46,13 +46,12 @@
 					</p>
 					<ul>
 						<!-- <li><a href=""><i class="fa fa-cog fa-spin"></i>Settings</a></li> -->
-						<li><a href="changePassword.xhtml"><i class=""></i>Change
-								Password</a></li>
+						<li><a href="changePassword.xhtml">Change Password</a></li>
 						<h:form>
-							<li>
-								<span class="fa fa-sign-out white-txt"> </span> 
-								<h:commandLink action="#{login.logout}" value="Logout" />
-							</li>
+						<li>
+							<span class="fa fa-sign-out white-txt"></span> 
+							<h:commandLink action="#{login.logout}" value=" Logout" />
+						</li>
 						</h:form>
 						<!-- <li><a href="login.xhtml"><i class="fa fa-sign-out"></i>Logout</a></li>-->
 					</ul>
@@ -61,6 +60,9 @@
 		</div>
 
 		<div id="content">
+			<h:form styleClass="backBtn-padding">
+				<ui:insert name="backBtn"/>
+			</h:form>
 			<ui:insert name="content" />
 		</div>
 	</div>
