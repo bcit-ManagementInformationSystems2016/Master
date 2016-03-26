@@ -56,8 +56,12 @@ public class TreeController implements Serializable {
 	}
 	
 	public void showWorkPackageDetails() {
+		System.out.println("we have hit the method");
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
+			System.out.println("it is not null");
+			System.out.println("this is the selected object " + projectTree.getSingleSelectedTreeNode().getData().toString());
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
+			System.out.println("new work package = " + selectedWP.getWpName());
 		}
 	}
 }

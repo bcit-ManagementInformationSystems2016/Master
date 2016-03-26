@@ -8,7 +8,7 @@
 </h:head>
 <h:form>
     <p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
-                selectionMode="single" selection="#{treeManagedBean.singleSelectedTreeNode}">
+                selectionMode="single" selection="#{treeController.projectTree.singleSelectedTreeNode}">
         <p:treeNode expandedIcon="ui-icon ui-icon-folder-open"
                         collapsedIcon="ui-icon ui-icon-folder-collapsed">
             <h:outputText value="#{node.wpID} #{node.wpName}"/>
@@ -27,9 +27,11 @@
         <p:ajax event="expand" listener="#{treeManagedBean.onNodeExpand}"></p:ajax>
         <p:ajax event="collapse" listener="#{treeManagedBean.onNodeCollapse}"></p:ajax>                                 
     </p:tree>
-    <h:commandButton value="Display" actionListener="#{treeController.showWorkPackageDetails()}"/>
+    <h:commandButton value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
     <br />
     <h:commandButton value="Go Back" action="#{treeController.leaveTreePage()}"></h:commandButton>
+    <br />
+    <br />
     <h:outputText value="THIS IS THE WORK PACKAGE: #{treeController.selectedWP.wpName}" />
 </h:form>
 </html>
