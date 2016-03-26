@@ -7,11 +7,11 @@
     
 </h:head>
 <h:form>
-    <p:tree value="#{treeManagedBean.root}" var="node" dynamic="true" orientation="horizontal"
+    <p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
                 selectionMode="single" selection="#{treeManagedBean.singleSelectedTreeNode}">
         <p:treeNode expandedIcon="ui-icon ui-icon-folder-open"
                         collapsedIcon="ui-icon ui-icon-folder-collapsed">
-            <h:outputText value="#{node}"/>
+            <h:outputText value="#{node.wpID} #{node.wpName}"/>
         </p:treeNode>
         <p:treeNode type="document" icon="ui-icon ui-icon-document">
             <h:outputText value="#{node}"/>

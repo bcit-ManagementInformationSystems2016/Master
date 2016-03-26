@@ -94,6 +94,12 @@ public class WorkPackageManager {
 		return wpArray;	
 	}
 	
+	public List<WorkPackage> getProjectWorkPackagesForTree(int projectID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID <> 'X'", WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		return wps;	
+	}
+	
 	public WorkPackage[] getParentProjectWorkPackages(int projectID, String parentID) {
 		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WPParentID = '" + parentID + "'", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();
@@ -132,5 +138,11 @@ public class WorkPackageManager {
 		INSERT INTO Customers (CustomerName, City, Country)
 		VALUES ('Cardinal', 'Stavanger', 'Norway');
 	} */
+	
+	public WorkPackage getTopWorkPackage(int projectID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = 'X'", WorkPackage.class);
+		WorkPackage top = query.getSingleResult();
+		return top;
+	}
 
 }

@@ -1,5 +1,10 @@
-package ca.bcit.infosys.controllers;
+package ca.bcit.infosys.models;
  
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
  
@@ -18,6 +23,7 @@ public class TreeManagedBean {
     private TreeNode singleSelectedTreeNode;
     private TreeNode [] multipleSelectedTreeNodes;
     private TreeNode [] checkboxSelectedTreeNodes;
+    private HashSet<TreeNode> testHash;
  
     public TreeManagedBean(){
         // root node
@@ -46,6 +52,33 @@ public class TreeManagedBean {
         TreeNode test_project  = new DefaultTreeNode("image"," test project", Construction);
         
     }
+    
+    public TreeManagedBean(WorkPackage top, List<WorkPackage> wps) {
+    	System.out.println("hitting here");
+    	root = newNodeWithChildren(top, null, wps);
+    }
+    
+    public TreeNode newNodeWithChildren(WorkPackage wpParent, TreeNode parent, List<WorkPackage> wps){
+    	System.out.println("METHOD EXECUTING");
+    	System.out.println("list of workpages: " + wps.size());
+        TreeNode newNode= new DefaultTreeNode(wpParent, parent);
+        System.out.println("Node info: " + newNode.toString());
+        List<WorkPackage> childrenArray = new ArrayList<WorkPackage>();
+        System.out.println("Array Created: " + childrenArray.size());
+        for (int i = 0; i < wps.size(); i++) {
+        	System.out.println("Looking at wp: " + wps.get(i).getWpID());
+        	if (wps.get(i).getParentWPID().equals(wpParent.getWpID())) {
+        		childrenArray.add(wps.get(i));
+        	}
+        }
+        System.out.println("Array size: " + childrenArray.size());
+        for (WorkPackage wp : childrenArray){
+        	System.out.println("WP adding : " + wp.getWpID());
+             TreeNode newNode2= newNodeWithChildren(wp, newNode, wps);
+        }
+        System.out.println("Method Ending:" );
+        return newNode;
+   }
  
     public TreeNode getRoot() {
         return root;
