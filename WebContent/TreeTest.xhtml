@@ -27,6 +27,9 @@
         <p:ajax event="expand" listener="#{treeManagedBean.onNodeExpand}"></p:ajax>
         <p:ajax event="collapse" listener="#{treeManagedBean.onNodeCollapse}"></p:ajax>                                 
     </p:tree>
+    <h:commandButton value="Display" actionListener="#{treeController.showWorkPackageDetails()}"/>
+    <br />
     <h:commandButton value="Go Back" action="#{treeController.leaveTreePage()}"></h:commandButton>
+    <h:outputText value="THIS IS THE WORK PACKAGE: #{treeController.selectedWP.wpName}" />
 </h:form>
 </html>
