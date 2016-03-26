@@ -27,5 +27,6 @@
         <p:ajax event="expand" listener="#{treeManagedBean.onNodeExpand}"></p:ajax>
         <p:ajax event="collapse" listener="#{treeManagedBean.onNodeCollapse}"></p:ajax>                                 
     </p:tree>
+    <h:commandButton value="Go Back" action="#{treeController.leaveTreePage()}"></h:commandButton>
 </h:form>
 </html>

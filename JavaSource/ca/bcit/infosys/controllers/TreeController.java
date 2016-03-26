@@ -36,10 +36,13 @@ public class TreeController implements Serializable {
 	}
 	
 	public String viewProjectTree(Project p) {
-		System.out.println("Tree Controller");
 		WorkPackage top = wpmgr.getTopWorkPackage(p.getProjectID());
-		System.out.println("Got top WP: " + top.getWpID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
 		return "TreeTest";
+	}
+	
+	public String leaveTreePage() {
+		projectTree = null;
+		return "showAllProjects";
 	}
 }
