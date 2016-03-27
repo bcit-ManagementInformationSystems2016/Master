@@ -104,6 +104,7 @@ public class TreeManagedBean {
  
     public void onNodeSelect(NodeSelectEvent event){
         System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Selected");
+        
     }
  
     public void onNodeUnSelect(NodeUnselectEvent event){
