@@ -14,19 +14,19 @@
     <ui:define name="content">
 	<h:form>	
      <b:panel look="info" title="Work Package #{treeController.selectedWP.wpName}" collapsible="false">
-      <b:dataTable value="#{///}" var="emp">
+      <b:dataTable value="#{treeController.getAssignedEmployees()}" var="ewp">
 			<h:column>
 				<f:facet name="header">ID</f:facet>
-				<h:outputText value="#{emp.employeeID}"/>
+				<h:outputText value="#{ewp.emp.employeeID}"/>
 			</h:column>
 			
 			<h:column>
 				<f:facet name="header">Name</f:facet>
-				<h:outputText value="#{emp.firstName} #{emp.lastName}"/>
+				<h:outputText value="#{ewp.emp.firstName} #{ewp.emp.lastName}"/>
 			</h:column>
 	  </b:dataTable>		
      </b:panel>
-     <h:commandButton value="Go To Back" action="projectsLanding.xhtml"></h:commandButton>		
+     <h:commandButton value="Go To Back" action="#{treeController.goBackToProject()}"></h:commandButton>		
 	</h:form>
  </ui:define>
 </ui:composition>

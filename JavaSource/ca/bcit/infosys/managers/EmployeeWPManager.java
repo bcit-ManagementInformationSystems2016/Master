@@ -62,8 +62,9 @@ public class EmployeeWPManager {
         em.remove(proj);
     }
     
-    public EmployeeWP[] findAssignedEmployees(int projectID) {
-        TypedQuery<EmployeeWP> query = em.createQuery("select c from ProjectEmployees c WHERE ProjectID = " + projectID +  "", EmployeeWP.class); 
+    public EmployeeWP[] findAssignedEmployees(int projectID, String wpID) {
+        TypedQuery<EmployeeWP> query = em.createQuery("select c from ProjectEmployees c WHERE ProjectID = " + projectID +  
+        		" AND WorkPackageID = " + wpID + "", EmployeeWP.class); 
         java.util.List<EmployeeWP> categories = query.getResultList();
         EmployeeWP[] catarray = new EmployeeWP[categories.size()];
         for (int i=0; i < catarray.length; i++) {
@@ -71,6 +72,6 @@ public class EmployeeWPManager {
         }
         return catarray;
     }
-    
+ 
     
 }
