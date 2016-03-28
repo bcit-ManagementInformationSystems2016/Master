@@ -6,7 +6,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
+import ca.bcit.infosys.models.EmployeeWP;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.TreeManagedBean;
 import ca.bcit.infosys.models.WorkPackage;
@@ -18,10 +20,13 @@ public class TreeController implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Inject
 	private WorkPackageManager wpmgr;
+	@Inject
+	private EmployeeWPManager empwpmgr;
 	
 	// variable used to display tree
 	private static TreeManagedBean projectTree;
 	private WorkPackage selectedWP;
+	private EmployeeWP[] assignedEmps;
 	
 	// Getters and Setters
 	public void setProjectTree(TreeManagedBean projectTree) {
@@ -35,6 +40,12 @@ public class TreeController implements Serializable {
 	}
 	public void setSelectedWP(WorkPackage selectedWP) {
 		this.selectedWP = selectedWP;
+	}
+	public void setAssignedEmps(EmployeeWP[] assignedEmps) {
+		this.assignedEmps = assignedEmps;
+	}
+	public EmployeeWP[] getAssignedEmps() {
+		return assignedEmps;
 	}
 	
 	// Other Functions
@@ -56,12 +67,12 @@ public class TreeController implements Serializable {
 	}
 	
 	public void showWorkPackageDetails() {
-		System.out.println("we have hit the method");
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
-			System.out.println("it is not null");
-			System.out.println("this is the selected object " + projectTree.getSingleSelectedTreeNode().getData().toString());
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
-			System.out.println("new work package = " + selectedWP.getWpName());
 		}
+		if (assignedEmps == null) {
+			setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID()));
+		}
+		
 	}
 }

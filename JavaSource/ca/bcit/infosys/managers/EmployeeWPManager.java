@@ -4,6 +4,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.EmployeeWP;
@@ -60,4 +61,16 @@ public class EmployeeWPManager {
         EmployeeWP proj = find(wp, e);
         em.remove(proj);
     }
+    
+    public EmployeeWP[] findAssignedEmployees(int projectID) {
+        TypedQuery<EmployeeWP> query = em.createQuery("select c from ProjectEmployees c WHERE ProjectID = " + projectID +  "", EmployeeWP.class); 
+        java.util.List<EmployeeWP> categories = query.getResultList();
+        EmployeeWP[] catarray = new EmployeeWP[categories.size()];
+        for (int i=0; i < catarray.length; i++) {
+            catarray[i] = categories.get(i);
+        }
+        return catarray;
+    }
+    
+    
 }

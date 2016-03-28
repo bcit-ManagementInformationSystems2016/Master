@@ -32,6 +32,17 @@
     <h:commandButton value="Go Back" action="#{treeController.leaveTreePage()}"></h:commandButton>
     <br />
     <br />
-    <h:outputText value="THIS IS THE WORK PACKAGE: #{treeController.selectedWP.wpName}" />
+    <br />
+    <h:outputText value="Work Package Name: #{treeController.selectedWP.wpName}" />
+    <br />
+    <h:outputText value="Work Package ID: #{treeController.selectedWP.wpID}" />
+    <br />
+    <h:outputText value="Estimated Number of hours: #{treeController.selectedWP.estimatedHours}" />
+  	<br />
+  	<h:commandButton value="view Assigned Employees" action="#{treeController.viewAssignedEmployeesPage()}" />
+    
+    
+    
+    
 </h:form>
 </html>
