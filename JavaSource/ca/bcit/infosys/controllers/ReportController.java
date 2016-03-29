@@ -154,6 +154,7 @@ public class ReportController implements Serializable{
 		customer = pr.getCust().getCompanyName();
 		projManager = pr.getProjectManager().getFirstName() + " " + pr.getProjectManager().getLastName();
 		startDate = pr.getStartDate();
+		wp = wpmgr.getProjectWorkPackages(pro.getProjectID());
 		
 		
 		
@@ -161,9 +162,7 @@ public class ReportController implements Serializable{
 		return "displayReport";
 	}
 	
-	public WorkPackage[] getAllWorkPackagesForProject() {
-		return projctr.getWorkPackagesForProject();
-	}
+	
 	
 	
 

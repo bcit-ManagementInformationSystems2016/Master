@@ -66,7 +66,7 @@
         
         <br />
         
-        <h:dataTable value="#{workPackageController.allWorkPackages}" var="wp" border="1">
+        <h:dataTable value="#{report.wp}" var="wp" border="1">
          <h:column>    				
             <f:facet name="header">Work Package</f:facet>    				
             <h:outputText value="#{wp.wpID}"/>
