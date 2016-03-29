@@ -97,12 +97,22 @@ public class TimsheetRowController implements Serializable {
     
     public String createTsr(TimesheetRow tsr){
         //timesheetRowManager.persist(tsr);
+    	TimesheetRow newTsr = new TimesheetRow();
+    	
     	timesheetRowId++;
-    	tsr.setTimesheetRowID(timesheetRowId);
-    	tsr.setTimesheetID(getTs().getTimesheetID());
-        localRows.add(tsr);
-        tsr.setStatus("new");
-        databaseRows.add(tsr);
+    	newTsr.setTimesheetRowID(timesheetRowId);
+    	newTsr.setTimesheetID(getTs().getTimesheetID());
+    	newTsr.setHoursFri(tsr.getHoursFri());
+    	newTsr.setHoursMon(tsr.getHoursMon());
+    	newTsr.setHoursSat(tsr.getHoursSat());
+    	newTsr.setHoursSun(tsr.getHoursSun());
+    	newTsr.setHoursThurs(tsr.getHoursThurs());
+    	newTsr.setHoursTues(tsr.getHoursTues());
+    	newTsr.setHoursWed(tsr.getHoursWed());
+    	newTsr.setTimesheet(getTs());
+        localRows.add(newTsr);
+        newTsr.setStatus("new");
+        databaseRows.add(newTsr);
         System.out.println("Created timesheetRow");
         return "created";
     }
