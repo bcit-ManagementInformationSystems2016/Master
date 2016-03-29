@@ -35,10 +35,10 @@
         	<h:outputText value="Overtime :"/><br/><br/>
 
 		</h3>		
-			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Reset" action="#{timesheetRow.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Save" action="#{timesheetRow.saveAllTimesheetRows}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Submit" action="#{timesheetRow.submitTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
+			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px" disabled="#{timesheetRow.isSubmitted()}"></h:commandButton>
+			<h:commandButton value="Reset" action="#{timesheetRow.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px" disabled="#{timesheetRow.isSubmitted()}"></h:commandButton>
+			<h:commandButton value="Save" action="#{timesheetRow.saveAllTimesheetRows}" styleClass="btn btn-info" style="margin-right: 10px" disabled="#{timesheetRow.isSubmitted()}"></h:commandButton>
+			<h:commandButton value="Submit" action="#{timesheetRow.submitTimesheet}" styleClass="btn btn-info" style="margin-right: 10px" disabled="#{timesheetRow.isSubmitted()}"></h:commandButton>		
 
      </b:panel>
      <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allTotalHours}" collapsible="false" class="test">
@@ -65,7 +65,7 @@
 						      <f:facet name="header">
 						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
 						      </f:facet>
-								  <h:commandLink action="#{timesheetRow.editTsr(tsr)}">
+								  <h:commandLink action="#{timesheetRow.editTsr(tsr)}" disabled="#{timesheetRow.isSubmitted()}">
 								  	<b:iconAwesome name="pencil-square-o" />
 								  </h:commandLink>
 							</h:column>  
@@ -158,7 +158,7 @@
                            		<f:facet name="header">
                                     <h:outputText value="Delete" />
                                 </f:facet>                       
-                                <h:commandLink action="#{timesheetRow.deleteTsr(tsr)}">
+                                <h:commandLink action="#{timesheetRow.deleteTsr(tsr)}" disabled="#{timesheetRow.isSubmitted()}">
                                 	<b:iconAwesome name="fa-times" />
                                 </h:commandLink>                                
                             </h:column>

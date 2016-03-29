@@ -183,6 +183,11 @@ public class TimsheetRowController implements Serializable {
         }
     }
     
+    public boolean isSubmitted() {
+    	init();
+    	return getTs().getSubmitted();
+    }
+    
    public double getAllTotalHours() {
        double allHours = 0.0;
        ArrayList<TimesheetRow> rows = getAllTimesheetRow();
