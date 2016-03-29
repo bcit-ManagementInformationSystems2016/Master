@@ -65,6 +65,7 @@ public class TimesheetManager {
 	     */
 	    public void remove(Timesheet ts) {
 	        //attach category
+	    	System.out.println("Remove in timehseet");
 	        ts = find(ts.getTimesheetID());
 	        em.remove(ts);
 	    }
@@ -85,18 +86,23 @@ public class TimesheetManager {
 	    }
 	    
 	    public Timesheet getTimesheetEmpId(int empId) {
-	    	TypedQuery<Timesheet> query = em.createQuery("select c from Timesheet c where c.employeeID = :empId and c.approved = false", Timesheet.class);
-	    	java.util.List<Timesheet> categories = query.setParameter("empId", empId).getResultList();
-	    	if (categories.size() > 0) {
-	    		Timesheet[] catarray = new Timesheet[categories.size()];
-		    	for (int i=0; i < catarray.length; i++) {
-		            catarray[i] = categories.get(i);
-		        }
-		    	return catarray[0];
-	    	} else {
-	    		// create new timesheet
-	    		//TODO create new timesheet properly and persist into database
-	    		return new Timesheet();
+	    	while(true) {
+	    		TypedQuery<Timesheet> query = em.createQuery("select c from Timesheet c where c.employeeID = :empId and c.approved = false", Timesheet.class);
+	    		java.util.List<Timesheet> categories = query.setParameter("empId", empId).getResultList();
+		    	if (categories.size() > 0) {
+		    		Timesheet[] catarray = new Timesheet[categories.size()];
+			    	for (int i=0; i < catarray.length; i++) {
+			            catarray[i] = categories.get(i);
+			        }
+			    	return catarray[0];
+		    	} else {
+		    		// create new timesheet
+		    		//TODO create new timesheet properly and persist into database
+		    		Timesheet ts = new Timesheet();
+		    		ts.setStartDate(new Date());
+		    		ts.setEmployeeID(empId);
+		    		persist(ts);
+		    	}
 	    	}
 	    }
 	    

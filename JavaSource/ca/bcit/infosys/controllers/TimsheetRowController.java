@@ -26,6 +26,7 @@ public class TimsheetRowController implements Serializable {
     private Timesheet ts;
     private static ArrayList<TimesheetRow> localRows;
     private static ArrayList<TimesheetRow> databaseRows;
+    private static int timesheetRowId = 13123;
     
     public TimesheetRow getTsr() {
         return tsr;
@@ -96,6 +97,9 @@ public class TimsheetRowController implements Serializable {
     
     public String createTsr(TimesheetRow tsr){
         //timesheetRowManager.persist(tsr);
+    	timesheetRowId++;
+    	tsr.setTimesheetRowID(timesheetRowId);
+    	tsr.setTimesheetID(getTs().getTimesheetID());
         localRows.add(tsr);
         tsr.setStatus("new");
         databaseRows.add(tsr);
@@ -121,8 +125,11 @@ public class TimsheetRowController implements Serializable {
     }
     
     public void saveAllTimesheetRows() {
+    	Timesheet ts = getTs();
+        ts.setTimesheetRows(databaseRows);
         for (int i = 0; i < databaseRows.size(); i++) {
             TimesheetRow row = databaseRows.get(i);
+            
             switch (row.getStatus()) {
             case "new":
                 System.out.println("call persist");
@@ -138,6 +145,7 @@ public class TimsheetRowController implements Serializable {
                 timesheetRowManager.remove(row);
                 break;
             }
+            row.setStatus("old");
         } 
     }
 

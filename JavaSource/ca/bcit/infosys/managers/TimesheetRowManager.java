@@ -64,7 +64,9 @@ public class TimesheetRowManager {
 	     */
 	    public void remove(TimesheetRow tsr) {
 	        //attach category
+	    	System.out.println("Remove in timesheetRow");
 	        tsr = find(tsr.getTimesheetRowID());
+	        System.out.println(tsr.getTimesheetRowID());
 	        em.remove(tsr);
 	    }
 

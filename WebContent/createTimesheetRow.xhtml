@@ -39,15 +39,11 @@
 		<br />
 		<h:inputText value="#{timesheetRow.tsr.hoursSun}"></h:inputText>
 		<br />
-		<h:outputText value="timesheetID" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.timesheetID}"></h:inputText>
-		<br />
 		<h:outputText value="workPackageID" />
 		<br />
 		<h:inputText value="#{timesheetRow.tsr.workPackageID}"></h:inputText>
 		<br />
-		<h:commandButton value="Save" action="#{timesheetRow.createTsr(timesheet.tsr)}"></h:commandButton>
+		<h:commandButton value="Save" action="#{timesheetRow.createTsr(timesheetRow.tsr)}"></h:commandButton>
 	</h:form>
 </h:body>
 </html>
