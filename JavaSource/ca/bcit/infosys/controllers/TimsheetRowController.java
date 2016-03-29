@@ -247,4 +247,10 @@ public class TimsheetRowController implements Serializable {
        }
        return satHours;
    }
+   
+   public void submitTimesheet() {
+	   Timesheet ts = getTs();
+	   ts.setSubmitted(true);
+	   timesheetManager.merge(ts);
+   }
 }
