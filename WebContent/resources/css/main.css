@@ -214,7 +214,8 @@ button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[
 	color:#07E883;
 	vertical-align: middle;
 }
-.backBtn-padding:hover a{
+.backBtn-padding:hover a, .backBtn-padding:hover a:hover
+.backBtn-padding a:hover, form a:hover{
 	text-decoration:none;
 }
 .backBtn-padding:hover a span{
