@@ -118,6 +118,7 @@ public class HRController implements Serializable {
 	}
 
 	public String viewMinionsPage() {
+		setMinions(null);
 		return "viewMinions";
 	}
 
