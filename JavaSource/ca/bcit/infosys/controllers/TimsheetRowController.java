@@ -256,5 +256,7 @@ public class TimsheetRowController implements Serializable {
 	   Timesheet ts = getTs();
 	   ts.setSubmitted(true);
 	   timesheetManager.merge(ts);
+	   setTs(null);
+	   init();
    }
 }

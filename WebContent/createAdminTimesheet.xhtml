@@ -38,7 +38,7 @@
 			<h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 			<h:commandButton value="Reset" action="#{timesheetRow.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 			<h:commandButton value="Save" action="#{timesheetRow.saveAllTimesheetRows}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-			<h:commandButton value="Submit" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
+			<h:commandButton value="Submit" action="#{timesheetRow.submitTimesheet}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
 
      </b:panel>
      <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allTotalHours}" collapsible="false" class="test">
