@@ -30,6 +30,10 @@ public class ReportController implements Serializable{
 	
 	
 
+	private double budget;
+
+	private double cost;
+	
 	private String projName;
 	
 	private String customer;
