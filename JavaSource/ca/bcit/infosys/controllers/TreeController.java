@@ -55,7 +55,9 @@ public class TreeController implements Serializable {
 	}
 	
 	public String viewProjectTree(Project p) {
+		System.out.println("TC: 1");
 		WorkPackage top = wpmgr.getTopWorkPackage(p.getProjectID());
+		System.out.println("top = " + top.getWpName());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
 		//selectedWP = top;
 		return "TreeTest";
@@ -71,15 +73,19 @@ public class TreeController implements Serializable {
 	}
 	
 	public void showWorkPackageDetails() {
+		System.out.println("TC: 2");
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
+			System.out.println("TC: not null");
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
+			System.out.println("selectedWP = " + selectedWP.getWpName());
 		}
 		//EmployeeWP[] empsOnWP = empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID());
-		//setAssignedEmps(empsOnWP);
+		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 	}
 	
 	public String viewAssignedEmployeesForWP() {
 		if (selectedWP != null) {
+			System.out.println("TC: 4");
 			return "listEmpsForWorkPackage";
 		}
 		else {
@@ -88,6 +94,7 @@ public class TreeController implements Serializable {
 	}
 	
 	public EmployeeWP[] getAssignedEmployees() {
+		System.out.println("TC: 3");
 		return empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID());
 	}
 }

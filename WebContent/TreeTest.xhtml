@@ -39,6 +39,17 @@
     <br />
     <h:outputText value="Estimated Number of hours: #{treeController.selectedWP.estimatedHours}" />
   	<br />
-	<h:commandButton value="View Assigned Employees" action="#{treeController.viewAssignedEmployeesForWP()}" />
+	<h:dataTable value="#{treeController.assignedEmps}" var="ewp">
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			<h:outputText value="#{ewp.emp.employeeID}"/>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Name</f:facet>
+			<h:outputText value="#{ewp.emp.firstName} #{ewp.emp.lastName}"/>
+		</h:column>
+		
+	</h:dataTable>
 </h:form>
 </html>
