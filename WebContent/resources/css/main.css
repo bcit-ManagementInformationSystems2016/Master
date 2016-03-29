@@ -7,6 +7,15 @@
 html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li, ul, input {
 	font-family: 'Exo', sans-serif;
 }
+.pagination>.active>a, 
+.pagination>.active>span, 
+.pagination>.active>a:hover, 
+.pagination>.active>span:hover, 
+.pagination>.active>a:focus, 
+.pagination>.active>span:focus{
+	background-color: #07E883;
+    border-color: #07E883;
+}
 .white-space{
 	padding-top:1em;
 }
