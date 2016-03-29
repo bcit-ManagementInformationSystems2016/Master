@@ -45,10 +45,11 @@ public class TimesheetController  implements Serializable {
         this.em = em;
     }
     public Employee[] getAllEmployee() {
-        return employeeManager.getAll();
+        return employeeRows;
     }
     
     public String getFirstName() {
+        init();
        String firstName=null;      
        Employee[] rows = getAllEmployee();
         for (int i = 0; i < rows.length; i++) {
@@ -58,6 +59,7 @@ public class TimesheetController  implements Serializable {
         return firstName;
     }
     public String getLastName() {
+    	init();
         String lastName=null;      
         Employee[] rows = getAllEmployee();
          for (int i = 0; i < rows.length; i++) {
@@ -79,6 +81,9 @@ public class TimesheetController  implements Serializable {
     	if (getTs() == null) {
 	    	int empId = Login.currentID;
 	    	setTs(timesheetManager.getTimesheetEmpId(empId));
+    	}
+    	if (employeeRows == null) {
+    		employeeRows = employeeManager.getAll();
     	}
     }
     public Timesheet getTs() {
