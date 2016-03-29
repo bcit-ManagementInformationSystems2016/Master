@@ -25,6 +25,10 @@ public class ReportController implements Serializable{
 	private ProjectManager pjtmgr;
 	@Inject
 	private WorkPackageManager wpmgr;
+	@Inject
+	private ProjectController projctr;
+	
+	
 
 	private String projName;
 	
@@ -38,8 +42,24 @@ public class ReportController implements Serializable{
 	
 	private Date endDate;
 	
+	private WorkPackage[] wp;
 	
 	
+	
+	public WorkPackage[] getWp() {
+		
+		
+		return wp;
+	}
+
+
+
+	public void setWp(WorkPackage[] wp) {
+		this.wp = wp;
+	}
+
+
+
 	public ProjectManager getPjtmgr() {
 		return pjtmgr;
 	}
@@ -132,7 +152,15 @@ public class ReportController implements Serializable{
 		startDate = pr.getStartDate();
 		
 		
+		
+		
 		return "displayReport";
 	}
+	
+	public WorkPackage[] getAllWorkPackagesForProject() {
+		return projctr.getWorkPackagesForProject();
+	}
+	
+	
 
 }
