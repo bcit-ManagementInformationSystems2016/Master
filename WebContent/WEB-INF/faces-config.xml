@@ -15,6 +15,13 @@
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>
+	<from-view-id>/showAllProjects.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>displayReport</from-outcome>
+   		<to-view-id>/getReports.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
+<navigation-rule>
   	<from-view-id>/showWP.xhtml</from-view-id>
   	<navigation-case>
    		<from-outcome>showProjects</from-outcome>

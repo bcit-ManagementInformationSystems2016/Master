@@ -37,6 +37,10 @@
             	<h:column>
             		<h:commandLink value="View All WorkPackages" action="#{treeController.viewProjectTree(pro)}"/>
             	</h:column>
+            	
+            	<h:column>
+            		<h:commandLink value="View Report" action="#{report.showReport(pro)}"/>
+            	</h:column>
 				
 			</h:dataTable>
 			<h:commandButton value="Go To Home Page" action="adminLanding.xhtml"></h:commandButton>
