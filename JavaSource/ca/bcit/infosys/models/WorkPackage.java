@@ -1,6 +1,7 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -42,6 +43,15 @@ public class WorkPackage implements Serializable{
 	
 	@Column(name="Description")
 	private String description;
+	
+	@Column(name="EstimatedStart")
+	private Date estimatedStart;
+	
+	@Column(name="EstimatedEnd")
+	private Date estimatedEnd;
+	
+	@Column(name="ActualStart")
+	private Date actualStart;
 	
 	//bi-directional one-to-one association to Projects
 	@Id
@@ -108,5 +118,22 @@ public class WorkPackage implements Serializable{
 	public void setAssignedWorkPackages(List<EmployeeWP> assignedWorkPackages) {
 		this.assignedWorkPackages = assignedWorkPackages;
 	}
-
+	public Date getEstimatedStart() {
+		return estimatedStart;
+	}
+	public void setEstimatedStart(Date estimatedStart) {
+		this.estimatedStart = estimatedStart;
+	}
+	public Date getEstimatedEnd() {
+		return estimatedEnd;
+	}
+	public void setEstimatedEnd(Date estimatedEnd) {
+		this.estimatedEnd = estimatedEnd;
+	}
+	public Date getActualStart() {
+		return actualStart;
+	}
+	public void setActualStart(Date actualStart) {
+		this.actualStart = actualStart;
+	}
 } 

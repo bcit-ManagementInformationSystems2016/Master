@@ -95,7 +95,7 @@ public class WorkPackageManager {
 	}
 	
 	public List<WorkPackage> getProjectWorkPackagesForTree(int projectID) {
-		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID <> 'X'", WorkPackage.class);
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID <> '0'", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();
 		return wps;	
 	}
@@ -140,7 +140,7 @@ public class WorkPackageManager {
 	} */
 	
 	public WorkPackage getTopWorkPackage(int projectID) {
-		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = 'X'", WorkPackage.class);
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = '0'", WorkPackage.class);
 		WorkPackage top = query.getSingleResult();
 		return top;
 	}
