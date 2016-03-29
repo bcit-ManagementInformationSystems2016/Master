@@ -109,7 +109,8 @@ public class TimsheetRowController implements Serializable {
     	newTsr.setHoursThurs(tsr.getHoursThurs());
     	newTsr.setHoursTues(tsr.getHoursTues());
     	newTsr.setHoursWed(tsr.getHoursWed());
-    	newTsr.setTimesheet(getTs());
+    	newTsr.setWorkPackageID(tsr.getWorkPackageID());
+    	
         localRows.add(newTsr);
         newTsr.setStatus("new");
         databaseRows.add(newTsr);
@@ -156,7 +157,10 @@ public class TimsheetRowController implements Serializable {
                 break;
             }
             row.setStatus("old");
-        } 
+        }
+        localRows = null;
+        databaseRows = null;
+        init();
     }
 
     public ArrayList<TimesheetRow> getAllTimesheetRow() {
