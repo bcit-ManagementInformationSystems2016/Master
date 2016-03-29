@@ -143,7 +143,7 @@ public class TimsheetRowController implements Serializable {
             switch (row.getStatus()) {
             case "new":
                 System.out.println("call persist");
-                timesheetRowManager.persist(row);
+                timesheetRowManager.merge(row);
                 break;
             case "old":
                 break;
