@@ -96,9 +96,9 @@
   PATH="/editTimesheet.xhtml" SHAPE="928,593,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#editTimesheet.xhtml:0" NAME="item"
    PATH="/editTimesheet.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="updated::#archivedAdminTimesheet.xhtml"
-    NAME="output" PATH="/archivedAdminTimesheet.xhtml"
-    TARGET="rules:#archivedAdminTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="updated::#archivedTimesheet.xhtml"
+    NAME="output" PATH="/archivedTimesheet.xhtml"
+    TARGET="rules:#archivedTimesheet.xhtml" TITLE="updated" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#createNewWP.xhtml" PATH="/createNewWP.xhtml"
@@ -170,8 +170,6 @@
   SHAPE="256,721,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#projectsLanding.xhtml"
   PATH="/projectsLanding.xhtml" SHAPE="480,273,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#archivedAdminTimesheet.xhtml"
-  PATH="/archivedAdminTimesheet.xhtml" SHAPE="1136,609,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#getReports.xhtml" PATH="/getReports.xhtml"
   SHAPE="256,465,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

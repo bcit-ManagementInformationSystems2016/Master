@@ -99,6 +99,7 @@ public class TimesheetController  implements Serializable {
     }
     public String updateTs(Timesheet ts){
         timesheetManager.merge(ts);
+        System.out.println("Update timesheet");
         ts = null;
         return "updated";
     }

@@ -29,7 +29,8 @@
 										EmployeeName: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" /> 
 													  <h:outputText value="#{timesheet.lastName}" /><br/>
 										#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
-										#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}"/><br/><br/>
+										#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}">										
+										<f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText><br/><br/>
 									</h3>
                                 </b:panel>
                                 <b:panel look="info" title="Info" collapsible="false" class="test">
@@ -73,7 +74,9 @@
                                 <f:facet name="header">
                                     <h:outputText value="startDAte" />
                                 </f:facet>
-                                <h:outputText value="#{ts.startDate}"/>                               
+                                <h:outputText value="#{ts.startDate}">  
+									<f:convertDateTime pattern="yyyy-MM-dd" />
+								</h:outputText>                             
                             </h:column>                                                        
                             <h:column>
                            		<f:facet name="header">
