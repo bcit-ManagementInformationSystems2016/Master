@@ -7,7 +7,7 @@
     
 </h:head>
 <h:form>
-    <p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
+    <p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="horizontal"
                 selectionMode="single" selection="#{treeController.projectTree.singleSelectedTreeNode}">
         <p:treeNode expandedIcon="ui-icon ui-icon-folder-open"
                         collapsedIcon="ui-icon ui-icon-folder-collapsed">
@@ -38,6 +38,7 @@
     <h:outputText value="Work Package ID: #{treeController.selectedWP.wpID}" />
     <br />
     <h:outputText value="Estimated Number of hours: #{treeController.selectedWP.estimatedHours}" />
+  	<br />
   	<br />
 	<h:dataTable value="#{treeController.assignedEmps}" var="ewp">
 		<h:column>
