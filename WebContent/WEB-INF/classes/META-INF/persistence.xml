@@ -4,6 +4,7 @@
 	    <jta-data-source>java:jboss/datasources/bluehost</jta-data-source>
 	    <class>ca.bcit.infosys.models.Credential</class>
 	    <class>ca.bcit.infosys.models.Employee</class>
+	    <class>ca.bcit.infosys.models.Vacation</class>
 	      
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
