@@ -1,6 +1,9 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -93,11 +96,8 @@ public class TreeController implements Serializable {
 	}
 	
 	public String viewProjectTree(Project p) {
-		System.out.println("TC: 1");
 		setEditableProject(p);
-		System.out.println(editableProject.getProjectName());
 		WorkPackage top = wpmgr.getTopWorkPackage(p.getProjectID());
-		System.out.println("top = " + top.getWpName());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
 		return "TreeTest";
 	}
@@ -114,9 +114,7 @@ public class TreeController implements Serializable {
 	public void showWorkPackageDetails() {
 		System.out.println("TC: 2");
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
-			System.out.println("TC: not null");
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
-			System.out.println("selectedWP = " + selectedWP.getWpName());
 		}
 		//EmployeeWP[] empsOnWP = empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID());
 		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
@@ -138,6 +136,9 @@ public class TreeController implements Serializable {
 	}
 	
 	public String createNewWorkPackage() {
+		if (projectTree.getSingleSelectedTreeNode() != null ) {
+			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
+		}
 		setNewWPPID(selectedWP.getWpID());
 		int nextWP = 0;
 		nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), selectedWP.getWpID()) + 1;
@@ -150,7 +151,23 @@ public class TreeController implements Serializable {
 		return "createNewWP";
 	}
 	
+	public String saveNewWP(WorkPackage w) {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		Date date = new Date();
+		setProjectToAdd(editableProject);
+		getWpToAdd().setWpID(getNewWPID());
+		getWpToAdd().setParentWPID(newWPPID);
+		getWpToAdd().setWorkingProject(projectToAdd);
+		getWpToAdd().setActualStart(date);
+		getWpToAdd().setEstimatedEnd(date);
+		getWpToAdd().setEstimatedStart(date);
+		wpmgr.merge(w);
+		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
+		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
+		return "TreeTest";
+	}
+	
 	public String cancelCreateWP() {
-		return "treeTest";
+		return "TreeTest";
 	}
 }
