@@ -138,4 +138,7 @@ public class HRController implements Serializable {
 	public String hrLanding() {
 		return "hrLanding";
 	}
+	
+	
+	
 }
