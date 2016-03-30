@@ -9,6 +9,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.event.NodeSelectEvent;
+
 import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.EmployeeWP;
@@ -19,6 +21,8 @@ import ca.bcit.infosys.models.WorkPackage;
 @Named("treeController")
 @SessionScoped
 public class TreeController implements Serializable {
+	
+	public static final String BRANCH_PARENT_ID = "0";
 
 	private static final long serialVersionUID = 1L;
 	@Inject
@@ -112,11 +116,9 @@ public class TreeController implements Serializable {
 	}
 	
 	public void showWorkPackageDetails() {
-		System.out.println("TC: 2");
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		}
-		//EmployeeWP[] empsOnWP = empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID());
 		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 	}
 	
@@ -136,8 +138,13 @@ public class TreeController implements Serializable {
 	}
 	
 	public String createNewWorkPackage() {
+		if (wpToAdd != null) {
+			wpToAdd = new WorkPackage();
+		}
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
+		} else {
+			return "viewProjectDetails";
 		}
 		setNewWPPID(selectedWP.getWpID());
 		int nextWP = 0;
@@ -170,5 +177,17 @@ public class TreeController implements Serializable {
 	
 	public String cancelCreateWP() {
 		return "viewProjectDetails";
+	}
+	
+	public String createNewBranch() {
+		if (wpToAdd != null) {
+			wpToAdd = new WorkPackage();
+		}
+		setNewWPPID(BRANCH_PARENT_ID);
+		int nextWP = 0;
+		nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), BRANCH_PARENT_ID) + 1;
+		setNewWPID("" + nextWP);
+		System.out.println("editable project: " + editableProject.getProjectName());
+		return "createNewWP";
 	}
 }
