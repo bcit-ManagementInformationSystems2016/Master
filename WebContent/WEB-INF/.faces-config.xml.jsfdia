@@ -182,13 +182,4 @@
   PATH="/projectsLanding.xhtml" SHAPE="480,273,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#viewArchivedTimesheet.xhtml"
   PATH="/viewArchivedTimesheet.xhtml" SHAPE="480,817,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#viewProjectDetails.xhtml"
-  PATH="/viewProjectDetails.xhtml" SHAPE="32,1073,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#viewProjectDetails.xhtml:0" NAME="item"
-   PATH="/viewProjectDetails.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="test::#viewProjectDetails.xhtml"
-    NAME="output" PATH="/viewProjectDetails.xhtml"
-    TARGET="rules:#viewProjectDetails.xhtml" TITLE="test" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
 </PROCESS>

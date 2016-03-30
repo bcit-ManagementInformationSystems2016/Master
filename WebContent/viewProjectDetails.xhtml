@@ -31,9 +31,9 @@
     <br />
     <h:commandButton value="Go Back" action="#{treeController.leaveTreePage()}"></h:commandButton>
     <br />
-    <h:commandButton value="Create Child Work Package" action="#{treeController.createNewWorkPackage()}"></h:commandButton>
+    <h:commandButton value="Create Child Work Package" action="#{treeController.createNewWorkPackage()}" rendered="#{!projectController.showAllPros}"></h:commandButton>
     <br />
-    <h:commandButton value="Create New Branch" action="#{treeController.createNewBranch()}"></h:commandButton>
+    <h:commandButton value="Create New Branch" action="#{treeController.createNewBranch()}" rendered="#{!projectController.showAllPros}"></h:commandButton>
     <br />
     <br />
     <br />
