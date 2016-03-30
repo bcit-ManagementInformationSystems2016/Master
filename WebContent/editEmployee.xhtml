@@ -13,7 +13,7 @@
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="3,9">
-					<b:panel look="info" title="Enter Employee Details"
+					<b:panel look="info" title="Update Employee Information"
 						collapsible="false">
 						<b:inputText value="#{hrController.emp.firstName}">
 							<f:facet name="prepend">
@@ -106,7 +106,7 @@
 								<h:outputText value="Password" />
 							</f:facet>
 						</b:inputText>
-						<h:commandButton value="Back" action="humanResources"
+						<h:commandButton value="Back" action="#{hrController.hrLanding()}"
 							styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 						<h:commandButton value="Save Changes"
 							action="#{hrController.updateEmp(hrController.emp)}"

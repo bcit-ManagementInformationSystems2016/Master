@@ -141,7 +141,7 @@
   	</navigation-case>
 </navigation-rule>
 <navigation-rule>
-	<from-view-id>/adminLanding.xhtml</from-view-id>
+	<from-view-id>/*</from-view-id>
   	<navigation-case>
    		<from-outcome>hrLanding</from-outcome>
    		<to-view-id>/humanResources.xhtml</to-view-id>

@@ -152,12 +152,6 @@
     NAME="output" PATH="/timesheetAdmin.xhtml"
     TARGET="rules:#timesheetAdmin.xhtml" TITLE="timesheetLanding" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
-  <PROCESS-ITEM ID="rules:#adminLanding.xhtml:2" NAME="item2"
-   PATH="/adminLanding.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="hrLanding::#humanResources.xhtml"
-    NAME="output" PATH="/humanResources.xhtml"
-    TARGET="rules:#humanResources.xhtml" TITLE="hrLanding" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#timesheetAdmin.xhtml"
   PATH="/timesheetAdmin.xhtml" SHAPE="480,449,0,0" model-entity="JSFProcessGroup">
@@ -182,4 +176,11 @@
   PATH="/projectsLanding.xhtml" SHAPE="480,273,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#viewArchivedTimesheet.xhtml"
   PATH="/viewArchivedTimesheet.xhtml" SHAPE="480,817,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#*:2" PATH="/*" SHAPE="240,689,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:2" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="hrLanding::#humanResources.xhtml"
+    NAME="output" PATH="/humanResources.xhtml"
+    TARGET="rules:#humanResources.xhtml" TITLE="hrLanding" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

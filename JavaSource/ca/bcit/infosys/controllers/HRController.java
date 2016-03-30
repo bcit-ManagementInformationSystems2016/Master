@@ -166,6 +166,8 @@ public class HRController implements Serializable {
 	}
 
 	public String hrLanding() {
+		emp = new Employee();
+		crd = new Credential();
 		return "hrLanding";
 	}
 
