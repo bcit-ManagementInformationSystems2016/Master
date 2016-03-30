@@ -64,6 +64,14 @@
     PATH="/editTimesheet.xhtml" TARGET="rules:#editTimesheet.xhtml"
     TITLE="edit" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#archivedTimesheet.xhtml:1" NAME="item1"
+   PATH="/archivedTimesheet.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="viewArchivedTimesheet::#viewArchivedTimesheet.xhtml"
+    NAME="output" PATH="/viewArchivedTimesheet.xhtml"
+    TARGET="rules:#viewArchivedTimesheet.xhtml"
+    TITLE="viewArchivedTimesheet" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#createAdminTimesheet.xhtml"
   PATH="/createAdminTimesheet.xhtml" SHAPE="720,465,0,0" model-entity="JSFProcessGroup">
@@ -172,4 +180,6 @@
   PATH="/projectsLanding.xhtml" SHAPE="480,273,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#getReports.xhtml" PATH="/getReports.xhtml"
   SHAPE="256,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viewArchivedTimesheet.xhtml"
+  PATH="/viewArchivedTimesheet.xhtml" SHAPE="480,817,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

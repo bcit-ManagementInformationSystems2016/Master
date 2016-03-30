@@ -26,6 +26,8 @@ public class TimsheetRowController implements Serializable {
     private Timesheet ts;
     private static ArrayList<TimesheetRow> localRows;
     private static ArrayList<TimesheetRow> databaseRows;
+    private static TimesheetRow[] archivedRows;
+    private int archivedTimesheetId;
     private static int timesheetRowId = 13123;
     
     public TimesheetRow getTsr() {
@@ -70,11 +72,23 @@ public class TimsheetRowController implements Serializable {
             }
         }
     }
+    
+    public String gotoArchivedTimesheet(Timesheet ts) {
+        archivedTimesheetId = ts.getTimesheetID();
+        archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
+        return "viewArchivedTimesheet";
+    }
 
     public void setTsr(TimesheetRow tsr) {
         this.tsr = tsr;
     }
 
+    public TimesheetRow[] getArchivedTimesheetRows() {
+        if (archivedRows == null) {
+            archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
+        }
+        return archivedRows;
+    }
    
     public String updateTsr(TimesheetRow tsr){
         for (int i = 0; i < localRows.size(); i++) {

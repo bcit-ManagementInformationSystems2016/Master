@@ -118,7 +118,8 @@ public class TimesheetController  implements Serializable {
         return null;
     }
     public Timesheet[] getAllTimesheet() {
-        return timesheetManager.getAll();
+        int empId = Login.currentID;
+        return timesheetManager.getArchivedTimesheetsWithEmpId(empId);
     }
 
    

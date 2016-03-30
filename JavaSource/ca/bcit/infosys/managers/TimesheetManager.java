@@ -118,5 +118,15 @@ public class TimesheetManager {
 	        }
 	        return catarray;
 	    }
+	    
+	    public Timesheet[] getArchivedTimesheetsWithEmpId(int empId) {
+            TypedQuery<Timesheet> query = em.createQuery("select c from Timesheet c where c.employeeID = :empId and c.approved = true and c.submitted = true", Timesheet.class);
+            java.util.List<Timesheet> categories = query.setParameter("empId", empId).getResultList();
+            Timesheet[] catarray = new Timesheet[categories.size()];
+            for (int i=0; i < catarray.length; i++) {
+                catarray[i] = categories.get(i);
+            }
+            return catarray;
+        }
 
 }

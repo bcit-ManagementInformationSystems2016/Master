@@ -161,6 +161,13 @@
    		<to-view-id>/archivedTimesheet.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
+<navigation-rule>
+	<from-view-id>/archivedTimesheet.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>viewArchivedTimesheet</from-outcome>
+   		<to-view-id>/viewArchivedTimesheet.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
 <application>
 	<resource-bundle>
    		<base-name>META-INF.messages</base-name>
