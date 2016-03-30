@@ -1,7 +1,7 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -121,19 +121,19 @@ public class WorkPackage implements Serializable{
 	public Date getEstimatedStart() {
 		return estimatedStart;
 	}
-	public void setEstimatedStart(Date estimatedStart) {
+	public void setEstimatedStart(java.sql.Date estimatedStart) {
 		this.estimatedStart = estimatedStart;
 	}
 	public Date getEstimatedEnd() {
 		return estimatedEnd;
 	}
-	public void setEstimatedEnd(Date estimatedEnd) {
+	public void setEstimatedEnd(java.sql.Date estimatedEnd) {
 		this.estimatedEnd = estimatedEnd;
 	}
 	public Date getActualStart() {
 		return actualStart;
 	}
-	public void setActualStart(Date actualStart) {
+	public void setActualStart(java.sql.Date actualStart) {
 		this.actualStart = actualStart;
 	}
 } 

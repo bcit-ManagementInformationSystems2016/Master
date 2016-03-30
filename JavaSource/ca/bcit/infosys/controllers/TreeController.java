@@ -154,13 +154,14 @@ public class TreeController implements Serializable {
 	public String saveNewWP(WorkPackage w) {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		Date date = new Date();
+		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		setProjectToAdd(editableProject);
 		getWpToAdd().setWpID(getNewWPID());
 		getWpToAdd().setParentWPID(newWPPID);
 		getWpToAdd().setWorkingProject(projectToAdd);
-		getWpToAdd().setActualStart(date);
-		getWpToAdd().setEstimatedEnd(date);
-		getWpToAdd().setEstimatedStart(date);
+		getWpToAdd().setActualStart(sqlDate);
+		getWpToAdd().setEstimatedEnd(sqlDate);
+		getWpToAdd().setEstimatedStart(sqlDate);
 		wpmgr.merge(w);
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
