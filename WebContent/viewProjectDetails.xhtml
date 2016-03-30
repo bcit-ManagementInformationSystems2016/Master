@@ -35,6 +35,8 @@
     <br />
     <h:commandButton value="Create New Branch" action="#{treeController.createNewBranch()}" rendered="#{!projectController.showAllPros}"></h:commandButton>
     <br />
+    <h:commandButton value="Assign Employee to Work Package" action="#{treeController.assignEmpToWP()}" rendered="#{!projectController.showAllPros}"></h:commandButton>
+    <br />
     <br />
     <br />
     <h:outputText value="Work Package Name: #{treeController.selectedWP.wpName}" />

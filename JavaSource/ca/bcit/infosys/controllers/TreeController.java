@@ -4,17 +4,23 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.primefaces.event.NodeSelectEvent;
 
+import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.EmployeeWPManager;
+import ca.bcit.infosys.managers.ProjectEmployeesManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.EmployeeWP;
 import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.ProjectEmployees;
 import ca.bcit.infosys.models.TreeManagedBean;
 import ca.bcit.infosys.models.WorkPackage;
 
@@ -29,6 +35,10 @@ public class TreeController implements Serializable {
 	private WorkPackageManager wpmgr;
 	@Inject
 	private EmployeeWPManager empwpmgr;
+	@Inject
+	private ProjectEmployeesManager pjtEmpMgr;
+	@Inject
+	private EmployeeManager empmgr;
 	
 	// variable used to display tree
 	private static TreeManagedBean projectTree;
@@ -41,6 +51,10 @@ public class TreeController implements Serializable {
 	private Project projectToAdd = new Project();
 	private String newWPID;
 	private String newWPPID;
+	
+	// variables used for assigning Employees to Workpackages
+	private static List<SelectItem> availableEmployees;
+	private String selectedEmployee;
 	
 	// Getters and Setters
 	public void setProjectTree(TreeManagedBean projectTree) {
@@ -90,6 +104,18 @@ public class TreeController implements Serializable {
 	}
 	public void setProjectToAdd(Project projectToAdd) {
 		this.projectToAdd = projectToAdd;
+	}	
+	public static List<SelectItem> getAvailableEmployees() {
+		return availableEmployees;
+	}
+	public static void setAvailableEmployees(List<SelectItem> availableEmployees) {
+		TreeController.availableEmployees = availableEmployees;
+	}
+	public String getSelectedEmployee() {
+		return selectedEmployee;
+	}
+	public void setSelectedEmployee(String selectedEmployee) {
+		this.selectedEmployee = selectedEmployee;
 	}
 	
 	
@@ -189,5 +215,42 @@ public class TreeController implements Serializable {
 		setNewWPID("" + nextWP);
 		System.out.println("editable project: " + editableProject.getProjectName());
 		return "createNewWP";
+	}
+	
+	public String assignEmpToWP() {
+		if (projectTree.getSingleSelectedTreeNode() != null ) {
+			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
+		} else {
+			return "viewProjectDetails";
+		}
+		return "assignEmpToWP";
+	}
+	
+	public List<SelectItem> getDropdownForWP() {
+		if (selectedWP == null) {
+			System.out.println("TreeController - There is no selected WP");
+		}
+		if (availableEmployees == null) {
+			setAvailableEmployees(pjtEmpMgr.getAvailableEmployees(editableProject.getProjectID()));
+		}
+		return availableEmployees;
+	}
+	
+	public String assignEmployee() {
+		int n = new Integer(selectedEmployee);
+		EmployeeWP empWP = new EmployeeWP();
+		Employee e = new Employee();
+		e = empmgr.getTimesheetValidator(n);
+		empWP.setEmp(e);
+		empWP.setWp(selectedWP);
+		empWP.setTotalHours(0.0);
+		empwpmgr.merge(empWP);
+		setAvailableEmployees(null);
+		return "viewProjectDetails";
+	}
+	
+	public String cancelAssignment() {
+		setAvailableEmployees(null);
+		return "viewProjectDetails";
 	}
 }

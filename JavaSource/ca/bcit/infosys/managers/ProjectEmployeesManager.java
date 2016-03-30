@@ -103,4 +103,20 @@ public class ProjectEmployeesManager {
         System.out.println("available projects size: " + availableProjects.size());
         return availableProjects;
     }
+    
+    public List<SelectItem> getAvailableEmployees(int projectID) {
+    	System.out.println("Start of method with ID of " + projectID);
+    	TypedQuery<ProjectEmployees> proQuery = em.createQuery("select c from ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class); 
+        List<ProjectEmployees> proEmps = proQuery.getResultList();
+        System.out.println("projects size = " + proEmps.size());
+        List<SelectItem> availableEmployees = new ArrayList<SelectItem>();
+        for (int i=0; i < proEmps.size(); i++) {
+        	TypedQuery<Employee> empQuery = em.createQuery("select c from Employee c WHERE EmployeeID = " + proEmps.get(i).getEmp().getEmployeeID() + "", Employee.class);
+        	Employee e = empQuery.getSingleResult();
+        	availableEmployees.add(new SelectItem(e, e.getFirstName() + " " + e.getLastName()));
+        	System.out.println("ADDED");
+        }
+        //System.out.println("available projects size: " + availableProjects.size());
+        return availableEmployees;
+    }
 }
