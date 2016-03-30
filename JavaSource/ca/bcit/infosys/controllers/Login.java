@@ -93,7 +93,7 @@ public class Login implements Serializable {
 						+ getCurrentID();
 				List<Object[]> roleList = em.createQuery(jpaQuery3).getResultList();
 				for (Object[] object : roleList) {
-					if ((int) object[1] == 1) {
+					if (((int) object[1] == 1) || (int) object[1] == 3 || (int) object[1] == 5) {
 						setHr(true);
 					}
 				}

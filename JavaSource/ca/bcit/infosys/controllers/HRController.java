@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
@@ -12,9 +13,9 @@ import javax.persistence.TypedQuery;
 import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.managers.CredentialManager;
 import ca.bcit.infosys.managers.EmployeeManager;
+import ca.bcit.infosys.managers.PayLevelManager;
 import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
-import ca.bcit.infosys.models.Project;
 
 @Named("hrController")
 @SessionScoped
@@ -27,6 +28,9 @@ public class HRController implements Serializable {
 	@Inject
 	private CredentialManager crdmgr;
 
+	@Inject
+	private PayLevelManager plmgr;
+
 	// variable to view specific employee data
 	private Employee viewableEmp;
 
@@ -36,6 +40,8 @@ public class HRController implements Serializable {
 
 	// variables used for caching
 	private static Employee[] minions;
+	private static List<SelectItem> employeeList;
+	private static List<SelectItem> payLevelList;
 
 	// GETTERS AND SETTERS
 	public Credential getCrd() {
@@ -70,6 +76,28 @@ public class HRController implements Serializable {
 		return empmgr.getAllMinions(Login.currentID);
 	}
 
+	public List<SelectItem> getPayLevelList() {
+		if (payLevelList == null) {
+			setPayLevelList(plmgr.getPayLevelIDs());
+		}
+		return payLevelList;
+	}
+
+	public static void setPayLevelList(List<SelectItem> roleList) {
+		HRController.payLevelList = roleList;
+	}
+
+	public List<SelectItem> getEmployeeList() {
+		if (employeeList == null) {
+			setEmployeeList(empmgr.getEmployeeIDs());
+		}
+		return employeeList;
+	}
+
+	public static void setEmployeeList(List<SelectItem> employeeList) {
+		HRController.employeeList = employeeList;
+	}
+
 	// Other Methods
 	public String editEmp(Employee e) {
 		setEmp(e);
@@ -90,6 +118,7 @@ public class HRController implements Serializable {
 		crd.setEmployeeID(e.getEmployeeID());
 		crdmgr.merge(crd);
 		AccountController.e = empmgr.getAll();
+		setEmployeeList(empmgr.getEmployeeIDs());
 		emp = new Employee();
 		crd = new Credential();
 		return "updated";
@@ -100,6 +129,7 @@ public class HRController implements Serializable {
 		crd.setEmployeeID(e.getEmployeeID());
 		crdmgr.merge(crd);
 		AccountController.e = empmgr.getAll();
+		setEmployeeList(empmgr.getEmployeeIDs());
 		emp = new Employee();
 		crd = new Credential();
 		return "created";
@@ -138,7 +168,5 @@ public class HRController implements Serializable {
 	public String hrLanding() {
 		return "hrLanding";
 	}
-	
-	
-	
+
 }
