@@ -92,18 +92,18 @@ public class TreeController implements Serializable {
 	// Other Functions
 	public String testFunction() {
 		setProjectTree(new TreeManagedBean());
-		return "TreeTest";
+		return "viewProjectDetails";
 	}
 	
 	public String viewProjectTree(Project p) {
 		setEditableProject(p);
 		WorkPackage top = wpmgr.getTopWorkPackage(p.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
-		return "TreeTest";
+		return "viewProjectDetails";
 	}
 	
 	public String goBackToProject() {
-		return "TreeTest";
+		return "viewProjectDetails";
 	}
 	
 	public String leaveTreePage() {
@@ -126,7 +126,7 @@ public class TreeController implements Serializable {
 			return "listEmpsForWorkPackage";
 		}
 		else {
-			return "TreeTest";
+			return "viewProjectDetails";
 		}
 	}
 	
@@ -164,10 +164,10 @@ public class TreeController implements Serializable {
 		wpmgr.merge(w);
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
-		return "TreeTest";
+		return "viewProjectDetails";
 	}
 	
 	public String cancelCreateWP() {
-		return "TreeTest";
+		return "viewProjectDetails";
 	}
 }
