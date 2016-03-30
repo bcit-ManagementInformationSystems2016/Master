@@ -27,6 +27,13 @@ public class TreeController implements Serializable {
 	private static TreeManagedBean projectTree;
 	private static WorkPackage selectedWP;
 	private EmployeeWP[] assignedEmps;
+	private Project editableProject;
+	
+	// variables used for creating new Work Package
+	private WorkPackage wpToAdd = new WorkPackage();
+	private Project projectToAdd = new Project();
+	private String newWPID;
+	private String newWPPID;
 	
 	// Getters and Setters
 	public void setProjectTree(TreeManagedBean projectTree) {
@@ -47,6 +54,37 @@ public class TreeController implements Serializable {
 	public EmployeeWP[] getAssignedEmps() {
 		return assignedEmps;
 	}
+	public Project getEditableProject() {
+		return editableProject;
+	}
+	public void setEditableProject(Project editableProject) {
+		this.editableProject = editableProject;
+	}
+	public String getNewWPID() {
+		return newWPID;
+	}
+	public void setNewWPID(String newWPID) {
+		this.newWPID = newWPID;
+	}
+	public String getNewWPPID() {
+		return newWPPID;
+	}
+	public void setNewWPPID(String newWPPID) {
+		this.newWPPID = newWPPID;
+	}
+	public void setWpToAdd(WorkPackage wpToAdd) {
+		this.wpToAdd = wpToAdd;
+	}
+	public WorkPackage getWpToAdd() {
+		return wpToAdd;
+	}
+	public Project getProjectToAdd() {
+		return projectToAdd;
+	}
+	public void setProjectToAdd(Project projectToAdd) {
+		this.projectToAdd = projectToAdd;
+	}
+	
 	
 	// Other Functions
 	public String testFunction() {
@@ -56,10 +94,11 @@ public class TreeController implements Serializable {
 	
 	public String viewProjectTree(Project p) {
 		System.out.println("TC: 1");
+		setEditableProject(p);
+		System.out.println(editableProject.getProjectName());
 		WorkPackage top = wpmgr.getTopWorkPackage(p.getProjectID());
 		System.out.println("top = " + top.getWpName());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
-		//selectedWP = top;
 		return "TreeTest";
 	}
 	
@@ -96,5 +135,22 @@ public class TreeController implements Serializable {
 	public EmployeeWP[] getAssignedEmployees() {
 		System.out.println("TC: 3");
 		return empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID());
+	}
+	
+	public String createNewWorkPackage() {
+		setNewWPPID(selectedWP.getWpID());
+		int nextWP = 0;
+		nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), selectedWP.getWpID()) + 1;
+		if (selectedWP.getWpID().equals('0')) {
+			setNewWPID("" + nextWP);
+		} else {
+			setNewWPID(selectedWP.getWpID() + "." + nextWP);
+		}
+		System.out.println("editable project: " + editableProject.getProjectName());
+		return "createNewWP";
+	}
+	
+	public String cancelCreateWP() {
+		return "treeTest";
 	}
 }

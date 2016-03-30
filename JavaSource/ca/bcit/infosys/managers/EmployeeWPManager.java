@@ -60,20 +60,14 @@ public class EmployeeWPManager {
     }
     
     public EmployeeWP[] findAssignedEmployees(int projectID, String wpID) {
-    	System.out.println("EWPM: 1");
         TypedQuery<EmployeeWP> query = em.createQuery("select c from EmployeeWP c WHERE ProjectID = " + projectID +  
         		" AND WorkPackageID = '" + wpID + "'", EmployeeWP.class);
-        System.out.println("query has been made");
         java.util.List<EmployeeWP> categories = query.getResultList();
-        System.out.println("got results of size " + categories.size());
         EmployeeWP[] catarray = new EmployeeWP[categories.size()];
         System.out.println("EWPM: 2");
         for (int i=0; i < catarray.length; i++) {
             catarray[i] = categories.get(i);
-            System.out.println("HIT");
-            System.out.println("This is being added in place " + i + ": " + catarray[i].getEmp().getFirstName() + " + " + catarray[i].getWp().getWpName());
         }
-        System.out.println("returning array size " + catarray.length);
         return catarray;
     }
  
