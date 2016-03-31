@@ -72,6 +72,14 @@ public class TimesheetValidatorController implements Serializable {
 		return unapprovedTimesheets;
 	}
 	
+	public String validateTimesheet(Timesheet ts) {
+		ts.setApproved(true);
+		tsmgr.merge(ts);
+		setUnapprovedTimesheets(null);
+		setValidatees(null);
+		return "getValidating";
+	}
+	
 	public String viewValidatees() {
 		setCurrentEmployee(empmgr.find(Login.currentID));
 		return "getValidating";

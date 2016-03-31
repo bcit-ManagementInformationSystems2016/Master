@@ -39,6 +39,14 @@
 		<br/>
 		<b:panel look="info" title="Timesheets needing to be approved" collapsible="false">
      		<b:dataTable value="#{timesheetValidatorController.getYouUnapprovedTimesheets()}" var="ts">
+     		<h:column>
+				<f:facet name="header">
+		          <h:outputText value="Approve Timesheet" style="font-weight: bold" />						      
+		        </f:facet>
+		        <h:form>
+					<h:commandLink value="Approve" action="#{timesheetValidatorController.validateTimesheet(ts)}" />
+				</h:form>
+			</h:column>    
 			<h:column>
 				<f:facet name="header">Timesheet ID</f:facet>
 				<h:outputText value="#{ts.timesheetID}" />
