@@ -15,14 +15,15 @@
 	<h:form>
 	<b:panelGrid colSpans="3,9">
 	<b:panel look="info" title="Edit TimesheetRow Details" collapsible="false">	    
-        <b:inputText value="#{timesheetRow.tsr.workPackageID}">
-            <f:facet name="prepend">
+        <b:selectOneMenu value="#{timesheetRow.tsr.workPackageID}">
+			<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
+			<f:facet name="prepend">
                 <b:iconAwesome name="pencil-square-o" />
             </f:facet>
             <f:facet name="append">
                 <h:outputText value="Work Package" />
             </f:facet>
-        </b:inputText>        
+		</b:selectOneMenu>        
         <b:inputText value="#{timesheetRow.tsr.hoursMon}">
         	<f:facet name="prepend">
                 <b:iconAwesome name="pencil-square-o" />

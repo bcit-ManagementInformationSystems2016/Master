@@ -41,7 +41,12 @@
 		<br />
 		<h:outputText value="workPackageID" />
 		<br />
-		<h:inputText value="#{timesheetRow.tsr.workPackageID}"></h:inputText>
+		<h:selectOneMenu value="#{timesheetRow.tsr.workPackageID}">
+			<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
+			<f:facet name="append">
+				<h:outputText value="WorkPackage ID" />
+			</f:facet>
+		</h:selectOneMenu>
 		<br />
 		<h:commandButton value="Save" action="#{timesheetRow.createTsr(timesheetRow.tsr)}"></h:commandButton>
 	</h:form>

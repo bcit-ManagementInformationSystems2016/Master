@@ -3,13 +3,16 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
+import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
 
@@ -21,6 +24,8 @@ public class TimsheetRowController implements Serializable {
     @Inject private TimesheetManager timesheetManager;
     /** Manager from Product objects.*/
     @Inject private TimesheetRowManager timesheetRowManager;
+    /** Manager from Product objects.*/
+    @Inject private WorkPackageManager workPackageManager;
     
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts;
@@ -28,6 +33,7 @@ public class TimsheetRowController implements Serializable {
     private static ArrayList<TimesheetRow> databaseRows;
     private static TimesheetRow[] archivedRows;
     private int archivedTimesheetId;
+    private static List<SelectItem> workPackageList;
     private static int timesheetRowId = 13123;
     
     public TimesheetRow getTsr() {
@@ -210,6 +216,14 @@ public class TimsheetRowController implements Serializable {
             }
         }
     }
+    
+    public List<SelectItem> getWorkPackageList() {
+		if (workPackageList == null) {
+			int empId = Login.currentID;
+			workPackageList = workPackageManager.getEmployeeWorkPackages(empId);
+		}
+		return workPackageList;
+	}
     
     public boolean isSubmitted() {
     	init();

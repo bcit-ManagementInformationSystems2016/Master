@@ -1,9 +1,11 @@
 package ca.bcit.infosys.managers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -143,6 +145,16 @@ public class WorkPackageManager {
 		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = '0'", WorkPackage.class);
 		WorkPackage top = query.getSingleResult();
 		return top;
+	}
+	
+	public List<SelectItem> getEmployeeWorkPackages(int employeeID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c", WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		List<SelectItem> selectableWps = new ArrayList<SelectItem>();
+        for (int i=0; i < wps.size(); i++) {
+        	selectableWps.add(new SelectItem(wps.get(i).getWpID()));
+        }
+        return selectableWps;
 	}
 
 }
