@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
 @ConversationScoped
 public class Login implements Serializable {
 	@PersistenceContext(unitName = "BluehostTesty")
-	EntityManager em;
+	static EntityManager em;
 	public static String username;
 	private String password;
 	public static int currentID;
@@ -33,12 +33,12 @@ public class Login implements Serializable {
 		this.hr = hr;
 	}
 
-	public int getCurrentID() {
+	public static int getCurrentID() {
 		return currentID;
 	}
 
-	public void setCurrentID(int currentID) {
-		this.currentID = currentID;
+	public static void setCurrentID(int currentID) {
+		Login.currentID = currentID;
 	}
 
 	public String getUsername() {
@@ -58,55 +58,54 @@ public class Login implements Serializable {
 	}
 
 	static Map<String, Integer> map2 = new HashMap<String, Integer>();
+	static Map<String, String> map = new HashMap<String, String>();
+	static Map<Integer, Boolean> activeMap = new HashMap<Integer, Boolean>();
+	static List<Object[]> roleList;
 
-	public String validate() {
+	public static void setMaps() {
+		System.out.println("set maps");
 		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";
+		String eQuery = "select e.employeeID, e.isActive from Employee e";
+
 		List<Object[]> resultList = em.createQuery(jpaQuery).getResultList();
-		// contains username and password
-		Map<String, String> map = new HashMap<String, String>();
+		List<Object[]> resultList2 = em.createQuery(eQuery).getResultList();
+
 		for (Object[] object : resultList) {
 			map.put((String) object[0], (String) object[1]);
 		}
-		// contains username and employeeID
 
 		for (Object[] object : resultList) {
 			map2.put((String) object[0], (Integer) object[2]);
 		}
-		/*
-		 * System.out.println("Print hashmap to test"); for (Map.Entry<String,
-		 * String> entry : map.entrySet()) { System.out.println(entry.getKey() +
-		 * " : " + entry.getValue()); }
-		 */
-		System.out.println("Entered Username: " + username);
-		if (map.containsKey(username)) {
-			System.out.println("found user");
-			String value = map.get(username);
-			if (!value.equals(password)) {
-				System.out.println("Incorrect Password");
-			} else {
-				conversation.begin();
-				System.out.println("conversation begin");
-				setCurrentID(map2.get(username));
-				System.out.println("Current ID: " + currentID);
-				System.out.println("Successful Login");
-				String jpaQuery3 = "select e.employeeID, e.roleID from Employee e where e.employeeID ="
-						+ getCurrentID();
-				List<Object[]> roleList = em.createQuery(jpaQuery3).getResultList();
-				for (Object[] object : roleList) {
-					if (((int) object[1] == 1) || (int) object[1] == 3 || (int) object[1] == 5) {
-						setHr(true);
-					}
-				}
 
-				return "adminLanding";
+		for (Object[] object : resultList2) {
+			activeMap.put((Integer) object[0], (Boolean) object[1]);
+		}
+
+		System.out.println("Print hashmap to test");
+		for (Map.Entry<String, String> entry : map.entrySet()) {
+			System.out.println(entry.getKey() + " : " + entry.getValue());
+		}
+		String jpaQuery3 = "select e.employeeID, e.roleID from Employee e where e.employeeID =" + getCurrentID();
+		roleList = em.createQuery(jpaQuery3).getResultList();
+	}
+
+	public String validate() {
+		conversation.begin();
+		String jpaQuery3 = "select e.employeeID, e.roleID from Employee e where e.employeeID =" + getCurrentID();
+		List<Object[]> roleList = em.createQuery(jpaQuery3).getResultList();
+		for (Object[] object : roleList) {
+			if (((int) object[1] == 1) || (int) object[1] == 3 || (int) object[1] == 5) {
+				setHr(true);
 			}
 		}
-		return "invalid";
+		return "adminLanding";
 	}
 
 	public String logout() {
 		System.out.println("logout");
 		conversation.end();
+
 		return "logout";
 	}
 

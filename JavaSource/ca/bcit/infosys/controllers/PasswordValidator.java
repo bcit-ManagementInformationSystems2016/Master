@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -17,29 +16,26 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
-import ca.bcit.infosys.models.Credential;
 
 /**
  * @author Brendan Voon
  *
  */
-@FacesValidator("hrValidator")
+@FacesValidator("passwordValidator")
 @Stateless
-public class HRValidator implements Validator {
+public class PasswordValidator implements Validator {
 
 	@Override
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
-		String username = value.toString();
 		Login.setMaps();
-		if (Login.map2.containsKey(username)) {
-			int ID = Login.map2.get(username);
-			if (ID != HRController.emp.employeeID) {
-				FacesMessage msg = new FacesMessage("Username validation failed", "Username already exists");
-				msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-				throw new ValidatorException(msg);
-			}
+		String password = value.toString();
+		System.out.println("password: " + password);
+		if (!password.toString().equals(LoginValidator.getPassword())){
+			FacesMessage msg = new FacesMessage("Password validation failed", "Incorrect Password");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
 		}
+
 	}
+
 }

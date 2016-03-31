@@ -81,8 +81,8 @@
 							</f:facet>
 						</b:selectOneMenu>
 						<b:selectOneMenu value="#{hrController.emp.isActive}">
-							<f:selectItem itemValue="true" itemLabel="True" />
-							<f:selectItem itemValue="false" itemLabel="False" />
+							<f:selectItem itemValue="#{true}" itemLabel="True" />
+							<f:selectItem itemValue="#{false}" itemLabel="False" />
 							<!-- <f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet> -->
@@ -90,7 +90,10 @@
 								<h:outputText value="Is Active" />
 							</f:facet>
 						</b:selectOneMenu>
-						<b:inputText value="#{hrController.crd.username}">
+						<h:message for="username" style="color:red" />
+						<b:inputText value="#{hrController.crd.username}" required="true"
+							id="username" requiredMessage="Username is required">
+							<f:validator validatorId="hrValidator" />
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -98,7 +101,9 @@
 								<h:outputText value="Username" />
 							</f:facet>
 						</b:inputText>
-						<b:inputText value="#{hrController.crd.password}">
+						<h:message for="password" style="color:red" />
+						<b:inputText value="#{hrController.crd.password}" required="true"
+							id="password" requiredMessage="Password is required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>

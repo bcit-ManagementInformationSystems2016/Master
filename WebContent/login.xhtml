@@ -29,13 +29,17 @@
 							<div class="control-group">
 								<h:inputText id="username" value="#{login.username}"
 									class="login-field" required="true"
-									requiredMessage="Username is required" p:placeholder="Username" />
-								<h:message for="username" style="color:red"/>
+									requiredMessage="Username is required" p:placeholder="Username">
+									<f:validator validatorId="loginValidator" />
+								</h:inputText>
+								<h:message for="username" style="color:red" />
 							</div>
 							<div class="control-group">
 								<h:inputSecret id="password" value="#{login.password}"
 									class="login-field" required="true"
-									requiredMessage="Password is required" p:placeholder="Password" />
+									requiredMessage="Password is required" p:placeholder="Password">
+									<f:validator validatorId="passwordValidator" />
+								</h:inputSecret>
 								<h:message for="password" style="color:red" />
 							</div>
 							<h:commandButton action="#{login.validate}" value="Login"

@@ -1,6 +1,7 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -42,6 +43,7 @@ public class HRController implements Serializable {
 	private static Employee[] minions;
 	private static List<SelectItem> employeeList;
 	private static List<SelectItem> payLevelList;
+	private static List<SelectItem> roleList;
 
 	// GETTERS AND SETTERS
 	public Credential getCrd() {
@@ -92,6 +94,14 @@ public class HRController implements Serializable {
 			setEmployeeList(empmgr.getEmployeeIDs());
 		}
 		return employeeList;
+	}
+
+	public static List<SelectItem> getRoleList() {
+		return roleList;
+	}
+
+	public static void setRoleList(List<SelectItem> roleList) {
+		HRController.roleList = roleList;
 	}
 
 	public static void setEmployeeList(List<SelectItem> employeeList) {
