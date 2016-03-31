@@ -9,7 +9,16 @@
     <title>HR</title>    
 </head>
 <h:body>
-<ui:composition template="/templates/masterLayout.xhtml">      
+<ui:composition template="/templates/masterLayout.xhtml"> 
+	<ui:define name="windowTitle">
+         #{msgs.admin}
+	</ui:define>
+	<ui:define name="backBtn">
+		<h:commandLink action="adminLanding">
+			<span class="icomoon-circle-left backBtn-ico"></span>
+			<span class="backBtn-txt">Go Back</span>
+		</h:commandLink>
+	</ui:define>	     
     <ui:define name="content">
 	<h:form>	
      <b:panel look="info" title="All Employees" collapsible="false">
