@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.EmployeeWP;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
 import ca.bcit.infosys.models.ProjectEmployeesKey;
@@ -79,13 +80,10 @@ public class ProjectEmployeesManager {
     }
     
     public List<SelectItem> getAllAvailableProjects(int empID) {
-    	System.out.println("Start of method with ID of " + empID);
     	TypedQuery<Project> proQuery = em.createQuery("select c from Project c", Project.class); 
         List<Project> projects = proQuery.getResultList();
-        System.out.println("projects size = " + projects.size());
         TypedQuery<ProjectEmployees> proEmpQuery = em.createQuery("SELECT c FROM ProjectEmployees c WHERE EmployeeID = " + empID + "", ProjectEmployees.class);
         List<ProjectEmployees> preassignedProjects = proEmpQuery.getResultList();
-        System.out.println("# of projects working size = " + preassignedProjects.size());
         List<SelectItem> availableProjects = new ArrayList<SelectItem>();
         for (int i=0; i < projects.size(); i++) {
         	boolean contains = false;
@@ -97,26 +95,31 @@ public class ProjectEmployeesManager {
         	}
         	if (!contains) {
         		availableProjects.add(new SelectItem(projects.get(i), projects.get(i).getProjectName()));
-        		System.out.println("ADDED: " + projects.get(i).getProjectName());
         	}
         }
-        System.out.println("available projects size: " + availableProjects.size());
         return availableProjects;
     }
     
-    public List<SelectItem> getAvailableEmployees(int projectID) {
-    	System.out.println("Start of method with ID of " + projectID);
+    public List<SelectItem> getAvailableEmployees(int projectID, String wpID) {
     	TypedQuery<ProjectEmployees> proQuery = em.createQuery("select c from ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class); 
         List<ProjectEmployees> proEmps = proQuery.getResultList();
-        System.out.println("projects size = " + proEmps.size());
+        TypedQuery<EmployeeWP> ewpQuery = em.createQuery("select c from EmployeeWP c WHERE ProjectID = " + projectID + " AND WorkPackageID = '" + wpID + "'", EmployeeWP.class);
+        List<EmployeeWP> assignedEmps = ewpQuery.getResultList();
         List<SelectItem> availableEmployees = new ArrayList<SelectItem>();
         for (int i=0; i < proEmps.size(); i++) {
-        	TypedQuery<Employee> empQuery = em.createQuery("select c from Employee c WHERE EmployeeID = " + proEmps.get(i).getEmp().getEmployeeID() + "", Employee.class);
-        	Employee e = empQuery.getSingleResult();
-        	availableEmployees.add(new SelectItem(e, e.getFirstName() + " " + e.getLastName()));
-        	System.out.println("ADDED");
+        	boolean contains = false;
+        	for (int j = 0; j < assignedEmps.size(); j++ ) {
+        		if (proEmps.get(i).getEmp().getEmployeeID() == assignedEmps.get(j).getEmp().getEmployeeID()) {
+        			contains = true;
+        			break;
+        		}
+        	}
+        	if (!contains) {
+        		TypedQuery<Employee> empQuery = em.createQuery("select c from Employee c WHERE EmployeeID = " + proEmps.get(i).getEmp().getEmployeeID() + "", Employee.class);
+            	Employee e = empQuery.getSingleResult();
+            	availableEmployees.add(new SelectItem(e, e.getFirstName() + " " + e.getLastName()));
+        	}	
         }
-        //System.out.println("available projects size: " + availableProjects.size());
         return availableEmployees;
     }
 }

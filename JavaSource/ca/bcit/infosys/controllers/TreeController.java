@@ -231,7 +231,7 @@ public class TreeController implements Serializable {
 			System.out.println("TreeController - There is no selected WP");
 		}
 		if (availableEmployees == null) {
-			setAvailableEmployees(pjtEmpMgr.getAvailableEmployees(editableProject.getProjectID()));
+			setAvailableEmployees(pjtEmpMgr.getAvailableEmployees(editableProject.getProjectID(), selectedWP.getWpID()));
 		}
 		return availableEmployees;
 	}
