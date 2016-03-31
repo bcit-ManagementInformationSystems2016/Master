@@ -15,6 +15,7 @@ import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.managers.CredentialManager;
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.PayLevelManager;
+import ca.bcit.infosys.managers.RolesManager;
 import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 
@@ -32,6 +33,9 @@ public class HRController implements Serializable {
 	@Inject
 	private PayLevelManager plmgr;
 
+	@Inject
+	private RolesManager rmgr;
+	
 	// variable to view specific employee data
 	private Employee viewableEmp;
 
@@ -96,7 +100,10 @@ public class HRController implements Serializable {
 		return employeeList;
 	}
 
-	public static List<SelectItem> getRoleList() {
+	public List<SelectItem> getRoleList() {
+		if(roleList == null){
+			setRoleList(rmgr.getRolesIDs());
+		}
 		return roleList;
 	}
 
