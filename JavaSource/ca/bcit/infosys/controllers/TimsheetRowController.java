@@ -195,6 +195,20 @@ public class TimsheetRowController implements Serializable {
             row.setHoursFri(0);
             row.setHoursSat(0);
         }
+        for (int j = 0; j < databaseRows.size(); j++) {
+            TimesheetRow row = databaseRows.get(j);
+            row.setWorkPackageID("");
+            row.setHoursSun(0);
+            row.setHoursMon(0);
+            row.setHoursTues(0);
+            row.setHoursWed(0);
+            row.setHoursThurs(0);
+            row.setHoursFri(0);
+            row.setHoursSat(0);
+            if (row.getStatus() == "old") {
+            	row.setStatus("old-editted");
+            }
+        }
     }
     
     public boolean isSubmitted() {
@@ -272,6 +286,7 @@ public class TimsheetRowController implements Serializable {
    }
    
    public void submitTimesheet() {
+	   saveAllTimesheetRows();
 	   Timesheet ts = getTs();
 	   ts.setSubmitted(true);
 	   timesheetManager.merge(ts);
