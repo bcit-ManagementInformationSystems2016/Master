@@ -1,8 +1,8 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+//import java.text.DateFormat;
+//import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +11,6 @@ import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.primefaces.event.NodeSelectEvent;
-
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.ProjectEmployeesManager;
@@ -20,7 +18,6 @@ import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.EmployeeWP;
 import ca.bcit.infosys.models.Project;
-import ca.bcit.infosys.models.ProjectEmployees;
 import ca.bcit.infosys.models.TreeManagedBean;
 import ca.bcit.infosys.models.WorkPackage;
 
@@ -185,7 +182,7 @@ public class TreeController implements Serializable {
 	}
 	
 	public String saveNewWP(WorkPackage w) {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+		//DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 		Date date = new Date();
 		java.sql.Date sqlDate = new java.sql.Date(date.getTime());
 		setProjectToAdd(editableProject);
@@ -246,6 +243,7 @@ public class TreeController implements Serializable {
 		empWP.setTotalHours(0.0);
 		empwpmgr.merge(empWP);
 		setAvailableEmployees(null);
+		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 		return "viewProjectDetails";
 	}
 	
