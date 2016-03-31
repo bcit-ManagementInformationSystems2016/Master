@@ -3,6 +3,8 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.ProjectEmployees;
 
 /**
  * Handles CRUD actions for Project
@@ -30,8 +33,16 @@ public class ProjectManager {
 	     * @return the Category record with key = id, null if not found.
 	     */
 	    public Project find(int id) {
-	        return em.find(Project.class, id);
+	    	System.out.println("The id is: " + id);
+	    	Project p = em.find(Project.class, id); 
+	        if (p == null) {
+	        	System.out.println("The database did not find ");
 	        }
+	        else {
+	        	System.out.println("The database FOUND!!");
+	        }
+	        return p;
+	    }
 
 	    /**
 	     * Persist Project record into database. id must be unique.
@@ -90,5 +101,16 @@ public class ProjectManager {
 	        return catarray;
 	    }
 	
+	    public Project[] getAllProjectsForEmp (int empID) {
+			TypedQuery<ProjectEmployees> query = em.createQuery("SELECT c FROM ProjectEmployees c WHERE EmployeeID = " + empID + "", ProjectEmployees.class);
+			List<ProjectEmployees> wps = query.getResultList();
+			Project[] proArray = new Project[wps.size()];
+			for (int i=0; i < proArray.length; i++) {
+				TypedQuery<Project> empQuery = em.createQuery("SELECT c FROM Project c WHERE ProjectID = " + wps.get(i).getPro().getProjectID() + "", Project.class);
+				Project proToAdd = empQuery.getSingleResult();
+				proArray[i] = proToAdd;
+			}
+			return proArray;	
+		}
 
 }

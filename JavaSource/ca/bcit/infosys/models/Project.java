@@ -44,7 +44,7 @@ public class Project implements Serializable{
 	private String description;
 	
 	//bi-directional one-to-many association to Customer
-
+	// This is the one side
 	@ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="CustomerID")
     private Customer cust;  
@@ -57,6 +57,10 @@ public class Project implements Serializable{
 	//bi-directional one-to-many association with Work Packages
 	@OneToMany(targetEntity=WorkPackage.class,mappedBy="workingProject",cascade={CascadeType.ALL},orphanRemoval=true)
 	private List<WorkPackage> workPackages;
+	
+	//bi-directional one-to-many association with ProjectEmployees
+	@OneToMany(targetEntity=ProjectEmployees.class,mappedBy="pro",cascade={CascadeType.ALL},orphanRemoval=true)
+	private List<ProjectEmployees> assignedEmployees;
 	
 	// Ctor
 	public Project() {}
@@ -106,6 +110,10 @@ public class Project implements Serializable{
 	}
 	public Customer getCust(){
 	    return cust;
+	}
+	
+	public String toString() {
+		return this.projectID + "";
 	}
 	
 }

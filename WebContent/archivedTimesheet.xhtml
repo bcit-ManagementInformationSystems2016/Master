@@ -12,7 +12,7 @@
 <body>
     <ui:composition template="/templates/noIconLayout.xhtml">
         <ui:define name="windowTitle">
-            #{msgs.timesheet}
+            Timesheet
         </ui:define>
         <ui:define name="heading">
             <ui:include src="/sections/admin/timesheetHeader.xhtml" />
@@ -20,14 +20,17 @@
         <ui:define name="content">
             <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
                 <h:form>
-                    <div class="panel panel-warning">
-
                         <h:form>
                             <b:panelGrid colSpans="6,6">
-                                <b:panel look="info" title="Current Timesheet" collapsible="false">
+                                <b:panel look="info" title="Info" collapsible="false">
                                     <h3 class="panel-title test">
-										#{msgs.wk_num}<h:outputText value="#"/><br/><br/>
-										#{msgs.wk_end}<h:outputText value="#"/>
+										EmployeeId: <h:outputText value="#{login.currentID}"/><br/>             
+										EmployeeUserName: <h:outputText value="#{login.username}" style="font-weight: bold" /><br/> 
+										EmployeeName: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" /> 
+													  <h:outputText value="#{timesheet.lastName}" /><br/>
+										#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
+										#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}">										
+										<f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText><br/><br/>
 									</h3>
                                 </b:panel>
                                 <b:panel look="info" title="Info" collapsible="false" class="test">
@@ -36,7 +39,13 @@
                                 </b:panel>
                             </b:panelGrid>
                         </h:form>
-                        <b:dataTable value="#{timesheet.allTimesheet}" var="ts" styleClass="table table-hover">                            
+                        <b:dataTable value="#{timesheet.allTimesheet}" var="ts" styleClass="table table-hover">
+                        	<h:column>
+						      <f:facet name="header">
+						          <h:outputText value="View timesheet" style="font-weight: bold" />
+						      </f:facet>
+								  <h:commandLink value="View timesheet" action="#{timesheetRow.gotoArchivedTimesheet(ts)}" />
+							</h:column>    
                             <h:column headerClass="columnHeader">
                                 <f:facet name="header">
                                     <h:outputText value="EmployeeID" />
@@ -45,7 +54,7 @@
                             </h:column>
                             <h:column headerClass="columnHeader">
                                 <f:facet name="header">
-                                    <h:outputText value="Name" />
+                                    <h:outputText value="TimesheetID" />
                                 </f:facet>
                                 <h:outputText value="#{ts.timesheetID}"/>                                
                             </h:column>
@@ -65,10 +74,11 @@
                                 <f:facet name="header">
                                     <h:outputText value="startDAte" />
                                 </f:facet>
-                                <h:outputText value="#{ts.startDate}"/>                               
-                            </h:column>                           
-                        </b:dataTable>
-                    </div>
+                                <h:outputText value="#{ts.startDate}">  
+									<f:convertDateTime pattern="yyyy-MM-dd" />
+								</h:outputText>                             
+                            </h:column>                          
+                        </b:dataTable>                 
                 </h:form>
             </h:panelGroup>
         </ui:define>

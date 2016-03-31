@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+<h:head>
+	<title>Projects Assigned to Employee</title>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Employee: #{projectEmployeesController.viewableEmployee.firstName} #{projectEmployeesController.viewableEmployee.lastName}" collapsible="false">
+      <b:dataTable value="#{projectEmployeesController.allProjectsForEmployee()}" var="pro">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{pro.projectID}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputText value="#{pro.projectName}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Unassign Employee" action="#{projectEmployeesController.unassignEmployee(pro)}" />
+			</h:column>
+			
+			    		
+	  </b:dataTable>		
+		<h:commandButton value="Go Back" action="#{projectEmployeesController.goToViewMinionsPage()}"></h:commandButton>			
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>
+</h:body>
+</html>

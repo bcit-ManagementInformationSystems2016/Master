@@ -17,12 +17,17 @@ public class TimesheetRow implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="TimesheetRowID")
 	private int timesheetRowID;
+	
+	@Transient
+	private double totalHours;
 
+	@Transient
+	private String status;
 
 	@Column(name="HoursFri")
 	private double hoursFri;
 
-	@Column(name="HoursMon")
+    @Column(name="HoursMon")
 	private double hoursMon;
 
 	@Column(name="HoursThurs")
@@ -47,7 +52,7 @@ public class TimesheetRow implements Serializable {
 	private String workPackageID;
 
 	//bi-directional many-to-one association to Timesheet
-	@ManyToOne
+	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="timesheetID", updatable = false, insertable = false)
 	private Timesheet timesheet;
 
@@ -67,7 +72,24 @@ public class TimesheetRow implements Serializable {
 	    
 	}
 	
-    public int getTimesheetRowID() {
+	
+	
+    /**
+	 * @return the totalHours
+	 */
+	public double getTotalHours() {
+		totalHours = hoursMon + hoursTues + hoursWed + hoursThurs + hoursFri + hoursSat + hoursSun; 
+		return totalHours;
+	}
+
+	/**
+	 * @param totalHours the totalHours to set
+	 */
+	public void setTotalHours(double totalHours) {
+		this.totalHours = totalHours;
+	}
+
+	public int getTimesheetRowID() {
 		return this.timesheetRowID;
 	}
 
@@ -154,5 +176,13 @@ public class TimesheetRow implements Serializable {
 	public void setTimesheet(Timesheet timesheet) {
 		this.timesheet = timesheet;
 	}
+	
+	public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
 }

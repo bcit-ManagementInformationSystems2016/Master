@@ -1,7 +1,10 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -11,62 +14,145 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
 
 import ca.bcit.infosys.controllers.EditableTimesheet;
+import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
+import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
 
-
 @Named("timesheet")
 @SessionScoped
+
 public class TimesheetController  implements Serializable {
     /** Manager from Product objects.*/
     @Inject private TimesheetManager timesheetManager;
-    /** Manager from Product objects.*/
-    @Inject private TimesheetRowManager timesheetRowManager;
-    private TimesheetRow tsr = new TimesheetRow();
+    
+    @Inject private EmployeeManager employeeManager;
+    
+    private Timesheet ts;
+    private Employee em;
 
-    public TimesheetRow getTsr() {
-        return tsr;
+    private Employee[] employeeRows;
+    public Employee getEm(){
+        return em;
     }
-
-    public void setTsr(TimesheetRow tsr) {
-        this.tsr = tsr;
+    public void setEm(Employee em) {
+        this.em = em;
     }
-
-    public String editTsr(TimesheetRow tsr) {
-        setTsr(tsr);
+    public Employee[] getAllEmployee() {
+        return employeeRows;
+    }
+    
+    public String getFirstName() {
+        init();
+       String firstName=null;      
+       Employee[] rows = getAllEmployee();
+        for (int i = 0; i < rows.length; i++) {
+            if(rows[i].getEmployeeID() == Login.currentID)
+                firstName = rows[i].getFirstName();
+        }
+        return firstName;
+    }
+    public String getLastName() {
+    	init();
+        String lastName=null;      
+        Employee[] rows = getAllEmployee();
+         for (int i = 0; i < rows.length; i++) {
+             if(rows[i].getEmployeeID() == Login.currentID)
+                 lastName = rows[i].getLastName();
+         }
+         return lastName;
+     }
+    /**
+     * Initialize the local data for the timesheet including the timesheet
+     * and all the timesheet rows associated with this timesheet.
+     * 
+     * This includes the local timesheet (ts), the local timesheet rows (arr)
+     * and the local arraylist so we can add and delete from rows more easily.
+     * 
+     * Best to convert all data to arraylist but will figure that out later
+     */
+    public void init() {
+    	if (getTs() == null) {
+	    	int empId = Login.currentID;
+	    	setTs(timesheetManager.getTimesheetEmpId(empId));
+    	}
+    	if (employeeRows == null) {
+    		employeeRows = employeeManager.getAll();
+    	}
+    }
+    public Timesheet getTs() {
+        return ts;
+    }
+    public void setTs(Timesheet ts) {
+        this.ts = ts;
+    }
+    public String editTs(Timesheet ts) {
+        setTs(ts);
         System.out.println("Edit timesheet");
         return "edit";
     }
-    
-    public String updateTsr(TimesheetRow tsr){
-        timesheetRowManager.merge(tsr);
-        tsr = null;
+    public String updateTs(Timesheet ts){
+        timesheetManager.merge(ts);
+        System.out.println("Update timesheet");
+        ts = null;
         return "updated";
     }
-    
-    public String createTsr(TimesheetRow tsr){
-        timesheetRowManager.persist(tsr);
+
+    public String createTs(Timesheet ts){
+        timesheetManager.persist(ts);
+        System.out.println("Created timesheet");
         return "created";
     }
+
     
-    public String deleteTsr(TimesheetRow tsr) {
-        timesheetRowManager.remove(tsr);
-        //list.remove(tsr);
+    public String deleteTs(Timesheet ts) {
+        timesheetManager.remove(ts);
+        System.out.println("Delete timesheet ");
+        //list.remove(ts);
         return null;
     }
-    
     public Timesheet[] getAllTimesheet() {
-        return timesheetManager.getAll();
+        int empId = Login.currentID;
+        return timesheetManager.getArchivedTimesheetsWithEmpId(empId);
     }
 
-    public TimesheetRow[] getAllTimesheetRow() {
-        return timesheetRowManager.getAll();
-    }
+   
+   public int getWeekNumber() throws ParseException{
+	   init();
+	   Date date = ts.getStartDate();
+	   Calendar cal = Calendar.getInstance();
+	   cal.setTime(date);
+	   int week = cal.get(Calendar.WEEK_OF_YEAR);
+	   return week;
+	   
+   }
+   
+   public Date getWeekEnding() throws ParseException {
+	   Date date = ts.getStartDate();
+	   
+//	   SimpleDateFormat sdf = new SimpleDateFormat("yyy-MM-dd");
+//	   String weekEnd = sdf.format(date);
+//	   Calendar c = Calendar.getInstance();
+//	   c.setTime(sdf.parse(weekEnd));
+//	   c.add(Calendar.DATE, 6);
+	   return date;
+   }
+   public String timesheetLanding() {
+       return "timesheetLanding";
+   }
 
-    
+   public String goCreate() {
+       return "create";
+   }
+
+   public String goArchive() {
+       return "archive";
+   }
+
 }

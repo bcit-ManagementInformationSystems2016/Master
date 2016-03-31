@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
 
 /**
@@ -23,6 +24,7 @@ import ca.bcit.infosys.models.TimesheetRow;
 public class TimesheetRowManager {
 	
 	 @PersistenceContext(unitName="BluehostTesty") EntityManager em;
+	 
 	     /**
 	     * Find TimesheetRow record from database.
 	     * 
@@ -62,7 +64,9 @@ public class TimesheetRowManager {
 	     */
 	    public void remove(TimesheetRow tsr) {
 	        //attach category
+	    	System.out.println("Remove in timesheetRow");
 	        tsr = find(tsr.getTimesheetRowID());
+	        System.out.println(tsr.getTimesheetRowID());
 	        em.remove(tsr);
 	    }
 
@@ -81,5 +85,30 @@ public class TimesheetRowManager {
 	        return catarray;
 	    }
 	    
+	    /**
+	     * Return total hours of all timesheet rows
+	     * 
+	     * @return all hours of all records in TimesheetRow table
+	     */
+	    public double getAllHours() {
+	    	double allHours = 0.0;
+	    	TypedQuery<TimesheetRow> query = em.createQuery("select c from TimesheetRow c", TimesheetRow.class); 
+	    	java.util.List<TimesheetRow> tsrows = query.getResultList();
+	    	TimesheetRow[] tsrowarray = new TimesheetRow[tsrows.size()];
+	    	for (int i = 0; i< tsrowarray.length; i++) {
+	    		allHours += tsrowarray[i].getTotalHours();  	
+	    	}
+	    	return allHours;
+	    }
+	    
+	    public TimesheetRow[] getRowsWithTimesheetId(int timesheetID) {
+	    	TypedQuery<TimesheetRow> query = em.createQuery("select c from TimesheetRow c where c.timesheetID = :timesheetID", TimesheetRow.class);
+	    	java.util.List<TimesheetRow> categories = query.setParameter("timesheetID", timesheetID).getResultList();
+	    	TimesheetRow[] catarray = new TimesheetRow[categories.size()];
+		    for (int i=0; i < catarray.length; i++) {
+		        catarray[i] = categories.get(i);
+		    }
+		    return catarray;
+	    }
 
 }

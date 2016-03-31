@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Assign Employee to Work Package</title>
+
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Select Employe to Assign to #{treeController.selectedWP.wpName}" collapsible="false">
+	  <h:outputLabel value="EMPLOYEE:" />
+	  <br />
+	  <h:selectOneMenu value="#{treeController.selectedEmployee}">
+		  <f:selectItems value="#{treeController.getDropdownForWP()}" />
+	  </h:selectOneMenu>
+	  <br/><br/>
+	  <h:commandButton value="Assign Employee" action="#{treeController.assignEmployee()}"></h:commandButton>		
+	  <h:commandButton value="Back" action="#{treeController.cancelAssignment()}"></h:commandButton>			
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>	
+</h:body>
+</html>

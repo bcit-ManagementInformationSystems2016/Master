@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Assign Employee to project</title>
+
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Select Project to Assign to #{projectEmployeesController.viewableEmployee.firstName}  #{projectEmployeesController.viewableEmployee.lastName}" collapsible="false">
+	  <h:outputLabel value="PROJECT:" />
+	  <br />
+	  <h:selectOneMenu value="#{projectEmployeesController.assignedProject}">
+		  <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
+	  </h:selectOneMenu>
+	  <br/><br/>
+	  <h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}"></h:commandButton>		
+	  <h:commandButton value="Back" action="#{projectEmployeesController.cancelAssignment()}"></h:commandButton>			
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>	
+</h:body>
+</html>

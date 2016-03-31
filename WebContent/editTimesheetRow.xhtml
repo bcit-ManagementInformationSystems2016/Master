@@ -1,51 +1,91 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">   
 <h:head>
-	<title>Edit TimesheetRow</title>
-	<h3>Edit TimesheetRow Details</h3>
+	<title>Edit TimesheetRow</title>	
 </h:head>
 <h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+        <ui:define name="content">
+        
 	<h:form>
-		<br />
-		<h:outputText value="#{msgs.wp}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.workPackageID}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.mon}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursMon}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.tue}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursTues}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.wed}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursWed}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.thu}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursThurs}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.fri}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursFri}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.sat}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursSat}"></h:inputText>
-		<br />
-		<h:outputText value="#{msgs.sun}" />
-		<br />
-		<h:inputText value="#{timesheet.tsr.hoursSun}"></h:inputText>
-		<br />
-		
-		<h:commandButton value="Save Updates" action="#{timesheet.updateTsr(timesheet.tsr)}"></h:commandButton>
-	</h:form>
+	<b:panelGrid colSpans="3,9">
+	<b:panel look="info" title="Edit TimesheetRow Details" collapsible="false">	    
+        <b:inputText value="#{timesheetRow.tsr.workPackageID}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Work Package" />
+            </f:facet>
+        </b:inputText>        
+        <b:inputText value="#{timesheetRow.tsr.hoursMon}">
+        	<f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Monday" />
+            </f:facet>
+        </b:inputText>        
+        <b:inputText value="#{timesheetRow.tsr.hoursTues}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Tuesday" />
+            </f:facet>           
+        </b:inputText>        
+        <b:inputText value="#{timesheetRow.tsr.hoursWed}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>           
+            <f:facet name="append">
+                <h:outputText value="Wednesday" />
+            </f:facet>
+        </b:inputText>        
+        <b:inputText value="#{timesheetRow.tsr.hoursThurs}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>           
+            <f:facet name="append">
+                <h:outputText value="Thursday" />
+            </f:facet>
+        </b:inputText>        
+        <b:inputText value="#{timesheetRow.tsr.hoursFri}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>           
+            <f:facet name="append">
+                <h:outputText value="Friday" />
+            </f:facet>
+        </b:inputText>      
+        <b:inputText value="#{timesheetRow.tsr.hoursSat}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>           
+            <f:facet name="append">
+                <h:outputText value="Saturday" />
+            </f:facet>
+        </b:inputText>       
+        <b:inputText value="#{timesheetRow.tsr.hoursSun}">
+            <f:facet name="prepend">
+                <b:iconAwesome name="pencil-square-o" />
+            </f:facet>           
+            <f:facet name="append">
+                <h:outputText value="Sunday" />
+            </f:facet>           
+        </b:inputText>
+        <h:commandButton value="Back" action="createAdminTimesheet" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+        <h:commandButton value="Save Updates" action="#{timesheetRow.updateTsr(timesheetRow.tsr)}" styleClass="btn btn-info"></h:commandButton>       
+   
+    </b:panel>
+    </b:panelGrid>
+	</h:form>	
+	   </ui:define>
+    </ui:composition>
 </h:body>
 </html>

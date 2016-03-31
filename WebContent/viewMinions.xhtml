@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">   
+<h:head>
+	<title>Employees Assigned to Project</title>
+
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Your subordinates:" collapsible="false">
+      <b:dataTable value="#{hrController.getYourMinions()}" var="emp">
+			<h:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{emp.employeeID}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Name</f:facet>
+				<h:outputText value="#{emp.firstName} #{emp.lastName}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="View Assigned Projects" action="#{projectEmployeesController.showAssignedProjects(emp)}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Assign to Project" action="#{projectEmployeesController.goToAssignPage(emp)}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Assign Timesheet Validator" action="#{supervisorController.assignTimesheetValidator(emp)}"/>
+			</h:column>		
+	  </b:dataTable>		
+	 <h:commandButton value="Go To Home Page" action="#{hrController.leaveMinionsPage()}"></h:commandButton>
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>		
+</h:body>
+</html>

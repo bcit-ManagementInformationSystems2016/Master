@@ -3,13 +3,20 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
+import javax.faces.model.SelectItem;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.ProjectEmployees;
 
 /**
  * Handles CRUD action for Employees
@@ -24,12 +31,7 @@ public class EmployeeManager {
 
 	@PersistenceContext(unitName = "BluehostTesty")
 	EntityManager em;
-	
-	/**
-	 * ID of the employee logged in, hardcoded to 1 for now
-	 */
-	private static int curID = 1;
-	
+		
 	/**
 	 * Find Employee record from database.
 	 * 
@@ -79,7 +81,6 @@ public class EmployeeManager {
 	 * @return Employee[] of all records in Employees table
 	 */
 	public Employee[] getAll() {
-		System.out.println("inside getAll employeemanager");
 		TypedQuery<Employee> query = em.createQuery("select c from Employee c", Employee.class);
 		java.util.List<Employee> categories = query.getResultList();	
 		Employee[] emparray = new Employee[categories.size()];
@@ -90,14 +91,10 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
-
-	public Employee[] getValidating() {
-		System.out.println("get validating method");
-		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + curID, Employee.class);
-		System.out.println("query created: " + query.toString());
-		java.util.List<Employee> categories = query.getResultList();
-		System.out.println("categories size: " + categories.size());
-		System.out.println("employee 1 name: " + categories.get(1).getFirstName());
+	
+	public Employee[] getAllMinions(int empID) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE SupervisorID = " + empID, Employee.class);
+		java.util.List<Employee> categories = query.getResultList();	
 		Employee[] emparray = new Employee[categories.size()];
 		for (int i = 0; i < emparray.length; i++) {
 			emparray[i] = categories.get(i);
@@ -106,4 +103,68 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
+	
+	public Employee[] getAllWithinProject(int projectID) {
+		TypedQuery<ProjectEmployees> query = em.createQuery("SELECT c FROM ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class);
+		List<ProjectEmployees> wps = query.getResultList();
+		Employee[] empArray = new Employee[wps.size()];
+		for (int i=0; i < empArray.length; i++) {
+			TypedQuery<Employee> empQuery = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + wps.get(i).getEmp().getEmployeeID() + "", Employee.class);
+			Employee empToAdd = empQuery.getSingleResult();
+			empArray[i] = empToAdd;
+		}
+		return empArray;	
+	}
+
+	public Employee[] getValidating() {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + Login.currentID, Employee.class);
+		java.util.List<Employee> categories = query.getResultList();
+		Employee[] emparray = new Employee[categories.size()];
+		for (int i = 0; i < emparray.length; i++) {
+			emparray[i] = categories.get(i);
+			// System.out.println("This is being added to array: " +
+			// categories.get(i).getRoleID());
+		}
+		return emparray;
+	}
+	
+	public Employee[] getValidatees(int empID) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + empID, Employee.class);
+		java.util.List<Employee> categories = query.getResultList();
+		Employee[] emparray = new Employee[categories.size()];
+		for (int i = 0; i < emparray.length; i++) {
+			emparray[i] = categories.get(i);
+			// System.out.println("This is being added to array: " +
+			// categories.get(i).getRoleID());
+		}
+		return emparray;
+	}
+	
+	public Employee getTimesheetValidator(int empID) {
+		TypedQuery<Employee> queryOne = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + empID + "", Employee.class);
+		Employee e = queryOne.getSingleResult();
+		return e;
+	}
+
+	public List<SelectItem> getListOfEmployees(int empID) {
+    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
+        List<Employee> employees = proQuery.getResultList();
+        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+        for (int i=0; i < employees.size(); i++) {
+        	if (employees.get(i).getEmployeeID() == empID) {
+        		continue;
+        	}
+        	selectableEmployees.add(new SelectItem(employees.get(i), employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
+        }
+        return selectableEmployees;
+    }
+	public List<SelectItem> getEmployeeIDs() {
+    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c where isActive = 1", Employee.class); 
+        List<Employee> employees = proQuery.getResultList();
+        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+        for (int i=0; i < employees.size(); i++) {
+          	selectableEmployees.add(new SelectItem(employees.get(i).employeeID));
+        }
+        return selectableEmployees;
+    }
 }

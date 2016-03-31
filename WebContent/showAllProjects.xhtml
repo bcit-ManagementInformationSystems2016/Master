@@ -23,11 +23,14 @@
 				</h:column>
 				
 				<h:column>
-               		<h:commandLink value="See All WPs" action="#{projectController.goToShowWP(pro)}"/>
+					<h:commandLink value="See Employees assigned" action="#{projectEmployeesController.showAssignedEmps(pro)}"/>
+				</h:column>	
+            	<h:column>
+            		<h:commandLink value="View Project Details" action="#{treeController.viewProjectTree(pro)}"/>
             	</h:column>
             	
             	<h:column>
-            		<h:commandLink value="See WP Tree" action="#{projectController.goToShowWPTree(pro)}"/>
+            		<h:commandLink value="View Report" action="#{report.showReport(pro)}"/>
             	</h:column>
 				
 			</h:dataTable>

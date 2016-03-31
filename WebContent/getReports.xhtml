@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Project Report</title>
+</h:head>
+<h:body>
+ 
+    <h:form>
+        <h1>Project Status Report</h1>
+        <h:panelGrid columns="4" border="1" cellpadding="10" cellspacing="1">
+            <h:outputLabel for="pname">Name:</h:outputLabel>
+            <h:outputText value="#{report.projName}" id="pname"></h:outputText>
+           
+ 
+            <h:outputLabel for="cost">Cost:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+           
+ 
+            <h:outputLabel for="customer">Customer:</h:outputLabel>
+            <h:outputText value="#{report.customer}"></h:outputText>
+           
+ 
+            <h:outputLabel for="schedule">Schedule:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+          
+ 
+            <h:outputLabel for="pm">Project Manager:</h:outputLabel>
+            <h:outputText value="#{report.projManager}"></h:outputText>
+            
+            
+            <h:outputLabel for="resources">Resources:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+           
+            
+            <h:outputLabel for="budget">Budget:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+          
+            
+            <h:outputLabel for="pm">Open Changes:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+            
+            
+            <h:outputLabel for="tasks">Tasks:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+            
+            
+            <h:outputLabel for="openRisks">Open Risks:</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+            
+            
+            <h:outputLabel for="startDate">Start Date:</h:outputLabel>
+            <h:outputText value="#{report.startDate}"></h:outputText>
+            
+            <h:outputLabel for="finishDate">Finish Date:</h:outputLabel>
+            <h:outputText value="#{report.endDate}"></h:outputText>
+            
+            
+            	
+            
+            
+ 
+        </h:panelGrid>
+        
+        <br />
+        
+        <h:dataTable value="#{report.wp}" var="wp" border="1">
+         <h:column>    				
+            <f:facet name="header">Work Package</f:facet>    				
+            <h:outputText value="#{wp.wpID}"/>
+         </h:column>
+         <h:column>
+            <f:facet name="header">Name</f:facet>
+            <h:outputText value="#{wp.wpName}"/>
+         </h:column>
+         <h:column>
+            <f:facet name="header">Planned Start</f:facet>
+            
+         </h:column>
+         <h:column>
+            <f:facet name="header">Planned Finish</f:facet>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Planned Effort</f:facet>
+            <h:outputText value="#{wp.estimatedHours}"/>
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Actual Effort</f:facet>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Actual Start</f:facet>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Percent Complete</f:facet>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Assigned To</f:facet>
+            
+         </h:column>
+      </h:dataTable>
+    </h:form>
+</h:body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+	<h:head>
+		<title>Vacation</title>
+
+	</h:head>
+	<h:body>
+		<h:form>
+			<h:dataTable value="#{vacation.allVacation}" var="vc">
+				<h:column>
+					<f:facet name="header">VacationID</f:facet>
+					<h:outputText value="#{vc.vacationID}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">EmployeeID</f:facet>
+					<h:outputText value="#{vc.employeeID}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">RequestDate</f:facet>
+					<h:outputText value="#{vc.requestDate}"/>
+				</h:column>
+				
+				<h:column>
+					<f:facet name="header">VacationDaysLeft</f:facet>
+					<h:outputText value="#{vc.vacationDaysLeft}"/>
+				</h:column>
+			</h:dataTable>
+		</h:form>
+		
+	</h:body>
+</html>

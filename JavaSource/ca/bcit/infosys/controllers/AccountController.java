@@ -24,11 +24,9 @@ public class AccountController implements Serializable {
 	static Employee[] e;
 
 	public Employee[] getAllEmp() {
-		System.out.println("inside get all accountcontroller");
 		if (e == null)
 			e = empmgr.getAll();
 		return e;
-
 	}
 
 	public Credential[] getAllCred() {
@@ -40,7 +38,8 @@ public class AccountController implements Serializable {
 	}
 
 	public Employee[] getValidating() {
-		System.out.println("valid");
-		return empmgr.getValidating();
+		if (e == null)
+			e = empmgr.getValidating();
+		return e;
 	}
 }

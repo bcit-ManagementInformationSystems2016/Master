@@ -7,10 +7,10 @@ body {
   /* The html and body elements cannot have any padding or margin. */
 }
 #content {
-	overflow-x: hidden;
-	padding-left:5px;
-	padding-right:5px;
-	padding-top:3em;
+	overflow: hidden;
+	padding-left:15px;
+	padding-right:15px;
+	padding-top:1em;
 }
 /* Wrapper for page content to push down footer */
 #wrap {

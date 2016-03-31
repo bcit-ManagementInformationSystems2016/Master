@@ -1,65 +1,78 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>
-        <ui:insert name="windowTitle" />
-    </title>
-    
-    <h:outputStylesheet name="css/bootstrap.min.css" />
-    <h:outputStylesheet name="css/styles.css" />
-    
-    <h:outputStylesheet name="css/header.css" />
-    <h:outputStylesheet name="css/footer.css" />
-    
-    <!-- NOTE: This css file is ONLY a temporary fix for the presentation-->
-    <h:outputStylesheet name="css/temporaryFIX.css" />
-    <!-- ==============================================================  -->
-    
-    <f:facet name="last">
-    <h:outputStylesheet name="css/main.css" />
-    </f:facet>
-    <h:outputScript library="js" name="modernizr.custom.js" target="head" />
-    <h:outputScript library="js" name="jquery-1.10.2.min.js" target="head"/>
-    <h:outputScript library="js" name="bootstrap.min.js" target="head"/>
- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+	<title><ui:insert name="windowTitle" /></title>
+
+	<h:outputStylesheet name="css/bootstrap.min.css" />
+	<h:outputStylesheet name="css/styles.css" />
+
+	<h:outputStylesheet name="css/header.css" />
+	<h:outputStylesheet name="css/footer.css" />
+
+	<!-- NOTE: This css file is ONLY a temporary fix for the presentation-->
+	<h:outputStylesheet name="css/temporaryFIX.css" />
+	<!-- ==============================================================  -->
+
+	<f:facet name="last">
+		<h:outputStylesheet name="css/main.css" />
+	</f:facet>
+	<h:outputScript library="js" name="modernizr.custom.js" target="head" />
+	<h:outputScript library="js" name="jquery-1.10.2.min.js" target="head" />
+	<h:outputScript library="js" name="bootstrap.min.js" target="head" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 </h:head>
 
 <h:body>
-<div id="wrap">
-    <div class="header-fixed">
-        <div class="header-limiter">
-        <h:link outcome="adminLanding">
-            <h1>Panda<span>Timesheets</span></h1>      
-        </h:link>    
-        
-        <div class="header-user-menu">
-                <p><h:outputText value="#{login.username}"></h:outputText></p>
-                <ul>                	
-                    <li><a href=""><i class="fa fa-cog fa-spin"></i>Settings</a></li>
-                    <li><a href=""><i class="fa fa-sign-out"></i>Logout</a></li>
-                    <li></li> 
-                </ul>
-            </div>
-        </div>
-    </div>
+	<div id="wrap">
+		<div class="header-fixed">
+			<div class="header-limiter">
+				<h:form>
+					<h:commandLink action="#{login.goHome}">
+						<h1>
+							Panda<span>Timesheets</span>
+						</h1>
+					</h:commandLink>
+				</h:form>
+				<div class="header-user-menu">
+					<p>
+						<h:outputText value="#{login.username}"></h:outputText>
+					</p>
+					<ul>
+						<!-- <li><a href=""><i class="fa fa-cog fa-spin"></i>Settings</a></li> -->
+						<li><a href="changePassword.xhtml">Change Password</a></li>
+						<h:form>
+						<li>
+							<span class="fa fa-sign-out white-txt"></span> 
+							<h:commandLink action="#{login.logout}" value=" Logout" />
+						</li>
+						</h:form>
+						<!-- <li><a href="login.xhtml"><i class="fa fa-sign-out"></i>Logout</a></li>-->
+					</ul>
+				</div>
+			</div>
+		</div>
 
-    <div id="content">
-        <ui:insert name="content" />
-    </div>
-</div>
+		<div id="content">
+			<h:form styleClass="backBtn-padding">
+				<ui:insert name="backBtn"/>
+			</h:form>
+			<ui:insert name="content" />
+		</div>
+	</div>
 
-    <div class="footer-distributed">
-        <div class="footer-left">
-            <p>Copyright Panda Timesheet All Rights Reserved</p>
-        </div>
-    </div>
-    <ui:debug/>
+	<div class="footer-distributed">
+		<div class="footer-left">
+			<p>Copyright Panda Timesheet All Rights Reserved</p>
+		</div>
+	</div>
+	<ui:debug />
 </h:body>
 
 </html>

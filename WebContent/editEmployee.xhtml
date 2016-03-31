@@ -1,49 +1,120 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>Edit Employee</title>
-	<h3>Edit Employee Details</h3>
 </h:head>
 <h:body>
-	<h:form>
-		<h:outputText value="First Name" />
-		<br />
-		<h:inputText value="#{hrController.emp.firstName}"></h:inputText>
-		<br />
-		<h:outputText value="Last Name" />
-		<br />
-		<h:inputText value="#{hrController.emp.lastName}"></h:inputText>
-		<br />
-		<h:outputText value="Validator ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.validatorID}"></h:inputText>
-		<br />
-		<h:outputText value="Salary" />
-		<br />
-		<h:inputText value="#{hrController.emp.salary}"></h:inputText>
-		<br />
-		<h:outputText value="Role ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.roleID}"></h:inputText>
-		<br />
-		<h:outputText value="Supervisor ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.supervisorID}"></h:inputText>
-		<br />
-		<h:outputText value="Pay Level ID" />
-		<br />
-		<h:inputText value="#{hrController.emp.payLevelID}"></h:inputText>
-		<br />
-		<h:outputText value="Is Active" />
-		<br />
-		<h:inputText value="#{hrController.emp.isActive}"></h:inputText>
-		<br />
-		<h:commandButton value="Save Updates" action="#{hrController.updateEmp(hrController.emp)}"></h:commandButton>
-	</h:form>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panelGrid colSpans="3,9">
+					<b:panel look="info" title="Update Employee Information"
+						collapsible="false">
+						<b:inputText value="#{hrController.emp.firstName}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="First Name" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{hrController.emp.lastName}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Last Name" />
+							</f:facet>
+						</b:inputText>
+						<b:selectOneMenu value="#{hrController.emp.roleID}">
+							<f:selectItem itemValue="1" itemLabel="Admin" />
+							<f:selectItem itemValue="2" itemLabel="Developer" />
+							<f:selectItem itemValue="3" itemLabel="HR" />
+							<f:selectItem itemValue="4" itemLabel="Other" />
+							<f:selectItem itemValue="5" itemLabel="Administrator" />
+							<!-- <f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet> -->
+							<f:facet name="append">
+								<h:outputText value="Role" />
+							</f:facet>
+						</b:selectOneMenu>
+						<b:selectOneMenu value="#{hrController.emp.validatorID}">
+							<f:selectItems value="#{hrController.getEmployeeList()}" />
+							<!-- <f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet> -->
+							<f:facet name="append">
+								<h:outputText value="Validator ID" />
+							</f:facet>
+						</b:selectOneMenu>
+						<!-- <b:inputText value="#{hrController.emp.salary}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Salary" />
+							</f:facet>
+						</b:inputText> -->
+
+						<b:selectOneMenu value="#{hrController.emp.supervisorID}">
+							<f:selectItems value="#{hrController.getEmployeeList()}" />
+							<!-- <f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet> -->
+							<f:facet name="append">
+								<h:outputText value="Supervisor ID" />
+							</f:facet>
+						</b:selectOneMenu>
+						<b:selectOneMenu value="#{hrController.emp.payLevelID}">
+							<f:selectItems value="#{hrController.getPayLevelList()}" />
+							<!-- <f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet> -->
+							<f:facet name="append">
+								<h:outputText value="Pay Level ID" />
+							</f:facet>
+						</b:selectOneMenu>
+						<b:selectOneMenu value="#{hrController.emp.isActive}">
+							<f:selectItem itemValue="true" itemLabel="True" />
+							<f:selectItem itemValue="false" itemLabel="False" />
+							<!-- <f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet> -->
+							<f:facet name="append">
+								<h:outputText value="Is Active" />
+							</f:facet>
+						</b:selectOneMenu>
+						<b:inputText value="#{hrController.crd.username}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Username" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{hrController.crd.password}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Password" />
+							</f:facet>
+						</b:inputText>
+						<h:commandButton value="Back" action="#{hrController.hrLanding()}"
+							styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+						<h:commandButton value="Save Changes"
+							action="#{hrController.updateEmp(hrController.emp)}"
+							styleClass="btn btn-info"></h:commandButton>
+					</b:panel>
+				</b:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

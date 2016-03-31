@@ -23,7 +23,7 @@ public class Credential implements Serializable {
 	private String password;
 	
 	@Column(name="EmpUserName")
-	private String username;
+	public String username;
 
 	//bi-directional one-to-one association to Employee
 	@OneToOne
