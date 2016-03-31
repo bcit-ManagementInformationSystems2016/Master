@@ -1,32 +1,85 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
     xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:b="http://bootsfaces.net/ui"
     xmlns:h="http://java.sun.com/jsf/html"
     xmlns:f="http://java.sun.com/jsf/core"
     xmlns:p="http://primefaces.org/ui">
 <h:head>
     
 </h:head>
-<h:form>
-    <p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
+<ui:composition template="/templates/masterLayout.xhtml"> 
+	<ui:define name="backBtn">
+		<h:commandLink action="#{treeController.leaveTreePage()}">
+			<span class="icomoon-circle-left backBtn-ico"></span>
+			<span class="backBtn-txt">Go Back</span>
+		</h:commandLink>
+	</ui:define>	     
+    <ui:define name="content">
+    <div class="white-space"></div>
+	<h:form>
+		<b:panel look="info" title="Project Name: #{projectEmployeesController.viewableProject.projectName}" collapsible="false">
+		<div class="row">
+			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
+				<h:commandButton value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
+				<p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
                 selectionMode="single" selection="#{treeController.projectTree.singleSelectedTreeNode}">
-        <p:treeNode expandedIcon="ui-icon ui-icon-folder-open"
-                        collapsedIcon="ui-icon ui-icon-folder-collapsed">
-            <h:outputText value="#{node.wpID} #{node.wpName}"/>
-        </p:treeNode>
-        <p:treeNode type="document" icon="ui-icon ui-icon-document">
-            <h:outputText value="#{node}"/>
-        </p:treeNode>
-        <p:treeNode type="image" icon="ui-icon ui-icon-image">
-            <h:outputText value="#{node}"/>
-        </p:treeNode>                 
-        <p:treeNode type="video" icon="ui-icon ui-icon-video">
-            <h:outputText value="#{node}"/>
-        </p:treeNode>
-        <p:ajax event="select" listener="#{treeManagedBean.onNodeSelect}"></p:ajax>
-        <p:ajax event="unselect" listener="#{treeManagedBean.onNodeUnSelect}"></p:ajax>
-        <p:ajax event="expand" listener="#{treeManagedBean.onNodeExpand}"></p:ajax>
-        <p:ajax event="collapse" listener="#{treeManagedBean.onNodeCollapse}"></p:ajax>                                 
-    </p:tree>
+			        <p:treeNode expandedIcon="ui-icon ui-icon-folder-open" collapsedIcon="ui-icon ui-icon-folder-collapsed">
+			            <h:outputText value="#{node.wpID} #{node.wpName}"/>
+			        </p:treeNode>
+			        <p:treeNode type="document" icon="ui-icon ui-icon-document">
+			            <h:outputText value="#{node}"/>
+			        </p:treeNode>
+			        <p:treeNode type="image" icon="ui-icon ui-icon-image">
+			            <h:outputText value="#{node}"/>
+			        </p:treeNode>                 
+			        <p:treeNode type="video" icon="ui-icon ui-icon-video">
+			            <h:outputText value="#{node}"/>
+			        </p:treeNode>
+			        <p:ajax event="select" listener="#{treeManagedBean.onNodeSelect}"></p:ajax>
+			        <p:ajax event="unselect" listener="#{treeManagedBean.onNodeUnSelect}"></p:ajax>
+			        <p:ajax event="expand" listener="#{treeManagedBean.onNodeExpand}"></p:ajax>
+			        <p:ajax event="collapse" listener="#{treeManagedBean.onNodeCollapse}"></p:ajax>                                 
+			    </p:tree>
+			</div>
+			<!-- Start the WP details -->
+			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
+				<b:panel look="info" title="WorkPackage: #{treeController.selectedWP.wpName}" collapsible="false">	
+				  <!-- List group -->
+				  <ul class="list-group">
+				    <li class="list-group-item">
+				    	<label>Work Package Name:</label>
+				    	<h:outputText value=" #{treeController.selectedWP.wpName}" />
+			    	</li>
+				    <li class="list-group-item">
+				    	<label>Work Package ID:</label>
+				    	<h:outputText value=" #{treeController.selectedWP.wpID}" />
+				    </li>
+				    <li class="list-group-item">
+				    	<label>Estimated Number of hours:</label>
+				    	<h:outputText value=" #{treeController.selectedWP.estimatedHours}" />	
+			    	</li>
+				  </ul>
+				  		
+			      <b:dataTable value="#{treeController.assignedEmps}" var="ewp">
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+							<h:outputText value="#{ewp.emp.employeeID}"/>
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{ewp.emp.firstName} #{ewp.emp.lastName}"/>
+						</h:column>
+				  </b:dataTable>
+				</b:panel>	  
+			</div>
+		</div>
+		</b:panel>
+	</h:form>
+	</ui:define>
+	</ui:composition>
+	<!--  start of old -->
+    <h:form>
     <h:commandButton value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
     <br />
     <h:commandButton value="Go Back" action="#{treeController.leaveTreePage()}"></h:commandButton>
@@ -39,24 +92,10 @@
     <br />
     <br />
     <br />
-    <h:outputText value="Work Package Name: #{treeController.selectedWP.wpName}" />
+    
     <br />
-    <h:outputText value="Work Package ID: #{treeController.selectedWP.wpID}" />
+    
     <br />
-    <h:outputText value="Estimated Number of hours: #{treeController.selectedWP.estimatedHours}" />
-  	<br />
-  	<br />
-	<h:dataTable value="#{treeController.assignedEmps}" var="ewp">
-		<h:column>
-			<f:facet name="header">ID</f:facet>
-			<h:outputText value="#{ewp.emp.employeeID}"/>
-		</h:column>
-		
-		<h:column>
-			<f:facet name="header">Name</f:facet>
-			<h:outputText value="#{ewp.emp.firstName} #{ewp.emp.lastName}"/>
-		</h:column>
-		
-	</h:dataTable>
-</h:form>
+    
+	</h:form>
 </html>

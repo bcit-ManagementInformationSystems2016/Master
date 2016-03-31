@@ -13,8 +13,17 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 .pagination>.active>span:hover, 
 .pagination>.active>a:focus, 
 .pagination>.active>span:focus{
-	background-color: #07E883;
-    border-color: #07E883;
+	background-color: #07E883 !important;
+    border-color: #07E883 !important;
+}
+.ui-widget-content{
+	border:none;
+}
+.ui-tree{
+	margin:0 auto;
+}
+.ui-widget{
+	font-size:1em !important;
 }
 .white-space{
 	padding-top:1em;
