@@ -32,11 +32,7 @@
 							</f:facet>
 						</b:inputText>
 						<b:selectOneMenu value="#{hrController.emp.roleID}">
-							<f:selectItem itemValue="1" itemLabel="Admin" />
-							<f:selectItem itemValue="2" itemLabel="Developer" />
-							<f:selectItem itemValue="3" itemLabel="HR" />
-							<f:selectItem itemValue="4" itemLabel="Other" />
-							<f:selectItem itemValue="5" itemLabel="Administrator" />
+							<f:selectItems value="#{hrController.getRoleList()}" />
 							<!-- <f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet> -->
@@ -81,8 +77,8 @@
 							</f:facet>
 						</b:selectOneMenu>
 						<b:selectOneMenu value="#{hrController.emp.isActive}">
-							<f:selectItem itemValue="true" itemLabel="True" />
-							<f:selectItem itemValue="false" itemLabel="False" />
+							<f:selectItem itemValue="#{true}" itemLabel="True" />
+							<f:selectItem itemValue="#{false}" itemLabel="False" />
 							<!-- <f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet> -->
