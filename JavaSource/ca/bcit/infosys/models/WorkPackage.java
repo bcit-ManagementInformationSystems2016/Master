@@ -49,14 +49,16 @@ public class WorkPackage implements Serializable{
 	private double totalBudgetCost;
 	
 	//bi-directional one-to-one association to Employee
-	@OneToOne
-	@JoinColumn(name="BudgetPDays")
-	private PayLevelDays budgetedDays;
+//	@OneToOne
+//	@JoinColumn(name="BudgetPDays")
+	@Column(name="BudgetPDays")
+	private int budgetedDaysID;
 		
 	//bi-directional one-to-one association to Employee
-	@OneToOne
-	@JoinColumn(name="RemainingDays")
-	private PayLevelDays remainingDays;
+//	@OneToOne
+//	@JoinColumn(name="RemainingDays")
+	@Column(name="RemainingDays")
+	private int remainingDaysID;
 
 	//bi-directional one-to-many association to Employee
 	// This is the one side
@@ -143,16 +145,16 @@ public class WorkPackage implements Serializable{
 	public void setResponsibleEngineerID(int responsibleEngineerID) {
 		this.responsibleEngineerID = responsibleEngineerID;
 	}
-	public PayLevelDays getBudgetedDays() {
-		return budgetedDays;
+	public int getBudgetedDaysID() {
+		return budgetedDaysID;
 	}
-	public void setBudgetedDays(PayLevelDays budgetedDays) {
-		this.budgetedDays = budgetedDays;
+	public void setBudgetedDaysID(int budgetedDaysID) {
+		this.budgetedDaysID = budgetedDaysID;
 	}
-	public PayLevelDays getRemainingDays() {
-		return remainingDays;
+	public int getRemainingDaysID() {
+		return remainingDaysID;
 	}
-	public void setRemainingDays(PayLevelDays remainingDays) {
-		this.remainingDays = remainingDays;
+	public void setRemainingDaysID(int remainingDaysID) {
+		this.remainingDaysID = remainingDaysID;
 	}
 } 
