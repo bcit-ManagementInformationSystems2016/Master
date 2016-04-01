@@ -20,7 +20,11 @@
 		<b:panel look="info" title="Project Name: #{projectEmployeesController.viewableProject.projectName}" collapsible="false">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
-				<h:commandButton value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
+				<h:commandButton styleClass="btn btn-info btn-margin" value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
+				<h:commandButton styleClass="btn btn-info btn-margin" value="Assign Employee to Work Package" action="#{treeController.assignEmpToWP()}" rendered="#{!projectController.showAllPros}"/>
+				<h:commandButton styleClass="btn btn-info btn-margin" value="Create Child Work Package" action="#{treeController.createNewWorkPackage()}" rendered="#{!projectController.showAllPros}"/>
+				<h:commandButton styleClass="btn btn-info btn-margin" value="Create New Branch" action="#{treeController.createNewBranch()}" rendered="#{!projectController.showAllPros}"/>
+				
 				<p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
                 selectionMode="single" selection="#{treeController.projectTree.singleSelectedTreeNode}">
 			        <p:treeNode expandedIcon="ui-icon ui-icon-folder-open" collapsedIcon="ui-icon ui-icon-folder-collapsed">
@@ -44,22 +48,27 @@
 			<!-- Start the WP details -->
 			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
 				<b:panel look="info" title="WorkPackage: #{treeController.selectedWP.wpName}" collapsible="false">	
-				  <!-- List group -->
-				  <ul class="list-group">
-				    <li class="list-group-item">
-				    	<label>Work Package Name:</label>
-				    	<h:outputText value=" #{treeController.selectedWP.wpName}" />
-			    	</li>
-				    <li class="list-group-item">
-				    	<label>Work Package ID:</label>
-				    	<h:outputText value=" #{treeController.selectedWP.wpID}" />
-				    </li>
-				    <li class="list-group-item">
-				    	<label>Estimated Number of hours:</label>
-				    	<h:outputText value=" #{treeController.selectedWP.estimatedHours}" />	
-			    	</li>
-				  </ul>
-				  		
+				  <div class="panel-body">
+	  				  <!-- List group -->
+					  <ul class="list-group">
+					    <li class="list-group-item">
+					    	<label>Work Package Name:</label>
+					    	<h:outputText value=" #{treeController.selectedWP.wpName}" />
+				    	</li>
+					    <li class="list-group-item">
+					    	<label>Work Package ID:</label>
+					    	<h:outputText value=" #{treeController.selectedWP.wpID}" />
+					    </li>
+					    <li class="list-group-item">
+					    	<label>Estimated Number of hours:</label>
+					    	<h:outputText value=" #{treeController.selectedWP.estimatedHours}" />	
+				    	</li>
+					  </ul>
+				  </div>
+				  <div class="panel-heading">
+				  	<h4 class="panel-title">Employees Assigned to Work Package:</h4>	
+				  </div>				  
+				  <div class="panel-body">		
 			      <b:dataTable value="#{treeController.assignedEmps}" var="ewp">
 						<h:column>
 							<f:facet name="header">ID</f:facet>
@@ -71,6 +80,7 @@
 							<h:outputText value="#{ewp.emp.firstName} #{ewp.emp.lastName}"/>
 						</h:column>
 				  </b:dataTable>
+				  </div>
 				</b:panel>	  
 			</div>
 		</div>
@@ -89,13 +99,7 @@
     <h:commandButton value="Create New Branch" action="#{treeController.createNewBranch()}" rendered="#{!projectController.showAllPros}"></h:commandButton>
     <br />
     <h:commandButton value="Assign Employee to Work Package" action="#{treeController.assignEmpToWP()}" rendered="#{!projectController.showAllPros}"></h:commandButton>
-    <br />
-    <br />
-    <br />
-    
-    <br />
-    
-    <br />
+
     
 	</h:form>
 </html>
