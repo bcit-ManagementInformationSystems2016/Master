@@ -4,12 +4,15 @@
 	    <jta-data-source>java:jboss/datasources/bluehost</jta-data-source>
 	    <class>ca.bcit.infosys.models.Credential</class>
 	    <class>ca.bcit.infosys.models.Employee</class>
-	      
+	    <class>ca.bcit.infosys.models.Vacation</class>
+	    <class>ca.bcit.infosys.models.PayLevel</class>  
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
          <property name="hibernate.hbm2ddl.auto" value="validate"/>
          <property name="hibernate.show_sql" value="false"/>
          <property name="hibernate.format_sql" value="true"/>
+         <property name="hibernate.enable_lazy_load_no_trans" value='true'/>
+         <property name="hibernate.event.merge.entity_copy_observer" value="allow"/>
       </properties>
 	</persistence-unit>
 </persistence>

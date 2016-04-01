@@ -20,11 +20,15 @@
 		<b:panel look="info" title="Project Name: #{projectEmployeesController.viewableProject.projectName}" collapsible="false">
 		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
+<<<<<<< Updated upstream
 				<h:commandButton styleClass="btn btn-info btn-margin" value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
 				<h:commandButton styleClass="btn btn-info btn-margin" value="Assign Employee to Work Package" action="#{treeController.assignEmpToWP()}" rendered="#{!projectController.showAllPros}"/>
 				<h:commandButton styleClass="btn btn-info btn-margin" value="Create Child Work Package" action="#{treeController.createNewWorkPackage()}" rendered="#{!projectController.showAllPros}"/>
 				<h:commandButton styleClass="btn btn-info btn-margin" value="Create New Branch" action="#{treeController.createNewBranch()}" rendered="#{!projectController.showAllPros}"/>
 				
+=======
+				<h:commandButton value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}" class="btn btn-info btn-margin"/>
+>>>>>>> Stashed changes
 				<p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
                 selectionMode="single" selection="#{treeController.projectTree.singleSelectedTreeNode}">
 			        <p:treeNode expandedIcon="ui-icon ui-icon-folder-open" collapsedIcon="ui-icon ui-icon-folder-collapsed">
