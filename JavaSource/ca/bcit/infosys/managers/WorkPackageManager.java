@@ -142,11 +142,8 @@ public class WorkPackageManager {
 	} */
 	
 	public WorkPackage getTopWorkPackage(int projectID) {
-		System.out.println("Looking for the projects");
 		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = '0'", WorkPackage.class);
-		System.out.println("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = '0'");
 		WorkPackage top = query.getSingleResult();
-		System.out.println("did i get a single result?");
 		return top;
 	}
 	
