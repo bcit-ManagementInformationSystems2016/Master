@@ -58,10 +58,12 @@ public class WorkPackage implements Serializable{
 	@JoinColumn(name="RemainingDays")
 	private PayLevelDays remainingDays;
 
-	//bi-directional one-to-one association to Employee
-	@OneToOne
-	@JoinColumn(name="ResponsibleEngineer")
-	private Employee responsibleEngineer;
+	//bi-directional one-to-many association to Employee
+	// This is the one side
+	@Id
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="ResponsibleEngineer")
+    private Employee responsibleEngineer;
 	
 	//bi-directional one-to-one association to Projects
 	@Id
