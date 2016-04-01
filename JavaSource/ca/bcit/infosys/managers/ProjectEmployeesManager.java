@@ -128,7 +128,9 @@ public class ProjectEmployeesManager {
     	 List<ProjectEmployees> proEmps = proQuery.getResultList();
     	 List<SelectItem> availableEmployees = new ArrayList<SelectItem>();
     	 for (int i = 0; i < proEmps.size(); i++) {
-    		 availableEmployees.add(new SelectItem(proEmps.get(i), proEmps.get(i).getEmp().getFirstName() + " " + proEmps.get(i).getEmp().getLastName()));
+    		TypedQuery<Employee> empQuery = em.createQuery("select c from Employee c WHERE EmployeeID = " + proEmps.get(i).getEmp().getEmployeeID() + "", Employee.class);
+         	Employee e = empQuery.getSingleResult();
+    		availableEmployees.add(new SelectItem(e, e.getFirstName() + " " + e.getLastName()));
     	 }
     	 return availableEmployees;
     }

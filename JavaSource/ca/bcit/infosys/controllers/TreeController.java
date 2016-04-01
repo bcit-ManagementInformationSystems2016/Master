@@ -12,6 +12,7 @@ import javax.inject.Named;
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.PayLevelCostManager;
+import ca.bcit.infosys.managers.PayLevelDaysManager;
 import ca.bcit.infosys.managers.ProjectEmployeesManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
@@ -39,6 +40,8 @@ public class TreeController implements Serializable {
 	private EmployeeManager empmgr;
 	@Inject
 	private PayLevelCostManager plcmgr;
+	@Inject
+	private PayLevelDaysManager pldmgr;
 	
 	// variable used to display tree
 	private static TreeManagedBean projectTree;
@@ -233,9 +236,27 @@ public class TreeController implements Serializable {
 		getWpToAdd().setWpID(getNewWPID());
 		getWpToAdd().setParentWPID(newWPPID);
 		getWpToAdd().setWorkingProject(projectToAdd);
+		pldmgr.persist(budget);
+		remaining.setP1Day(budget.getP1Day());
+		remaining.setP2Day(budget.getP2Day());
+		remaining.setP3Day(budget.getP3Day());
+		remaining.setP4Day(budget.getP4Day());
+		remaining.setP5Day(budget.getP5Day());
+		remaining.setP6Day(budget.getP6Day());
+		pldmgr.persist(remaining);
+		int n = new Integer(selectedEmployee);
+		wpToAdd.setResponsibleEngineerID(n);
+		wpToAdd.setRemainingDaysID(remaining.getPayLevelDaysID());
+		wpToAdd.setBudgetedDaysID(budget.getPayLevelDaysID());
+		double manDays = budget.getP1Day() + budget.getP2Day() + budget.getP3Day() + budget.getP4Day() + budget.getP5Day() + budget.getP6Day();
+		double wpCost = (budget.getP1Day() * projectCost.getP1Cost()) + (budget.getP2Day() * projectCost.getP2Cost()) + (budget.getP3Day() * projectCost.getP3Cost()) + 
+				(budget.getP4Day() * projectCost.getP4Cost()) + (budget.getP5Day() * projectCost.getP5Cost()) + (budget.getP6Day() * projectCost.getP6Cost());
+		wpToAdd.setTotalBudgetCost(wpCost);
+		wpToAdd.setTotalBudgetDays(manDays);
 		wpmgr.merge(w);
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
+		selectedWP = wpToAdd;
 		return "viewProjectDetails";
 	}
 	
