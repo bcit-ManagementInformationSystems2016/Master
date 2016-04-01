@@ -13,6 +13,7 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -34,9 +35,6 @@ public class WorkPackage implements Serializable{
 	
 	@Column(name="WPParentID")
 	private String parentWPID;
-	
-	@Column(name="EstimatedHours")
-	private double estimatedHours;
 
 	@Column(name="WorkPackageName")
 	private String wpName;
@@ -44,14 +42,26 @@ public class WorkPackage implements Serializable{
 	@Column(name="Description")
 	private String description;
 	
-	@Column(name="EstimatedStart")
-	private Date estimatedStart;
+	@Column(name="TotalBudgetDays")
+	private double totalBudgetDays;
 	
-	@Column(name="EstimatedEnd")
-	private Date estimatedEnd;
+	@Column(name="TotalBudgetCost")
+	private double totalBudgetCost;
 	
-	@Column(name="ActualStart")
-	private Date actualStart;
+	//bi-directional one-to-one association to Employee
+	@OneToOne
+	@JoinColumn(name="BudgetPDays")
+	private PayLevelDays budgetedDays;
+		
+	//bi-directional one-to-one association to Employee
+	@OneToOne
+	@JoinColumn(name="RemainingDays")
+	private PayLevelDays remainingDays;
+
+	//bi-directional one-to-one association to Employee
+	@OneToOne
+	@JoinColumn(name="ResponsibleEngineer")
+	private Employee responsibleEngineer;
 	
 	//bi-directional one-to-one association to Projects
 	@Id
@@ -88,12 +98,6 @@ public class WorkPackage implements Serializable{
 	public void setParentWPID(String parentWPID) {
 		this.parentWPID = parentWPID;
 	}
-	public double getEstimatedHours() {
-		return estimatedHours;
-	}
-	public void setEstimatedHours(double estimatedHours) {
-		this.estimatedHours = estimatedHours;
-	}
 	public String getWpName() {
 		return wpName;
 	}
@@ -118,22 +122,34 @@ public class WorkPackage implements Serializable{
 	public void setAssignedWorkPackages(List<EmployeeWP> assignedWorkPackages) {
 		this.assignedWorkPackages = assignedWorkPackages;
 	}
-	public Date getEstimatedStart() {
-		return estimatedStart;
+	public double getTotalBudgetDays() {
+		return totalBudgetDays;
 	}
-	public void setEstimatedStart(java.sql.Date estimatedStart) {
-		this.estimatedStart = estimatedStart;
+	public void setTotalBudgetDays(double totalBudgetDays) {
+		this.totalBudgetDays = totalBudgetDays;
 	}
-	public Date getEstimatedEnd() {
-		return estimatedEnd;
+	public double getTotalBudgetCost() {
+		return totalBudgetCost;
 	}
-	public void setEstimatedEnd(java.sql.Date estimatedEnd) {
-		this.estimatedEnd = estimatedEnd;
+	public void setTotalBudgetCost(double totalBudgetCost) {
+		this.totalBudgetCost = totalBudgetCost;
 	}
-	public Date getActualStart() {
-		return actualStart;
+	public Employee getResponsibleEngineer() {
+		return responsibleEngineer;
 	}
-	public void setActualStart(java.sql.Date actualStart) {
-		this.actualStart = actualStart;
+	public void setResponsibleEngineer(Employee responsibleEngineer) {
+		this.responsibleEngineer = responsibleEngineer;
+	}
+	public PayLevelDays getBudgetedDays() {
+		return budgetedDays;
+	}
+	public void setBudgetedDays(PayLevelDays budgetedDays) {
+		this.budgetedDays = budgetedDays;
+	}
+	public PayLevelDays getRemainingDays() {
+		return remainingDays;
+	}
+	public void setRemainingDays(PayLevelDays remainingDays) {
+		this.remainingDays = remainingDays;
 	}
 } 
