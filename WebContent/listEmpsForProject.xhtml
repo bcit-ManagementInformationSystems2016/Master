@@ -11,7 +11,7 @@
 <h:body>
 <ui:composition template="/templates/masterLayout.xhtml"> 
 	<ui:define name="backBtn">
-		<h:commandLink action="showAllProjects.xhtml">
+		<h:commandLink action="#{projectEmployeesController.goToViewProjectsPage()}">
 			<span class="icomoon-circle-left backBtn-ico"></span>
 			<span class="backBtn-txt">Go Back</span>
 		</h:commandLink>

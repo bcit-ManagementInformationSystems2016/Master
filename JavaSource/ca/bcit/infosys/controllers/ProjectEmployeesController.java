@@ -37,6 +37,7 @@ public class ProjectEmployeesController implements Serializable {
 	// variables used for caching
 	private static Project[] pros;
 	private static List<SelectItem> availableProjects;
+	private static Employee[] availableEmps;
 	
 	//Getters and Setters
 	public Project getViewableProject() {
@@ -68,7 +69,13 @@ public class ProjectEmployeesController implements Serializable {
 	}
 	public Project[] getPros() {
 		return pros;
-	}	
+	}
+	public void setAvailableEmps(Employee[] availableEmps) {
+		ProjectEmployeesController.availableEmps = availableEmps;
+	}
+	public Employee[] getAvailableEmps() {
+		return availableEmps;
+	}
 	public static List<SelectItem> getAvailableProjects() {
 		return availableProjects;
 	}
@@ -94,7 +101,10 @@ public class ProjectEmployeesController implements Serializable {
 	}
 	
 	public Employee[] allEmployeesForProject() {
-		return empmgr.getAllWithinProject(viewableProject.getProjectID());
+		if (availableEmps == null) {
+			availableEmps = empmgr.getAllWithinProject(viewableProject.getProjectID());
+		}
+		return availableEmps;
 	}
 	
 	public Project[] allProjectsForEmployee() {
@@ -139,6 +149,11 @@ public class ProjectEmployeesController implements Serializable {
 	public String cancelAssignment() {
 		setAvailableProjects(null);
 		return "viewMinions";
+	}
+	
+	public String goToViewProjectsPage() {
+		setAvailableEmps(null);
+		return "showAllProjects";
 	}
 	
 }
