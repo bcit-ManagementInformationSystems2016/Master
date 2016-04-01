@@ -144,12 +144,16 @@ public class TreeController implements Serializable {
 	
 	public String leaveTreePage() {
 		projectTree = null;
+		selectedWP = null;
+		responsibleEngineer = null;
 		return "showAllProjects";
 	}
 	
 	public void showWorkPackageDetails() {
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
+		} else {
+			selectedWP = wpmgr.find(editableProject, "0");
 		}
 		if (!cachedEmps.containsKey(selectedWP.getResponsibleEngineerID())) {
 			Employee tmp = empmgr.getTimesheetValidator(selectedWP.getResponsibleEngineerID());
