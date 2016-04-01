@@ -49,8 +49,8 @@ public class Employee implements Serializable {
 	private Credential credential;
 	
 	// bi-directional one-to-one association to WorkPackage
-	@OneToMany(mappedBy = "responsibleEngineer")
-	private List<WorkPackage> responsibleEngineers;
+//	@OneToMany(mappedBy = "responsibleEngineer")
+//	private List<WorkPackage> responsibleEngineers;
 
 	// used for one-to-many mapping between projects and project managers
 	@OneToMany(mappedBy = "projectManager")
@@ -153,10 +153,10 @@ public class Employee implements Serializable {
 	public void setAssignedWorkPackages(List<EmployeeWP> assignedWorkPackages) {
 		this.assignedWorkPackages = assignedWorkPackages;
 	}
-	public List<WorkPackage> getResponsibleEngineers() {
-		return responsibleEngineers;
-	}
-	public void setResponsibleEngineers(List<WorkPackage> responsibleEngineers) {
-		this.responsibleEngineers = responsibleEngineers;
-	}
+//	public List<WorkPackage> getResponsibleEngineers() {
+//		return responsibleEngineers;
+//	}
+//	public void setResponsibleEngineers(List<WorkPackage> responsibleEngineers) {
+//		this.responsibleEngineers = responsibleEngineers;
+//	}
 }

@@ -60,10 +60,11 @@ public class WorkPackage implements Serializable{
 
 	//bi-directional one-to-many association to Employee
 	// This is the one side
-	@Id
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="ResponsibleEngineer")
-    private Employee responsibleEngineer;
+//	@Id
+//	@ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name="ResponsibleEngineer")
+	@Column(name="ResponsibleEngineer")
+    private int responsibleEngineerID;
 	
 	//bi-directional one-to-one association to Projects
 	@Id
@@ -136,11 +137,11 @@ public class WorkPackage implements Serializable{
 	public void setTotalBudgetCost(double totalBudgetCost) {
 		this.totalBudgetCost = totalBudgetCost;
 	}
-	public Employee getResponsibleEngineer() {
-		return responsibleEngineer;
+	public int getResponsibleEngineerID() {
+		return responsibleEngineerID;
 	}
-	public void setResponsibleEngineer(Employee responsibleEngineer) {
-		this.responsibleEngineer = responsibleEngineer;
+	public void setResponsibleEngineerID(int responsibleEngineerID) {
+		this.responsibleEngineerID = responsibleEngineerID;
 	}
 	public PayLevelDays getBudgetedDays() {
 		return budgetedDays;

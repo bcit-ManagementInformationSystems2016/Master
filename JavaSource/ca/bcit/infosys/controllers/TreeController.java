@@ -2,6 +2,7 @@ package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -50,6 +51,10 @@ public class TreeController implements Serializable {
 	// variables used for assigning Employees to Workpackages
 	private static List<SelectItem> availableEmployees;
 	private String selectedEmployee;
+	
+	// variables used for caching employees
+	private static HashMap<Integer, Employee> cachedEmps = new HashMap<Integer, Employee>();
+	private Employee responsibleEngineer;
 	
 	// Getters and Setters
 	public void setProjectTree(TreeManagedBean projectTree) {
@@ -112,6 +117,12 @@ public class TreeController implements Serializable {
 	public void setSelectedEmployee(String selectedEmployee) {
 		this.selectedEmployee = selectedEmployee;
 	}
+	public Employee getResponsibleEngineer() {
+		return responsibleEngineer;
+	}
+	public void setResponsibleEngineer(Employee responsibleEngineer) {
+		this.responsibleEngineer = responsibleEngineer;
+	}
 	
 	
 	// Other Functions
@@ -140,6 +151,11 @@ public class TreeController implements Serializable {
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		}
+		if (!cachedEmps.containsKey(selectedWP.getResponsibleEngineerID())) {
+			Employee tmp = empmgr.getTimesheetValidator(selectedWP.getResponsibleEngineerID());
+			cachedEmps.put(selectedWP.getResponsibleEngineerID(), tmp);
+		}
+		setResponsibleEngineer(cachedEmps.get(selectedWP.getResponsibleEngineerID()));
 		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 	}
 	
