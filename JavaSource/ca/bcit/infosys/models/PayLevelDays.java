@@ -19,7 +19,7 @@ public class PayLevelDays implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "PLvlDaysID")
-	public int payLevelCostID;
+	public int payLevelDaysID;
 	
 	@Column(name = "P1Day")
 	private double p1Day;
@@ -48,11 +48,11 @@ public class PayLevelDays implements Serializable {
 	private WorkPackage remainingWP;
 	
 	// Getters and Setters
-	public int getPayLevelCostID() {
-		return payLevelCostID;
+	public int getPayLevelDaysID() {
+		return payLevelDaysID;
 	}
-	public void setPayLevelCostID(int payLevelCostID) {
-		this.payLevelCostID = payLevelCostID;
+	public void setPayLevelDaysID(int payLevelDaysID) {
+		this.payLevelDaysID = payLevelDaysID;
 	}
 	public double getP1Day() {
 		return p1Day;
