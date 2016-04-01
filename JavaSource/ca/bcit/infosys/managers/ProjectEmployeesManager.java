@@ -122,4 +122,14 @@ public class ProjectEmployeesManager {
         }
         return availableEmployees;
     }
+    
+    public List<SelectItem> getAllAvailableEmployees(int projectID) {
+    	TypedQuery<ProjectEmployees> proQuery = em.createQuery("select c from ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class);
+    	 List<ProjectEmployees> proEmps = proQuery.getResultList();
+    	 List<SelectItem> availableEmployees = new ArrayList<SelectItem>();
+    	 for (int i = 0; i < proEmps.size(); i++) {
+    		 availableEmployees.add(new SelectItem(proEmps.get(i), proEmps.get(i).getEmp().getFirstName() + " " + proEmps.get(i).getEmp().getLastName()));
+    	 }
+    	 return availableEmployees;
+    }
 }

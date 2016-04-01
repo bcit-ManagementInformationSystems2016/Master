@@ -39,4 +39,10 @@ public class PayLevelCostManager {
 		return payLevelCosts;
 	}
 	
+	public PayLevelCost getProjectCosts(int projectID) {
+		TypedQuery<PayLevelCost> queryOne = em.createQuery("SELECT c FROM PayLevelCost c WHERE ProjectID = " + projectID + "", PayLevelCost.class);
+		PayLevelCost plc = queryOne.getSingleResult();
+		return plc;
+	}
+	
 }

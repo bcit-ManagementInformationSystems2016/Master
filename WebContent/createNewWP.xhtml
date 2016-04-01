@@ -27,17 +27,52 @@
 		<br />
 		<strong><h:outputText value="#{treeController.newWPPID}"/></strong>
 		<br />
-		<h:outputText value="Estimated Hours" />
+		<h:outputText value="Work Package Description" />
 		<br />
-		<h:inputText value="#{treeController.wpToAdd.estimatedHours}" />
+		<h:inputTextarea value="#{treeController.wpToAdd.description}" />
 		<br />
 		<h:outputText value="Work Package Name" />
 		<br />
 		<h:inputText value="#{treeController.wpToAdd.wpName}" />
 		<br />
-		<h:outputText value="Work Package Description" />
+		<h:outputText value="Man Hours per Pay Level" />
 		<br />
-		<h:inputTextarea value="#{treeController.wpToAdd.description}" />
+		<h:outputText value="Pay Level 1:" />
+		<h:inputText value="#{treeController.budget.p1Day}" />
+		<h:outputText value=" Pay Level 1 Cost per Day:" />
+		<h:outputText value="#{treeController.projectCost.p1Cost}" />
+		<br />
+		<h:outputText value="Pay Level 2:" />
+		<h:inputText value="#{treeController.budget.p2Day}" />
+		<h:outputText value=" Pay Level 2 Cost per Day:" />
+		<h:outputText value="#{treeController.projectCost.p2Cost}" />
+		<br />
+		<h:outputText value="Pay Level 3:" />
+		<h:inputText value="#{treeController.budget.p3Day}" />
+		<h:outputText value=" Pay Level 3 Cost per Day:" />
+		<h:outputText value="#{treeController.projectCost.p3Cost}" />
+		<br />
+		<h:outputText value="Pay Level 4:" />
+		<h:inputText value="#{treeController.budget.p4Day}" />
+		<h:outputText value=" Pay Level 4 Cost per Day:" />
+		<h:outputText value="#{treeController.projectCost.p4Cost}" />
+		<br />
+		<h:outputText value="Pay Level 5:" />
+		<h:inputText value="#{treeController.budget.p5Day}" />
+		<h:outputText value=" Pay Level 1 Cost per Day:" />
+		<h:outputText value="#{treeController.projectCost.p1Cost}" />
+		<br />
+		<h:outputText value="Pay Level 6:" />
+		<h:inputText value="#{treeController.budget.p6Day}" />
+		<h:outputText value=" Pay Level 5 Cost per Day:" />
+		<h:outputText value="#{treeController.projectCost.p5Cost}" />
+		<br />
+		<h:outputText value="Responsible Engineer:" />
+		<br />
+		<h:selectOneMenu value="#{treeController.selectedEmployee}">
+		  <f:selectItems value="#{treeController.getDropdownForNewWP()}" />
+	  	</h:selectOneMenu>
+		
 		<br />
 		<h:commandButton value="Go Back" action="#{treeController.cancelCreateWP()}"/>
 		<br />

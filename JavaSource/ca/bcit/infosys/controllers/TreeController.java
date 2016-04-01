@@ -1,7 +1,6 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,10 +11,13 @@ import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.EmployeeWPManager;
+import ca.bcit.infosys.managers.PayLevelCostManager;
 import ca.bcit.infosys.managers.ProjectEmployeesManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.EmployeeWP;
+import ca.bcit.infosys.models.PayLevelCost;
+import ca.bcit.infosys.models.PayLevelDays;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.TreeManagedBean;
 import ca.bcit.infosys.models.WorkPackage;
@@ -35,6 +37,8 @@ public class TreeController implements Serializable {
 	private ProjectEmployeesManager pjtEmpMgr;
 	@Inject
 	private EmployeeManager empmgr;
+	@Inject
+	private PayLevelCostManager plcmgr;
 	
 	// variable used to display tree
 	private static TreeManagedBean projectTree;
@@ -47,6 +51,9 @@ public class TreeController implements Serializable {
 	private Project projectToAdd = new Project();
 	private String newWPID;
 	private String newWPPID;
+	private PayLevelDays budget;
+	private PayLevelDays remaining;
+	private PayLevelCost projectCost;
 	
 	// variables used for assigning Employees to Workpackages
 	private static List<SelectItem> availableEmployees;
@@ -123,6 +130,24 @@ public class TreeController implements Serializable {
 	public void setResponsibleEngineer(Employee responsibleEngineer) {
 		this.responsibleEngineer = responsibleEngineer;
 	}
+	public PayLevelDays getBudget() {
+		return budget;
+	}
+	public void setBudget(PayLevelDays budget) {
+		this.budget = budget;
+	}
+	public PayLevelDays getRemaining() {
+		return remaining;
+	}
+	public void setRemaining(PayLevelDays remaining) {
+		this.remaining = remaining;
+	}
+	public PayLevelCost getProjectCost() {
+		return projectCost;
+	}
+	public void setProjectCost(PayLevelCost projectCost) {
+		this.projectCost = projectCost;
+	}
 	
 	
 	// Other Functions
@@ -133,6 +158,7 @@ public class TreeController implements Serializable {
 	
 	public String viewProjectTree(Project p) {
 		setEditableProject(p);
+		projectCost = plcmgr.getProjectCosts(p.getProjectID());
 		WorkPackage top = wpmgr.getTopWorkPackage(p.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
 		return "viewProjectDetails";
@@ -179,6 +205,7 @@ public class TreeController implements Serializable {
 	}
 	
 	public String createNewWorkPackage() {
+//		projectCost = plcmgr.getProjectCosts(editableProject.getProjectID());
 		if (wpToAdd != null) {
 			wpToAdd = new WorkPackage();
 		}
@@ -187,6 +214,8 @@ public class TreeController implements Serializable {
 		} else {
 			return "viewProjectDetails";
 		}
+		budget = new PayLevelDays();
+		remaining = new PayLevelDays();
 		setNewWPPID(selectedWP.getWpID());
 		int nextWP = 0;
 		nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), selectedWP.getWpID()) + 1;
@@ -211,6 +240,7 @@ public class TreeController implements Serializable {
 	}
 	
 	public String cancelCreateWP() {
+		setAvailableEmployees(null);
 		return "viewProjectDetails";
 	}
 	
@@ -241,6 +271,13 @@ public class TreeController implements Serializable {
 		}
 		if (availableEmployees == null) {
 			setAvailableEmployees(pjtEmpMgr.getAvailableEmployees(editableProject.getProjectID(), selectedWP.getWpID()));
+		}
+		return availableEmployees;
+	}
+	
+	public List<SelectItem> getDropdownForNewWP() {
+		if (availableEmployees == null) {
+			setAvailableEmployees(pjtEmpMgr.getAllAvailableEmployees(editableProject.getProjectID()));
 		}
 		return availableEmployees;
 	}

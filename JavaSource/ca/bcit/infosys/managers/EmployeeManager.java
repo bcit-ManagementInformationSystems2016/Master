@@ -4,7 +4,6 @@
 package ca.bcit.infosys.managers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -16,7 +15,6 @@ import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.models.Employee;
-import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
 
 /**
