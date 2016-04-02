@@ -1,6 +1,7 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.util.HashMap;
 
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -8,6 +9,7 @@ import javax.inject.Named;
 
 import ca.bcit.infosys.managers.PayLevelCostManager;
 import ca.bcit.infosys.managers.PayLevelDaysManager;
+import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.MonthlyReport;
 import ca.bcit.infosys.models.PayLevelCost;
@@ -27,10 +29,14 @@ public class MonthlyReportController implements Serializable {
 	private PayLevelDaysManager pldMgr;
 	@Inject
 	private PayLevelCostManager plcMgr;
+	@Inject
+	private TimesheetRowManager tsrMgr;
 	
 	private MonthlyReport[] dataItems;
 	private Project viewableProject;
 	private WorkPackage[] projectWorkPackages;
+	private HashMap<String, Double> costMap = new HashMap<String, Double>();
+	private HashMap<String, Double> hoursMap = new HashMap<String, Double>();
 	
 	// GETTERS AND SETTERS
 	
@@ -52,10 +58,20 @@ public class MonthlyReportController implements Serializable {
 	public void setProjectWorkPackages(WorkPackage[] projectWorkPackages) {
 		this.projectWorkPackages = projectWorkPackages;
 	}
-	
+	public HashMap<String, Double> getCostMap() {
+		return costMap;
+	}
+	public void setCostMap(HashMap<String, Double> costMap) {
+		this.costMap = costMap;
+	}
+	public HashMap<String, Double> getHoursMap() {
+		return hoursMap;
+	}
+	public void setHoursMap(HashMap<String, Double> hoursMap) {
+		this.hoursMap = hoursMap;
+	}
 	
 	// OTHER METHODS
-	
 	
 	public MonthlyReport[] testFunction() {
 		MonthlyReport[] test = new MonthlyReport[4];
@@ -78,14 +94,33 @@ public class MonthlyReportController implements Serializable {
 		PayLevelCost plc = plcMgr.getProjectCosts(viewableProject.getProjectID());
 		for (int i = 0; i < wps.length; i ++) {
 			MonthlyReport mr = new MonthlyReport();
-			PayLevelDays pld = pldMgr.getSingleEntry(wps[i].getRemainingDaysID());
+			boolean isChild = isChild(wps[i], wps);
 			mr.setWpID(wps[i].getWpID() + ": " + wps[i].getWpName());
 			mr.setBudgetCost(wps[i].getTotalBudgetCost());
 			mr.setBudgetHours(wps[i].getTotalBudgetDays());
 			mr.setActualCost(0);
 			mr.setActualHours(0);
-			mr.setRemainingCost(calculateTotalCostRemaining(pld, plc));
-			mr.setRemainingHours(calculateTotalHoursRemaining(pld));
+			
+			if (costMap.containsKey(wps[i].getWpID())) {
+				mr.setRemainingCost(costMap.get(wps[i].getWpID()));
+			} else {
+				if (isChild) {
+					mr.setRemainingCost(calculateTotalCostRemaining(wps[i], plc));
+					costMap.put(wps[i].getWpID(), new Double(mr.getRemainingCost()));
+				} else {
+					mr.setRemainingCost(parentTotalCostRemaining(wps[i], wps, plc));
+				}
+			}
+			if (hoursMap.containsKey(wps[i].getWpID())) {
+				mr.setRemainingHours(hoursMap.get(wps[i].getWpID()));
+			} else {
+				if (isChild) {
+					mr.setRemainingHours(calculateTotalHoursRemaining(wps[i]));
+					hoursMap.put(wps[i].getWpID(), new Double(mr.getRemainingHours()));
+				} else {
+					mr.setRemainingHours(parentTotalHoursRemaining(wps[i], wps));
+				}
+			}
 			mr.setEstimatedCost(mr.getActualCost() + mr.getRemainingCost());
 			mr.setEstimatedHours(mr.getActualHours() + mr.getRemainingHours());
 			mr.setVarianceCost(Math.round(((mr.getEstimatedCost()-mr.getBudgetCost())/mr.getBudgetCost())*100));
@@ -96,7 +131,49 @@ public class MonthlyReportController implements Serializable {
 		dataItems = data;
 	}
 	
-	public double calculateTotalHoursRemaining(PayLevelDays pld) {
+	public double parentTotalHoursRemaining(WorkPackage wp, WorkPackage[] wps) {
+		WorkPackage[] children = wpMgr.getParentProjectWorkPackages(viewableProject.getProjectID(), wp.getWpID());
+		double total = 0;
+		for (int i=0; i < children.length; i++) {
+			if (hoursMap.containsKey(wp.getWpID())) {
+				total += hoursMap.get(wp.getWpID());
+			} else {
+				double n = 0;
+				if (isChild(children[i], wps)) {
+					n = calculateTotalHoursRemaining(children[i]);
+					
+				} else {
+					n = parentTotalHoursRemaining(children[i], wps);
+				}
+				total += n;
+				hoursMap.put(children[i].getWpID(), new Double(n));
+			}
+		}
+		return total;
+	}
+	
+	public double parentTotalCostRemaining(WorkPackage wp, WorkPackage[] wps, PayLevelCost plc) {
+		WorkPackage[] children = wpMgr.getParentProjectWorkPackages(viewableProject.getProjectID(), wp.getWpID());
+		double total = 0;
+		for (int i=0; i < children.length; i++) {
+			if (costMap.containsKey(wp.getWpID())) {
+				total += costMap.get(wp.getWpID());
+			} else {
+				double n = 0;
+				if (isChild(children[i], wps)) {
+					n = calculateTotalCostRemaining(children[i], plc);
+				} else {
+					n = parentTotalCostRemaining(children[i], wps, plc);
+				}
+				total += n;
+				costMap.put(children[i].getWpID(), new Double(n));
+			}
+		}
+		return total;
+	}
+	
+	public double calculateTotalHoursRemaining(WorkPackage wp) {
+		PayLevelDays pld = pldMgr.getSingleEntry(wp.getRemainingDaysID());
 		double total = 0;
 		total += pld.getP1Day();
 		total += pld.getP2Day();
@@ -107,7 +184,8 @@ public class MonthlyReportController implements Serializable {
 		return total;
 	}
 	
-	public double calculateTotalCostRemaining(PayLevelDays pld, PayLevelCost plc) {
+	public double calculateTotalCostRemaining(WorkPackage wp, PayLevelCost plc) {
+		PayLevelDays pld = pldMgr.getSingleEntry(wp.getRemainingDaysID());
 		double total = 0;
 		total += pld.getP1Day() * plc.getP1Cost();
 		total += pld.getP2Day() * plc.getP2Cost();
@@ -116,6 +194,15 @@ public class MonthlyReportController implements Serializable {
 		total += pld.getP5Day() * plc.getP5Cost();
 		total += pld.getP6Day() * plc.getP6Cost();
 		return total;
+	}
+	
+	public boolean isChild(WorkPackage wp, WorkPackage[] wps) {
+		for (int i=0; i < wps.length; i++) {
+			if (wps[i].getParentWPID().equals(wp.getWpID())) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public double calculateTotalActualHours(WorkPackage wp) {
