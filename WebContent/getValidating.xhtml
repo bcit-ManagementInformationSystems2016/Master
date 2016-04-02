@@ -1,79 +1,91 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"> 
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>Validating</title>
 
 </h:head>
 <h:body>
-<ui:composition template="/templates/masterLayout.xhtml">
-	<ui:define name="content">
-		<form>
-		<b:panel look="info" title="Timesheet Validation for #{timesheetValidatorController.currentEmployee.firstName} #{supervisorController.timesheetValidator.lastName}" collapsible="false">
-     		<b:dataTable value="#{timesheetValidatorController.getYourValidatees()}" var="emp">
-			<h:column>
-				<f:facet name="header">Employee ID</f:facet>
-				<h:outputText value="#{emp.employeeID}" />
-			</h:column>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panel look="info"
+					title="Timesheet Validation for #{timesheetValidatorController.currentEmployee.firstName} #{supervisorController.timesheetValidator.lastName}"
+					collapsible="false">
+					<b:dataTable
+						value="#{timesheetValidatorController.getYourValidatees()}"
+						var="emp">
+						<h:column>
+							<f:facet name="header">Employee ID</f:facet>
+							<h:outputText value="#{emp.employeeID}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">First Name</f:facet>
-				<h:outputText value="#{emp.firstName}" />
-			</h:column>
+						<h:column>
+							<f:facet name="header">First Name</f:facet>
+							<h:outputText value="#{emp.firstName}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">Last Name</f:facet>
-				<h:outputText value="#{emp.lastName}" />
-			</h:column>
+						<h:column>
+							<f:facet name="header">Last Name</f:facet>
+							<h:outputText value="#{emp.lastName}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">Validator ID</f:facet>
-				<h:outputText value="#{emp.validatorID}" />
-			</h:column>
-			</b:dataTable>
-		</b:panel>
-		<br/>
-		<b:panel look="info" title="Timesheets needing to be approved" collapsible="false">
-     		<b:dataTable value="#{timesheetValidatorController.getYouUnapprovedTimesheets()}" var="ts">
-     		<h:column>
-				<f:facet name="header">
-		          <h:outputText value="Approve Timesheet" style="font-weight: bold" />						      
-		        </f:facet>
-		        <h:form>
-					<h:commandLink value="Approve" action="#{timesheetValidatorController.validateTimesheet(ts)}" />
-				</h:form>
-			</h:column>    
-			<h:column>
-				<f:facet name="header">Timesheet ID</f:facet>
-				<h:outputText value="#{ts.timesheetID}" />
-			</h:column>
+						<h:column>
+							<f:facet name="header">Validator ID</f:facet>
+							<h:outputText value="#{emp.validatorID}" />
+						</h:column>
+					</b:dataTable>
+				</b:panel>
+			</h:form>
+			<br />
+			<h:form>
+				<b:panel look="info" title="Timesheets needing to be approved"
+					collapsible="false">
+					<b:dataTable
+						value="#{timesheetValidatorController.getYouUnapprovedTimesheets()}"
+						var="ts">
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Approve Timesheet"
+									style="font-weight: bold" />
+							</f:facet>
 
-			<h:column>
-				<f:facet name="header">Employee ID</f:facet>
-				<h:outputText value="#{ts.employeeID}" />
-			</h:column>
+							<h:commandLink value="Approve"
+								action="#{timesheetValidatorController.validateTimesheet(ts)}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Timesheet ID</f:facet>
+							<h:outputText value="#{ts.timesheetID}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">Is Submitted</f:facet>
-				<h:outputText value="#{ts.submitted}" />
-			</h:column>
+						<h:column>
+							<f:facet name="header">Employee ID</f:facet>
+							<h:outputText value="#{ts.employeeID}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">Is Approved</f:facet>
-				<h:outputText value="#{ts.approved}" />
-			</h:column>
-			</b:dataTable>
-		</b:panel>		 					
-		</form>
-		<h:form>
-		<br />
-		<h:commandButton value="Back" action="#{timesheetValidatorController.leaveTimesheetValidating()}"></h:commandButton>
-		</h:form>
-	</ui:define>
-</ui:composition>
+						<!-- <h:column>
+							<f:facet name="header">Is Submitted</f:facet>
+							<h:outputText value="#{ts.submitted}" />
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Is Approved</f:facet>
+							<h:outputText value="#{ts.approved}" />
+						</h:column>
+						 -->
+					</b:dataTable>
+				</b:panel>
+			</h:form>
+			<h:form>
+				<br />
+				<h:commandButton value="Back"
+					action="#{timesheetValidatorController.leaveTimesheetValidating()}"></h:commandButton>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

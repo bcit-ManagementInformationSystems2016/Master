@@ -73,6 +73,8 @@ public class TimesheetValidatorController implements Serializable {
 	}
 	
 	public String validateTimesheet(Timesheet ts) {
+		System.out.println("Validate Timesheet");
+		System.out.println("Employee ID: " + ts.getEmployeeID());
 		ts.setApproved(true);
 		tsmgr.merge(ts);
 		setUnapprovedTimesheets(null);
