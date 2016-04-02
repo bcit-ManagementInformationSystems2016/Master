@@ -110,5 +110,17 @@ public class TimesheetRowManager {
 		    }
 		    return catarray;
 	    }
+	    
+	    public TimesheetRow[] getRowsWithWPId(String wpID) {
+	    	TypedQuery<TimesheetRow> query = em.createQuery("select c from TimesheetRow c where c.workPackageID = :wpID", TimesheetRow.class);
+	    	java.util.List<TimesheetRow> categories = query.setParameter("wpID", wpID).getResultList();
+	    	TimesheetRow[] catarray = new TimesheetRow[categories.size()];
+		    for (int i=0; i < catarray.length; i++) {
+		        catarray[i] = categories.get(i);
+		    }
+		    return catarray;
+	    }
+	    
+	    
 
 }

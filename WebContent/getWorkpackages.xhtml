@@ -13,8 +13,12 @@
         
         
         <h:dataTable value="#{workPackageController.allWorkPackages}" var="wp" >
+        <h:column>    				
+            <f:facet name="header">Project ID</f:facet>    				
+            <h:outputText value="#{wp.workingProject}"/>
+         </h:column>
          <h:column>    				
-            <f:facet name="header">Work Package</f:facet>    				
+            <f:facet name="header">Work PackageID</f:facet>    				
             <h:outputText value="#{wp.wpID}"/>
          </h:column>
          <h:column>
@@ -51,7 +55,7 @@
          
          <h:column>
             <f:facet name="header">Report</f:facet>
-            <h:commandLink value="Fill Report" action="#{weekly.showWeeklyReport}"/>
+            <h:commandLink value="Fill Report" action="#{weekly.showWeeklyReport(wp.workingProject, wp.wpID)}"/>
             
          </h:column>
          

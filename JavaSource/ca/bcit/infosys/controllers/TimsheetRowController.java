@@ -299,6 +299,19 @@ public class TimsheetRowController implements Serializable {
        return satHours;
    }
    
+   public double getHoursForWP(String wpID) {
+	   double allHours = 0.0;
+       TimesheetRow[] rows = timesheetRowManager.getRowsWithWPId(wpID);
+
+      
+       for (int i=0; i < rows.length; i++) {
+           allHours += rows[i].getTotalHours();
+           
+       }
+       return allHours;
+	   
+   }
+   
    public void submitTimesheet() {
 	   saveAllTimesheetRows();
 	   Timesheet ts = getTs();
