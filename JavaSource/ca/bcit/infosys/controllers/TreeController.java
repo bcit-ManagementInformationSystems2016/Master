@@ -254,6 +254,7 @@ public class TreeController implements Serializable {
 		wpToAdd.setTotalBudgetCost(wpCost);
 		wpToAdd.setTotalBudgetDays(manDays);
 		wpmgr.merge(w);
+		updateBudget(wpToAdd);
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
 		selectedWP = wpToAdd;
@@ -320,5 +321,38 @@ public class TreeController implements Serializable {
 	public String cancelAssignment() {
 		setAvailableEmployees(null);
 		return "viewProjectDetails";
+	}
+	
+	public void updateBudget(WorkPackage wp) {
+		boolean isRoot = false;
+		String currentWpID = wp.getParentWPID();
+		WorkPackage parentWP;
+		while (!isRoot) {
+			System.out.println("while loop starting");
+			double totalDays = 0;
+			double totalCost = 0;
+			WorkPackage[] childWPs;
+			System.out.println("Current ID: " + currentWpID);
+			parentWP = wpmgr.getWorkPackage(editableProject.getProjectID(), currentWpID);
+			childWPs = wpmgr.getParentProjectWorkPackages(editableProject.getProjectID(), parentWP.getWpID());
+			for (int i = 0; i < childWPs.length; i++) {
+				totalDays += childWPs[i].getTotalBudgetDays();
+				totalCost += childWPs[i].getTotalBudgetCost();
+			}
+			System.out.println("stuff happened");
+			parentWP.setTotalBudgetDays(totalDays);
+			parentWP.setTotalBudgetCost(totalCost);
+			wpmgr.merge(parentWP);
+			System.out.println("merged");
+			if (!parentWP.getWpID().equals("0")) {
+				System.out.println("it's not null: " + parentWP.getParentWPID());
+				currentWpID = parentWP.getParentWPID();
+			} else {
+				System.out.println("IS NULL");
+				isRoot = true;
+				//break;
+			}
+			System.out.println("end of method");
+		}
 	}
 }

@@ -147,6 +147,12 @@ public class WorkPackageManager {
 		return top;
 	}
 	
+	public WorkPackage getWorkPackage(int projectID, String wpID) {
+		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c WHERE ProjectID = " + projectID + " AND WorkPackageID = '" + wpID + "'", WorkPackage.class);
+		WorkPackage wp = query.getSingleResult();
+		return wp;
+	}
+	
 	public List<SelectItem> getEmployeeWorkPackages(int employeeID) {
 		TypedQuery<WorkPackage> query = em.createQuery("SELECT c FROM WorkPackage c", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();
