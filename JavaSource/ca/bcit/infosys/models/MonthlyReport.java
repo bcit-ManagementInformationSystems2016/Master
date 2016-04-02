@@ -25,8 +25,8 @@ public class MonthlyReport implements Serializable {
 	private double estimatedCost;
 	private double estimatedHours;
 	
-	private double varienceCost;
-	private double varienceHours;
+	private double varianceCost;
+	private double varianceHours;
 	
 	private double percentComplete;
 	
@@ -98,17 +98,17 @@ public class MonthlyReport implements Serializable {
 	public void setEstimatedHours(double estimatedHours) {
 		this.estimatedHours = estimatedHours;
 	}
-	public double getVarienceCost() {
-		return varienceCost;
+	public double getVarianceCost() {
+		return varianceCost;
 	}
-	public void setVarienceCost(double varienceCost) {
-		this.varienceCost = varienceCost;
+	public void setVarianceCost(double varianceCost) {
+		this.varianceCost = varianceCost;
 	}
-	public double getVarienceHours() {
-		return varienceHours;
+	public double getVarianceHours() {
+		return varianceHours;
 	}
-	public void setVarienceHours(double varienceHours) {
-		this.varienceHours = varienceHours;
+	public void setVarianceHours(double varianceHours) {
+		this.varianceHours = varianceHours;
 	}
 	public double getPercentComplete() {
 		return percentComplete;

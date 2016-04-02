@@ -68,6 +68,7 @@
             </p:row>
         </p:panelGrid>
     	</p:column>
+    	
     	 <p:column>
         <f:facet name="header">Remaining</f:facet>
         <p:panelGrid>
@@ -83,6 +84,50 @@
             </p:row>
         </p:panelGrid>
     	</p:column>
+    	
+    	<p:column>
+        <f:facet name="header">Estimated at Completion</f:facet>
+        <p:panelGrid>
+            <p:row>
+                <p:column><h:outputText value="#{data.estimatedHours}" /></p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                	<h:outputText value="#{data.estimatedCost}">
+                		<f:convertNumber type="currency" currencySymbol="$" />
+                	</h:outputText>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    	</p:column>
+    	
+    	<p:column>
+        <f:facet name="header">% Variance</f:facet>
+        <p:panelGrid>
+            <p:row>
+                <p:column>
+                	<h:outputText value="#{data.varianceHours}%">
+                	<f:convertNumber maxFractionDigits="1" minFractionDigits="1" maxIntegerDigits="5" groupingUsed="false"/>
+                	</h:outputText>
+                
+                </p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                	<h:outputText value="#{data.varianceCost}%">
+                	<f:convertNumber maxFractionDigits="1" minFractionDigits="1" maxIntegerDigits="5" groupingUsed="false"/>
+                	</h:outputText>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    	</p:column>
+    	
+    	<p:column>
+				<f:facet name="header">Percent Complete</f:facet>
+				<h:outputText value="#{data.percentComplete}%"/>
+			</p:column>
+    	
+    	
 	  </p:dataTable>
 	  		
 	 <h:commandButton value="Go Back" action="projectsLanding.xhtml"></h:commandButton>

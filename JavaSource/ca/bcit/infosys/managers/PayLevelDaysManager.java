@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.PayLevelDays;
 
 @Dependent
@@ -37,5 +38,11 @@ public class PayLevelDaysManager {
 			payLevelDays[i] = categories.get(i);
 		}
 		return payLevelDays;
+	}
+	
+	public PayLevelDays getSingleEntry(int pldID) {
+		TypedQuery<PayLevelDays> queryOne = em.createQuery("SELECT c FROM PayLevelDays c WHERE PLvlDaysID = " + pldID + "", PayLevelDays.class);
+		PayLevelDays pld = queryOne.getSingleResult();
+		return pld;
 	}
 }
