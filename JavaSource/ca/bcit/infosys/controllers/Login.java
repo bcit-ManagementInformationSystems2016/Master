@@ -22,7 +22,17 @@ public class Login implements Serializable {
 	public static int currentID;
 	private int id;
 	public static String name;
+	private String empName;
+	
+	
 
+	public String getEmpName() {
+		return name;
+	}
+
+	public void setEmpName(String empName) {
+		name = empName;
+	}
 
 
 	@Inject
