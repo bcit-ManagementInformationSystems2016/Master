@@ -15,6 +15,7 @@ import ca.bcit.infosys.models.MonthlyReport;
 import ca.bcit.infosys.models.PayLevelCost;
 import ca.bcit.infosys.models.PayLevelDays;
 import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.TimesheetRow;
 import ca.bcit.infosys.models.WorkPackage;
 
 @Named("monthlyReportController")
@@ -205,8 +206,19 @@ public class MonthlyReportController implements Serializable {
 		return true;
 	}
 	
-	public double calculateTotalActualHours(WorkPackage wp) {
-		return 0;
+	public double calculateTotalActualHours(WorkPackage wp, PayLevelCost plc) {
+		TimesheetRow[] tsrs = tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(), wp.getWpID());
+		double total = 0;
+		for (int i=0; i < tsrs.length; i++) {
+			
+		}
+		return total;
+	}
+	
+	public String leaveReportPage() {
+		hoursMap = new HashMap<String, Double>();
+		costMap = new HashMap<String, Double>();
+		return "showAllProjects";
 	}
 	
 }
