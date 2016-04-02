@@ -59,7 +59,7 @@ input:focus {
 
 .btn {
 	border: 2px solid transparent;
-	background: #07E883;
+	background: #0BA34A;
 	color: #ffffff;
 	font-size: 16px;
 	line-height: 25px;
@@ -75,7 +75,7 @@ input:focus {
 }
 
 .btn:hover {
-	background-color: #08FFD5;
+	background-color: #3498DB;
 }
 
 .login-link {
@@ -92,7 +92,7 @@ p {
 }
 
 span {
-	color: #07E883;	
+	color: #0BA34A;	
 }
 
 h1, input, p, a {
