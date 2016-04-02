@@ -183,4 +183,22 @@
     TARGET="rules:#humanResources.xhtml" TITLE="hrLanding" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#editPayLevel.xhtml"
+  PATH="/editPayLevel.xhtml" SHAPE="704,865,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#editPayLevel.xhtml:0" NAME="item"
+   PATH="/editPayLevel.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="PLupdated::#payLevels.xhtml" NAME="output"
+    PATH="/payLevels.xhtml" TARGET="rules:#payLevels.xhtml"
+    TITLE="PLupdated" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#payLevels.xhtml" PATH="/payLevels.xhtml"
+  SHAPE="448,1041,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#payLevels.xhtml:0" NAME="item"
+   PATH="/payLevels.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="editP::#editPayLevel.xhtml" NAME="output"
+    PATH="/editPayLevel.xhtml" TARGET="rules:#editPayLevel.xhtml"
+    TITLE="editP" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

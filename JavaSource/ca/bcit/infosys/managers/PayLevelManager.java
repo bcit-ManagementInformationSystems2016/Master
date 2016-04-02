@@ -30,16 +30,9 @@ public class PayLevelManager {
 	public PayLevel find(int id) {
 		return em.find(PayLevel.class, id);
 	}
-
-	public void persist(PayLevel payLevel) {
-		em.persist(payLevel);
+	public void merge(PayLevel payLevel) {
+		em.merge(payLevel);
 	}
-
-	public void remove(PayLevel payLevel) {
-		payLevel = find(payLevel.getPayLevelID());
-		em.remove(payLevel);
-	}
-
 	public PayLevel[] getAll() {
 		TypedQuery<PayLevel> query = em.createQuery("select p from PayLevel p", PayLevel.class);
 		java.util.List<PayLevel> categories = query.getResultList();

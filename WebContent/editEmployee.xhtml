@@ -107,7 +107,7 @@
 								<h:outputText value="Password" />
 							</f:facet>
 						</b:inputText>
-						<h:commandButton value="Back" action="#{hrController.hrLanding()}"
+						<h:commandButton value="Back" action="#{hrController.hrLanding()}" immediate="true"
 							styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
 						<h:commandButton value="Save Changes"
 							action="#{hrController.updateEmp(hrController.emp)}"

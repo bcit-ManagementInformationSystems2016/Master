@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Edit Pay Level</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panelGrid colSpans="3,9">
+					<b:panel look="info" title="Update Pay Level Details"
+						collapsible="false">
+						<b:inputText value="#{payLevel.plevel.payLevelID}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Pay Level ID" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{payLevel.plevel.totalVacationDays}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Total Vacation Days" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{payLevel.plevel.avgPayRate}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Average Pay Rate" />
+							</f:facet>
+						</b:inputText>
+						<h:commandButton value="Back" action="#{hrController.hrLanding()}"
+							immediate="true" styleClass="btn btn-info"
+							style="margin-right: 10px"></h:commandButton>
+						<h:commandButton value="Save Changes"
+							action="#{payLevel.updateP(payLevel.plevel)}"
+							styleClass="btn btn-info"></h:commandButton>
+					</b:panel>
+				</b:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

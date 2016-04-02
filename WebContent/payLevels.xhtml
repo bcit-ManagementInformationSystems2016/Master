@@ -2,33 +2,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-		<title>Pay Levels</title>
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>Pay Levels</title>
 
-	</h:head>
-	<h:body>
-		<h:form>
-			<h:dataTable value="#{payLevel.allPayLevels}" var="pl">
-				<h:column>
-					<f:facet name="header">Pay Level ID</f:facet>
-					<h:outputText value="#{pl.payLevelID}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Total Vacation Days</f:facet>
-					<h:outputText value="#{pl.totalVacationDays}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Average Pay Rate</f:facet>
-					<h:outputText value="#{pl.avgPayRate}"/>
-				</h:column>
-	
-			</h:dataTable>
-		</h:form>
-		
-	</h:body>
+</h:head>
+<h:body>
+	<h:form>
+		<h:dataTable value="#{payLevel.allPayLevels}" var="pl">
+			<h:column>
+				<f:facet name="header">Pay Level ID</f:facet>
+				<h:outputText value="#{pl.payLevelID}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Total Vacation Days</f:facet>
+				<h:outputText value="#{pl.totalVacationDays}" />
+			</h:column>
+
+			<h:column>
+				<f:facet name="header">Average Pay Rate</f:facet>
+				<h:outputText value="#{pl.avgPayRate}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandLink action="#{payLevel.editP(pl)}" value="Edit"/>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+</h:body>
 </html>
