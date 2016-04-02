@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">   
+<h:head>
+	<title>MONTHLY REPORT</title>
+
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Project Status Report for Project" collapsible="false">
+      <p:dataTable value="#{monthlyReportController.dataItems}" var="data">
+ 
+ 			<p:column>
+				<f:facet name="header">ID</f:facet>
+				<h:outputText value="#{data.wpID}"/>
+			</p:column>
+ 
+ 		<p:column>
+        <p:panelGrid>
+            <p:row>
+                <p:column><h:outputText value="Man Days" /></p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                	<h:outputText value="Cost" >
+                	</h:outputText>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    	</p:column>
+ 
+ 
+        <p:column>
+        <f:facet name="header">Budget</f:facet>
+        <p:panelGrid>
+            <p:row>
+                <p:column><h:outputText value="#{data.budgetHours}" /></p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                	<h:outputText value="#{data.budgetCost}" >
+                		<f:convertNumber type="currency" currencySymbol="$" />
+                	</h:outputText>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    	</p:column>
+    	
+    	 <p:column>
+        <f:facet name="header">Actual</f:facet>
+        <p:panelGrid>
+            <p:row>
+                <p:column><h:outputText value="#{data.actualHours}" /></p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+	                <h:outputText value="#{data.actualCost}">
+	                	<f:convertNumber type="currency" currencySymbol="$" />
+	                </h:outputText>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    	</p:column>
+    	 <p:column>
+        <f:facet name="header">Remaining</f:facet>
+        <p:panelGrid>
+            <p:row>
+                <p:column><h:outputText value="#{data.remainingHours}" /></p:column>
+            </p:row>
+            <p:row>
+                <p:column>
+                	<h:outputText value="#{data.remainingCost}">
+                		<f:convertNumber type="currency" currencySymbol="$" />
+                	</h:outputText>
+                </p:column>
+            </p:row>
+        </p:panelGrid>
+    	</p:column>
+	  </p:dataTable>
+	  		
+	 <h:commandButton value="Go Back" action="projectsLanding.xhtml"></h:commandButton>
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>		
+</h:body>
+</html>
