@@ -42,6 +42,8 @@ public class LoginValidator implements Validator {
 
 		if (Login.map.containsKey(username)) {
 			Login.setCurrentID(Login.map2.get(username));
+			Login.setName(Login.nameMap.get(Login.getCurrentID()));
+			System.out.println("NAME: " + Login.name);
 			active = Login.activeMap.get(Login.getCurrentID());
 			if (active == false) {
 				FacesMessage msg = new FacesMessage("Username validation failed", "Account is not active");

@@ -21,6 +21,8 @@ public class Login implements Serializable {
 	private String password;
 	public static int currentID;
 	private int id;
+	public static String name;
+
 
 
 	@Inject
@@ -28,6 +30,13 @@ public class Login implements Serializable {
 
 	private boolean hr = false;
 
+	public static String getName() {
+		return name;
+	}
+
+	public static void setName(String name) {
+		Login.name = name;
+	}
 	
 	public int getId() {
 		return currentID;
@@ -69,19 +78,21 @@ public class Login implements Serializable {
 		this.password = password;
 	}
 
+	
 	static Map<String, Integer> map2 = new HashMap<String, Integer>();
 	static Map<String, String> map = new HashMap<String, String>();
 	static Map<Integer, Boolean> activeMap = new HashMap<Integer, Boolean>();
+	static Map<Integer, String> nameMap = new HashMap<Integer, String>();
 	static List<Object[]> roleList;
 
 	public static void setMaps() {
 		System.out.println("set maps");
 		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";
 		String eQuery = "select e.employeeID, e.isActive from Employee e";
-
+		String nameQuery = "select e.employeeID, e.firstName, e.lastName from Employee e";
 		List<Object[]> resultList = em.createQuery(jpaQuery).getResultList();
 		List<Object[]> resultList2 = em.createQuery(eQuery).getResultList();
-
+		List<Object[]> resultList3 = em.createQuery(nameQuery).getResultList();
 		for (Object[] object : resultList) {
 			map.put((String) object[0], (String) object[1]);
 		}
@@ -92,6 +103,9 @@ public class Login implements Serializable {
 
 		for (Object[] object : resultList2) {
 			activeMap.put((Integer) object[0], (Boolean) object[1]);
+		}
+		for (Object[] object: resultList3){
+		nameMap.put((Integer) object[0], (String)(object[1] + " " + object[2]));
 		}
 
 		System.out.println("Print hashmap to test");
