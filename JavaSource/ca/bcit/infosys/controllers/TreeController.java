@@ -290,6 +290,9 @@ public class TreeController implements Serializable {
 	}
 	
 	public String assignEmpToWP() {
+		if (!projectTree.getSingleSelectedTreeNode().isLeaf()) {
+			return "viewProjectDetails";
+		}
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
