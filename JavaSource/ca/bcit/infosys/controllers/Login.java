@@ -20,11 +20,23 @@ public class Login implements Serializable {
 	public static String username;
 	private String password;
 	public static int currentID;
+	private int id;
+
+
 	@Inject
 	private Conversation conversation;
 
 	private boolean hr = false;
 
+	
+	public int getId() {
+		return currentID;
+	}
+
+	public void setId() {
+		this.id = currentID;
+	}
+	
 	public boolean isHr() {
 		return hr;
 	}
