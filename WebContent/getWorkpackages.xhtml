@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Work Packages</title>
+</h:head>
+<h:body>
+ 
+    <h:form>
+        <h1>Work Packages</h1>
+        
+        
+        <h:dataTable value="#{workPackageController.allWorkPackages}" var="wp" >
+         <h:column>    				
+            <f:facet name="header">Work Package</f:facet>    				
+            <h:outputText value="#{wp.wpID}"/>
+         </h:column>
+         <h:column>
+            <f:facet name="header">Name</f:facet>
+            <h:outputText value="#{wp.wpName}"/>
+         </h:column>
+         <h:column>
+            <f:facet name="header">Responsible Engineer</f:facet>
+            <h:outputText value="#{wp.responsibleEngineerID}"/>
+            
+         </h:column>
+         <h:column>
+            <f:facet name="header">BudgetPdays</f:facet>
+            <h:outputText value="#{wp.budgetedDaysID}"/>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Remaining Days</f:facet>
+            <h:outputText value="#{wp.remainingDaysID}"/>
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Total Budget Days</f:facet>
+            <h:outputText value="#{wp.totalBudgetDays}"/>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Total Budget Cost</f:facet>
+            <h:outputText value="#{wp.totalBudgetCost}"/>
+            
+         </h:column>
+         
+         <h:column>
+            <f:facet name="header">Report</f:facet>
+            <h:commandLink value="Fill Report" action="#{weekly.showWeeklyReport}"/>
+            
+         </h:column>
+         
+       
+      </h:dataTable>
+      
+ 
+    </h:form>
+</h:body>
+</html>

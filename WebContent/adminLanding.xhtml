@@ -48,14 +48,17 @@
 						<!-- /Icon -->
 
 						<div class="col-lg-3 col-md-6 col-sm-12">
-							<a href="#">
-								<figure class="menuIcon">
-									<h:graphicImage library="images" name="workpackage-icon.png" />
-									<figcaption>
-										<h1>Workpackage</h1>
-									</figcaption>
-								</figure>
-							</a>
+							<h:form>
+								<h:commandLink action="#{workPackageController.wpLanding}">
+							
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="workpackage-icon.png" />
+										<figcaption>
+											<h1>Workpackage</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+							</h:form>
 						</div>
 						<!-- /Icon -->
 						<h:panelGroup rendered="#{login.hr}">

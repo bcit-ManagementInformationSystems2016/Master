@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+    <title>Weekly Report</title>
+</h:head>
+<h:body>
+ 
+    <h:form>
+        <h1>Weekly Report</h1>
+        <h:panelGrid columns="2" cellpadding="10" border="1" cellspacing="1">
+        
+        	<f:facet name="header">Output</f:facet>  
+        	<f:facet name="header">Budget</f:facet>  
+        
+            <h:outputLabel for="pname">Person Days:</h:outputLabel>
+            <h:outputText value="#" id="pname"></h:outputText>
+           
+ 
+            <h:outputLabel for="cost">Person Dollars($):</h:outputLabel>
+            <h:outputText value="#"></h:outputText>
+
+        </h:panelGrid>
+        
+        <br/>
+        
+        <h:panelGrid columns="2" cellpadding="10" cellspacing="1">
+        	<h:outputLabel for="pname">Estimated to Complete:</h:outputLabel>
+        	<h:outputText value="#" border="1"></h:outputText>
+        	
+        	<h:outputLabel for="pname">Pay Level 1:</h:outputLabel>
+        	<h:inputText value="#"></h:inputText>
+        	<h:outputLabel for="pname">Pay Level 2:</h:outputLabel>
+        	<h:inputText value="#"></h:inputText>
+        	<h:outputLabel for="pname">Pay Level 3:</h:outputLabel>
+        	<h:inputText value="#"></h:inputText>
+        	<h:outputLabel for="pname">Pay Level 4:</h:outputLabel>
+        	<h:inputText value="#"></h:inputText>
+        	<h:outputLabel for="pname">Pay Level 5:</h:outputLabel>
+        	<h:inputText value="#"></h:inputText>
+        	<h:outputLabel for="pname">Pay Level 6:</h:outputLabel>
+        	<h:inputText value="#"></h:inputText>
+        	
+        	 
+        </h:panelGrid>
+        
+        
+        <br />
+        
+       
+    </h:form>
+</h:body>
+</html>

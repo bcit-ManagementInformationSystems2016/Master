@@ -166,4 +166,18 @@ public class EmployeeManager {
         }
         return selectableEmployees;
     }
+	
+	public Employee[] getEngineersForWP(int wpID) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE EmployeeID = " + wpID + "", Employee.class);
+		java.util.List<Employee> categories = query.getResultList();	
+		Employee[] engineers = new Employee[categories.size()];
+		for (int i = 0; i < engineers.length; i++) {
+			engineers[i] = categories.get(i);
+			// System.out.println("This is being added to array: " +
+			// categories.get(i).getRoleID());
+		}
+		return engineers;
+	}
+	
+
 }

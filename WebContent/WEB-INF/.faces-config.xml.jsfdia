@@ -152,6 +152,12 @@
     NAME="output" PATH="/timesheetAdmin.xhtml"
     TARGET="rules:#timesheetAdmin.xhtml" TITLE="timesheetLanding" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#adminLanding.xhtml:2" NAME="item2"
+   PATH="/adminLanding.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="wpLanding::#getWorkpackages.xhtml"
+    NAME="output" PATH="/getWorkpackages.xhtml"
+    TARGET="rules:#getWorkpackages.xhtml" TITLE="wpLanding" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#timesheetAdmin.xhtml"
   PATH="/timesheetAdmin.xhtml" SHAPE="480,449,0,0" model-entity="JSFProcessGroup">
@@ -183,6 +189,7 @@
     TARGET="rules:#humanResources.xhtml" TITLE="hrLanding" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+<<<<<<< Updated upstream
  <PROCESS-ITEM NAME="rules:#editPayLevel.xhtml"
   PATH="/editPayLevel.xhtml" SHAPE="704,865,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#editPayLevel.xhtml:0" NAME="item"
@@ -201,4 +208,17 @@
     TITLE="editP" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+=======
+ <PROCESS-ITEM NAME="rules:#getWorkpackages.xhtml"
+  PATH="/getWorkpackages.xhtml" SHAPE="480,1073,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#getWorkpackages.xhtml:0" NAME="item"
+   PATH="/getWorkpackages.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="weeklyReport::#createWeeklyReport.xhtml"
+    NAME="output" PATH="/createWeeklyReport.xhtml"
+    TARGET="rules:#createWeeklyReport.xhtml" TITLE="weeklyReport" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#createWeeklyReport.xhtml"
+  PATH="/createWeeklyReport.xhtml" SHAPE="720,1201,0,0" model-entity="JSFProcessGroup"/>
+>>>>>>> Stashed changes
 </PROCESS>

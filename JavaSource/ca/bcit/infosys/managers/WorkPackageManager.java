@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.WorkPackage;
 import ca.bcit.infosys.models.WorkPackageKey;
@@ -161,6 +162,29 @@ public class WorkPackageManager {
         	selectableWps.add(new SelectItem(wps.get(i).getWpID()));
         }
         return selectableWps;
+	}
+	
+	public WorkPackage[] getWPforEng(int empID) {
+		TypedQuery<WorkPackage> query = em.createQuery("select c from WorkPackage c WHERE ResponsibleEngineer = " + empID + "", WorkPackage.class);
+		List<WorkPackage> wps = query.getResultList();
+		WorkPackage[] wpArray = new WorkPackage[wps.size()];
+		for (int i=0; i < wpArray.length; i++) {
+			wpArray[i] = wps.get(i);
+		}
+		return wpArray;
+	
+	}
+	
+	public Integer[] getAllEngineers() {
+		TypedQuery<Integer> query = em.createQuery("select DISTINCT c.responsibleEngineerID from WorkPackage c" , Integer.class);
+		List<Integer> wps = query.getResultList();
+		Integer[] wpArray = new Integer[wps.size()];
+		for (int i=0; i < wpArray.length; i++) {
+			wpArray[i] = wps.get(i);
+		}
+		return wpArray;
+		
+		
 	}
 
 }
