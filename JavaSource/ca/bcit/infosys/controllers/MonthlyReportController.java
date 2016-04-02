@@ -7,10 +7,13 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.PayLevelCostManager;
 import ca.bcit.infosys.managers.PayLevelDaysManager;
+import ca.bcit.infosys.managers.PayLevelManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.MonthlyReport;
 import ca.bcit.infosys.models.PayLevelCost;
 import ca.bcit.infosys.models.PayLevelDays;
@@ -32,12 +35,18 @@ public class MonthlyReportController implements Serializable {
 	private PayLevelCostManager plcMgr;
 	@Inject
 	private TimesheetRowManager tsrMgr;
+	@Inject 
+	private EmployeeManager empMgr;
+	@Inject
+	private PayLevelManager plvlMgr;
 	
 	private MonthlyReport[] dataItems;
 	private Project viewableProject;
 	private WorkPackage[] projectWorkPackages;
 	private HashMap<String, Double> costMap = new HashMap<String, Double>();
 	private HashMap<String, Double> hoursMap = new HashMap<String, Double>();
+	private HashMap<String, Double> actualCostMap = new HashMap<String, Double>();
+	private HashMap<String, Double> actualHoursMap = new HashMap<String, Double>();
 	
 	// GETTERS AND SETTERS
 	
@@ -64,6 +73,18 @@ public class MonthlyReportController implements Serializable {
 	}
 	public void setCostMap(HashMap<String, Double> costMap) {
 		this.costMap = costMap;
+	}
+	public HashMap<String, Double> getActualCostMap() {
+		return actualCostMap;
+	}
+	public void setActualCostMap(HashMap<String, Double> actualCostMap) {
+		this.actualCostMap = actualCostMap;
+	}
+	public HashMap<String, Double> getActualHoursMap() {
+		return actualHoursMap;
+	}
+	public void setActualHoursMap(HashMap<String, Double> actualHoursMap) {
+		this.actualHoursMap = actualHoursMap;
 	}
 	public HashMap<String, Double> getHoursMap() {
 		return hoursMap;
@@ -99,8 +120,9 @@ public class MonthlyReportController implements Serializable {
 			mr.setWpID(wps[i].getWpID() + ": " + wps[i].getWpName());
 			mr.setBudgetCost(wps[i].getTotalBudgetCost());
 			mr.setBudgetHours(wps[i].getTotalBudgetDays());
-			mr.setActualCost(0);
-			mr.setActualHours(0);
+			TimesheetRow[] timesheetRows = tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(), wps[i].getWpID());
+			mr.setActualCost(calculateTotalActualCost(wps[i], plc, timesheetRows));
+			mr.setActualHours(calculateTotalActualHours(wps[i], timesheetRows));
 			
 			if (costMap.containsKey(wps[i].getWpID())) {
 				mr.setRemainingCost(costMap.get(wps[i].getWpID()));
@@ -206,13 +228,24 @@ public class MonthlyReportController implements Serializable {
 		return true;
 	}
 	
-	public double calculateTotalActualHours(WorkPackage wp, PayLevelCost plc) {
-		TimesheetRow[] tsrs = tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(), wp.getWpID());
-		double total = 0;
+	public double calculateTotalActualHours(WorkPackage wp, TimesheetRow[] tsrs) {
+		double totalHours = 0;
+		double convertedHours = 0;
 		for (int i=0; i < tsrs.length; i++) {
-			
+			totalHours += tsrs[i].getTotalHours();
 		}
-		return total;
+		convertedHours = Math.round(totalHours / 8);
+		return convertedHours;
+	}
+	
+	public double calculateTotalActualCost(WorkPackage wp, PayLevelCost plc, TimesheetRow[] tsrs) {
+		double totalCost = 0;
+		for (int i=0; i < tsrs.length; i++) {
+			int empID = tsrs[i].getTimesheet().getEmployeeID();
+			Employee e = empMgr.getTimesheetValidator(empID);
+			totalCost += (tsrs[i].getTotalHours()) * (plvlMgr.find(e.getPayLevelID()).getAvgPayRate() / 8);
+		}
+		return totalCost;
 	}
 	
 	public String leaveReportPage() {
