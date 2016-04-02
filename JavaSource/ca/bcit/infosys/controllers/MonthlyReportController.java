@@ -118,4 +118,8 @@ public class MonthlyReportController implements Serializable {
 		return total;
 	}
 	
+	public double calculateTotalActualHours(WorkPackage wp) {
+		return 0;
+	}
+	
 }

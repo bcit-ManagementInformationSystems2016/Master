@@ -11,6 +11,7 @@ import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
+import ca.bcit.infosys.models.WorkPackage;
 
 /**
  * 
@@ -121,6 +122,14 @@ public class TimesheetRowManager {
 		    return catarray;
 	    }
 	    
-	    
+	    public TimesheetRow[] getSpecificTimesheetRows(int projectID, String wpID) {
+			TypedQuery<TimesheetRow> query = em.createQuery("SELECT c FROM TimesheetRow c WHERE ProjectID = " + projectID + " AND WorkPackageID = '" + wpID + "'", TimesheetRow.class);
+			java.util.List<TimesheetRow> categories = query.getResultList();
+			TimesheetRow[] catarray = new TimesheetRow[categories.size()];
+		    for (int i=0; i < catarray.length; i++) {
+		        catarray[i] = categories.get(i);
+		    }
+		    return catarray;
+		}
 
 }
