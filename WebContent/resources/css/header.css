@@ -37,7 +37,7 @@ body{
 }
 
 .header-fixed .header-limiter a {
-	color: #ffffff;
+	color: #ffffff !important;
 	text-decoration: none;
 	font-family: 'Exo', sans-serif;
 }
