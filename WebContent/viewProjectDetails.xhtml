@@ -86,6 +86,10 @@
 							<f:facet name="header">Name</f:facet>
 							<h:outputText value="#{ewp.emp.firstName} #{ewp.emp.lastName}"/>
 						</h:column>
+						
+						<h:column>
+							<h:commandLink value="Unassign Employee" action="#{treeController.unassignEmployee(ewp)}" rendered="#{!projectController.showAllPros}"/>
+						</h:column>
 				  </b:dataTable>
 				  </div>
 				</b:panel>	  

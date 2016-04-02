@@ -175,6 +175,7 @@ public class TreeController implements Serializable {
 		projectTree = null;
 		selectedWP = null;
 		responsibleEngineer = null;
+		assignedEmps = null;
 		return "showAllProjects";
 	}
 	
@@ -208,7 +209,6 @@ public class TreeController implements Serializable {
 	}
 	
 	public String createNewWorkPackage() {
-//		projectCost = plcmgr.getProjectCosts(editableProject.getProjectID());
 		if (wpToAdd != null) {
 			wpToAdd = new WorkPackage();
 		}
@@ -227,7 +227,6 @@ public class TreeController implements Serializable {
 		} else {
 			setNewWPID(selectedWP.getWpID() + "." + nextWP);
 		}
-		System.out.println("editable project: " + editableProject.getProjectName());
 		return "createNewWP";
 	}
 	
@@ -270,12 +269,13 @@ public class TreeController implements Serializable {
 		if (wpToAdd != null) {
 			wpToAdd = new WorkPackage();
 		}
+		budget = new PayLevelDays();
+		remaining = new PayLevelDays();
 		setNewWPPID(BRANCH_PARENT_ID);
 		int nextWP = 0;
 		nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), BRANCH_PARENT_ID) + 1;
 		setNewWPID("" + nextWP);
-		System.out.println("editable project: " + editableProject.getProjectName());
-		return "createNewWP";
+		return "createNewWP";		
 	}
 	
 	public String assignEmpToWP() {
@@ -328,31 +328,29 @@ public class TreeController implements Serializable {
 		String currentWpID = wp.getParentWPID();
 		WorkPackage parentWP;
 		while (!isRoot) {
-			System.out.println("while loop starting");
 			double totalDays = 0;
 			double totalCost = 0;
 			WorkPackage[] childWPs;
-			System.out.println("Current ID: " + currentWpID);
 			parentWP = wpmgr.getWorkPackage(editableProject.getProjectID(), currentWpID);
 			childWPs = wpmgr.getParentProjectWorkPackages(editableProject.getProjectID(), parentWP.getWpID());
 			for (int i = 0; i < childWPs.length; i++) {
 				totalDays += childWPs[i].getTotalBudgetDays();
 				totalCost += childWPs[i].getTotalBudgetCost();
 			}
-			System.out.println("stuff happened");
 			parentWP.setTotalBudgetDays(totalDays);
 			parentWP.setTotalBudgetCost(totalCost);
 			wpmgr.merge(parentWP);
-			System.out.println("merged");
 			if (!parentWP.getWpID().equals("0")) {
-				System.out.println("it's not null: " + parentWP.getParentWPID());
 				currentWpID = parentWP.getParentWPID();
 			} else {
-				System.out.println("IS NULL");
 				isRoot = true;
-				//break;
 			}
-			System.out.println("end of method");
 		}
+	}
+	
+	public String unassignEmployee(EmployeeWP ewp) {
+		empwpmgr.remove(ewp.getWp(), ewp.getEmp());
+		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
+		return "viewProjectDetails";
 	}
 }
