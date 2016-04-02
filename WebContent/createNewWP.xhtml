@@ -1,82 +1,107 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">   
 <h:head>
-	<title>Create Work Package</title>
-	<h3>Enter Work Package Details</h3>
+	<title>Create Work Package</title>	
 </h:head>
 <h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+        <ui:define name="content">
 	<h:form>
+	<b:panelGrid colSpans="6,6">
+	<b:panel look="info" title="Work Package Info" collapsible="false">			  
 		<h:outputText value="Project Name" />
-		<br />
-		<strong><h:outputText value="#{treeController.editableProject.projectName}"></h:outputText></strong>
-		<br />
+		<br />		
+		<h:outputText value="#{treeController.editableProject.projectName}" style="font-weight: bold"></h:outputText>
+		<br /><br />	
 		<h:outputText value="Project ID"></h:outputText>
 		<br />
-		<strong><h:outputText value="#{treeController.editableProject.projectID}"></h:outputText></strong>
-		<br />
+		<h:outputText value="#{treeController.editableProject.projectID}" style="font-weight: bold"></h:outputText>
+		<br /><br />
 		<h:outputText value="Work Package ID" />
 		<br />
-		<strong><h:outputText value="#{treeController.newWPID}" /></strong>
-		<br />
+		<h:outputText value="#{treeController.newWPID}" style="font-weight: bold"/>
+		<br /><br />
 		<h:outputText value="Parent Work Package ID" />
 		<br />
-		<strong><h:outputText value="#{treeController.newWPPID}"/></strong>
+		<h:outputText value="#{treeController.newWPPID}" style="font-weight: bold"/>
+		<br /><br />		
+		<h:outputText value="Work Package Name" /><br />
+		<b:inputText value="#{treeController.wpToAdd.wpName}" />		  
 		<br />
 		<h:outputText value="Work Package Description" />
 		<br />
-		<h:inputTextarea value="#{treeController.wpToAdd.description}" />
+		<b:inputTextarea value="#{treeController.wpToAdd.description}" />		
+		</b:panel>
+	<b:panel look="info" title="Enter Work Package Details" collapsible="false">			
+		<h:outputText value="Man Hours per Pay Level" style="font-weight: bold"/>
+		<br />		
+		<b:inputText value="#{treeController.budget.p1Day}" >
+		<f:facet name="prepend">
+                <h:outputText value="Pay Level 1" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p1Cost}" style="font-weight: bold"/>
+            </f:facet>
+        </b:inputText> 	
+		<b:inputText value="#{treeController.budget.p2Day}" >
+		<f:facet name="prepend">
+                <h:outputText value="Pay Level 2" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p2Cost}" style="font-weight: bold"/>
+            </f:facet>
+        </b:inputText> 	
+		<b:inputText value="#{treeController.budget.p3Day}" >
+		<f:facet name="prepend">
+                <h:outputText value="Pay Level 3" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p3Cost}" style="font-weight: bold"/>
+            </f:facet>
+        </b:inputText> 
+		<b:inputText value="#{treeController.budget.p4Day}" >
+		<f:facet name="prepend">
+                <h:outputText value="Pay Level 4" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p4Cost}" style="font-weight: bold"/>
+            </f:facet>
+        </b:inputText> 
+		<b:inputText value="#{treeController.budget.p5Day}" >
+		<f:facet name="prepend">
+                <h:outputText value="Pay Level 5" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p5Cost}" style="font-weight: bold"/>
+            </f:facet>
+        </b:inputText> 
+		<b:inputText value="#{treeController.budget.p6Day}" >
+		<f:facet name="prepend">
+                <h:outputText value="Pay Level 6" />
+            </f:facet>
+            <f:facet name="append">
+                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p6Cost}" style="font-weight: bold"/>
+            </f:facet>
+        </b:inputText> 
+        <br />
+		<h:outputText value="Responsible Engineer:" style="font-weight: bold"/>
 		<br />
-		<h:outputText value="Work Package Name" />
-		<br />
-		<h:inputText value="#{treeController.wpToAdd.wpName}" />
-		<br />
-		<h:outputText value="Man Hours per Pay Level" />
-		<br />
-		<h:outputText value="Pay Level 1:" />
-		<h:inputText value="#{treeController.budget.p1Day}" />
-		<h:outputText value=" Pay Level 1 Cost per Day: $" />
-		<h:outputText value="#{treeController.projectCost.p1Cost}" />
-		<br />
-		<h:outputText value="Pay Level 2:" />
-		<h:inputText value="#{treeController.budget.p2Day}" />
-		<h:outputText value=" Pay Level 2 Cost per Day: $" />
-		<h:outputText value="#{treeController.projectCost.p2Cost}" />
-		<br />
-		<h:outputText value="Pay Level 3:" />
-		<h:inputText value="#{treeController.budget.p3Day}" />
-		<h:outputText value=" Pay Level 3 Cost per Day: $" />
-		<h:outputText value="#{treeController.projectCost.p3Cost}" />
-		<br />
-		<h:outputText value="Pay Level 4:" />
-		<h:inputText value="#{treeController.budget.p4Day}" />
-		<h:outputText value=" Pay Level 4 Cost per Day: $" />
-		<h:outputText value="#{treeController.projectCost.p4Cost}" />
-		<br />
-		<h:outputText value="Pay Level 5:" />
-		<h:inputText value="#{treeController.budget.p5Day}" />
-		<h:outputText value=" Pay Level 5 Cost per Day: $" />
-		<h:outputText value="#{treeController.projectCost.p5Cost}" />
-		<br />
-		<h:outputText value="Pay Level 6:" />
-		<h:inputText value="#{treeController.budget.p6Day}" />
-		<h:outputText value=" Pay Level 6 Cost per Day: $" />
-		<h:outputText value="#{treeController.projectCost.p6Cost}" />
-		<br />
-		<h:outputText value="Responsible Engineer:" />
-		<br />
-		<h:selectOneMenu value="#{treeController.selectedEmployee}">
+		<b:selectOneMenu value="#{treeController.selectedEmployee}">
 		  <f:selectItems value="#{treeController.getDropdownForNewWP()}" />
-	  	</h:selectOneMenu>
+	  	</b:selectOneMenu>
 		
 		<br />
-		<h:commandButton value="Go Back" action="#{treeController.cancelCreateWP()}"/>
-		<br />
-		<h:commandButton value="Save Updates" action="#{treeController.saveNewWP(treeController.wpToAdd)}"></h:commandButton>
+		<h:commandButton value="Go Back" action="#{treeController.cancelCreateWP()}" styleClass="btn btn-info" style="margin-right: 10px"/>		
+		<h:commandButton value="Save Updates" action="#{treeController.saveNewWP(treeController.wpToAdd)}" styleClass="btn btn-info"></h:commandButton>
+		</b:panel>		
+		</b:panelGrid>
 	</h:form>
+	  </ui:define>
+    </ui:composition>
 </h:body>
 </html>
