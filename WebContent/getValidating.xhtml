@@ -50,12 +50,26 @@
 						var="ts">
 						<h:column>
 							<f:facet name="header">
+								<h:outputText value="View timesheet" style="font-weight: bold" />
+							</f:facet>
+							<h:commandLink value="View timesheet"
+								action="#{timesheetRow.gotoArchivedTimesheet(ts)}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
 								<h:outputText value="Approve Timesheet"
 									style="font-weight: bold" />
 							</f:facet>
-
 							<h:commandLink value="Approve"
 								action="#{timesheetValidatorController.validateTimesheet(ts)}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Disapprove Timesheet"
+									style="font-weight: bold" />
+							</f:facet>
+							<h:commandLink value="Disapprove"
+								action="#{timesheetValidatorController.disapproveTimesheet(ts)}" />
 						</h:column>
 						<h:column>
 							<f:facet name="header">Timesheet ID</f:facet>
