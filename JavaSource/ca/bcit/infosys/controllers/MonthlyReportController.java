@@ -121,9 +121,26 @@ public class MonthlyReportController implements Serializable {
 			mr.setBudgetCost(wps[i].getTotalBudgetCost());
 			mr.setBudgetHours(wps[i].getTotalBudgetDays());
 			TimesheetRow[] timesheetRows = tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(), wps[i].getWpID());
-			mr.setActualCost(calculateTotalActualCost(wps[i], plc, timesheetRows));
-			mr.setActualHours(calculateTotalActualHours(wps[i], timesheetRows));
-			
+			if (actualCostMap.containsKey(wps[i].getWpID())) {
+				mr.setActualCost(actualCostMap.get(wps[i].getWpID()));
+			} else {
+				if (isChild) {
+					mr.setActualCost(calculateTotalActualCost(wps[i], plc, timesheetRows));
+					actualCostMap.put(wps[i].getWpID(), mr.getActualCost());
+				} else {
+					mr.setActualCost(parentTotalCostActual(wps[i], plc, wps));
+				}
+			}
+			if (actualHoursMap.containsKey(wps[i].getWpID())) {
+				mr.setActualHours(actualHoursMap.get(wps[i].getWpID()));
+			} else {
+				if (isChild) {
+					mr.setActualHours(calculateTotalActualHours(wps[i], timesheetRows));
+					actualHoursMap.put(wps[i].getWpID(), mr.getActualHours());
+				} else {
+					mr.setActualHours(parentTotalHoursActual(wps[i], wps));
+				}
+			}
 			if (costMap.containsKey(wps[i].getWpID())) {
 				mr.setRemainingCost(costMap.get(wps[i].getWpID()));
 			} else {
@@ -158,8 +175,8 @@ public class MonthlyReportController implements Serializable {
 		WorkPackage[] children = wpMgr.getParentProjectWorkPackages(viewableProject.getProjectID(), wp.getWpID());
 		double total = 0;
 		for (int i=0; i < children.length; i++) {
-			if (hoursMap.containsKey(wp.getWpID())) {
-				total += hoursMap.get(wp.getWpID());
+			if (hoursMap.containsKey(children[i].getWpID())) {
+				total += hoursMap.get(children[i].getWpID());
 			} else {
 				double n = 0;
 				if (isChild(children[i], wps)) {
@@ -175,12 +192,32 @@ public class MonthlyReportController implements Serializable {
 		return total;
 	}
 	
+	public double parentTotalHoursActual(WorkPackage wp, WorkPackage[] wps) {
+		WorkPackage[] children = wpMgr.getParentProjectWorkPackages(viewableProject.getProjectID(), wp.getWpID());
+		double total = 0;
+		for (int i=0; i < children.length; i++) {
+			if (actualHoursMap.containsKey(children[i].getWpID())) {
+				total += actualHoursMap.get(children[i].getWpID());
+			} else {
+				double n = 0;
+				if (isChild(children[i], wps)) {
+					n = calculateTotalActualHours(children[i], tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(), children[i].getWpID()));
+				} else {
+					n = parentTotalHoursActual(children[i], wps);
+				}
+				total += n;
+				actualHoursMap.put(children[i].getWpID(), new Double(n));
+			}
+		}
+		return total;
+	}
+	
 	public double parentTotalCostRemaining(WorkPackage wp, WorkPackage[] wps, PayLevelCost plc) {
 		WorkPackage[] children = wpMgr.getParentProjectWorkPackages(viewableProject.getProjectID(), wp.getWpID());
 		double total = 0;
 		for (int i=0; i < children.length; i++) {
-			if (costMap.containsKey(wp.getWpID())) {
-				total += costMap.get(wp.getWpID());
+			if (costMap.containsKey(children[i].getWpID())) {
+				total += costMap.get(children[i].getWpID());
 			} else {
 				double n = 0;
 				if (isChild(children[i], wps)) {
@@ -190,6 +227,26 @@ public class MonthlyReportController implements Serializable {
 				}
 				total += n;
 				costMap.put(children[i].getWpID(), new Double(n));
+			}
+		}
+		return total;
+	}
+	
+	public double parentTotalCostActual(WorkPackage wp, PayLevelCost plc, WorkPackage[] wps) {
+		WorkPackage[] children = wpMgr.getParentProjectWorkPackages(viewableProject.getProjectID(), wp.getWpID());
+		double total = 0;
+		for (int i=0; i < children.length; i++) {
+			if (actualCostMap.containsKey(children[i].getWpID())) {
+				total += actualCostMap.get(children[i].getWpID());
+			} else {
+				double n = 0;
+				if (isChild(children[i], wps)) {
+					n = calculateTotalActualCost(children[i], plc, tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(), children[i].getWpID()));
+				} else {
+					n = parentTotalCostActual(children[i], plc, wps);
+				}
+				total += n;
+				actualCostMap.put(children[i].getWpID(), new Double(n));
 			}
 		}
 		return total;
