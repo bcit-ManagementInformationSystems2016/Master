@@ -13,8 +13,8 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 .pagination>.active>span:hover, 
 .pagination>.active>a:focus, 
 .pagination>.active>span:focus{
-	background-color: #0BA34A !important;
-    border-color: #0BA34A !important;
+	background-color: #0CAD4F !important;
+    border-color: #0CAD4F !important;
 }
 .ui-widget-content{
 	border:none;
@@ -53,7 +53,7 @@ figure.menuIcon img {
 	top: 0;
 	left: 0;
 	padding: 10px;
-	background: #0BA34A;
+	background: #0CAD4F;
 	color: white;
 }
 
@@ -122,7 +122,7 @@ figure.menuIcon img {
 
 #wrap>div.header-fixed>div>div>p {
 	padding: 9px;
-	color: #0BA34A;
+	color: #0CAD4F;
 	font-weight: bold;
 }
 
@@ -134,13 +134,13 @@ figure.menuIcon img {
 	left: 15px;
 	position: absolute;
 	border: 5px solid transparent;
-	border-top-color: #0BA34A;
+	border-top-color: #0CAD4F;
 }
 
 .header-user-menu ul {
 	display: none;
 	font: bold 13px Arial, Helvetica, sans-serif;
-	background-color: #0BA34A;
+	background-color: #0CAD4F;
 	list-style: none;
 	position: absolute;
 	text-align: center;
@@ -160,7 +160,7 @@ figure.menuIcon img {
 
 .header-user-menu ul li {
 	padding: 5px;
-	color: #0BA34A;
+	color: #0CAD4F;
 }
 
 .header-user-menu ul li a:hover {
@@ -168,7 +168,7 @@ figure.menuIcon img {
 }
 
 .header-user-menu ul li a.highlight {
-	color: #0BA34A;
+	color: #0CAD4F;
 }
 
 .header-user-menu img {
@@ -180,22 +180,22 @@ figure.menuIcon img {
 }
 
 .panel-info>.panel-heading {
-	background-color: #0BA34A !important;
+	background-color: #0CAD4F !important;
 	color: white !important;
-	border-color: #0BA34A !important;
+	border-color: #0CAD4F !important;
 }
 
 .panel-info {
-	border-color: #0BA34A !important;
+	border-color: #0CAD4F !important;
 }
 
 button, html input[type="button"], input[type="reset"], input[type="submit"]
 	{
 	-webkit-appearance: button;
 	cursor: pointer;
-	background-color: #0BA34A !important;
+	background-color: #0CAD4F !important;
 	color: white !important;
-	border-color: #0BA34A !important;
+	border-color: #0CAD4F !important;
 }
 
 button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover
@@ -211,9 +211,9 @@ button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[
 	margin: 10px 5px;
 	-webkit-appearance : button;
 	cursor: pointer;
-	background-color: #0BA34A !important;
+	background-color: #0CAD4F !important;
 	color: white !important;
-	border-color: #0BA34A !important;
+	border-color: #0CAD4F !important;
 }
 .backBtn-padding{
 	padding-left:66px;
@@ -229,7 +229,7 @@ button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[
 	}
 }
 .backBtn-ico, .backBtn-txt{
-	color:#0BA34A;
+	color:#0CAD4F;
 	vertical-align: middle;
 }
 .backBtn-padding:hover a, .backBtn-padding:hover a:hover
@@ -257,5 +257,5 @@ button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[
 }
 
 a {
-	color: #0BA34A !important;
+	color: #0CAD4F !important;
 }

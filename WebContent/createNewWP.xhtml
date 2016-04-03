@@ -38,14 +38,14 @@
 		<b:inputTextarea value="#{treeController.wpToAdd.description}" />		
 		</b:panel>
 	<b:panel look="info" title="Enter Work Package Details" collapsible="false">			
-		<h:outputText value="Man Hours per Pay Level" style="font-weight: bold"/>
+		<h:outputText value="Man Hours per Pay Level" style="font-weight: bold"/>		
 		<br />		
 		<b:inputText value="#{treeController.budget.p1Day}" >
 		<f:facet name="prepend">
                 <h:outputText value="Pay Level 1" />
             </f:facet>
             <f:facet name="append">
-                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p1Cost}" style="font-weight: bold"/>
+                <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p1Cost}" tooltip-position="auto left"/>
             </f:facet>
         </b:inputText> 	
 		<b:inputText value="#{treeController.budget.p2Day}" >
@@ -53,7 +53,7 @@
                 <h:outputText value="Pay Level 2" />
             </f:facet>
             <f:facet name="append">
-                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p2Cost}" style="font-weight: bold"/>
+                <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p2Cost}" tooltip-position="auto left"/>
             </f:facet>
         </b:inputText> 	
 		<b:inputText value="#{treeController.budget.p3Day}" >
@@ -61,7 +61,7 @@
                 <h:outputText value="Pay Level 3" />
             </f:facet>
             <f:facet name="append">
-                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p3Cost}" style="font-weight: bold"/>
+                <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p3Cost}" tooltip-position="auto left"/>
             </f:facet>
         </b:inputText> 
 		<b:inputText value="#{treeController.budget.p4Day}" >
@@ -69,7 +69,7 @@
                 <h:outputText value="Pay Level 4" />
             </f:facet>
             <f:facet name="append">
-                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p4Cost}" style="font-weight: bold"/>
+                <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p4Cost}" tooltip-position="auto left"/>
             </f:facet>
         </b:inputText> 
 		<b:inputText value="#{treeController.budget.p5Day}" >
@@ -77,7 +77,7 @@
                 <h:outputText value="Pay Level 5" />
             </f:facet>
             <f:facet name="append">
-                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p5Cost}" style="font-weight: bold"/>
+                <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p5Cost}" tooltip-position="auto left"/>
             </f:facet>
         </b:inputText> 
 		<b:inputText value="#{treeController.budget.p6Day}" >
@@ -85,7 +85,7 @@
                 <h:outputText value="Pay Level 6" />
             </f:facet>
             <f:facet name="append">
-                <h:outputText value="Cost Per Day: $#{treeController.projectCost.p6Cost}" style="font-weight: bold"/>
+                <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p6Cost}" tooltip-position="auto left"/>
             </f:facet>
         </b:inputText> 
         <br />

@@ -59,7 +59,7 @@ input:focus {
 
 .btn {
 	border: 2px solid transparent;
-	background: #0BA34A;
+	background: #0CAD4F;
 	color: #ffffff;
 	font-size: 16px;
 	line-height: 25px;
@@ -92,7 +92,7 @@ p {
 }
 
 span {
-	color: #0BA34A;	
+	color: #0CAD4F;	
 }
 
 h1, input, p, a {
