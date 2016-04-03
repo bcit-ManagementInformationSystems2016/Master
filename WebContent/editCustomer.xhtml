@@ -6,44 +6,48 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Edit Pay Level</title>
+	<title>Edit Customer</title>
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="3,9">
-					<b:panel look="info" title="Update Pay Level Details"
+					<b:panel look="info" title="Update Customer Information"
 						collapsible="false">
-						<b:inputText value="#{payLevel.plevel.payLevelID}" readonly="true">
+						<b:inputText value="#{customerController.editableCustomer.companyName}">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
 							<f:facet name="append">
-								<h:outputText value="Pay Level ID" />
+								<h:outputText value="Customer Name" />
 							</f:facet>
 						</b:inputText>
-						<b:inputText value="#{payLevel.plevel.totalVacationDays}">
+						<b:inputText value="#{customerController.editableCustomer.contactFName}">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
 							<f:facet name="append">
-								<h:outputText value="Total Vacation Days" />
+								<h:outputText value="Contact First Name" />
 							</f:facet>
 						</b:inputText>
-						<b:inputText value="#{payLevel.plevel.avgPayRate}">
+						<b:inputText value="#{customerController.editableCustomer.contactLName}">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
 							<f:facet name="append">
-								<h:outputText value="Average Pay Rate" />
+								<h:outputText value="Contact Last Name" />
 							</f:facet>
 						</b:inputText>
-						<h:commandButton value="Back" action="#{hrController.hrLanding()}"
+						<br />
+						<h:outputText value="Customer Description" />
+						<br />
+						<b:inputTextarea value="#{customerController.editableCustomer.description}" />	
+						<h:commandButton value="Back" action="#{customerController.goBack()}"
 							immediate="true" styleClass="btn btn-info"
 							style="margin-right: 10px"></h:commandButton>
 						<h:commandButton value="Save Changes"
-							action="#{payLevel.updateP(payLevel.plevel)}"
+							action="#{customerController.update(customerController.editableCustomer)}"
 							styleClass="btn btn-info"></h:commandButton>
 					</b:panel>
 				</b:panelGrid>

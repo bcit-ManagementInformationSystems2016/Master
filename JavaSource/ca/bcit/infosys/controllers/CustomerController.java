@@ -18,8 +18,16 @@ public class CustomerController implements Serializable {
     private CustomerManager ctmgr;
     
     // Local variables
+    private Customer editableCustomer;
     
     // GETTERS AND SETTERS
+    public Customer getEditableCustomer() {
+    	return editableCustomer;
+    }
+    public void setEditableCustomer(Customer editableCustomer) {
+    	this.editableCustomer = editableCustomer;
+    }
+    
     
     //OTHER METHODS
         
@@ -36,5 +44,18 @@ public class CustomerController implements Serializable {
     	return "adminLanding";
     }
     
+    public String editCust(Customer cust) {
+    	editableCustomer = cust;
+    	return "editCustomer";
+    }
+    
+    public String goBack() {
+    	return "getCustomerAddress";
+    }
+    
+    public String update(Customer c) {
+    	ctmgr.merge(c);
+    	return "getCustomerAddress";
+    }
     
 }

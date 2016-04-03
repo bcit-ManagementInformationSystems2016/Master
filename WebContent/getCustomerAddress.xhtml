@@ -36,12 +36,12 @@
 			</h:column>
 			
 			<h:column>
-				<h:commandLink value="Assign to Project" action="#{projectEmployeesController.goToAssignPage(emp)}"/>
+				<f:facet name="header">Edit</f:facet>
+				<h:commandLink action="#{customerController.editCust(cust)}">
+					<b:iconAwesome name="pencil-square-o" />
+				</h:commandLink>
 			</h:column>
-			
-			<h:column>
-				<h:commandLink value="Assign Timesheet Validator" action="#{supervisorController.assignTimesheetValidator(emp)}"/>
-			</h:column>		
+		
 	  </b:dataTable>		
 	 <h:commandButton value="Go To Home Page" action="#{customerController.leaveAddressBook()}"></h:commandButton>
      </b:panel>		
