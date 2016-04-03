@@ -32,7 +32,6 @@ public class CustomerController implements Serializable {
     //OTHER METHODS
         
     public Customer[] getAllCustomers() {
-        System.out.println("test");
         return ctmgr.getAll();
     }
     
@@ -59,13 +58,12 @@ public class CustomerController implements Serializable {
     }
     
     public String createNewCust() {
+    	editableCustomer = new Customer();
     	return "createCustomer";
     }
     
     public String save(Customer c) {
-    	Customer newCust = new Customer();
-    	newCust.setCompanyName(editableCustomer.getCompanyName());
-    	newCust.setContactFName(editableCustomer.getContactFName());
+    	ctmgr.persist(c);
     	return "getCustomerAddress";
     }
     

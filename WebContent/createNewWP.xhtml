@@ -31,11 +31,11 @@
 		<h:outputText value="#{treeController.newWPPID}" style="font-weight: bold"/>
 		<br /><br />		
 		<h:outputText value="Work Package Name" /><br />
-		<b:inputText value="#{treeController.wpToAdd.wpName}" />		  
+		<b:inputText value="#{treeController.wpToAdd.wpName}" required="true"/>		  
 		<br />
 		<h:outputText value="Work Package Description" />
 		<br />
-		<b:inputTextarea value="#{treeController.wpToAdd.description}" />		
+		<b:inputTextarea value="#{treeController.wpToAdd.description}" required="true"/>		
 	</b:panel>
 	<b:panel look="info" title="Enter Work Package Details" collapsible="false">			
 		<h:outputText value="Man Hours per Pay Level" style="font-weight: bold"/>		
