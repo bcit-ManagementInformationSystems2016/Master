@@ -259,19 +259,20 @@ public class TreeController implements Serializable {
 		wpToAdd.setTotalBudgetCost(wpCost);
 		wpToAdd.setTotalBudgetDays(manDays);
 		wpmgr.merge(w);
-		if (!wpToAdd.getWpID().equals("0")) {
+		if (!wpToAdd.getParentWPID().equals("0")) {
 			updateBudget(wpToAdd);
 		}
-		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), wpToAdd.getParentWPID()));
-		System.out.println("1");
-		for (int i = 0; i < assignedEmps.length; i++) {
-			empwpmgr.remove(assignedEmps[i].getWp(), assignedEmps[i].getEmp());
-		}
-		for (int i=0; i < assignedEmps.length; i++) {
-			EmployeeWP ewp = new EmployeeWP();
-			ewp.setEmp(assignedEmps[i].getEmp());
-			ewp.setWp(wpToAdd);
-			empwpmgr.merge(ewp);
+		if (!wpToAdd.getParentWPID().equals("0")) {
+			setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), wpToAdd.getParentWPID()));
+			for (int i = 0; i < assignedEmps.length; i++) {
+				empwpmgr.remove(assignedEmps[i].getWp(), assignedEmps[i].getEmp());
+			}
+			for (int i=0; i < assignedEmps.length; i++) {
+				EmployeeWP ewp = new EmployeeWP();
+				ewp.setEmp(assignedEmps[i].getEmp());
+				ewp.setWp(wpToAdd);
+				empwpmgr.merge(ewp);
+			}
 		}
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
