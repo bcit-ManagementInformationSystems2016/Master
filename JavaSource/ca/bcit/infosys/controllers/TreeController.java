@@ -259,8 +259,11 @@ public class TreeController implements Serializable {
 		wpToAdd.setTotalBudgetCost(wpCost);
 		wpToAdd.setTotalBudgetDays(manDays);
 		wpmgr.merge(w);
-		updateBudget(wpToAdd);
+		if (!wpToAdd.getWpID().equals("0")) {
+			updateBudget(wpToAdd);
+		}
 		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), wpToAdd.getParentWPID()));
+		System.out.println("1");
 		for (int i = 0; i < assignedEmps.length; i++) {
 			empwpmgr.remove(assignedEmps[i].getWp(), assignedEmps[i].getEmp());
 		}
