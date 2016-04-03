@@ -1,49 +1,52 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-		<title>CustomerAddressBook</title>
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">   
+<h:head>
+	<title>Customer Address Book</title>
 
-	</h:head>
-	<h:body>
-		<h:form>
-			<h:dataTable value="#{customerController.allCustomers}" var="cust">
-				<h:column>
-					<f:facet name="header">Index</f:facet>
-					<h:outputText value="#{cust.customerID}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">First Name</f:facet>
-					<h:outputText value="#{cust.contactFName}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">Last Name</f:facet>
-					<h:outputText value="#{cust.contactLName}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">CompanyName</f:facet>
-					<h:outputText value="#{cust.companyName}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">CompanyDescription</f:facet>
-					<h:outputText value="#{cust.description}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">CreateAProject</f:facet>
-					<h:outputText value="#{cust.description}"/>
-				</h:column>
-			</h:dataTable>
+</h:head>
+<h:body>
+<ui:composition template="/templates/masterLayout.xhtml">      
+    <ui:define name="content">
+	<h:form>	
+     <b:panel look="info" title="Customer Address Book" collapsible="false">
+      <b:dataTable value="#{customerController.getAllCustomers()}" var="cust">
 		
-		</h:form>
-		
-	</h:body>
+			<h:column>
+				<f:facet name="header">Company Name</f:facet>
+				<h:outputText value="#{cust.companyName}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Contact Name</f:facet>
+				<h:outputText value="#{cust.contactFName} #{cust.contactLName}"/>
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Company Description</f:facet>
+				<h:outputText value="#{cust.description}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Create New Project" action="login.xhtml"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Assign to Project" action="#{projectEmployeesController.goToAssignPage(emp)}"/>
+			</h:column>
+			
+			<h:column>
+				<h:commandLink value="Assign Timesheet Validator" action="#{supervisorController.assignTimesheetValidator(emp)}"/>
+			</h:column>		
+	  </b:dataTable>		
+	 <h:commandButton value="Go To Home Page" action="#{customerController.leaveAddressBook()}"></h:commandButton>
+     </b:panel>		
+	</h:form>
+ </ui:define>
+</ui:composition>		
+</h:body>
 </html>

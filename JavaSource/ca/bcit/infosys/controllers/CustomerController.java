@@ -17,8 +17,24 @@ public class CustomerController implements Serializable {
     @Inject
     private CustomerManager ctmgr;
     
+    // Local variables
+    
+    // GETTERS AND SETTERS
+    
+    //OTHER METHODS
+        
     public Customer[] getAllCustomers() {
         System.out.println("test");
         return ctmgr.getAll();
     }
+    
+    public String viewAllCustomers() {
+    	return "getCustomerAddress";
+    }
+    
+    public String leaveAddressBook() {
+    	return "adminLanding";
+    }
+    
+    
 }
