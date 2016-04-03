@@ -37,13 +37,11 @@
 							<h:outputText value="#{timesheet.weekNumber}" />
 							<br /> #{msgs.wk_end}
 							<h:outputText value="#{timesheet.weekEnding}" />
-							<br />
-							<br />
+							<br /> <br />
 							<h:outputText value="Flextime :" />
 							<br />
 							<h:outputText value="Overtime :" />
-							<br />
-							<br />
+							<br /> <br />
 
 						</h3>
 						<h:commandButton value="Add row" action="createTimesheetRow.xhtml"
@@ -108,6 +106,13 @@
 								disabled="#{timesheetRow.isSubmitted()}">
 								<b:iconAwesome name="pencil-square-o" />
 							</h:commandLink>
+						</h:column>
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Project ID" />
+							</f:facet>
+							<h:outputText span="1" value="#{tsr.projectID}" />
+
 						</h:column>
 						<h:column>
 							<f:facet name="header">

@@ -1,7 +1,9 @@
 package ca.bcit.infosys.managers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
@@ -78,14 +80,26 @@ public class EmployeeWPManager {
 	}
 
 	public List<SelectItem> getYourWorkPackages(int employeeID) {
-		TypedQuery<EmployeeWP> query = em
-				.createQuery("SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + Login.currentID, EmployeeWP.class);
+		TypedQuery<EmployeeWP> query = em.createQuery(
+				"SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + Login.currentID, EmployeeWP.class);
 		List<EmployeeWP> e = query.getResultList();
 		List<SelectItem> empList = new ArrayList<SelectItem>();
 		for (int i = 0; i < e.size(); i++) {
 			empList.add(new SelectItem(e.get(i).getWp().getWpID()));
 		}
 		return empList;
+	}
+
+	public List<SelectItem> getProjectWP(int projectID) {
+		System.out.println("test: " + projectID);
+		TypedQuery<EmployeeWP> query = em.createQuery("SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = "
+				+ Login.currentID + " AND " + "w.wp.workingProject = " + projectID, EmployeeWP.class);
+		List<EmployeeWP> wp = query.getResultList();
+		List<SelectItem> wpList = new ArrayList<SelectItem>();
+		for (int i = 0; i < wp.size(); i++) {
+			wpList.add(new SelectItem(wp.get(i).getWp().getWpID()));
+		}
+		return wpList;
 	}
 
 }

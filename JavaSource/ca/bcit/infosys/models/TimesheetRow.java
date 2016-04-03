@@ -51,6 +51,10 @@ public class TimesheetRow implements Serializable {
 	@Column(name="WorkPackageID")
 	private String workPackageID;
 
+	@Column(name="ProjectID")
+	public int projectID;
+	
+	
 	//bi-directional many-to-one association to Timesheet
 	@ManyToOne(cascade = {CascadeType.MERGE})
 	@JoinColumn(name="timesheetID", updatable = false, insertable = false)
@@ -184,5 +188,14 @@ public class TimesheetRow implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
+
+	public int getProjectID() {
+		return projectID;
+	}
+
+	public void setProjectID(int projectID) {
+		this.projectID = projectID;
+	}
+    
 
 }

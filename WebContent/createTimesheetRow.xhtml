@@ -4,7 +4,9 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<title>New Timesheet Row</title>
 </h:head>
@@ -71,18 +73,42 @@
 								<h:outputText value="Saturday Hours" />
 							</f:facet>
 						</b:inputText>
+						<!-- <p:outputLabel for="project" value="Project: " /> -->
+						<p:selectOneMenu id="project"
+							value="#{timesheetRow.tsr.projectID}">
+							<p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
+							<f:selectItem itemLabel="Select Project" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{timesheetRow.getProjectList()}" />
+						</p:selectOneMenu>
+
+						<!-- <p:outputLabel for="wp" value="Work Package: " /> -->
+						<p:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}">
+							<f:selectItem itemLabel="Select Work Package" itemValue=""
+								noSelectionOption="true" />
+							<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
+						</p:selectOneMenu>
+						<!-- <b:selectOneMenu value="#{timesheetRow.tsr.projectID}">
+							<f:selectItems value="#{timesheetRow.getProjectList()}" />
+							<f:facet name="append">
+								<h:outputText value="Project ID" />
+							</f:facet>
+						</b:selectOneMenu>
 						<b:selectOneMenu value="#{timesheetRow.tsr.workPackageID}">
 							<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
 							<f:facet name="append">
 								<h:outputText value="Work Package ID" />
 							</f:facet>
-						</b:selectOneMenu>
+						</b:selectOneMenu> -->
+						<br />
 						<h:commandButton value="Create Row"
 							action="#{timesheetRow.createTsr(timesheetRow.tsr)}"
 							styleClass="btn btn-info"></h:commandButton>
 					</b:panel>
 				</b:panelGrid>
 			</h:form>
+
+
 		</ui:define>
 	</ui:composition>
 </h:body>

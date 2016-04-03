@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeWPManager;
+import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
@@ -31,6 +32,7 @@ public class TimsheetRowController implements Serializable {
     
     @Inject private EmployeeWPManager ewpManager;
     
+    @Inject private ProjectManager pManager;
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts;
     static ArrayList<TimesheetRow> localRows;
@@ -38,7 +40,8 @@ public class TimsheetRowController implements Serializable {
     private static TimesheetRow[] archivedRows;
     private int archivedTimesheetId;
     static List<SelectItem> workPackageList;
-    private static int timesheetRowId = 13123;
+    static List<SelectItem> projectList;
+    //private static int timesheetRowId = 13123;
     
     public TimesheetRow getTsr() {
         return tsr;
@@ -123,8 +126,9 @@ public class TimsheetRowController implements Serializable {
         //timesheetRowManager.persist(tsr);
     	TimesheetRow newTsr = new TimesheetRow();
     	
-    	timesheetRowId++;
-    	newTsr.setTimesheetRowID(timesheetRowId);
+    	//timesheetRowId++;
+    	//newTsr.setTimesheetRowID(timesheetRowId);
+    	
     	newTsr.setTimesheetID(getTs().getTimesheetID());
     	newTsr.setHoursFri(tsr.getHoursFri());
     	newTsr.setHoursMon(tsr.getHoursMon());
@@ -134,7 +138,7 @@ public class TimsheetRowController implements Serializable {
     	newTsr.setHoursTues(tsr.getHoursTues());
     	newTsr.setHoursWed(tsr.getHoursWed());
     	newTsr.setWorkPackageID(tsr.getWorkPackageID());
-    	
+    	newTsr.setProjectID(tsr.getProjectID());
         localRows.add(newTsr);
         newTsr.setStatus("new");
         databaseRows.add(newTsr);
@@ -168,7 +172,7 @@ public class TimsheetRowController implements Serializable {
             switch (row.getStatus()) {
             case "new":
                 System.out.println("call persist");
-                timesheetRowManager.merge(row);
+                timesheetRowManager.persist(row);
                 break;
             case "old":
                 break;
@@ -227,6 +231,14 @@ public class TimsheetRowController implements Serializable {
 			workPackageList = ewpManager.getYourWorkPackages(empId);
 		}
 		return workPackageList;
+	}
+    
+    public List<SelectItem> getProjectList() {
+		if (projectList == null) {
+			int empId = Login.currentID;
+			projectList = pManager.getYourProjects(empId);
+		}
+		return projectList;
 	}
     
     public boolean isSubmitted() {
@@ -323,5 +335,11 @@ public class TimsheetRowController implements Serializable {
 	   timesheetManager.merge(ts);
 	   setTs(null);
 	   init();
+   }
+   
+   public void dropdownChange(){
+	   System.out.println("dropdown changed");
+	   System.out.println("Project " + tsr.projectID);
+	   workPackageList = new ArrayList<SelectItem>(ewpManager.getProjectWP(tsr.projectID));
    }
 }
