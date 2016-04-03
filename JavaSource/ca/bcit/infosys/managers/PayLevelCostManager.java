@@ -27,6 +27,10 @@ public class PayLevelCostManager {
 		payLevelCost = find(payLevelCost.getPayLevelCostID());
 		em.remove(payLevelCost);
 	}
+	
+	 public void merge(PayLevelCost plc) {
+	        em.merge(plc);
+	    }
 
 	public PayLevelCost[] getAll() {
 		TypedQuery<PayLevelCost> query = em.createQuery("select p from PayLevelCost p", PayLevelCost.class);

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Create New Project</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panelGrid colSpans="4,8">
+					<b:panel look="info" title="Create New Project for: #{customerController.editableCustomer.companyName}"
+						collapsible="false">
+						<b:inputText value="#{customerController.newProject.projectName}" required="true">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Project Name" />
+							</f:facet>
+						</b:inputText>
+						<br />
+						<h:outputText value="Project Description" />
+						<br />
+						<b:inputTextarea value="#{customerController.newProject.description}" required="true" />
+						<b:selectOneMenu value="#{customerController.projectManager}">
+							<f:selectItems value="#{customerController.getEmployeeDropdown()}" />
+							<f:facet name="append">
+								<h:outputText value="Project Manager" />
+							</f:facet>
+						</b:selectOneMenu>							
+						<h:commandButton value="Back" action="#{customerController.goBack()}"
+							immediate="true" styleClass="btn btn-info"
+							style="margin-right: 10px"></h:commandButton>
+						<h:commandButton value="Create"
+							action="#{customerController.createProject()}"
+							styleClass="btn btn-info"></h:commandButton>
+					</b:panel>
+				</b:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

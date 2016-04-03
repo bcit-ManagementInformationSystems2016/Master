@@ -103,30 +103,30 @@ public class TreeManagedBean {
     }
  
     public void onNodeSelect(NodeSelectEvent event){
-        System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Selected");
+        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Selected");
         
     }
  
     public void onNodeUnSelect(NodeUnselectEvent event){
-        System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: UnSelected");
+        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: UnSelected");
     }
  
     public void onNodeExpand(NodeExpandEvent event){
-        System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Expanded");
+        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Expanded");
     }
  
     public void onNodeCollapse(NodeCollapseEvent event){
-        System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Collapsed");
+        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Collapsed");
     }
  
     public String printSelectedNodes(){
-        System.out.println("Single Selection Is :: "+this.singleSelectedTreeNode.getData());
+        /*System.out.println("Single Selection Is :: "+this.singleSelectedTreeNode.getData());
         for(TreeNode n : this.multipleSelectedTreeNodes){
             System.out.println("Multiple Selection Are :: "+n.getData());
         }
         for(TreeNode n : this.checkboxSelectedTreeNodes){
             System.out.println("CheckBox Selection Are :: "+n.getData());
-        }
-        return "";
+        } */
+        return ""; 
     }
 }

@@ -6,14 +6,14 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Edit Customer</title>
+	<title>Create New Customer</title>
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="3,9">
-					<b:panel look="info" title="Update Customer Information"
+					<b:panel look="info" title="Create New Customer"
 						collapsible="false">
 						<b:inputText value="#{customerController.editableCustomer.companyName}" required="true">
 							<f:facet name="prepend">

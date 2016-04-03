@@ -157,6 +157,17 @@ public class EmployeeManager {
         }
         return selectableEmployees;
     }
+	
+	public List<SelectItem> getListOfAllEmployees() {
+    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
+        List<Employee> employees = proQuery.getResultList();
+        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+        for (int i=0; i < employees.size(); i++) {
+        	selectableEmployees.add(new SelectItem(employees.get(i), employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
+        }
+        return selectableEmployees;
+    }
+	
 	public List<SelectItem> getEmployeeIDs() {
     	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c where isActive = 1", Employee.class); 
         List<Employee> employees = proQuery.getResultList();

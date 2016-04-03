@@ -32,10 +32,10 @@
 			</h:column>
 			
 			<h:column>
-				<h:commandLink value="Create New Project" action="login.xhtml"/>
+				<h:commandLink value="Create New Project" action="#{customerController.createNewProject(cust)}" rendered="#{login.hr}"/>
 			</h:column>
 			
-			<h:column>
+			<h:column rendered="#{login.hr}">
 				<f:facet name="header">Edit</f:facet>
 				<h:commandLink action="#{customerController.editCust(cust)}">
 					<b:iconAwesome name="pencil-square-o" />
@@ -43,7 +43,7 @@
 			</h:column>
 		
 	  </b:dataTable>		
-	 <h:commandButton value="Create New Customer" action="#{customerController.createNewCust()}"></h:commandButton>
+	 <h:commandButton value="Create New Customer" action="#{customerController.createNewCust()}" rendered="#{login.hr}"></h:commandButton>
 	 <br />
 	 <h:commandButton value="Go To Home Page" action="#{customerController.leaveAddressBook()}"></h:commandButton>
      </b:panel>		

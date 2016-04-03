@@ -71,7 +71,6 @@ public class EmployeeWPManager {
 				EmployeeWP.class);
 		java.util.List<EmployeeWP> categories = query.getResultList();
 		EmployeeWP[] catarray = new EmployeeWP[categories.size()];
-		System.out.println("EWPM: 2");
 		for (int i = 0; i < catarray.length; i++) {
 			catarray[i] = categories.get(i);
 		}
