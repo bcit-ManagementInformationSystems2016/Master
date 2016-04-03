@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
@@ -18,7 +20,7 @@ import ca.bcit.infosys.models.TimesheetRow;
 
 
 @Named("timesheetRow")
-@SessionScoped
+@ConversationScoped
 public class TimsheetRowController implements Serializable {
     /** Manager from Product objects.*/
     @Inject private TimesheetManager timesheetManager;
@@ -27,13 +29,15 @@ public class TimsheetRowController implements Serializable {
     /** Manager from Product objects.*/
     @Inject private WorkPackageManager workPackageManager;
     
+    @Inject private EmployeeWPManager ewpManager;
+    
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts;
-    private static ArrayList<TimesheetRow> localRows;
+    static ArrayList<TimesheetRow> localRows;
     private static ArrayList<TimesheetRow> databaseRows;
     private static TimesheetRow[] archivedRows;
     private int archivedTimesheetId;
-    private static List<SelectItem> workPackageList;
+    static List<SelectItem> workPackageList;
     private static int timesheetRowId = 13123;
     
     public TimesheetRow getTsr() {
@@ -220,7 +224,7 @@ public class TimsheetRowController implements Serializable {
     public List<SelectItem> getWorkPackageList() {
 		if (workPackageList == null) {
 			int empId = Login.currentID;
-			workPackageList = workPackageManager.getEmployeeWorkPackages(empId);
+			workPackageList = ewpManager.getYourWorkPackages(empId);
 		}
 		return workPackageList;
 	}

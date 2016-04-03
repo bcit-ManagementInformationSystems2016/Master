@@ -20,20 +20,22 @@
 			</h:commandLink>
 		</ui:define>
 		<ui:define name="content">
+			<b:panel look="info" title="Employee Details" collapsible="false">
+				<h3 class="panel-title test">
+					Employee Name:
+					<h:outputText value="#{login.empName}" />
+					<br /> Total days allowed:
+					<h:outputText value="#{vacation.totalDaysAllowed}" />
+					<br /> Total days remaining:
+					<h:outputText value="#{vacation.daysRemaining}" />
+
+				</h3>
+			</b:panel>
+
+
 			<h:form>
-			Vacation Form: <h:outputText value="#{login.empName}" />
-				<br />
-			Total days allowed: <h:outputText
-					value="#{vacation.totalDaysAllowed}" />
-				<br />
-			Total dyas remaining: <h:outputText value="#{vacation.daysRemaining}" />
-
-
-			</h:form>
-
-
-			<h:form>
-				<b:panel look="info" title="Your Vacations" collapsible="false">
+				<b:panel look="info" title="Vacation Request History"
+					collapsible="false">
 					<b:dataTable value="#{vacation.vacayArray}" var="v">
 						<h:column>
 							<f:facet name="header">ID</f:facet>
@@ -47,7 +49,7 @@
 							<f:facet name="header">Days Left</f:facet>
 							<h:outputText value="#{v.vacationDaysLeft}" />
 						</h:column>
-						
+
 					</b:dataTable>
 					<h:commandButton value="New Vacation Request"
 						action="requestVacation.xhtml" styleClass="btn btn-info"></h:commandButton>

@@ -36,35 +36,37 @@ public class VacationManager {
 
 	public int getDaysAllowed() {
 		int plID;
-		
-		TypedQuery<Employee> query1 = em.createQuery(
-				"select e from Employee e where e.employeeID = " + Login.currentID, Employee.class);
+
+		TypedQuery<Employee> query1 = em.createQuery("select e from Employee e where e.employeeID = " + Login.currentID,
+				Employee.class);
 		List<Employee> elist = query1.getResultList();
 		Employee[] earray = new Employee[elist.size()];
 		for (int i = 0; i < earray.length; i++) {
 			earray[i] = elist.get(i);
 		}
 		plID = earray[0].getPayLevelID();
-		
-		TypedQuery<PayLevel> query2 = em.createQuery("select p from PayLevel p where p.payLevelID = "+ plID, PayLevel.class);
+
+		TypedQuery<PayLevel> query2 = em.createQuery("select p from PayLevel p where p.payLevelID = " + plID,
+				PayLevel.class);
 		List<PayLevel> plist = query2.getResultList();
 		PayLevel[] parray = new PayLevel[plist.size()];
 		for (int i = 0; i < parray.length; i++) {
 			parray[i] = plist.get(i);
 		}
 		return parray[0].getTotalVacationDays();
-		/*TypedQuery<PayLevel> query = em.createQuery("SELECT p.totalVacationDays " + "FROM PayLevel p JOIN Employee e "
-				+ "WHERE e.employeeID =" + Login.currentID, PayLevel.class);
-
-		System.out.println("getdaysallowed");
-		List<PayLevel> totalVacation = query.getResultList();
-
-		PayLevel[] parray = new PayLevel[totalVacation.size()];
-		for (int i = 0; i < parray.length; i++) {
-			parray[i] = totalVacation.get(i);
-			System.out.println("test");
-		}*/
-		//return parray[0].getTotalVacationDays();
+		/*
+		 * TypedQuery<PayLevel> query = em.createQuery(
+		 * "SELECT p.totalVacationDays " + "FROM PayLevel p JOIN Employee e " +
+		 * "WHERE e.employeeID =" + Login.currentID, PayLevel.class);
+		 * 
+		 * System.out.println("getdaysallowed"); List<PayLevel> totalVacation =
+		 * query.getResultList();
+		 * 
+		 * PayLevel[] parray = new PayLevel[totalVacation.size()]; for (int i =
+		 * 0; i < parray.length; i++) { parray[i] = totalVacation.get(i);
+		 * System.out.println("test"); }
+		 */
+		// return parray[0].getTotalVacationDays();
 
 	}
 
@@ -79,7 +81,7 @@ public class VacationManager {
 		return vacayArray;
 	}
 
-	public int getDaysRemaining(){
+	public int getDaysRemaining() {
 		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE EmployeeID = " + Login.currentID,
 				Vacation.class);
 		java.util.List<Vacation> categories = query.getResultList();
@@ -87,8 +89,10 @@ public class VacationManager {
 		for (int i = 0; i < vacayArray.length; i++) {
 			vacayArray[i] = categories.get(i);
 		}
-		return vacayArray[categories.size()-1].getVacationDaysLeft();
-		
+		if (categories.size() > 1)
+			return vacayArray[categories.size() - 1].getVacationDaysLeft();
+		else
+			return getDaysAllowed();
 	}
 
 }

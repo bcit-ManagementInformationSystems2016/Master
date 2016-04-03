@@ -196,6 +196,13 @@
    		<to-view-id>/humanResources.xhtml</to-view-id>
   	</navigation-case>
 </navigation-rule>
+<navigation-rule>
+	<from-view-id>/adminLanding.xhtml</from-view-id>
+  	<navigation-case>
+   		<from-outcome>viewVacation</from-outcome>
+   		<to-view-id>/viewVacation.xhtml</to-view-id>
+  	</navigation-case>
+</navigation-rule>
 <application>
 	<resource-bundle>
    		<base-name>META-INF.messages</base-name>

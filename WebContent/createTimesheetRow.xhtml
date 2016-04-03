@@ -1,54 +1,89 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-	<title>Create TimesheetRow</title>
-	<h3>Enter TimesheetRow Details</h3>
+	<title>New Timesheet Row</title>
 </h:head>
 <h:body>
-	<h:form>
-		<h:outputText value="hoursFri" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursFri}"></h:inputText>
-		<br />
-		<h:outputText value="hoursMon" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursMon}"></h:inputText>
-		<br />
-		<h:outputText value="hoursThurs" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursThurs}"></h:inputText>
-		<br />
-		<h:outputText value="hoursTues" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursTues}"></h:inputText>
-		<br />
-		<h:outputText value="hoursWed" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursWed}"></h:inputText>
-		<br />
-		<h:outputText value="hoursSat" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursSat}"></h:inputText>
-		<br />
-		<h:outputText value="hoursSun" />
-		<br />
-		<h:inputText value="#{timesheetRow.tsr.hoursSun}"></h:inputText>
-		<br />
-		<h:outputText value="workPackageID" />
-		<br />
-		<h:selectOneMenu value="#{timesheetRow.tsr.workPackageID}">
-			<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
-			<f:facet name="append">
-				<h:outputText value="WorkPackage ID" />
-			</f:facet>
-		</h:selectOneMenu>
-		<br />
-		<h:commandButton value="Save" action="#{timesheetRow.createTsr(timesheetRow.tsr)}"></h:commandButton>
-	</h:form>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panelGrid colSpans="3,9">
+					<b:panel look="info" title="New Timesheet Row Details"
+						collapsible="false">
+						<b:inputText value="#{timesheetRow.tsr.hoursSun}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Sunday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{timesheetRow.tsr.hoursMon}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Monday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{timesheetRow.tsr.hoursTues}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Tuesday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{timesheetRow.tsr.hoursWed}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Wednesday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{timesheetRow.tsr.hoursThurs}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Thursday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{timesheetRow.tsr.hoursFri}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Friday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{timesheetRow.tsr.hoursSat}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Saturday Hours" />
+							</f:facet>
+						</b:inputText>
+						<b:selectOneMenu value="#{timesheetRow.tsr.workPackageID}">
+							<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
+							<f:facet name="append">
+								<h:outputText value="Work Package ID" />
+							</f:facet>
+						</b:selectOneMenu>
+						<h:commandButton value="Create Row"
+							action="#{timesheetRow.createTsr(timesheetRow.tsr)}"
+							styleClass="btn btn-info"></h:commandButton>
+					</b:panel>
+				</b:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

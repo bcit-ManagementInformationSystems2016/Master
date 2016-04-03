@@ -3,6 +3,7 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +18,7 @@ import ca.bcit.infosys.models.Vacation;
 
 
 @Named("vacation")
-@SessionScoped
+@ConversationScoped
 public class VacationController implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -112,6 +113,9 @@ public class VacationController implements Serializable{
 		this.v = v;
 	}
 	
+	public String goViewVacation(){
+		return "viewVacation";
+	}
 
 	
 }

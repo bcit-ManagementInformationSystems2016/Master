@@ -164,6 +164,12 @@
     NAME="output" PATH="/getWorkpackages.xhtml"
     TARGET="rules:#getWorkpackages.xhtml" TITLE="wpLanding" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
+  <PROCESS-ITEM ID="rules:#adminLanding.xhtml:3" NAME="item3"
+   PATH="/adminLanding.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="viewVacation::#viewVacation.xhtml"
+    NAME="output" PATH="/viewVacation.xhtml"
+    TARGET="rules:#viewVacation.xhtml" TITLE="viewVacation" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#getWorkpackages.xhtml"
   PATH="/getWorkpackages.xhtml" SHAPE="480,785,0,0" model-entity="JSFProcessGroup">
@@ -215,4 +221,6 @@
   PATH="/projectsLanding.xhtml" SHAPE="480,673,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#viewArchivedTimesheet.xhtml"
   PATH="/viewArchivedTimesheet.xhtml" SHAPE="944,785,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#viewVacation.xhtml"
+  PATH="/viewVacation.xhtml" SHAPE="496,1521,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
