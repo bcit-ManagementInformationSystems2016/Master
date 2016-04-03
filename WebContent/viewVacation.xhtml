@@ -1,38 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
-	<h:head>
-		<title>Vacation</title>
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<head>
+<title>Vacation</title>
+</head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">
+         #{msgs.admin}
+	</ui:define>
+		<ui:define name="backBtn">
+			<h:commandLink action="adminLanding">
+				<span class="icomoon-circle-left backBtn-ico"></span>
+				<span class="backBtn-txt">Go Back</span>
+			</h:commandLink>
+		</ui:define>
+		<ui:define name="content">
+			<h:form>
+			Vacation Form: <h:outputText value="#{login.empName}" />
+				<br />
+			Total days allowed: <h:outputText
+					value="#{vacation.totalDaysAllowed}" />
+				<br />
+			Total dyas remaining: <h:outputText value="#{vacation.daysRemaining}" />
 
-	</h:head>
-	<h:body>
-		<h:form>
-			<h:dataTable value="#{vacation.allVacation}" var="vc">
-				<h:column>
-					<f:facet name="header">VacationID</f:facet>
-					<h:outputText value="#{vc.vacationID}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">EmployeeID</f:facet>
-					<h:outputText value="#{vc.employeeID}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">RequestDate</f:facet>
-					<h:outputText value="#{vc.requestDate}"/>
-				</h:column>
-				
-				<h:column>
-					<f:facet name="header">VacationDaysLeft</f:facet>
-					<h:outputText value="#{vc.vacationDaysLeft}"/>
-				</h:column>
-			</h:dataTable>
-		</h:form>
-		
-	</h:body>
+
+			</h:form>
+
+
+			<h:form>
+				<b:panel look="info" title="Your Vacations" collapsible="false">
+					<b:dataTable value="#{vacation.vacayArray}" var="v">
+						<h:column>
+							<f:facet name="header">ID</f:facet>
+							<h:outputText value="#{v.employeeID}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Date</f:facet>
+							<h:outputText value="#{v.requestDate}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Days Left</f:facet>
+							<h:outputText value="#{v.vacationDaysLeft}" />
+						</h:column>
+						
+					</b:dataTable>
+					<h:commandButton value="New Vacation Request"
+						action="requestVacation.xhtml" styleClass="btn btn-info"></h:commandButton>
+				</b:panel>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
 </html>

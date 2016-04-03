@@ -44,7 +44,6 @@ public class PayLevelManager {
 
 		return payLevels;
 	}
-
 	public List<SelectItem> getPayLevelIDs() {
 		TypedQuery<PayLevel> proQuery = em.createQuery("select p from PayLevel p", PayLevel.class);
 		List<PayLevel> paylevels = proQuery.getResultList();
@@ -53,5 +52,11 @@ public class PayLevelManager {
 			list.add(new SelectItem(paylevels.get(i).payLevelID));
 		}
 		return list;
+	}
+	
+	public PayLevel getPayLevelInfo(int payLevelID) {
+		TypedQuery<PayLevel> queryOne = em.createQuery("SELECT c FROM PayLevel c WHERE PayLevelID = " + payLevelID + "", PayLevel.class);
+		PayLevel p = queryOne.getSingleResult();
+		return p;
 	}
 }
