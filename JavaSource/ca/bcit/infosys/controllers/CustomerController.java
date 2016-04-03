@@ -58,4 +58,15 @@ public class CustomerController implements Serializable {
     	return "getCustomerAddress";
     }
     
+    public String createNewCust() {
+    	return "createCustomer";
+    }
+    
+    public String save(Customer c) {
+    	Customer newCust = new Customer();
+    	newCust.setCompanyName(editableCustomer.getCompanyName());
+    	newCust.setContactFName(editableCustomer.getContactFName());
+    	return "getCustomerAddress";
+    }
+    
 }

@@ -3,6 +3,8 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
@@ -130,6 +132,13 @@ public class TimesheetRowManager {
 		        catarray[i] = categories.get(i);
 		    }
 		    return catarray;
+		}
+	    
+	    public int verifyIfCharges(int projectID, String wpID) {
+			TypedQuery<TimesheetRow> query = em.createQuery("SELECT c FROM TimesheetRow c WHERE ProjectID = " + projectID + " AND WorkPackageID = '" + wpID + "'", TimesheetRow.class);
+			List<TimesheetRow> wps = query.getResultList();
+			int arraySize = wps.size();
+			return arraySize;
 		}
 
 }

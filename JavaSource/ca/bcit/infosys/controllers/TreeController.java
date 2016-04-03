@@ -14,6 +14,7 @@ import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.PayLevelCostManager;
 import ca.bcit.infosys.managers.PayLevelDaysManager;
 import ca.bcit.infosys.managers.ProjectEmployeesManager;
+import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.EmployeeWP;
@@ -42,6 +43,8 @@ public class TreeController implements Serializable {
 	private PayLevelCostManager plcmgr;
 	@Inject
 	private PayLevelDaysManager pldmgr;
+	@Inject
+	private TimesheetRowManager tsrMgr;
 	
 	// variable used to display tree
 	private static TreeManagedBean projectTree;
@@ -215,6 +218,9 @@ public class TreeController implements Serializable {
 		if (projectTree.getSingleSelectedTreeNode() != null ) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
+			return "viewProjectDetails";
+		}
+		if (tsrMgr.verifyIfCharges(editableProject.getProjectID(), selectedWP.getWpID()) > 0) {
 			return "viewProjectDetails";
 		}
 		budget = new PayLevelDays();

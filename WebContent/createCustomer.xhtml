@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+<h:head>
+	<title>Edit Customer</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panelGrid colSpans="3,9">
+					<b:panel look="info" title="Update Customer Information"
+						collapsible="false">
+						<b:inputText value="#{customerController.editableCustomer.companyName}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Customer Name" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{customerController.editableCustomer.contactFName}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Contact First Name" />
+							</f:facet>
+						</b:inputText>
+						<b:inputText value="#{customerController.editableCustomer.contactLName}">
+							<f:facet name="prepend">
+								<b:iconAwesome name="pencil-square-o" />
+							</f:facet>
+							<f:facet name="append">
+								<h:outputText value="Contact Last Name" />
+							</f:facet>
+						</b:inputText>
+						<br />
+						<h:outputText value="Customer Description" />
+						<br />
+						<b:inputTextarea value="#{customerController.editableCustomer.description}" />	
+						<h:commandButton value="Back" action="#{customerController.goBack()}"
+							immediate="true" styleClass="btn btn-info"
+							style="margin-right: 10px"></h:commandButton>
+						<h:commandButton value="Save Changes"
+							action="#{customerController.save(customerController.editableCustomer)}"
+							styleClass="btn btn-info"></h:commandButton>
+					</b:panel>
+				</b:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
