@@ -30,7 +30,8 @@
 			EmployeeName: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" />
 						  <h:outputText value="#{timesheet.lastName}" /><br/>
 			#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
-			#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}"/><br/><br/>
+			#{msgs.wk_end}<h:outputText value="#{timesheet.weekEnding}">
+							<f:convertDateTime pattern="MM/dd/yyyy" /></h:outputText><br/><br/>
 			<h:outputText value="Flextime :"/><br/>        
         	<h:outputText value="Overtime :"/><br/><br/>
 
