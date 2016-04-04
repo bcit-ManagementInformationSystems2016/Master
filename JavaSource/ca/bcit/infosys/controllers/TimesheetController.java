@@ -53,6 +53,14 @@ public class TimesheetController implements Serializable {
 		return employeeRows;
 	}
 
+	public int getEmployeeId() {
+		return TimsheetRowController.archivedTs.getEmployeeID();
+	}
+	
+	public int getCurrentID() {
+		return Login.currentID;
+	}
+	
 	public String getFirstName() {
 		init();
 		String firstName = null;
@@ -63,13 +71,36 @@ public class TimesheetController implements Serializable {
 		}
 		return firstName;
 	}
+	
+	public String getArchivedFirstName() {
+		init();
+		String firstName = null;
+		Employee[] rows = getAllEmployee();
+		for (int i = 0; i < rows.length; i++) {
+			if (rows[i].getEmployeeID() == TimsheetRowController.archivedTs.getEmployeeID())
+				firstName = rows[i].getFirstName();
+		}
+		return firstName;
+	}
 
 	public String getLastName() {
 		init();
+		// TimsheetRowController.archivedTs.getEmployeeID()
 		String lastName = null;
 		Employee[] rows = getAllEmployee();
 		for (int i = 0; i < rows.length; i++) {
 			if (rows[i].getEmployeeID() == Login.currentID)
+				lastName = rows[i].getLastName();
+		}
+		return lastName;
+	}
+	
+	public String getArchivedLastName() {
+		init();
+		String lastName = null;
+		Employee[] rows = getAllEmployee();
+		for (int i = 0; i < rows.length; i++) {
+			if (rows[i].getEmployeeID() == TimsheetRowController.archivedTs.getEmployeeID())
 				lastName = rows[i].getLastName();
 		}
 		return lastName;
@@ -140,6 +171,12 @@ public class TimesheetController implements Serializable {
 		cal.setTime(date);
 		int week = cal.get(Calendar.WEEK_OF_YEAR);
 		return week;
+
+	}
+	
+	public int getArchivedWeekNumber() throws ParseException {
+		init();
+		return TimsheetRowController.archivedTs.getWeekNumber();
 
 	}
 

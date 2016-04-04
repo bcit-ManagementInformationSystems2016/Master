@@ -40,6 +40,9 @@ public class Timesheet implements Serializable {
 
 	@Column(name="Submitted")
 	private boolean submitted;
+	
+	@Column(name="WeekNumber")
+	private int weekNumber;
 
 	//bi-directional many-to-one association to TimesheetRow
 	@OneToMany(mappedBy="timesheet", cascade = {CascadeType.ALL})
@@ -91,6 +94,14 @@ public class Timesheet implements Serializable {
 
 	public void setSubmitted(boolean submitted) {
 		this.submitted = submitted;
+	}
+	
+	public int getWeekNumber() {
+		return this.weekNumber;
+	}
+
+	public void setWeekNumber(int weekNumber) {
+		this.weekNumber = weekNumber;
 	}
 
 	public List<TimesheetRow> getTimesheetRows() {

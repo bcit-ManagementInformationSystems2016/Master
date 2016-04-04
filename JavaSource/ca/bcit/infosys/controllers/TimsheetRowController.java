@@ -35,6 +35,7 @@ public class TimsheetRowController implements Serializable {
     @Inject private ProjectManager pManager;
     private TimesheetRow tsr = new TimesheetRow();
     private Timesheet ts;
+    public static Timesheet archivedTs;
     static ArrayList<TimesheetRow> localRows;
     private static ArrayList<TimesheetRow> databaseRows;
     private static TimesheetRow[] archivedRows;
@@ -88,6 +89,7 @@ public class TimsheetRowController implements Serializable {
     
     public String gotoArchivedTimesheet(Timesheet ts) {
         archivedTimesheetId = ts.getTimesheetID();
+        archivedTs = timesheetManager.find(archivedTimesheetId);
         archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
         return "viewArchivedTimesheet";
     }
@@ -236,6 +238,7 @@ public class TimsheetRowController implements Serializable {
     public List<SelectItem> getProjectList() {
 		if (projectList == null) {
 			int empId = Login.currentID;
+			System.out.println(empId);
 			projectList = pManager.getYourProjects(empId);
 		}
 		return projectList;
@@ -311,6 +314,75 @@ public class TimsheetRowController implements Serializable {
        ArrayList<TimesheetRow> rows = getAllTimesheetRow();
        for (int i=0; i < rows.size(); i++) {
            satHours += rows.get(i).getHoursSat();
+       }
+       return satHours;
+   }
+   
+   public double getAllArchivedTotalHours() {
+       double allHours = 0.0;
+       
+
+       System.out.println("rowslength: " + archivedRows.length);
+       for (int i=0; i < archivedRows.length; i++) {
+           allHours += archivedRows[i].getTotalHours();
+           System.out.println("time: " + allHours);
+       }
+       return allHours;
+   }
+
+   public double getArchivedSunTotalHours() {
+       double sunHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           sunHours += archivedRows[i].getHoursSun();
+       }
+       return sunHours;
+   }
+   public double getArchivedTuesTotalHours() {
+       double tuesHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           tuesHours += archivedRows[i].getHoursTues();
+       }
+       return tuesHours;
+   }
+   public double getArchivedMonTotalHours() {
+       double monHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           monHours += archivedRows[i].getHoursMon();
+       }
+       return monHours;
+   }
+   public double getArchivedWedTotalHours() {
+       double wedHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           wedHours += archivedRows[i].getHoursWed();
+       }
+       return wedHours;
+   }
+   public double getArchivedThursTotalHours() {
+       double thursHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           thursHours += archivedRows[i].getHoursThurs();
+       }
+       return thursHours;
+   }
+   public double getArchivedFriTotalHours() {
+       double friHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           friHours += archivedRows[i].getHoursFri();
+       }
+       return friHours;
+   }
+   public double getArchivedSatTotalHours() {
+       double satHours = 0.0;
+       
+       for (int i=0; i < archivedRows.length; i++) {
+           satHours += archivedRows[i].getHoursSat();
        }
        return satHours;
    }

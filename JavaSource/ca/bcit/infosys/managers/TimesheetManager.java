@@ -3,6 +3,7 @@
  */
 package ca.bcit.infosys.managers;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.ejb.Stateless;
@@ -99,7 +100,12 @@ public class TimesheetManager {
 		    		// create new timesheet
 		    		//TODO create new timesheet properly and persist into database
 		    		Timesheet ts = new Timesheet();
-		    		ts.setStartDate(new Date());
+		    		Date date = new Date();
+		    		ts.setStartDate(date);
+		    		Calendar cal = Calendar.getInstance();
+		    		cal.setTime(date);
+		    		int weekNum = cal.get(Calendar.WEEK_OF_YEAR);
+		    		ts.setWeekNumber(weekNum);
 		    		ts.setEmployeeID(empId);
 		    		persist(ts);
 		    	}
