@@ -47,8 +47,8 @@ public class TreeController implements Serializable {
 	private TimesheetRowManager tsrMgr;
 	
 	// variable used to display tree
-	private static TreeManagedBean projectTree;
-	private static WorkPackage selectedWP;
+	private TreeManagedBean projectTree;
+	private WorkPackage selectedWP;
 	private EmployeeWP[] assignedEmps;
 	private Project editableProject;
 	
@@ -71,7 +71,7 @@ public class TreeController implements Serializable {
 	
 	// Getters and Setters
 	public void setProjectTree(TreeManagedBean projectTree) {
-		TreeController.projectTree = projectTree;
+		this.projectTree = projectTree;
 	}
 	public TreeManagedBean getProjectTree() {
 		return projectTree;
@@ -80,7 +80,7 @@ public class TreeController implements Serializable {
 		return selectedWP;
 	}
 	public void setSelectedWP(WorkPackage selectedWP) {
-		TreeController.selectedWP = selectedWP;
+		this.selectedWP = selectedWP;
 	}
 	public void setAssignedEmps(EmployeeWP[] assignedEmps) {
 		this.assignedEmps = assignedEmps;
