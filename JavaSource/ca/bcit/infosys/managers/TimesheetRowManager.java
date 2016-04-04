@@ -127,9 +127,15 @@ public class TimesheetRowManager {
 	    public TimesheetRow[] getSpecificTimesheetRows(int projectID, String wpID) {
 			TypedQuery<TimesheetRow> query = em.createQuery("SELECT c FROM TimesheetRow c WHERE ProjectID = " + projectID + " AND WorkPackageID = '" + wpID + "'", TimesheetRow.class);
 			java.util.List<TimesheetRow> categories = query.getResultList();
-			TimesheetRow[] catarray = new TimesheetRow[categories.size()];
+			java.util.List<TimesheetRow> availableTimesheetRows = new java.util.ArrayList<TimesheetRow>();
+			for (int i = 0; i < categories.size(); i++) {
+				if (categories.get(i).getTimesheet().getApproved() == true) {
+					availableTimesheetRows.add(categories.get(i));
+				}
+			}
+			TimesheetRow[] catarray = new TimesheetRow[availableTimesheetRows.size()];
 		    for (int i=0; i < catarray.length; i++) {
-		        catarray[i] = categories.get(i);
+		    	catarray[i] = categories.get(i);
 		    }
 		    return catarray;
 		}
