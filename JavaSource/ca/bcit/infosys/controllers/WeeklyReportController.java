@@ -8,10 +8,12 @@ import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.PayLevelDaysManager;
+import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.PayLevelDays;
 import ca.bcit.infosys.models.Project;
+import ca.bcit.infosys.models.TimesheetRow;
 import ca.bcit.infosys.models.WorkPackage;
 
 @Named("weekly")
@@ -37,6 +39,9 @@ public class WeeklyReportController implements Serializable {
 	
 	@Inject
 	private PayLevelDaysManager pldMgr;
+	
+	@Inject
+	private TimesheetRowManager tsrmgr;
 
 	private double personDays;
 
@@ -47,14 +52,23 @@ public class WeeklyReportController implements Serializable {
 	private String engineer;
 
 	private PayLevelDays pld;
-
-	// save work package
-
+	
+	private TimesheetRow[] tsrows;
+	
 
 	
 
 	public String getEngineer() {
 		return engineer;
+	}
+
+	public TimesheetRow[] getTsrows() {
+		
+		return tsrows;
+	}
+
+	public void setTsrows(TimesheetRow[] tsrows) {
+		this.tsrows = tsrows;
 	}
 
 	/**
@@ -102,13 +116,25 @@ public class WeeklyReportController implements Serializable {
 	public String showWeeklyReport(WorkPackage wp) {
 		//WorkPackage wp = wpmgr.find(proj, wpID);
 		pld = pldMgr.find(wp.getRemainingDaysID());
-		double wpDays = tsrctr.getHoursForWP(wp.getWpID()) / 8;
+		double wpDays = tsrctr.getHoursForWP(wp.getWpID());
+		//System.out.println(wpDays);
 		personDays = wp.getTotalBudgetDays();
 		personDollars = wp.getTotalBudgetCost();
 		engineer = wpctr.engIDtoName(wp.getResponsibleEngineerID());
-		estToComplete = personDays - wpDays;
+		estToComplete = wpDays / 8;
+		tsrows = tsrmgr.getRowsWithWPId(wp.getWpID());
 
 		return "weeklyReport";
+	}
+	
+	public double totalCharges() {
+		estToComplete = 0;
+		double days = 0;
+		for (int i =0; i < tsrows.length; i++) {
+			days += tsrows[i].getTotalHours() / 8;
+		}
+		
+		return days;
 	}
 	
 	public String createReport() {

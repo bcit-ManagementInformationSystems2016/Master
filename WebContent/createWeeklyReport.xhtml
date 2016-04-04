@@ -1,58 +1,103 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-    <title>Weekly Report</title>
+	<title>Weekly Report</title>
 </h:head>
 <h:body>
- 
-    <h:form>
-        <h1>Weekly Report</h1>
-        <h:panelGrid columns="2" cellpadding="10" border="1" cellspacing="1">
-        
-        	
-        	<f:facet name="header">Budget</f:facet>  
-        
-            <h:outputLabel for="pname">Person Days:</h:outputLabel>
-            <h:outputText value="#{weekly.personDays}" id="pname"></h:outputText>
-           
- 
-            <h:outputLabel for="cost">Person Dollars($):</h:outputLabel>
-            <h:outputText value="#{weekly.personDollars}"></h:outputText>
 
-        </h:panelGrid>
-        
-        <br/>
-        
-        <h:panelGrid columns="2" cellpadding="10" cellspacing="1">
-        	<h:outputLabel for="pname">Estimated to Complete (days):</h:outputLabel>
-        	<h:outputText value="#{weekly.estToComplete}" border="1"></h:outputText>
-        	
-        	<h:outputLabel for="pname">Pay Level 1:</h:outputLabel>
-        	<h:inputText value="#{weekly.pld.p1Day}"></h:inputText>
-        	<h:outputLabel for="pname">Pay Level 2:</h:outputLabel>
-        	<h:inputText value="#{weekly.pld.p2Day}"></h:inputText>
-        	<h:outputLabel for="pname">Pay Level 3:</h:outputLabel>
-        	<h:inputText value="#{weekly.pld.p3Day}"></h:inputText>
-        	<h:outputLabel for="pname">Pay Level 4:</h:outputLabel>
-        	<h:inputText value="#{weekly.pld.p4Day}"></h:inputText>
-        	<h:outputLabel for="pname">Pay Level 5:</h:outputLabel>
-        	<h:inputText value="#{weekly.pld.p5Day}"></h:inputText>
-        	<h:outputLabel for="pname">Pay Level 6:</h:outputLabel>
-        	<h:inputText value="#{weekly.pld.p6Day}"></h:inputText>
-        	
-        	<h:outputLabel for="pname">Responsible Engineer:</h:outputLabel>
-        	<h:outputText value="#{weekly.engineer}"></h:outputText>
-        	
-        	 
-        </h:panelGrid>
-        
-        
-        <br />
-        <h:commandButton value="Create Report" action="#{weekly.createReport}"></h:commandButton>
-       
-    </h:form>
+	<h:form>
+		<h1>Weekly Report</h1>
+		<h:panelGrid columns="2" cellpadding="10" border="1" cellspacing="1">
+
+
+			<f:facet name="header">Budget</f:facet>
+
+			<h:outputLabel for="pname">Person Days:</h:outputLabel>
+			<h:outputText value="#{weekly.personDays}" id="pname"></h:outputText>
+
+
+			<h:outputLabel for="cost">Person Dollars($):</h:outputLabel>
+			<h:outputText value="#{weekly.personDollars}"></h:outputText>
+
+		</h:panelGrid>
+
+		<br />
+
+		<h1>Associated Charges</h1>
+		<h:dataTable value="#{weekly.tsrows}" var="row">
+
+			<h:column>
+				<f:facet name="header">WorkPackage ID</f:facet>
+				<h:outputText value="#{row.workPackageID}" />
+			</h:column>
+			
+			<h:column>
+				<f:facet name="header">Project ID</f:facet>
+				<h:outputText value="#{row.projectID}" />
+			</h:column>	
+			
+			<h:column>
+				<f:facet name="header">HoursMon</f:facet>
+				<h:outputText value="#{row.hoursMon}" />
+			</h:column>	
+			<h:column>
+				<f:facet name="header">HoursTues</f:facet>
+				<h:outputText value="#{row.hoursTues}" />
+			</h:column>	
+			<h:column>
+				<f:facet name="header">HoursWed</f:facet>
+				<h:outputText value="#{row.hoursWed}" />
+			</h:column>	
+			<h:column>
+				<f:facet name="header">HoursThurs</f:facet>
+				<h:outputText value="#{row.hoursThurs}" />
+			</h:column>	
+			<h:column>
+				<f:facet name="header">HoursFri</f:facet>
+				<h:outputText value="#{row.hoursFri}" />
+			</h:column>	
+			<h:column>
+				<f:facet name="header">HoursSat</f:facet>
+				<h:outputText value="#{row.hoursSat}" />
+			</h:column>	
+			<h:column>
+				<f:facet name="header">HoursSun</f:facet>
+				<h:outputText value="#{row.hoursSun}" />
+			</h:column>	
+		</h:dataTable>
+		
+		<br/>
+
+		<h:panelGrid columns="2" cellpadding="10" cellspacing="1">
+			<h:outputLabel for="pname">Total Charges (pdays):</h:outputLabel>
+			<h:outputText value="#{weekly.estToComplete}"></h:outputText>
+
+			<h:outputLabel for="pname">Pay Level 1:</h:outputLabel>
+			<h:inputText value="#{weekly.pld.p1Day}"></h:inputText>
+			<h:outputLabel for="pname">Pay Level 2:</h:outputLabel>
+			<h:inputText value="#{weekly.pld.p2Day}"></h:inputText>
+			<h:outputLabel for="pname">Pay Level 3:</h:outputLabel>
+			<h:inputText value="#{weekly.pld.p3Day}"></h:inputText>
+			<h:outputLabel for="pname">Pay Level 4:</h:outputLabel>
+			<h:inputText value="#{weekly.pld.p4Day}"></h:inputText>
+			<h:outputLabel for="pname">Pay Level 5:</h:outputLabel>
+			<h:inputText value="#{weekly.pld.p5Day}"></h:inputText>
+			<h:outputLabel for="pname">Pay Level 6:</h:outputLabel>
+			<h:inputText value="#{weekly.pld.p6Day}"></h:inputText>
+
+			<h:outputLabel for="pname">Responsible Engineer:</h:outputLabel>
+			<h:outputText value="#{weekly.engineer}"></h:outputText>
+
+
+		</h:panelGrid>
+
+
+		<br />
+		<h:commandButton value="Create Report" action="#{weekly.createReport}"></h:commandButton>
+
+	</h:form>
 </h:body>
 </html>

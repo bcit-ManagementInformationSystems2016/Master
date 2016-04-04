@@ -409,6 +409,10 @@ public class TimsheetRowController implements Serializable {
 	   init();
    }
    
+   public TimesheetRow[] getCharges(String wpID) {
+	   return timesheetRowManager.getRowsWithWPId(wpID);
+   }
+   
    public void dropdownChange(){
 	   System.out.println("dropdown changed");
 	   System.out.println("Project " + tsr.projectID);

@@ -134,6 +134,17 @@ public class TimesheetRowManager {
 		    return catarray;
 		}
 	    
+	    public TimesheetRow[] getRowsForWP(String wpID) {
+			TypedQuery<TimesheetRow> query = em.createQuery("select c from TimesheetRow c WHERE WorkPackageID = " + wpID + "", TimesheetRow.class);
+			List<TimesheetRow> wps = query.getResultList();
+			TimesheetRow[] wpArray = new TimesheetRow[wps.size()];
+			for (int i=0; i < wpArray.length; i++) {
+				wpArray[i] = wps.get(i);
+			}
+			return wpArray;
+		
+		}
+	    
 	    public int verifyIfCharges(int projectID, String wpID) {
 			TypedQuery<TimesheetRow> query = em.createQuery("SELECT c FROM TimesheetRow c WHERE ProjectID = " + projectID + " AND WorkPackageID = '" + wpID + "'", TimesheetRow.class);
 			List<TimesheetRow> wps = query.getResultList();
