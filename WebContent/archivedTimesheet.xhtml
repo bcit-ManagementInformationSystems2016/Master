@@ -1,94 +1,83 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:b="http://bootsfaces.net/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://bootsfaces.net/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
 <head>
-<title>IGNORED</title>
+    <title>IGNORED</title>
 </head>
 
 <body>
-	<ui:composition template="/templates/noIconLayout.xhtml">
-		<ui:define name="windowTitle">
+    <ui:composition template="/templates/masterLayout.xhtml">
+        <ui:define name="windowTitle">
             Timesheet
         </ui:define>
-		<ui:define name="heading">
-			<ui:include src="/sections/admin/timesheetHeader.xhtml" />
-		</ui:define>
-		<ui:define name="content">
-			<h:panelGroup xmlns:h="http://java.sun.com/jsf/html"
-				xmlns:f="http://java.sun.com/jsf/core">
-				<h:form>
-					<h:form>
-						<b:panelGrid colSpans="6,6">
-							<b:panel look="info" title="Info" collapsible="false">
-								<h3 class="panel-title test">
-									EmployeeId:
-									<h:outputText value="#{login.id}" />
-									<br /> EmployeeUserName:
-									<h:outputText value="#{login.username}"
-										style="font-weight: bold" />
-									<br /> EmployeeName:
-									<h:outputText value="#{timesheet.firstName}"
-										style="margin-right: 10px" />
-									<h:outputText value="#{timesheet.lastName}" />
-									<br /> #{msgs.wk_num}
-									<h:outputText value="#{timesheet.weekNumber}" />
-									<br /> #{msgs.wk_end}
-									<h:outputText value="#{timesheet.weekEnding}">
-										<f:convertDateTime pattern="MM/dd/yyyy" />
-									</h:outputText>
-									<br />
-									<br />
-								</h3>
-							</b:panel>
-							<b:panel look="info" title="Info" collapsible="false"
-								class="test">
-								<h:outputText value="Total Pending :" />
-								<br />
-								<br />
-								<h:outputText value="Total Approved :" />
-								<br />
-								<br />
-							</b:panel>
-						</b:panelGrid>
-					</h:form>
-					<b:dataTable value="#{timesheet.allTimesheet}" var="ts"
-						styleClass="table table-hover">
-						<h:column>
-							<f:facet name="header">
-								<h:outputText value="View timesheet" style="font-weight: bold" />
-							</f:facet>
-							<h:commandLink value="View timesheet"
-								action="#{timesheetRow.gotoArchivedTimesheet(ts)}" />
-						</h:column>
-						<h:column headerClass="columnHeader">
-							<f:facet name="header">
-								<h:outputText value="Employee ID" />
-							</f:facet>
-							<h:outputText value="#{ts.employeeID}" />
-						</h:column>
-						<h:column headerClass="columnHeader">
-							<f:facet name="header">
-								<h:outputText value="Timesheet ID" />
-							</f:facet>
-							<h:outputText value="#{ts.timesheetID}" />
-						</h:column>
-						<h:column headerClass="columnHeader">
-							<f:facet name="header">
-								<h:outputText value="Start Date" />
-							</f:facet>
-							<h:outputText value="#{ts.startDate}">
-								<f:convertDateTime pattern="yyyy-MM-dd" />
-							</h:outputText>
-						</h:column>
-					</b:dataTable>
-				</h:form>
-			</h:panelGroup>
-		</ui:define>
-	</ui:composition>
+        <ui:define name="backBtn">
+            <h:commandLink action="adminLanding">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="white-space">
+                <b:panelGrid colSpans="6,6">
+                    <b:panel look="info" title="Current Timesheet" collapsible="false">
+                        <h3 class="panel-title test">            
+					Employee ID: <h:outputText value="#{login.id}" style="font-weight: bold" /><br/> 
+					Employee Name: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" />
+								  <h:outputText value="#{timesheet.lastName}" /><br/>
+					#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
+					<br/><br/>
+					<h:outputText value="Flextime :"/><br/>        
+		        	<h:outputText value="Overtime :"/><br/><br/>
+		
+				</h3>
+
+                    </b:panel>
+                    <b:panel look="info" title="Info" collapsible="false" class="test">
+                        <h:outputText value="Total Pending :" />
+                        <br />
+                        <br />
+                        <h:outputText value="Total Approved :" />
+                        <br />
+                        <br />
+                    </b:panel>
+                </b:panelGrid>
+            </h:form>
+            <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+                <h:form>
+                    <b:dataTable value="#{timesheet.allTimesheet}" var="ts" styleClass="table table-hover">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="View timesheet" style="font-weight: bold" />
+                            </f:facet>
+                            <h:commandLink value="View timesheet" action="#{timesheetRow.gotoArchivedTimesheet(ts)}" />
+                        </h:column>
+                        <h:column headerClass="columnHeader">
+                            <f:facet name="header">
+                                <h:outputText value="Employee ID" />
+                            </f:facet>
+                            <h:outputText value="#{ts.employeeID}" />
+                        </h:column>
+                        <h:column headerClass="columnHeader">
+                            <f:facet name="header">
+                                <h:outputText value="Timesheet ID" />
+                            </f:facet>
+                            <h:outputText value="#{ts.timesheetID}" />
+                        </h:column>
+                        <h:column headerClass="columnHeader">
+                            <f:facet name="header">
+                                <h:outputText value="Start Date" />
+                            </f:facet>
+                            <h:outputText value="#{ts.startDate}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" />
+                            </h:outputText>
+                        </h:column>
+                    </b:dataTable>
+                </h:form>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
 </body>
 
 </html>

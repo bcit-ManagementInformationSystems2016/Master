@@ -1,158 +1,141 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:b="http://bootsfaces.net/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">      
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://bootsfaces.net/ui" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+
 <head>
-    <title>IGNORED</title>    
+    <title>IGNORED</title>
 </head>
 
 <body>
     <ui:composition template="/templates/masterLayout.xhtml">
-    <ui:define name="windowTitle">
-          Create Timesheet
-    </ui:define>
-    <ui:define name="backBtn">
-   		<h:commandLink action="adminLanding"> <!-- TODO change to go back to archived timesheets page -->
-   			<span class="icomoon-circle-left backBtn-ico"></span>
-   			<span class="backBtn-txt">Go Back</span>
-   		</h:commandLink>
-   	</ui:define>      
+        <ui:define name="windowTitle">
+            Create Timesheet
+        </ui:define>
+        <ui:define name="backBtn">
+            <h:commandLink action="archivedTimesheet">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+        </ui:define>
         <ui:define name="content">
-        <h:form styleClass="white-space">
-  <b:panelGrid colSpans="6,6">
-     <b:panel look="info" title="Current Timesheet" collapsible="false">
-       <h3 class="panel-title test">            
-			Employee ID: <h:outputText value="#{timesheet.employeeId}" style="font-weight: bold" /><br/> 
-			Employee Name: <h:outputText value="#{timesheet.archivedFirstName}" style="margin-right: 10px" />
-						  <h:outputText value="#{timesheet.archivedLastName}" /><br/>
-			#{msgs.wk_num}<h:outputText value="#{timesheet.archivedWeekNumber}"/><br/>
-			<br/><br/>
-			<h:outputText value="Flextime :"/><br/>        
-        	<h:outputText value="Overtime :"/><br/><br/>
-
-		</h3>		
+            <h:form styleClass="white-space">
+                <b:panelGrid colSpans="6,6">
+                    <b:panel look="info" title="Current Timesheet" collapsible="false">
+                        <h3 class="panel-title test">            
+						Employee ID: <h:outputText value="#{timesheet.employeeId}" style="font-weight: bold" /><br/> 
+						Employee Name: <h:outputText value="#{timesheet.archivedFirstName}" style="margin-right: 10px" />
+									  <h:outputText value="#{timesheet.archivedLastName}" /><br/>
+						#{msgs.wk_num}<h:outputText value="#{timesheet.archivedWeekNumber}"/><br/>
+						<br/><br/>
+						<h:outputText value="Flextime :"/><br/>        
+			        	<h:outputText value="Overtime :"/><br/><br/>
 			
-     </b:panel>
-     <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allArchivedTotalHours}" collapsible="false" class="test">
-            #{msgs.totalSun} <h:outputText value="#{timesheetRow.archivedSunTotalHours}" /><br/>
-        	#{msgs.totalMon} <h:outputText value="#{timesheetRow.archivedMonTotalHours}" /><br/>  
-            #{msgs.totalTue} <h:outputText value="#{timesheetRow.archivedTuesTotalHours}" /><br/>
-            #{msgs.totalWed} <h:outputText value="#{timesheetRow.archivedWedTotalHours}" /><br/>  
-            #{msgs.totalThu} <h:outputText value="#{timesheetRow.archivedThursTotalHours}" /><br/>
-            #{msgs.totalFri} <h:outputText value="#{timesheetRow.archivedFriTotalHours}" /><br/> 
-            #{msgs.totalSat} <h:outputText value="#{timesheetRow.archivedSatTotalHours}" />
-            
-     </b:panel>
-   </b:panelGrid>
-</h:form>
-            <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
-                <h:form>                    
-                        <b:dataTable value="#{timesheetRow.getArchivedTimesheetRows()}" var="tsr" styleClass="table table-striped table-bordered" style="width:100%">                          
-							<h:column>
-						      <f:facet name="header">
-						          <h:outputText value="#{msgs.edit}" style="font-weight: bold" />
-						      </f:facet>
-								  <h:commandLink action="#{timesheetRow.editTsr(tsr)}" disabled="#{timesheetRow.isSubmitted()}">
-								  	<b:iconAwesome name="pencil-square-o" />
-								  </h:commandLink>
-							</h:column>  
-                            <h:column>                           
-                                <f:facet name="header">
-                                    <h:outputText value="Timesheet ID" />
-                                </f:facet> 
-                                <h:outputText span="1" value="#{tsr.timesheetID}"/>        
-                              <f:facet name="footer">
-                                    <h:outputText value="#" />
-                                </f:facet>                                
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.timeSheetRowId}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.timesheetRowID}"/>                                
-                                <f:facet name="footer">
-                                    <h:outputText value="#{msgs.total}" />
-                                </f:facet>
-                            </h:column>	
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.wp}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.workPackageID}"/>                                
-                                <f:facet name="footer">
-                                    <h:outputText value="#{msgs.total}" />
-                                </f:facet>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.total}" />
-                                </f:facet>
-                                <h:outputText value="#{tsr.totalHours}" />
-                                
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.mon}" />
-                                </f:facet>                                
-                                <h:outputText span="1" value="#{tsr.hoursMon}">
-                                </h:outputText>
-                            </h:column>
+					</h3>
 
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.tue}" />
-                                </f:facet>      
-                                <h:outputText span="1" value="#{tsr.hoursTues}">     
-                                </h:outputText>
-                                
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.wed}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.hoursWed}">
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.thu}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.hoursThurs}">   
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.fri}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.hoursFri}">       
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.sat}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.hoursSat}">   
-                                </h:outputText>
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{msgs.sun}" />
-                                </f:facet>
-                                <h:outputText span="1" value="#{tsr.hoursSun}">  
-                                </h:outputText>
-                            </h:column>                           
-                            <h:column>
-                           		<f:facet name="header">
-                                    <h:outputText value="Delete" />
-                                </f:facet>                       
-                                <h:commandLink action="#{timesheetRow.deleteTsr(tsr)}" disabled="#{timesheetRow.isSubmitted()}">
-                                	<b:iconAwesome name="fa-times" />
-                                </h:commandLink>                                
-                            </h:column>
-                        </b:dataTable> 
+                    </b:panel>
+                    <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allArchivedTotalHours}" collapsible="false" class="test">
+                        #{msgs.totalSun}
+                        <h:outputText value="#{timesheetRow.archivedSunTotalHours}" /><br/> #{msgs.totalMon}
+                        <h:outputText value="#{timesheetRow.archivedMonTotalHours}" /><br/> #{msgs.totalTue}
+                        <h:outputText value="#{timesheetRow.archivedTuesTotalHours}" /><br/> #{msgs.totalWed}
+                        <h:outputText value="#{timesheetRow.archivedWedTotalHours}" /><br/> #{msgs.totalThu}
+                        <h:outputText value="#{timesheetRow.archivedThursTotalHours}" /><br/> #{msgs.totalFri}
+                        <h:outputText value="#{timesheetRow.archivedFriTotalHours}" /><br/> #{msgs.totalSat}
+                        <h:outputText value="#{timesheetRow.archivedSatTotalHours}" />
+
+                    </b:panel>
+                </b:panelGrid>
+            </h:form>
+            <h:panelGroup xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+                <h:form>
+                    <b:dataTable value="#{timesheetRow.getArchivedTimesheetRows()}" var="tsr" styleClass="table table-striped table-bordered" style="width:100%">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Timesheet ID" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.timesheetID}" />
+                            <f:facet name="footer">
+                                <h:outputText value="#" />
+                            </f:facet>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.timeSheetRowId}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.timesheetRowID}" />
+                            <f:facet name="footer">
+                                <h:outputText value="#{msgs.total}" />
+                            </f:facet>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.wp}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.workPackageID}" />
+                            <f:facet name="footer">
+                                <h:outputText value="#{msgs.total}" />
+                            </f:facet>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.total}" />
+                            </f:facet>
+                            <h:outputText value="#{tsr.totalHours}" />
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.mon}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursMon}">
+                            </h:outputText>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.tue}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursTues}">
+                            </h:outputText>
+
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.wed}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursWed}">
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.thu}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursThurs}">
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.fri}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursFri}">
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.sat}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursSat}">
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{msgs.sun}" />
+                            </f:facet>
+                            <h:outputText span="1" value="#{tsr.hoursSun}">
+                            </h:outputText>
+                        </h:column>
+                    </b:dataTable>
                 </h:form>
             </h:panelGroup>
         </ui:define>
