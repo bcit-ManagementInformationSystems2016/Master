@@ -89,6 +89,17 @@ public class EmployeeWPManager {
 		}
 		return empList;
 	}
+	
+	public EmployeeWP[] getYourWPs(int employeeID) {
+		TypedQuery<EmployeeWP> query = em
+				.createQuery("SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + Login.currentID, EmployeeWP.class);
+		java.util.List<EmployeeWP> categories = query.getResultList();
+		EmployeeWP[] catarray = new EmployeeWP[categories.size()];
+		for (int i = 0; i < catarray.length; i++) {
+			catarray[i] = categories.get(i);
+		}
+		return catarray;
+	}
 
 	public List<SelectItem> getProjectWP(int projectID) {
 		System.out.println("test: " + projectID);
