@@ -31,17 +31,17 @@
         	<h:outputText value="#{weekly.estToComplete}" border="1"></h:outputText>
         	
         	<h:outputLabel for="pname">Pay Level 1:</h:outputLabel>
-        	<h:inputText value="#"></h:inputText>
+        	<h:inputText value="#{weekly.pld.p1Day}"></h:inputText>
         	<h:outputLabel for="pname">Pay Level 2:</h:outputLabel>
-        	<h:inputText value="#"></h:inputText>
+        	<h:inputText value="#{weekly.pld.p2Day}"></h:inputText>
         	<h:outputLabel for="pname">Pay Level 3:</h:outputLabel>
-        	<h:inputText value="#"></h:inputText>
+        	<h:inputText value="#{weekly.pld.p3Day}"></h:inputText>
         	<h:outputLabel for="pname">Pay Level 4:</h:outputLabel>
-        	<h:inputText value="#"></h:inputText>
+        	<h:inputText value="#{weekly.pld.p4Day}"></h:inputText>
         	<h:outputLabel for="pname">Pay Level 5:</h:outputLabel>
-        	<h:inputText value="#"></h:inputText>
+        	<h:inputText value="#{weekly.pld.p5Day}"></h:inputText>
         	<h:outputLabel for="pname">Pay Level 6:</h:outputLabel>
-        	<h:inputText value="#"></h:inputText>
+        	<h:inputText value="#{weekly.pld.p6Day}"></h:inputText>
         	
         	<h:outputLabel for="pname">Responsible Engineer:</h:outputLabel>
         	<h:outputText value="#{weekly.engineer}"></h:outputText>
@@ -51,7 +51,7 @@
         
         
         <br />
-        <h:commandButton value="Create Report"></h:commandButton>
+        <h:commandButton value="Create Report" action="#{weekly.createReport}"></h:commandButton>
        
     </h:form>
 </h:body>

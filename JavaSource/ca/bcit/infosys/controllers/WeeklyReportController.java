@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
+import ca.bcit.infosys.managers.PayLevelDaysManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.PayLevelDays;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.WorkPackage;
 
@@ -20,96 +22,99 @@ public class WeeklyReportController implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
 	private EmployeeManager empmgr;
-	
-	@Inject 
+
+	@Inject
 	private WorkPackageManager wpmgr;
-	
+
 	@Inject
 	private WorkPackageController wpctr;
-	
-	@Inject 
+
+	@Inject
 	private TimsheetRowController tsrctr;
 	
+	@Inject
+	private PayLevelDaysManager pldMgr;
+
 	private double personDays;
-	
+
 	private double personDollars;
-	
+
 	private double estToComplete;
-	
+
 	private String engineer;
+
+	private PayLevelDays pld;
+
+	// save work package
+
+
 	
-	
-	
-	
-	
+
 	public String getEngineer() {
 		return engineer;
 	}
 
+	/**
+	 * @return the pld
+	 */
+	public PayLevelDays getPld() {
+		return pld;
+	}
 
+	/**
+	 * @param pld the pld to set
+	 */
+	public void setPld(PayLevelDays pld) {
+		this.pld = pld;
+	}
 
 	public void setEngineer(String engineer) {
 		this.engineer = engineer;
 	}
 
-
-
 	public double getPersonDays() {
 		return personDays;
 	}
-
-
 
 	public void setPersonDays(double personDays) {
 		this.personDays = personDays;
 	}
 
-
-
 	public double getPersonDollars() {
 		return personDollars;
 	}
-
-
 
 	public void setPersonDollars(double personDollars) {
 		this.personDollars = personDollars;
 	}
 
-
-
 	public double getEstToComplete() {
 		return estToComplete;
 	}
-
-
 
 	public void setEstToComplete(double estToComplete) {
 		this.estToComplete = estToComplete;
 	}
 
-
-
-	public String showWeeklyReport(Project proj, String wpID) {
-		WorkPackage wp = wpmgr.find(proj, wpID);
-		double wpDays = tsrctr.getHoursForWP(wpID) / 8;
+	public String showWeeklyReport(WorkPackage wp) {
+		//WorkPackage wp = wpmgr.find(proj, wpID);
+		pld = pldMgr.find(wp.getRemainingDaysID());
+		double wpDays = tsrctr.getHoursForWP(wp.getWpID()) / 8;
 		personDays = wp.getTotalBudgetDays();
 		personDollars = wp.getTotalBudgetCost();
 		engineer = wpctr.engIDtoName(wp.getResponsibleEngineerID());
 		estToComplete = personDays - wpDays;
-	
+
 		return "weeklyReport";
 	}
 	
-	
-	
-
-	
-	
-	
-	
+	public String createReport() {
+		
+		pldMgr.merge(pld);
+		return "createReport";
+	}
 
 }

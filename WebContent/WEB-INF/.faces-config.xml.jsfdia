@@ -214,7 +214,14 @@
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
   SHAPE="256,1025,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#createWeeklyReport.xhtml"
-  PATH="/createWeeklyReport.xhtml" SHAPE="720,801,0,0" model-entity="JSFProcessGroup"/>
+  PATH="/createWeeklyReport.xhtml" SHAPE="720,801,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#createWeeklyReport.xhtml:0" NAME="item"
+   PATH="/createWeeklyReport.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="createReport::#getWorkpackages.xhtml"
+    NAME="output" PATH="/getWorkpackages.xhtml"
+    TARGET="rules:#getWorkpackages.xhtml" TITLE="createReport" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#getReports.xhtml" PATH="/getReports.xhtml"
   SHAPE="256,177,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#projectsLanding.xhtml"

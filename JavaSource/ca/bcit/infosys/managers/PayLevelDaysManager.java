@@ -23,6 +23,10 @@ public class PayLevelDaysManager {
 	public void persist(PayLevelDays payLevelDays) {
 		em.persist(payLevelDays);
 	}
+	
+	public void merge(PayLevelDays payLevelDays) {
+		em.merge(payLevelDays);
+	}
 
 	public void remove(PayLevelDays payLevelDays) {
 		payLevelDays = find(payLevelDays.getPayLevelDaysID());
