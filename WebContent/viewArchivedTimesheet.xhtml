@@ -23,7 +23,7 @@
                 <b:panelGrid colSpans="6,6">
                     <b:panel look="info" title="Current Timesheet" collapsible="false">
                         <h3 class="panel-title test">            
-						Employee ID: <h:outputText value="#{timesheet.employeeId}" style="font-weight: bold" /><br/> 
+						Employee ID: <h:outputText value="#{timesheet.employeeId()}" style="font-weight: bold" /><br/> 
 						Employee Name: <h:outputText value="#{timesheet.archivedFirstName}" style="margin-right: 10px" />
 									  <h:outputText value="#{timesheet.archivedLastName}" /><br/>
 						#{msgs.wk_num}<h:outputText value="#{timesheet.archivedWeekNumber}"/><br/>
