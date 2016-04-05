@@ -118,8 +118,8 @@ public class Login implements Serializable {
 		// }
 		// }
 		int roleID = roleMap.get(getCurrentUser().getEmployeeID());
-		if (roleID == 1 || roleID == 2 || roleID == 3)
-			setHr(false);
+		if (roleID == 1 || roleID == 3 || roleID == 5)
+			setHr(true);
 		return "adminLanding";
 	}
 
