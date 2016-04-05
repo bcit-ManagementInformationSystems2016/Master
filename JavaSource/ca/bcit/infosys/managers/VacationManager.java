@@ -33,10 +33,10 @@ public class VacationManager {
 		em.remove(vacation);
 	}
 
-	public int getDaysAllowed() {
+	public int getDaysAllowed(int empID) {
 		int plID;
 
-		TypedQuery<Employee> query1 = em.createQuery("select e from Employee e where e.employeeID = " + Login.currentID,
+		TypedQuery<Employee> query1 = em.createQuery("select e from Employee e where e.employeeID = " + empID,
 				Employee.class);
 		List<Employee> elist = query1.getResultList();
 		Employee[] earray = new Employee[elist.size()];
@@ -66,8 +66,8 @@ public class VacationManager {
 		return vacayArray;
 	}
 
-	public int getDaysRemaining() {
-		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE EmployeeID = " + Login.currentID,
+	public int getDaysRemaining(int empID) {
+		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE EmployeeID = " + empID,
 				Vacation.class);
 		java.util.List<Vacation> categories = query.getResultList();
 		Vacation[] vacayArray = new Vacation[categories.size()];
@@ -77,6 +77,6 @@ public class VacationManager {
 		if (categories.size() > 1)
 			return vacayArray[categories.size() - 1].getVacationDaysLeft();
 		else
-			return getDaysAllowed();
+			return getDaysAllowed(empID);
 	}
 }

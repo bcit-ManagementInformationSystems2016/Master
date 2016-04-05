@@ -22,6 +22,13 @@ import ca.bcit.infosys.models.Employee;
 @Named("hrController")
 @SessionScoped
 public class HRController implements Serializable {
+	Employee e;
+
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		e = emp;
+	}
+
 	@PersistenceContext(unitName = "BluehostTesty")
 	EntityManager em;
 	@Inject
@@ -35,7 +42,7 @@ public class HRController implements Serializable {
 
 	@Inject
 	private RolesManager rmgr;
-	
+
 	// variable to view specific employee data
 	private Employee viewableEmp;
 
@@ -79,7 +86,7 @@ public class HRController implements Serializable {
 	}
 
 	public Employee[] getMinions() {
-		return empmgr.getAllMinions(Login.currentID);
+		return empmgr.getAllMinions(e.getEmployeeID());
 	}
 
 	public List<SelectItem> getPayLevelList() {
@@ -101,7 +108,7 @@ public class HRController implements Serializable {
 	}
 
 	public List<SelectItem> getRoleList() {
-		if(roleList == null){
+		if (roleList == null) {
 			setRoleList(rmgr.getRolesIDs());
 		}
 		return roleList;
@@ -154,7 +161,7 @@ public class HRController implements Serializable {
 
 	public Employee[] getYourMinions() {
 		if (minions == null) {
-			setMinions(empmgr.getAllMinions(Login.currentID));
+			setMinions(empmgr.getAllMinions(e.getEmployeeID()));
 		}
 		return minions;
 	}
@@ -175,8 +182,9 @@ public class HRController implements Serializable {
 	}
 
 	public String changePassword() {
-		crd.setEmployeeID(Login.currentID);
-		crd.setUsername(Login.username);
+		crd.setEmployeeID(e.getEmployeeID());
+		//crd.setUsername(l.getUsername());
+		crd.setUsername("username");
 		crdmgr.merge(crd);
 		crd = new Credential();
 		return "changed";

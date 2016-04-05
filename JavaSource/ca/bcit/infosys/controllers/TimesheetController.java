@@ -30,6 +30,14 @@ import ca.bcit.infosys.models.TimesheetRow;
 @ConversationScoped
 
 public class TimesheetController implements Serializable {
+	Employee e;
+
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		e = emp;
+	}
+
+
 	/** Manager from Product objects. */
 	@Inject
 	private TimesheetManager timesheetManager;
@@ -58,7 +66,7 @@ public class TimesheetController implements Serializable {
 	}
 	
 	public int getCurrentID() {
-		return Login.currentID;
+		return e.getEmployeeID();
 	}
 	
 	public String getFirstName() {
@@ -66,7 +74,7 @@ public class TimesheetController implements Serializable {
 		String firstName = null;
 		Employee[] rows = getAllEmployee();
 		for (int i = 0; i < rows.length; i++) {
-			if (rows[i].getEmployeeID() == Login.currentID)
+			if (rows[i].getEmployeeID() == e.getEmployeeID())
 				firstName = rows[i].getFirstName();
 		}
 		return firstName;
@@ -89,7 +97,7 @@ public class TimesheetController implements Serializable {
 		String lastName = null;
 		Employee[] rows = getAllEmployee();
 		for (int i = 0; i < rows.length; i++) {
-			if (rows[i].getEmployeeID() == Login.currentID)
+			if (rows[i].getEmployeeID() == e.getEmployeeID())
 				lastName = rows[i].getLastName();
 		}
 		return lastName;
@@ -117,7 +125,7 @@ public class TimesheetController implements Serializable {
 	 */
 	public void init() {
 		if (getTs() == null) {
-			int empId = Login.currentID;
+			int empId = e.getEmployeeID();
 			setTs(timesheetManager.getTimesheetEmpId(empId));
 		}
 		if (employeeRows == null) {
@@ -160,7 +168,7 @@ public class TimesheetController implements Serializable {
 	}
 
 	public Timesheet[] getAllTimesheet() {
-		int empId = Login.currentID;
+		int empId = e.getEmployeeID();
 		return timesheetManager.getArchivedTimesheetsWithEmpId(empId);
 	}
 

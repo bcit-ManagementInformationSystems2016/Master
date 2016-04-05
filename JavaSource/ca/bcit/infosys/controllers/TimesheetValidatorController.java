@@ -16,6 +16,12 @@ import ca.bcit.infosys.models.Timesheet;
 @Named("timesheetValidatorController")
 @SessionScoped
 public class TimesheetValidatorController implements Serializable {
+	Employee e;
+
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		e = emp;
+	}
 
 	private static final long serialVersionUID = 1L;
 
@@ -63,14 +69,14 @@ public class TimesheetValidatorController implements Serializable {
 
 	public Employee[] getYourValidatees() {
 		if (validatees == null) {
-			setValidatees(empmgr.getValidatees(Login.currentID));
+			setValidatees(empmgr.getValidatees(e.getEmployeeID()));
 		}
 		return validatees;
 	}
 
 	public Timesheet[] getYouUnapprovedTimesheets() {
 		if (validatees == null) {
-			setValidatees(empmgr.getValidatees(Login.currentID));
+			setValidatees(empmgr.getValidatees(e.getEmployeeID()));
 		}
 		if (unapprovedTimesheets == null) {
 			setUnapprovedTimesheets(tsmgr.getUnapprovedTimesheets(validatees));
@@ -99,7 +105,7 @@ public class TimesheetValidatorController implements Serializable {
 	}
 
 	public String viewValidatees() {
-		setCurrentEmployee(empmgr.find(Login.currentID));
+		setCurrentEmployee(empmgr.find(e.getEmployeeID()));
 		setUnapprovedTimesheets(null);
 		setValidatees(null);
 		return "getValidating";

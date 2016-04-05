@@ -15,6 +15,13 @@ import ca.bcit.infosys.models.Employee;
 @Named("account")
 @SessionScoped
 public class AccountController implements Serializable {
+	Employee em;
+
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		em = emp;
+	}
+
 	@Inject
 	private EmployeeManager empmgr;
 
@@ -39,7 +46,7 @@ public class AccountController implements Serializable {
 
 	public Employee[] getValidating() {
 		if (e == null)
-			e = empmgr.getValidating();
+			e = empmgr.getValidating(em.getEmployeeID());
 		return e;
 	}
 }

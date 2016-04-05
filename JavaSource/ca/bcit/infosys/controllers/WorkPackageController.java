@@ -17,7 +17,12 @@ import ca.bcit.infosys.models.WorkPackage;
 @Named("workPackageController")
 @SessionScoped
 public class WorkPackageController implements Serializable {
+	Employee e;
 
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		e = emp;
+	}
 	@Inject
 	private WorkPackageManager wpmgr;
 
@@ -34,14 +39,10 @@ public class WorkPackageController implements Serializable {
 	private Employee currentEmp;
 
 	private EmployeeWP[] empWP;
-	
+
 	private WorkPackage[] resonsibleWPs;
-	
+
 	private WorkPackage[] wpsForReport;
-	
-	
-	
-	
 
 	/**
 	 * @return the wpsForReport
@@ -52,7 +53,8 @@ public class WorkPackageController implements Serializable {
 	}
 
 	/**
-	 * @param wpsForReport the wpsForReport to set
+	 * @param wpsForReport
+	 *            the wpsForReport to set
 	 */
 	public void setWpsForReport(WorkPackage[] wpsForReport) {
 		this.wpsForReport = wpsForReport;
@@ -62,19 +64,20 @@ public class WorkPackageController implements Serializable {
 	 * @return the resonsibleWPs
 	 */
 	public WorkPackage[] getResonsibleWPs() {
-		resonsibleWPs = wpmgr.getWPforEng(Login.currentID);
+		resonsibleWPs = wpmgr.getWPforEng(e.getEmployeeID());
 		return resonsibleWPs;
 	}
 
 	/**
-	 * @param resonsibleWPs the resonsibleWPs to set
+	 * @param resonsibleWPs
+	 *            the resonsibleWPs to set
 	 */
 	public void setResonsibleWPs(WorkPackage[] resonsibleWPs) {
 		this.resonsibleWPs = resonsibleWPs;
 	}
 
 	public EmployeeWP[] getEmpWP() {
-		empWP = showAssignedWPs((Login.currentID));
+		empWP = showAssignedWPs((e.getEmployeeID()));
 		return empWP;
 	}
 
@@ -89,7 +92,7 @@ public class WorkPackageController implements Serializable {
 	}
 
 	public Employee getCurrentEmp() {
-		currentEmp = empmgr.find(Login.currentID);
+		currentEmp = empmgr.find(e.getEmployeeID());
 		return currentEmp;
 	}
 
@@ -117,15 +120,14 @@ public class WorkPackageController implements Serializable {
 		return engName;
 
 	}
-	
-	public WorkPackage[] WPsForReport(){
-		
-		
+
+	public WorkPackage[] WPsForReport() {
+
 		return null;
 	}
 
 	public String wpLanding() {
 		return "getWorkpackages";
-		//return "wpLanding";
+		// return "wpLanding";
 	}
 }

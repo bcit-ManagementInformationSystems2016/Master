@@ -14,8 +14,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import ca.bcit.infosys.managers.CredentialManager;
+import ca.bcit.infosys.managers.EmployeeManager;
+import ca.bcit.infosys.models.Employee;
 
 /**
  * @author Brendan Voon
@@ -24,15 +29,15 @@ import javax.persistence.PersistenceContext;
 @FacesValidator("loginValidator")
 @Stateless
 public class LoginValidator implements Validator {
-	static String password = "";
+	Employee e;
 
-	public static String getPassword() {
-		return password;
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		e = emp;
 	}
 
-	public void setPassword(String password) {
-		LoginValidator.password = password;
-	}
+	@Inject
+	CredentialManager crmgr;
 
 	@Override
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
@@ -40,18 +45,14 @@ public class LoginValidator implements Validator {
 		String username = value.toString();
 		boolean active = false;
 
-		if (Login.map.containsKey(username)) {
-			Login.setCurrentID(Login.map2.get(username));
-			Login.setName(Login.nameMap.get(Login.getCurrentID()));
-			System.out.println("NAME: " + Login.name);
-			active = Login.activeMap.get(Login.getCurrentID());
-			if (active == false) {
+		 if (Login.map.containsKey(username)) {
+
+		active = Login.activeMap.get(Login.map2.get(username));
+		if (active == false) {
 				FacesMessage msg = new FacesMessage("Username validation failed", "Account is not active");
 				msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 				throw new ValidatorException(msg);
 			}
-
-			password = Login.map.get(username);
 
 		} else {
 			FacesMessage msg = new FacesMessage("Username validation failed", "Username does not exist");

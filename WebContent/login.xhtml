@@ -30,7 +30,7 @@
 								<h:inputText id="username" value="#{login.username}"
 									class="login-field" required="true"
 									requiredMessage="Username is required" p:placeholder="Username">
-									<f:validator validatorId="loginValidator" />
+									 <f:validator validatorId="loginValidator" /> 
 								</h:inputText>
 								<h:message for="username" style="color:red" />
 							</div>
@@ -38,12 +38,24 @@
 								<h:inputSecret id="password" value="#{login.password}"
 									class="login-field" required="true"
 									requiredMessage="Password is required" p:placeholder="Password">
-									<f:validator validatorId="passwordValidator" />
+									<!-- <f:validator validatorId="passwordValidator" /> -->
 								</h:inputSecret>
 								<h:message for="password" style="color:red" />
 							</div>
-							<h:commandButton action="#{login.validate}" value="Login"
-								styleClass="btn btn-primary btn-lg btn-block" />
+							<h:commandButton action="#{login.validate()}" value="Login"
+								styleClass="btn btn-primary btn-lg btn-block">
+								<f:actionListener binding="#{hrController.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{hrValidator.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{loginValidator.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{passwordValidator.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{account.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{projectController.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{timesheet.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{timesheetValidatorController.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{timesheetRow.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{vacation.getUser(login.currentUser)}" />
+								<f:actionListener binding="#{workPackageController.getUser(login.currentUser)}" />
+							</h:commandButton>
 						</div>
 					</div>
 				</div>

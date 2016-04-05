@@ -6,12 +6,19 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
+import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.WorkPackage;
 
 @Named("projectController")
 @SessionScoped
 public class ProjectController implements Serializable {
+	Employee e;
+
+	public void getUser(Employee emp) {
+		System.out.println("GET USER HR CONTROLLER");
+		e = emp;
+	}
 
 	@Inject
 	private ProjectManager pjtmgr;
@@ -138,7 +145,7 @@ public class ProjectController implements Serializable {
 			if (getShowAllPros()) {
 				return pjtmgr.getAll();
 			} else {
-				return pjtmgr.getSome(Login.currentID);
+				return pjtmgr.getSome(e.getEmployeeID());
 			}
 		}
 		return pro;
@@ -257,6 +264,5 @@ public class ProjectController implements Serializable {
 	public String projectsLanding() {
 		return "projectsLanding";
 	}
-	
-	
+
 }

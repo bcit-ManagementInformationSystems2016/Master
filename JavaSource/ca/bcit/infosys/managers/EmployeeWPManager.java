@@ -81,7 +81,7 @@ public class EmployeeWPManager {
 
 	public List<SelectItem> getYourWorkPackages(int employeeID) {
 		TypedQuery<EmployeeWP> query = em.createQuery(
-				"SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + Login.currentID, EmployeeWP.class);
+				"SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + employeeID, EmployeeWP.class);
 		List<EmployeeWP> e = query.getResultList();
 		List<SelectItem> empList = new ArrayList<SelectItem>();
 		for (int i = 0; i < e.size(); i++) {
@@ -92,7 +92,7 @@ public class EmployeeWPManager {
 	
 	public EmployeeWP[] getYourWPs(int employeeID) {
 		TypedQuery<EmployeeWP> query = em
-				.createQuery("SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + Login.currentID, EmployeeWP.class);
+				.createQuery("SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = " + employeeID, EmployeeWP.class);
 		java.util.List<EmployeeWP> categories = query.getResultList();
 		EmployeeWP[] catarray = new EmployeeWP[categories.size()];
 		for (int i = 0; i < catarray.length; i++) {
@@ -101,10 +101,10 @@ public class EmployeeWPManager {
 		return catarray;
 	}
 
-	public List<SelectItem> getProjectWP(int projectID) {
+	public List<SelectItem> getProjectWP(int projectID, int empID) {
 		System.out.println("test: " + projectID);
 		TypedQuery<EmployeeWP> query = em.createQuery("SELECT w FROM EmployeeWP w WHERE w.emp.employeeID = "
-				+ Login.currentID + " AND " + "w.wp.workingProject = " + projectID, EmployeeWP.class);
+				+ empID + " AND " + "w.wp.workingProject = " + projectID, EmployeeWP.class);
 		List<EmployeeWP> wp = query.getResultList();
 		List<SelectItem> wpList = new ArrayList<SelectItem>();
 		for (int i = 0; i < wp.size(); i++) {

@@ -30,7 +30,7 @@ public class EmployeeManager {
 
 	@PersistenceContext(unitName = "BluehostTesty")
 	EntityManager em;
-		
+
 	/**
 	 * Find Employee record from database.
 	 * 
@@ -81,7 +81,7 @@ public class EmployeeManager {
 	 */
 	public Employee[] getAll() {
 		TypedQuery<Employee> query = em.createQuery("select c from Employee c", Employee.class);
-		java.util.List<Employee> categories = query.getResultList();	
+		java.util.List<Employee> categories = query.getResultList();
 		Employee[] emparray = new Employee[categories.size()];
 		for (int i = 0; i < emparray.length; i++) {
 			emparray[i] = categories.get(i);
@@ -90,10 +90,11 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
-	
+
 	public Employee[] getAllMinions(int empID) {
-		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE SupervisorID = " + empID, Employee.class);
-		java.util.List<Employee> categories = query.getResultList();	
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE SupervisorID = " + empID,
+				Employee.class);
+		java.util.List<Employee> categories = query.getResultList();
 		Employee[] emparray = new Employee[categories.size()];
 		for (int i = 0; i < emparray.length; i++) {
 			emparray[i] = categories.get(i);
@@ -102,21 +103,25 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
-	
+
 	public Employee[] getAllWithinProject(int projectID) {
-		TypedQuery<ProjectEmployees> query = em.createQuery("SELECT c FROM ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class);
+		TypedQuery<ProjectEmployees> query = em.createQuery(
+				"SELECT c FROM ProjectEmployees c WHERE ProjectID = " + projectID + "", ProjectEmployees.class);
 		List<ProjectEmployees> wps = query.getResultList();
 		Employee[] empArray = new Employee[wps.size()];
-		for (int i=0; i < empArray.length; i++) {
-			TypedQuery<Employee> empQuery = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + wps.get(i).getEmp().getEmployeeID() + "", Employee.class);
+		for (int i = 0; i < empArray.length; i++) {
+			TypedQuery<Employee> empQuery = em.createQuery(
+					"SELECT c FROM Employee c WHERE EmployeeID = " + wps.get(i).getEmp().getEmployeeID() + "",
+					Employee.class);
 			Employee empToAdd = empQuery.getSingleResult();
 			empArray[i] = empToAdd;
 		}
-		return empArray;	
+		return empArray;
 	}
 
-	public Employee[] getValidating() {
-		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + Login.currentID, Employee.class);
+	public Employee[] getValidating(int empID) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + empID,
+				Employee.class);
 		java.util.List<Employee> categories = query.getResultList();
 		Employee[] emparray = new Employee[categories.size()];
 		for (int i = 0; i < emparray.length; i++) {
@@ -126,9 +131,10 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
-	
+
 	public Employee[] getValidatees(int empID) {
-		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + empID, Employee.class);
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c where ValidatorID =" + empID,
+				Employee.class);
 		java.util.List<Employee> categories = query.getResultList();
 		Employee[] emparray = new Employee[categories.size()];
 		for (int i = 0; i < emparray.length; i++) {
@@ -138,49 +144,53 @@ public class EmployeeManager {
 		}
 		return emparray;
 	}
-	
+
 	public Employee getTimesheetValidator(int empID) {
-		TypedQuery<Employee> queryOne = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + empID + "", Employee.class);
+		TypedQuery<Employee> queryOne = em.createQuery("SELECT c FROM Employee c WHERE EmployeeID = " + empID + "",
+				Employee.class);
 		Employee e = queryOne.getSingleResult();
 		return e;
 	}
 
 	public List<SelectItem> getListOfEmployees(int empID) {
-    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
-        List<Employee> employees = proQuery.getResultList();
-        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
-        for (int i=0; i < employees.size(); i++) {
-        	if (employees.get(i).getEmployeeID() == empID) {
-        		continue;
-        	}
-        	selectableEmployees.add(new SelectItem(employees.get(i), employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
-        }
-        return selectableEmployees;
-    }
-	
+		TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class);
+		List<Employee> employees = proQuery.getResultList();
+		List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+		for (int i = 0; i < employees.size(); i++) {
+			if (employees.get(i).getEmployeeID() == empID) {
+				continue;
+			}
+			selectableEmployees.add(new SelectItem(employees.get(i),
+					employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
+		}
+		return selectableEmployees;
+	}
+
 	public List<SelectItem> getListOfAllEmployees() {
-    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class); 
-        List<Employee> employees = proQuery.getResultList();
-        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
-        for (int i=0; i < employees.size(); i++) {
-        	selectableEmployees.add(new SelectItem(employees.get(i), employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
-        }
-        return selectableEmployees;
-    }
-	
+		TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c", Employee.class);
+		List<Employee> employees = proQuery.getResultList();
+		List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+		for (int i = 0; i < employees.size(); i++) {
+			selectableEmployees.add(new SelectItem(employees.get(i),
+					employees.get(i).getFirstName() + " " + employees.get(i).getLastName()));
+		}
+		return selectableEmployees;
+	}
+
 	public List<SelectItem> getEmployeeIDs() {
-    	TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c where isActive = 1", Employee.class); 
-        List<Employee> employees = proQuery.getResultList();
-        List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
-        for (int i=0; i < employees.size(); i++) {
-          	selectableEmployees.add(new SelectItem(employees.get(i).employeeID));
-        }
-        return selectableEmployees;
-    }
-	
+		TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c where isActive = 1", Employee.class);
+		List<Employee> employees = proQuery.getResultList();
+		List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
+		for (int i = 0; i < employees.size(); i++) {
+			selectableEmployees.add(new SelectItem(employees.get(i).employeeID));
+		}
+		return selectableEmployees;
+	}
+
 	public Employee[] getEngineersForWP(int wpID) {
-		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE EmployeeID = " + wpID + "", Employee.class);
-		java.util.List<Employee> categories = query.getResultList();	
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE EmployeeID = " + wpID + "",
+				Employee.class);
+		java.util.List<Employee> categories = query.getResultList();
 		Employee[] engineers = new Employee[categories.size()];
 		for (int i = 0; i < engineers.length; i++) {
 			engineers[i] = categories.get(i);
@@ -189,6 +199,17 @@ public class EmployeeManager {
 		}
 		return engineers;
 	}
-	
 
+	public Employee getLoginEmployee(int id) {
+		TypedQuery<Employee> query = em.createQuery("select c from Employee c WHERE EmployeeID = " + id + "",
+				Employee.class);
+		java.util.List<Employee> emps = query.getResultList();
+		Employee[] e = new Employee[1];
+		for (int i = 0; i < e.length; i++) {
+			e[i] = emps.get(i);
+			System.out.println("GET LOGIN EMP");
+			System.out.println("ID: " + emps.get(i).employeeID);
+		}
+		return e[0];
+	}
 }
