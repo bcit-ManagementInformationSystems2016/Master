@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -54,60 +53,47 @@ public class MonthlyReportController implements Serializable {
 	public MonthlyReport[] getDataItems() {
 		return dataItems;
 	}
-
 	public void setDataItems(MonthlyReport[] dataItems) {
 		this.dataItems = dataItems;
 	}
-
 	public Project getViewableProject() {
 		return viewableProject;
 	}
-
 	public void setViewableProject(Project viewableProject) {
 		this.viewableProject = viewableProject;
 	}
-
 	public WorkPackage[] getProjectWorkPackages() {
 		return projectWorkPackages;
 	}
-
 	public void setProjectWorkPackages(WorkPackage[] projectWorkPackages) {
 		this.projectWorkPackages = projectWorkPackages;
 	}
-
 	public HashMap<String, Double> getCostMap() {
 		return costMap;
 	}
-
 	public void setCostMap(HashMap<String, Double> costMap) {
 		this.costMap = costMap;
 	}
-
 	public HashMap<String, Double> getActualCostMap() {
 		return actualCostMap;
 	}
-
 	public void setActualCostMap(HashMap<String, Double> actualCostMap) {
 		this.actualCostMap = actualCostMap;
 	}
-
 	public HashMap<String, Double> getActualHoursMap() {
 		return actualHoursMap;
 	}
-
 	public void setActualHoursMap(HashMap<String, Double> actualHoursMap) {
 		this.actualHoursMap = actualHoursMap;
 	}
-
 	public HashMap<String, Double> getHoursMap() {
 		return hoursMap;
 	}
-
 	public void setHoursMap(HashMap<String, Double> hoursMap) {
 		this.hoursMap = hoursMap;
 	}
 
-	// OTHER METHODS
+	// FUNCTIONALITY METHODS
 
 	public MonthlyReport[] testFunction() {
 		MonthlyReport[] test = new MonthlyReport[4];
@@ -130,7 +116,7 @@ public class MonthlyReportController implements Serializable {
 		PayLevelCost plc = plcMgr.getProjectCosts(viewableProject.getProjectID());
 		for (int i = 0; i < wps.length; i++) {
 			MonthlyReport mr = new MonthlyReport();
-			boolean isChild = isChild(wps[i], wps);
+			//boolean isChild = isChild(wps[i], wps);
 			mr.setWpID(wps[i].getWpID() + ": " + wps[i].getWpName());
 			mr.setBudgetCost(wps[i].getTotalBudgetCost());
 			mr.setBudgetHours(wps[i].getTotalBudgetDays());
@@ -139,7 +125,7 @@ public class MonthlyReportController implements Serializable {
 			if (actualCostMap.containsKey(wps[i].getWpID())) {
 				mr.setActualCost(actualCostMap.get(wps[i].getWpID()));
 			} else {
-				if (isChild) {
+				if (wps[i].getIsChild()) {
 					mr.setActualCost(calculateTotalActualCost(wps[i], plc, timesheetRows));
 					actualCostMap.put(wps[i].getWpID(), mr.getActualCost());
 				} else {
@@ -149,7 +135,7 @@ public class MonthlyReportController implements Serializable {
 			if (actualHoursMap.containsKey(wps[i].getWpID())) {
 				mr.setActualHours(actualHoursMap.get(wps[i].getWpID()));
 			} else {
-				if (isChild) {
+				if (wps[i].getIsChild()) {
 					mr.setActualHours(calculateTotalActualHours(wps[i], timesheetRows));
 					actualHoursMap.put(wps[i].getWpID(), mr.getActualHours());
 				} else {
@@ -159,7 +145,7 @@ public class MonthlyReportController implements Serializable {
 			if (costMap.containsKey(wps[i].getWpID())) {
 				mr.setRemainingCost(costMap.get(wps[i].getWpID()));
 			} else {
-				if (isChild) {
+				if (wps[i].getIsChild()) {
 					mr.setRemainingCost(calculateTotalCostRemaining(wps[i], plc));
 					costMap.put(wps[i].getWpID(), new Double(mr.getRemainingCost()));
 				} else {
@@ -169,7 +155,7 @@ public class MonthlyReportController implements Serializable {
 			if (hoursMap.containsKey(wps[i].getWpID())) {
 				mr.setRemainingHours(hoursMap.get(wps[i].getWpID()));
 			} else {
-				if (isChild) {
+				if (wps[i].getIsChild()) {
 					mr.setRemainingHours(calculateTotalHoursRemaining(wps[i]));
 					hoursMap.put(wps[i].getWpID(), new Double(mr.getRemainingHours()));
 				} else {
