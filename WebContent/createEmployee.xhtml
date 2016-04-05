@@ -33,45 +33,25 @@
 						</b:inputText>
 						<b:selectOneMenu value="#{hrController.emp.roleID}">
 							<f:selectItems value="#{hrController.getRoleList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
 							<f:facet name="append">
 								<h:outputText value="Role" />
 							</f:facet>
 						</b:selectOneMenu>
 						<b:selectOneMenu value="#{hrController.emp.validatorID}">
 							<f:selectItems value="#{hrController.getEmployeeList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
 							<f:facet name="append">
 								<h:outputText value="Validator ID" />
 							</f:facet>
 						</b:selectOneMenu>
-						<!-- <b:inputText value="#{hrController.emp.salary}">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Salary" />
-							</f:facet>
-						</b:inputText> -->
 
 						<b:selectOneMenu value="#{hrController.emp.supervisorID}">
 							<f:selectItems value="#{hrController.getEmployeeList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
 							<f:facet name="append">
 								<h:outputText value="Supervisor ID" />
 							</f:facet>
 						</b:selectOneMenu>
 						<b:selectOneMenu value="#{hrController.emp.payLevelID}">
 							<f:selectItems value="#{hrController.getPayLevelList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
 							<f:facet name="append">
 								<h:outputText value="Pay Level ID" />
 							</f:facet>
@@ -79,9 +59,6 @@
 						<b:selectOneMenu value="#{hrController.emp.isActive}">
 							<f:selectItem itemValue="#{true}" itemLabel="True" />
 							<f:selectItem itemValue="#{false}" itemLabel="False" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
 							<f:facet name="append">
 								<h:outputText value="Is Active" />
 							</f:facet>

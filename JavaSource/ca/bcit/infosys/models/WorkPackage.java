@@ -87,10 +87,10 @@ public class WorkPackage implements Serializable{
 	public void setWpID(String wpID) {
 		this.wpID = wpID;
 	}
-	public boolean isChild() {
+	public boolean getIsChild() {
 		return isChild;
 	}
-	public void setChild(boolean isChild) {
+	public void setIsChild(boolean isChild) {
 		this.isChild = isChild;
 	}
 	public String getParentWPID() {
