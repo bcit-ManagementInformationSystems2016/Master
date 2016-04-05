@@ -170,10 +170,10 @@ public class TimsheetRowController implements Serializable {
         ts.setTimesheetRows(databaseRows);
         for (int i = 0; i < databaseRows.size(); i++) {
             TimesheetRow row = databaseRows.get(i);
-            
             switch (row.getStatus()) {
             case "new":
                 System.out.println("call persist");
+                row.setTimesheetRowID(0);
                 timesheetRowManager.persist(row);
                 break;
             case "old":
