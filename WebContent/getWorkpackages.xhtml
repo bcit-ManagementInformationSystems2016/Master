@@ -1,150 +1,93 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
 	<title>Work Packages</title>
+
 </h:head>
 <h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="content">
+			<h:form>
+				<b:panel look="info"
+					title="Assigned Work Packages for: #{timesheetValidatorController.currentEmployee.firstName} #{timesheetValidatorController.currentEmployee.lastName}"
+					collapsible="false">
+					<b:dataTable
+						value="#{workPackageController.empWP}"
+						var="ewp">
+						<h:column>
+							<f:facet name="header">Project Name</f:facet>
+							<h:outputText value="#{ewp.wp.workingProject.projectName}" />
+						</h:column>
 
-	<h:form>
-		<h1>Your Assigned Workpackages</h1>
+						<h:column>
+							<f:facet name="header">Work Package ID</f:facet>
+							<h:outputText value="#{ewp.wp.wpID}" />
+						</h:column>
 
+						<h:column>
+							<f:facet name="header">Work Package Name</f:facet>
+							<h:outputText value="#{ewp.wp.wpName}" />
+						</h:column>
+					</b:dataTable>
+				</b:panel>
+			</h:form>
+			<br />
+			<h:form>
+				<b:panel look="info" title="Work Packages Responsible for:"
+					collapsible="false">
+					<b:dataTable
+						value="#{workPackageController.resonsibleWPs}"
+						var="wp">
+						
+						<h:column>
+							<f:facet name="header">Project Name</f:facet>
+							<h:outputText value="#{wp.workingProject.projectName}" />
+						</h:column>
 
-		<h:dataTable value="#{workPackageController.empWP}" var="wp">
+						<h:column>
+							<f:facet name="header">Work Package ID</f:facet>
+							<h:outputText value="#{wp.wpID}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">Project ID</f:facet>
-				<h:outputText value="#{wp.wp.workingProject}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">WorkPackage ID</f:facet>
-				<h:outputText value="#{wp.wp.wpID}" />
-			</h:column>
+						<h:column>
+							<f:facet name="header">Work Package Name</f:facet>
+							<h:outputText value="#{wp.wpName}" />
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Budgeted Man Days</f:facet>
+							<h:outputText value="#{wp.totalBudgetDays}" />
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Budgeted Cost</f:facet>
+							<h:outputText value="#{wp.totalBudgetCost}" >
+								<f:convertNumber type="currency" currencySymbol="$" />
+							</h:outputText>
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">
+								<h:outputText value="Weekly Report" style="font-weight: bold" />
+							</f:facet>
+							<h:commandLink value="Fill Out Report"
+								action="#{weekly.showWeeklyReport(wp)}" />
+						</h:column>
 
-			<h:column>
-				<f:facet name="header">Name</f:facet>
-				<h:outputText value="#{wp.wp.wpName}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Responsible Engineer</f:facet>
-				<h:outputText value="#{wp.wp.responsibleEngineerID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Budget Pdays</f:facet>
-				<h:outputText value="#{wp.wp.budgetedDaysID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Remaining Days</f:facet>
-				<h:outputText value="#{wp.wp.remainingDaysID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Remaining Days</f:facet>
-				<h:outputText value="#{wp.wp.remainingDaysID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Total Budget Days</f:facet>
-				<h:outputText value="#{wp.wp.totalBudgetDays}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Total Budget Cost</f:facet>
-				<h:outputText value="#{wp.wp.totalBudgetCost}" />
-			</h:column>
-
-		</h:dataTable>
-		<br />
-
-		<h1>Responsible For</h1>
-		<h:dataTable value="#{workPackageController.resonsibleWPs}" var="wp">
-
-			<h:column>
-				<f:facet name="header">Project ID</f:facet>
-				<h:outputText value="#{wp.workingProject}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">WorkPackage ID</f:facet>
-				<h:outputText value="#{wp.wpID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Name</f:facet>
-				<h:outputText value="#{wp.wpName}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Responsible Engineer</f:facet>
-				<h:outputText value="#{wp.responsibleEngineerID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Budget Pdays</f:facet>
-				<h:outputText value="#{wp.budgetedDaysID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Remaining Days</f:facet>
-				<h:outputText value="#{wp.remainingDaysID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Remaining Days</f:facet>
-				<h:outputText value="#{wp.remainingDaysID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Total Budget Days</f:facet>
-				<h:outputText value="#{wp.totalBudgetDays}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Total Budget Cost</f:facet>
-				<h:outputText value="#{wp.totalBudgetCost}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Report</f:facet>
-				<h:commandLink value="Fill Report"
-					action="#{weekly.showWeeklyReport(wp)}" />
-
-			</h:column>
-
-		</h:dataTable>
-		
-		<h1>Fill out Reports</h1>
-		<h:dataTable value="#{workPackageController.wpsForReport}" var="wp">
-
-			<h:column>
-				<f:facet name="header">Project ID</f:facet>
-				<h:outputText value="#{wp.workingProject}" />
-			</h:column>
-			<h:column>
-				<f:facet name="header">WorkPackage ID</f:facet>
-				<h:outputText value="#{wp.wpID}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Name</f:facet>
-				<h:outputText value="#{wp.wpName}" />
-			</h:column>
-
-			<h:column>
-				<f:facet name="header">Report</f:facet>
-				<h:commandLink value="Fill Report"
-					action="#{weekly.showWeeklyReport(wp)}" />
-
-			</h:column>
-
-		</h:dataTable>
-
-
-
-	</h:form>
+					</b:dataTable>
+				</b:panel>
+			</h:form>
+			<h:form>
+				<br />
+				<h:commandButton value="Back"
+					action="#{weekly.goBack()}"></h:commandButton>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

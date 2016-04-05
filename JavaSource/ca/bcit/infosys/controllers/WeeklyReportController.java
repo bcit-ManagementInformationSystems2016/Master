@@ -138,9 +138,12 @@ public class WeeklyReportController implements Serializable {
 	}
 	
 	public String createReport() {
-		
 		pldMgr.merge(pld);
 		return "createReport";
+	}
+	
+	public String goBack() {
+		return "adminLanding";
 	}
 
 }
