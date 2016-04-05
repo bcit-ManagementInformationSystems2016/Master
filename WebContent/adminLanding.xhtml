@@ -76,19 +76,63 @@
 							</div>
 						</h:panelGroup>
 						<!-- /Icon -->
-					</div>
-					<h:form>
-						<h:commandButton value="Supervisor" action="#{hrController.viewMinionsPage()}"
-							class="btn btn-info btn-margin" />
-						<h:commandButton value="Validator"
-							action="#{timesheetValidatorController.viewValidatees()}"
-							class="btn btn-info btn-margin" />
-						<h:commandButton value="Customers" action="#{customerController.viewAllCustomers()}"
-							class="btn btn-info btn-margin" />
-						<h:commandButton value="Vacations"
-							action="#{vacation.goViewVacation()}"
-							class="btn btn-info btn-margin" />
-					</h:form>
+						<!-- /Icon -->						
+							<div class="col-lg-3 col-md-6 col-sm-12">
+							<h:form>
+								<h:commandLink action="#{hrController.viewMinionsPage()}">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="supervisor-icon.png" />
+										<figcaption>
+											<h1>Supervisor</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+								</h:form>
+							</div>
+						<!-- /Icon -->
+						<!-- /Icon -->						
+							<div class="col-lg-3 col-md-6 col-sm-12">
+							<h:form>
+								<h:commandLink action="#{timesheetValidatorController.viewValidatees()}">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="validator.png" />
+										<figcaption>
+											<h1>Validator</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+								</h:form>
+							</div>
+						<!-- /Icon -->
+						<!-- /Icon -->						
+							<div class="col-lg-3 col-md-6 col-sm-12">
+							<h:form>
+								<h:commandLink action="#{customerController.viewAllCustomers()}">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="customer-icon.png" />
+										<figcaption>
+											<h1>Customers</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+								</h:form>
+							</div>
+						<!-- /Icon -->
+						<!-- /Icon -->						
+							<div class="col-lg-3 col-md-6 col-sm-12">
+							<h:form>
+								<h:commandLink action="#{vacation.goViewVacation()}">
+									<figure class="menuIcon">
+										<h:graphicImage library="images" name="vacation-icon.png" />
+										<figcaption>
+											<h1>Vacations</h1>
+										</figcaption>
+									</figure>
+								</h:commandLink>
+								</h:form>
+							</div>
+						<!-- /Icon -->
+					</div>					
 				</div>
 			</div>
 		</ui:define>
