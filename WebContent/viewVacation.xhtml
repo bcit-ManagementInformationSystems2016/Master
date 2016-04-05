@@ -38,16 +38,16 @@
 					collapsible="false">
 					<b:dataTable value="#{vacation.vacayArray}" var="v">
 						<h:column>
-							<f:facet name="header">ID</f:facet>
-							<h:outputText value="#{v.employeeID}" />
-						</h:column>
-						<h:column>
 							<f:facet name="header">Date</f:facet>
 							<h:outputText value="#{v.requestDate}" />
 						</h:column>
 						<h:column>
-							<f:facet name="header">Days Left</f:facet>
+							<f:facet name="header">Number of Days Requested</f:facet>
 							<h:outputText value="#{v.vacationDaysLeft}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Approved</f:facet>
+							<h:outputText value="#{v.isApproved}" />
 						</h:column>
 
 					</b:dataTable>

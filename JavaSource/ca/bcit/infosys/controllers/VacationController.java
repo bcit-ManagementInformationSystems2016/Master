@@ -1,17 +1,16 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.Date;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.PayLevelManager;
 import ca.bcit.infosys.managers.VacationManager;
-import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.PayLevel;
 import ca.bcit.infosys.models.Vacation;
@@ -97,7 +96,7 @@ public class VacationController implements Serializable{
 		return "viewVacation";
 	}
 	
-	public String createVacation(Vacation v) {
+	public String createVacation(Vacation v) throws ParseException {
 		Date date = new Date();
 		v.setEmployeeID(Login.currentID);
 		v.setRequestDate(date);
