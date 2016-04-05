@@ -22,12 +22,12 @@
 		<ui:define name="content">
 			<b:panel look="info" title="Employee Details" collapsible="false">
 				<h3 class="panel-title test">
-					Employee Name:
-					<h:outputText value="#{login.currentUser.firstName} #{login.currentUser.lastName}" />
-					<br /> Total days allowed:
-					<h:outputText value="#{vacation.totalDaysAllowed}" />
-					<br /> Total days remaining:
-					<h:outputText value="#{vacation.daysRemaining}" />
+					<strong>Employee Name: </strong>
+					<h:outputText value=" #{login.currentUser.firstName} #{login.currentUser.lastName}" />
+					<br /> <strong>Total days allowed: </strong>
+					<h:outputText value=" #{vacation.totalDaysAllowed}" />
+					<br /> <strong>Total days remaining: </strong>
+					<h:outputText value=" #{vacation.daysRemaining}" />
 				</h3>
 			</b:panel>
 
