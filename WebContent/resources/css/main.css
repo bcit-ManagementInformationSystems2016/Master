@@ -281,3 +281,10 @@ tr:hover{
     border: 1px solid #a8a8a8;
     background: transparent;   
 }
+
+.header-fixed .header-limiter a {
+    color: #ffffff !important;
+    text-decoration: none;
+    font-size: 15px !important;
+    font-family: 'Exo', sans-serif;
+}
