@@ -82,12 +82,16 @@
                             <p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
                             <f:selectItem itemLabel="Select Project" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{timesheetRow.getProjectList()}" />
+                            <f:validateRequired/>
+                            <f:ajax event="blur" render="titleError"/>
                         </p:selectOneMenu>
 
                         <!-- <p:outputLabel for="wp" value="Work Package: " /> -->
                         <p:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}">
                             <f:selectItem itemLabel="Select Work Package" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
+                            <f:validateRequired/>
+                            <f:ajax event="blur" render="titleError"/>
                         </p:selectOneMenu>
                         <!-- <b:selectOneMenu value="#{timesheetRow.tsr.projectID}">
 							<f:selectItems value="#{timesheetRow.getProjectList()}" />

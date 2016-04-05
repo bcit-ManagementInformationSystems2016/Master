@@ -48,6 +48,8 @@ public class TimesheetController implements Serializable {
 	private Employee em;
 
 	private Employee[] employeeRows;
+	
+	private static Timesheet[] allTimesheetRows;
 
 	public Employee getEm() {
 		return em;
@@ -169,7 +171,15 @@ public class TimesheetController implements Serializable {
 
 	public Timesheet[] getAllTimesheet() {
 		int empId = e.getEmployeeID();
-		return timesheetManager.getArchivedTimesheetsWithEmpId(empId);
+		allTimesheetRows = timesheetManager.getArchivedTimesheetsWithEmpId(empId);
+		return allTimesheetRows;
+	}
+	
+	public int countApproved() {
+	    if (allTimesheetRows == null) {
+	        getAllTimesheet();
+	    }
+	    return allTimesheetRows.length;
 	}
 
 	public int getWeekNumber() throws ParseException {
