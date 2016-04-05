@@ -38,7 +38,9 @@
 		<br /><br />
 		<h:outputText value="Current Costs Charged" />
 		<br />
-		<h:outputText value="#{weekly.personDollars}" style="font-weight: bold"/>	
+		<h:outputText value="#{weekly.personDollars}" style="font-weight: bold">
+			<f:convertNumber type="currency" currencySymbol="$" />
+		</h:outputText>	
 		<br />
 				
 	</b:panel>

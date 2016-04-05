@@ -148,7 +148,6 @@ public class WeeklyReportController implements Serializable {
 		plc = plcMgr.getProjectCosts(wp.getWorkingProject().getProjectID());
 		personDays = getActualDays(tsrows);
 		personDollars = getActualCost(plc, tsrows);
-		//engineer = wpctr.engIDtoName(wp.getResponsibleEngineerID());
 		estToComplete = wpDays / 8;
 
 		return "weeklyReport";
