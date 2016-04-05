@@ -1,10 +1,8 @@
 package ca.bcit.infosys.models;
  
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
  
@@ -24,7 +22,8 @@ public class TreeManagedBean {
     private TreeNode [] multipleSelectedTreeNodes;
     private TreeNode [] checkboxSelectedTreeNodes;
  
-    public TreeManagedBean(){
+    @SuppressWarnings("unused")
+	public TreeManagedBean(){
         // root node
         this.root = new DefaultTreeNode("Journey To The Dark Side of The Moon", null);
         
@@ -65,7 +64,8 @@ public class TreeManagedBean {
         	}
         }
         for (WorkPackage wp : childrenArray){
-             TreeNode newNode2= newNodeWithChildren(wp, newNode, wps);
+             @SuppressWarnings("unused")
+			TreeNode newNode2= newNodeWithChildren(wp, newNode, wps);
         }
         return newNode;
    }
@@ -102,31 +102,19 @@ public class TreeManagedBean {
         this.checkboxSelectedTreeNodes = checkboxSelectedTreeNodes;
     }
  
-    public void onNodeSelect(NodeSelectEvent event){
-        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Selected");
-        
+    public void onNodeSelect(NodeSelectEvent event){        
     }
  
     public void onNodeUnSelect(NodeUnselectEvent event){
-        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: UnSelected");
     }
  
     public void onNodeExpand(NodeExpandEvent event){
-        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Expanded");
     }
  
     public void onNodeCollapse(NodeCollapseEvent event){
-        //System.out.println("Node Data ::"+event.getTreeNode().getData()+" :: Collapsed");
     }
  
     public String printSelectedNodes(){
-        /*System.out.println("Single Selection Is :: "+this.singleSelectedTreeNode.getData());
-        for(TreeNode n : this.multipleSelectedTreeNodes){
-            System.out.println("Multiple Selection Are :: "+n.getData());
-        }
-        for(TreeNode n : this.checkboxSelectedTreeNodes){
-            System.out.println("CheckBox Selection Are :: "+n.getData());
-        } */
         return ""; 
     }
 }

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -38,14 +37,6 @@ public class PayLevelDays implements Serializable {
 	
 	@Column(name = "P6Day")
 	private double p6Day;
-	
-	// bi-directional one-to-one association to Credential
-//	@OneToOne(mappedBy = "budgetedDays")
-//	private WorkPackage budgetedWP;
-		
-	// bi-directional one-to-one association to Credential
-//	@OneToOne(mappedBy = "remainingDays")
-//	private WorkPackage remainingWP;
 	
 	// Getters and Setters
 	public int getPayLevelDaysID() {
@@ -89,17 +80,5 @@ public class PayLevelDays implements Serializable {
 	}
 	public void setP6Day(double p6Day) {
 		this.p6Day = p6Day;
-	}
-//	public WorkPackage getBudgetedWP() {
-//		return budgetedWP;
-//	}
-//	public void setBudgetedWP(WorkPackage budgetedWP) {
-//		this.budgetedWP = budgetedWP;
-//	}
-//	public WorkPackage getRemainingWP() {
-//		return remainingWP;
-//	}
-//	public void setRemainingWP(WorkPackage remainingWP) {
-//		this.remainingWP = remainingWP;
-//	}	
+	}	
 }
