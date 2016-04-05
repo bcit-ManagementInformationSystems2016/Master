@@ -35,10 +35,10 @@
 
                     </b:panel>
                     <b:panel look="info" title="Info" collapsible="false" class="test">
-                        <h:outputText value="Total Pending :" />
+                        Total Pending : <h:outputText value="#{timesheetRow.countPending()}" />
                         <br />
                         <br />
-                        <h:outputText value="Total Approved :" />
+                        Total Approved :<h:outputText value="#{timesheet.countApproved()}" />
                         <br />
                         <br />
                     </b:panel>

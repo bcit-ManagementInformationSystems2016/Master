@@ -107,6 +107,13 @@ public class TimsheetRowController implements Serializable {
 		archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
 		return "viewArchivedTimesheet";
 	}
+	
+	public String gotoValidatingTimesheet(Timesheet ts) {
+        archivedTimesheetId = ts.getTimesheetID();
+        archivedTs = timesheetManager.find(archivedTimesheetId);
+        archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
+        return "viewValidatingArchivedTimesheet";
+    }
 
 	public void setTsr(TimesheetRow tsr) {
 		this.tsr = tsr;
@@ -263,7 +270,15 @@ public class TimsheetRowController implements Serializable {
 		init();
 		return getTs().getSubmitted();
 	}
-
+    
+    public int countPending() {
+        if (isSubmitted()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+    
 	public double getAllTotalHours() {
 		double allHours = 0.0;
 		ArrayList<TimesheetRow> rows = getAllTimesheetRow();
