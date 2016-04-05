@@ -7,14 +7,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
+//import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.PayLevelCostManager;
 import ca.bcit.infosys.managers.PayLevelDaysManager;
+import ca.bcit.infosys.managers.PayLevelManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
-import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
+//import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.PayLevelCost;
 import ca.bcit.infosys.models.PayLevelDays;
-import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.TimesheetRow;
 import ca.bcit.infosys.models.WorkPackage;
 
@@ -27,11 +28,11 @@ public class WeeklyReportController implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Inject
-	private EmployeeManager empmgr;
+	//@Inject
+	//private EmployeeManager empmgr;
 
-	@Inject
-	private WorkPackageManager wpmgr;
+	//@Inject
+	//private WorkPackageManager wpmgr;
 
 	@Inject
 	private WorkPackageController wpctr;
@@ -47,6 +48,12 @@ public class WeeklyReportController implements Serializable {
 	
 	@Inject
 	private PayLevelCostManager plcMgr;
+	
+	@Inject
+	private EmployeeManager empMgr;
+	
+	@Inject
+	private PayLevelManager plvlMgr;
 
 	private double personDays;
 	private double personDollars;
@@ -137,14 +144,34 @@ public class WeeklyReportController implements Serializable {
 		double wpDays = tsrctr.getHoursForWP(wp.getWpID());
 		//System.out.println(wpDays);
 		wpForReport = wp;
-		//personDays = wp.getTotalBudgetDays();
-		//personDollars = wp.getTotalBudgetCost();
-		plc = plcMgr.getProjectCosts(wp.getWorkingProject().getProjectID());
-		engineer = wpctr.engIDtoName(wp.getResponsibleEngineerID());
-		estToComplete = wpDays / 8;
 		tsrows = tsrmgr.getRowsWithWPId(wp.getWpID());
+		plc = plcMgr.getProjectCosts(wp.getWorkingProject().getProjectID());
+		personDays = getActualDays(tsrows);
+		personDollars = getActualCost(plc, tsrows);
+		//engineer = wpctr.engIDtoName(wp.getResponsibleEngineerID());
+		estToComplete = wpDays / 8;
 
 		return "weeklyReport";
+	}
+	
+	public double getActualDays(TimesheetRow[] tsrs) {
+		double totalHours = 0;
+		double convertedHours = 0;
+		for (int i=0; i < tsrs.length; i++) {
+			totalHours += tsrs[i].getTotalHours();
+		}
+		convertedHours = Math.round(totalHours / 8);
+		return convertedHours;
+	}
+	
+	public double getActualCost(PayLevelCost plc, TimesheetRow[] tsrs) {
+		double totalCost = 0;
+		for (int i=0; i < tsrs.length; i++) {
+			int empID = tsrs[i].getTimesheet().getEmployeeID();
+			Employee e = empMgr.getTimesheetValidator(empID);
+			totalCost += (tsrs[i].getTotalHours()) * (plvlMgr.find(e.getPayLevelID()).getAvgPayRate() / 8);
+		}
+		return totalCost;
 	}
 	
 	public double totalCharges() {
