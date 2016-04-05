@@ -9,7 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.controllers.Login;
-import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.PayLevel;
 import ca.bcit.infosys.models.Vacation;
@@ -54,20 +53,6 @@ public class VacationManager {
 			parray[i] = plist.get(i);
 		}
 		return parray[0].getTotalVacationDays();
-		/*
-		 * TypedQuery<PayLevel> query = em.createQuery(
-		 * "SELECT p.totalVacationDays " + "FROM PayLevel p JOIN Employee e " +
-		 * "WHERE e.employeeID =" + Login.currentID, PayLevel.class);
-		 * 
-		 * System.out.println("getdaysallowed"); List<PayLevel> totalVacation =
-		 * query.getResultList();
-		 * 
-		 * PayLevel[] parray = new PayLevel[totalVacation.size()]; for (int i =
-		 * 0; i < parray.length; i++) { parray[i] = totalVacation.get(i);
-		 * System.out.println("test"); }
-		 */
-		// return parray[0].getTotalVacationDays();
-
 	}
 
 	public Vacation[] getEmployeeVacationRequests(int empID) {
@@ -94,5 +79,4 @@ public class VacationManager {
 		else
 			return getDaysAllowed();
 	}
-
 }

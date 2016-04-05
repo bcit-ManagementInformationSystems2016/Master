@@ -263,16 +263,23 @@ a {
 .ui-panelgrid .ui-panelgrid-cell {
     border-width: 1px;
     border-style: solid;
-    border-color: transparent !important;
+    border-color: transparent !important;    
     padding: 4px 10px;
+}
+
+tr > .ui-widget-content.ui-panelgrid-even:hover {
+	background-color: #c4c4c4! important; 
 }
 
 .ui-datatable-odd {
     background: white;
 }
 
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-    background-color: #0CAD4F !important;
-    border-color: #0CAD4F !important;
-    color: white !important;
+tr:hover{ 
+	background-color: #c4c4c4; 
+}
+
+.ui-widget-content {
+    border: 1px solid #a8a8a8;
+    background: transparent;   
 }

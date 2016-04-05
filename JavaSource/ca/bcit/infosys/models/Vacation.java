@@ -1,7 +1,10 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -53,8 +56,14 @@ public class Vacation implements Serializable {
 		return requestDate;
 	}
 
-	public void setRequestDate(Date requestDate) {
-		this.requestDate = requestDate;
+	public void setRequestDate(Date requestDate) throws ParseException {
+		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+		
+		requestDate = new Date();
+		
+		Date todayWithoutTime = formatter.parse(formatter.format(requestDate));
+		
+		this.requestDate = todayWithoutTime;
 	}
 
 	public int getVacationDaysLeft() {
@@ -65,11 +74,11 @@ public class Vacation implements Serializable {
 		this.vacationDaysLeft = vacationDaysLeft;
 	}
 
-	public boolean isApproved() {
+	public boolean getIsApproved() {
 		return isApproved;
 	}
 
-	public void setApproved(boolean isApproved) {
+	public void setIsApproved(boolean isApproved) {
 		this.isApproved = isApproved;
 	}
 	
