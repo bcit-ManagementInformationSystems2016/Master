@@ -36,7 +36,40 @@
 			<h:column>
 				<h:commandLink value="Assign Timesheet Validator" action="#{supervisorController.assignTimesheetValidator(emp)}"/>
 			</h:column>		
-	  </b:dataTable>		
+	  </b:dataTable>
+	  </b:panel>		
+	  <b:panel look="info" title="Requested Vacations:" collapsible="false">	
+	  <b:dataTable value="#{hrController.getYourMinions()}" var="vacays">
+	  	<h:column>
+			<f:facet name="header">
+				<h:outputText value="Approve Vacation Request"
+					style="font-weight: bold" />
+			</f:facet>
+			<h:commandLink value="Approve"
+				action="#{weekly.goBack()}" />
+		</h:column>
+		<h:column>
+			<f:facet name="header">
+				<h:outputText value="Disapprove Vacation Request"
+					style="font-weight: bold" />
+			</f:facet>
+			<h:commandLink value="Disapprove"
+				action="#{weekly.goBack()}" />
+		</h:column>
+	  	<h:column>
+			<f:facet name="header">Employee</f:facet>
+			<h:outputText value="Emp"/>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Date Requested</f:facet>
+			<h:outputText value="Date"/>
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Number of Days</f:facet>
+			<h:outputText value="####"/>
+		</h:column>	
+	  </b:dataTable>	
 	 <h:commandButton value="Go To Home Page" action="#{hrController.leaveMinionsPage()}"></h:commandButton>
      </b:panel>		
 	</h:form>
