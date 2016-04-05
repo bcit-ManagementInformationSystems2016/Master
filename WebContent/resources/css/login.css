@@ -53,7 +53,7 @@ input {
 }
 
 input:focus {
-	border: 2px solid #3498DB;
+	border: 2px solid #0CAD4F;
 	box-shadow: none;
 }
 
@@ -75,7 +75,8 @@ input:focus {
 }
 
 .btn:hover {
-	background-color: #3498DB;
+	background-color: #23E875;
+	border-color: #23E875;
 }
 
 .login-link {
