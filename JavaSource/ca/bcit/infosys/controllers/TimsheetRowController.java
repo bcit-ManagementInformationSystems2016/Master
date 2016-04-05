@@ -42,7 +42,7 @@ public class TimsheetRowController implements Serializable {
     private int archivedTimesheetId;
     static List<SelectItem> workPackageList;
     static List<SelectItem> projectList;
-    //private static int timesheetRowId = 13123;
+    private static int timesheetRowId = 13123;
     
     public TimesheetRow getTsr() {
         return tsr;
@@ -128,8 +128,8 @@ public class TimsheetRowController implements Serializable {
         //timesheetRowManager.persist(tsr);
     	TimesheetRow newTsr = new TimesheetRow();
     	
-    	//timesheetRowId++;
-    	//newTsr.setTimesheetRowID(timesheetRowId);
+    	timesheetRowId++;
+    	newTsr.setTimesheetRowID(timesheetRowId);
     	
     	newTsr.setTimesheetID(getTs().getTimesheetID());
     	newTsr.setHoursFri(tsr.getHoursFri());
