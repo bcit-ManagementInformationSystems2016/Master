@@ -271,6 +271,8 @@ a {
     background: white;
 }
 
-.pagination > li > a {
-    color: black !important;    
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+    background-color: #0CAD4F !important;
+    border-color: #0CAD4F !important;
+    color: white !important;
 }
