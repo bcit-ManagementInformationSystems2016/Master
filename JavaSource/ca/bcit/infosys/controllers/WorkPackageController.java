@@ -125,7 +125,7 @@ public class WorkPackageController implements Serializable {
 	}
 
 	public String wpLanding() {
-
-		return "wpLanding";
+		return "getWorkpackages";
+		//return "wpLanding";
 	}
 }

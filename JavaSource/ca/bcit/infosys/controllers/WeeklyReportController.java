@@ -7,10 +7,12 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
+import ca.bcit.infosys.managers.PayLevelCostManager;
 import ca.bcit.infosys.managers.PayLevelDaysManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
 import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
+import ca.bcit.infosys.models.PayLevelCost;
 import ca.bcit.infosys.models.PayLevelDays;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.TimesheetRow;
@@ -42,21 +44,21 @@ public class WeeklyReportController implements Serializable {
 	
 	@Inject
 	private TimesheetRowManager tsrmgr;
+	
+	@Inject
+	private PayLevelCostManager plcMgr;
 
 	private double personDays;
-
 	private double personDollars;
-
+	private PayLevelCost plc;
 	private double estToComplete;
-
 	private String engineer;
-
 	private PayLevelDays pld;
-	
 	private TimesheetRow[] tsrows;
+	private WorkPackage wpForReport;
 	
 
-	
+	// Getters and Setters
 
 	public String getEngineer() {
 		return engineer;
@@ -65,6 +67,22 @@ public class WeeklyReportController implements Serializable {
 	public TimesheetRow[] getTsrows() {
 		
 		return tsrows;
+	}
+
+	public WorkPackage getWpForReport() {
+		return wpForReport;
+	}
+
+	public void setWpForReport(WorkPackage wpForReport) {
+		this.wpForReport = wpForReport;
+	}
+
+	public PayLevelCost getPlc() {
+		return plc;
+	}
+
+	public void setPlc(PayLevelCost plc) {
+		this.plc = plc;
 	}
 
 	public void setTsrows(TimesheetRow[] tsrows) {
@@ -118,8 +136,10 @@ public class WeeklyReportController implements Serializable {
 		pld = pldMgr.find(wp.getRemainingDaysID());
 		double wpDays = tsrctr.getHoursForWP(wp.getWpID());
 		//System.out.println(wpDays);
-		personDays = wp.getTotalBudgetDays();
-		personDollars = wp.getTotalBudgetCost();
+		wpForReport = wp;
+		//personDays = wp.getTotalBudgetDays();
+		//personDollars = wp.getTotalBudgetCost();
+		plc = plcMgr.getProjectCosts(wp.getWorkingProject().getProjectID());
 		engineer = wpctr.engIDtoName(wp.getResponsibleEngineerID());
 		estToComplete = wpDays / 8;
 		tsrows = tsrmgr.getRowsWithWPId(wp.getWpID());
