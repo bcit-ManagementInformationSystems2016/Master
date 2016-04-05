@@ -29,6 +29,9 @@ public class Vacation implements Serializable {
 	
 	@Column(name="VacationDaysLeft")
 	private int vacationDaysLeft;
+	
+	@Column(name="isApproved")
+	private boolean isApproved;
 
 	public int getVacationID() {
 		return vacationID;
@@ -61,4 +64,13 @@ public class Vacation implements Serializable {
 	public void setVacationDaysLeft(int vacationDaysLeft) {
 		this.vacationDaysLeft = vacationDaysLeft;
 	}
+
+	public boolean isApproved() {
+		return isApproved;
+	}
+
+	public void setApproved(boolean isApproved) {
+		this.isApproved = isApproved;
+	}
+	
 }

@@ -48,6 +48,9 @@ public class WorkPackage implements Serializable{
 	@Column(name="TotalBudgetCost")
 	private double totalBudgetCost;
 	
+	@Column(name="isChild")
+	private boolean isChild;
+	
 	//bi-directional one-to-one association to Employee
 //	@OneToOne
 //	@JoinColumn(name="BudgetPDays")
@@ -96,6 +99,12 @@ public class WorkPackage implements Serializable{
 	}
 	public void setWpID(String wpID) {
 		this.wpID = wpID;
+	}
+	public boolean isChild() {
+		return isChild;
+	}
+	public void setChild(boolean isChild) {
+		this.isChild = isChild;
 	}
 	public String getParentWPID() {
 		return parentWPID;
