@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -25,9 +26,9 @@ import ca.bcit.infosys.models.TreeManagedBean;
 import ca.bcit.infosys.models.WorkPackage;
 
 @Named("treeController")
-@SessionScoped
+@ConversationScoped
 public class TreeController implements Serializable {
-	
+
 	public static final String BRANCH_PARENT_ID = "0";
 
 	private static final long serialVersionUID = 1L;
@@ -45,13 +46,13 @@ public class TreeController implements Serializable {
 	private PayLevelDaysManager pldmgr;
 	@Inject
 	private TimesheetRowManager tsrMgr;
-	
+
 	// variable used to display tree
 	private TreeManagedBean projectTree;
 	private WorkPackage selectedWP;
 	private EmployeeWP[] assignedEmps;
 	private Project editableProject;
-	
+
 	// variables used for creating new Work Package
 	private WorkPackage wpToAdd = new WorkPackage();
 	private Project projectToAdd = new Project();
@@ -60,108 +61,134 @@ public class TreeController implements Serializable {
 	private PayLevelDays budget;
 	private PayLevelDays remaining;
 	private PayLevelCost projectCost;
-	
+
 	// variables used for assigning Employees to Workpackages
 	private static List<SelectItem> availableEmployees;
 	private String selectedEmployee;
-	
+
 	// variables used for caching employees
 	private static HashMap<Integer, Employee> cachedEmps = new HashMap<Integer, Employee>();
 	private Employee responsibleEngineer;
-	
+
 	// Getters and Setters
 	public void setProjectTree(TreeManagedBean projectTree) {
 		this.projectTree = projectTree;
 	}
+
 	public TreeManagedBean getProjectTree() {
 		return projectTree;
 	}
+
 	public WorkPackage getSelectedWP() {
 		return selectedWP;
 	}
+
 	public void setSelectedWP(WorkPackage selectedWP) {
 		this.selectedWP = selectedWP;
 	}
+
 	public void setAssignedEmps(EmployeeWP[] assignedEmps) {
 		this.assignedEmps = assignedEmps;
 	}
+
 	public EmployeeWP[] getAssignedEmps() {
 		return assignedEmps;
 	}
+
 	public Project getEditableProject() {
 		return editableProject;
 	}
+
 	public void setEditableProject(Project editableProject) {
 		this.editableProject = editableProject;
 	}
+
 	public String getNewWPID() {
 		return newWPID;
 	}
+
 	public void setNewWPID(String newWPID) {
 		this.newWPID = newWPID;
 	}
+
 	public String getNewWPPID() {
 		return newWPPID;
 	}
+
 	public void setNewWPPID(String newWPPID) {
 		this.newWPPID = newWPPID;
 	}
+
 	public void setWpToAdd(WorkPackage wpToAdd) {
 		this.wpToAdd = wpToAdd;
 	}
+
 	public WorkPackage getWpToAdd() {
 		return wpToAdd;
 	}
+
 	public Project getProjectToAdd() {
 		return projectToAdd;
 	}
+
 	public void setProjectToAdd(Project projectToAdd) {
 		this.projectToAdd = projectToAdd;
-	}	
+	}
+
 	public static List<SelectItem> getAvailableEmployees() {
 		return availableEmployees;
 	}
+
 	public static void setAvailableEmployees(List<SelectItem> availableEmployees) {
 		TreeController.availableEmployees = availableEmployees;
 	}
+
 	public String getSelectedEmployee() {
 		return selectedEmployee;
 	}
+
 	public void setSelectedEmployee(String selectedEmployee) {
 		this.selectedEmployee = selectedEmployee;
 	}
+
 	public Employee getResponsibleEngineer() {
 		return responsibleEngineer;
 	}
+
 	public void setResponsibleEngineer(Employee responsibleEngineer) {
 		this.responsibleEngineer = responsibleEngineer;
 	}
+
 	public PayLevelDays getBudget() {
 		return budget;
 	}
+
 	public void setBudget(PayLevelDays budget) {
 		this.budget = budget;
 	}
+
 	public PayLevelDays getRemaining() {
 		return remaining;
 	}
+
 	public void setRemaining(PayLevelDays remaining) {
 		this.remaining = remaining;
 	}
+
 	public PayLevelCost getProjectCost() {
 		return projectCost;
 	}
+
 	public void setProjectCost(PayLevelCost projectCost) {
 		this.projectCost = projectCost;
 	}
-	
-	
+
 	// Other Functions
 	public String testFunction() {
 		setProjectTree(new TreeManagedBean());
 		return "viewProjectDetails";
 	}
-	
+
 	public String viewProjectTree(Project p) {
 		setEditableProject(p);
 		projectCost = plcmgr.getProjectCosts(p.getProjectID());
@@ -169,11 +196,11 @@ public class TreeController implements Serializable {
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(p.getProjectID()));
 		return "viewProjectDetails";
 	}
-	
+
 	public String goBackToProject() {
 		return "viewProjectDetails";
 	}
-	
+
 	public String leaveTreePage() {
 		projectTree = null;
 		selectedWP = null;
@@ -181,9 +208,9 @@ public class TreeController implements Serializable {
 		assignedEmps = null;
 		return "showAllProjects";
 	}
-	
+
 	public void showWorkPackageDetails() {
-		if (projectTree.getSingleSelectedTreeNode() != null ) {
+		if (projectTree.getSingleSelectedTreeNode() != null) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
 			selectedWP = wpmgr.find(editableProject, "0");
@@ -193,29 +220,29 @@ public class TreeController implements Serializable {
 			cachedEmps.put(selectedWP.getResponsibleEngineerID(), tmp);
 		}
 		setResponsibleEngineer(cachedEmps.get(selectedWP.getResponsibleEngineerID()));
-		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
+		setAssignedEmps(
+				empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 	}
-	
+
 	public String viewAssignedEmployeesForWP() {
 		if (selectedWP != null) {
 			System.out.println("TC: 4");
 			return "listEmpsForWorkPackage";
-		}
-		else {
+		} else {
 			return "viewProjectDetails";
 		}
 	}
-	
+
 	public EmployeeWP[] getAssignedEmployees() {
 		System.out.println("TC: 3");
 		return empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID());
 	}
-	
+
 	public String createNewWorkPackage() {
 		if (wpToAdd != null) {
 			wpToAdd = new WorkPackage();
 		}
-		if (projectTree.getSingleSelectedTreeNode() != null ) {
+		if (projectTree.getSingleSelectedTreeNode() != null) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
 			return "viewProjectDetails";
@@ -235,7 +262,7 @@ public class TreeController implements Serializable {
 		}
 		return "createNewWP";
 	}
-	
+
 	public String saveNewWP(WorkPackage w) {
 		setProjectToAdd(editableProject);
 		getWpToAdd().setWpID(getNewWPID());
@@ -253,9 +280,11 @@ public class TreeController implements Serializable {
 		wpToAdd.setResponsibleEngineerID(n);
 		wpToAdd.setRemainingDaysID(remaining.getPayLevelDaysID());
 		wpToAdd.setBudgetedDaysID(budget.getPayLevelDaysID());
-		double manDays = budget.getP1Day() + budget.getP2Day() + budget.getP3Day() + budget.getP4Day() + budget.getP5Day() + budget.getP6Day();
-		double wpCost = (budget.getP1Day() * projectCost.getP1Cost()) + (budget.getP2Day() * projectCost.getP2Cost()) + (budget.getP3Day() * projectCost.getP3Cost()) + 
-				(budget.getP4Day() * projectCost.getP4Cost()) + (budget.getP5Day() * projectCost.getP5Cost()) + (budget.getP6Day() * projectCost.getP6Cost());
+		double manDays = budget.getP1Day() + budget.getP2Day() + budget.getP3Day() + budget.getP4Day()
+				+ budget.getP5Day() + budget.getP6Day();
+		double wpCost = (budget.getP1Day() * projectCost.getP1Cost()) + (budget.getP2Day() * projectCost.getP2Cost())
+				+ (budget.getP3Day() * projectCost.getP3Cost()) + (budget.getP4Day() * projectCost.getP4Cost())
+				+ (budget.getP5Day() * projectCost.getP5Cost()) + (budget.getP6Day() * projectCost.getP6Cost());
 		wpToAdd.setTotalBudgetCost(wpCost);
 		wpToAdd.setTotalBudgetDays(manDays);
 		wpToAdd.setChild(true);
@@ -264,11 +293,12 @@ public class TreeController implements Serializable {
 			updateBudget(wpToAdd);
 		}
 		if (!wpToAdd.getParentWPID().equals("0")) {
-			setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), wpToAdd.getParentWPID()));
+			setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(),
+					wpToAdd.getParentWPID()));
 			for (int i = 0; i < assignedEmps.length; i++) {
 				empwpmgr.remove(assignedEmps[i].getWp(), assignedEmps[i].getEmp());
 			}
-			for (int i=0; i < assignedEmps.length; i++) {
+			for (int i = 0; i < assignedEmps.length; i++) {
 				EmployeeWP ewp = new EmployeeWP();
 				ewp.setEmp(assignedEmps[i].getEmp());
 				ewp.setWp(wpToAdd);
@@ -281,15 +311,16 @@ public class TreeController implements Serializable {
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
 		selectedWP = wpToAdd;
-		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), wpToAdd.getWpID()));
+		setAssignedEmps(
+				empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), wpToAdd.getWpID()));
 		return "viewProjectDetails";
 	}
-	
+
 	public String cancelCreateWP() {
 		setAvailableEmployees(null);
 		return "viewProjectDetails";
 	}
-	
+
 	public String createNewBranch() {
 		if (wpToAdd != null) {
 			wpToAdd = new WorkPackage();
@@ -300,38 +331,39 @@ public class TreeController implements Serializable {
 		int nextWP = 0;
 		nextWP = wpmgr.getWorkPackageCount(editableProject.getProjectID(), BRANCH_PARENT_ID) + 1;
 		setNewWPID("" + nextWP);
-		return "createNewWP";		
+		return "createNewWP";
 	}
-	
+
 	public String assignEmpToWP() {
 		if (!projectTree.getSingleSelectedTreeNode().isLeaf()) {
 			return "viewProjectDetails";
 		}
-		if (projectTree.getSingleSelectedTreeNode() != null ) {
+		if (projectTree.getSingleSelectedTreeNode() != null) {
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
 			return "viewProjectDetails";
 		}
 		return "assignEmpToWP";
 	}
-	
+
 	public List<SelectItem> getDropdownForWP() {
 		if (selectedWP == null) {
 			System.out.println("TreeController - There is no selected WP");
 		}
 		if (availableEmployees == null) {
-			setAvailableEmployees(pjtEmpMgr.getAvailableEmployees(editableProject.getProjectID(), selectedWP.getWpID()));
+			setAvailableEmployees(
+					pjtEmpMgr.getAvailableEmployees(editableProject.getProjectID(), selectedWP.getWpID()));
 		}
 		return availableEmployees;
 	}
-	
+
 	public List<SelectItem> getDropdownForNewWP() {
 		if (availableEmployees == null) {
 			setAvailableEmployees(pjtEmpMgr.getAllAvailableEmployees(editableProject.getProjectID()));
 		}
 		return availableEmployees;
 	}
-	
+
 	public String assignEmployee() {
 		int n = new Integer(selectedEmployee);
 		EmployeeWP empWP = new EmployeeWP();
@@ -342,15 +374,16 @@ public class TreeController implements Serializable {
 		empWP.setTotalHours(0.0);
 		empwpmgr.merge(empWP);
 		setAvailableEmployees(null);
-		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
+		setAssignedEmps(
+				empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 		return "viewProjectDetails";
 	}
-	
+
 	public String cancelAssignment() {
 		setAvailableEmployees(null);
 		return "viewProjectDetails";
 	}
-	
+
 	public void updateBudget(WorkPackage wp) {
 		boolean isRoot = false;
 		String currentWpID = wp.getParentWPID();
@@ -375,10 +408,11 @@ public class TreeController implements Serializable {
 			}
 		}
 	}
-	
+
 	public String unassignEmployee(EmployeeWP ewp) {
 		empwpmgr.remove(ewp.getWp(), ewp.getEmp());
-		setAssignedEmps(empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
+		setAssignedEmps(
+				empwpmgr.findAssignedEmployees(selectedWP.getWorkingProject().getProjectID(), selectedWP.getWpID()));
 		return "viewProjectDetails";
 	}
 }

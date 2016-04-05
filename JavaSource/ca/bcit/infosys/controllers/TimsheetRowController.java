@@ -27,7 +27,6 @@ public class TimsheetRowController implements Serializable {
 	Employee e;
 
 	public void getUser(Employee emp) {
-		System.out.println("GET USER HR CONTROLLER");
 		e = emp;
 	}
 
@@ -244,10 +243,10 @@ public class TimsheetRowController implements Serializable {
 	}
 
 	public List<SelectItem> getWorkPackageList() {
-		if (workPackageList == null) {
-			int empId = e.getEmployeeID();
-			workPackageList = ewpManager.getYourWorkPackages(empId);
-		}
+		// if (workPackageList == null) {
+		// int empId = e.getEmployeeID();
+		// workPackageList = ewpManager.getYourWorkPackages(empId);
+		// }
 		return workPackageList;
 	}
 

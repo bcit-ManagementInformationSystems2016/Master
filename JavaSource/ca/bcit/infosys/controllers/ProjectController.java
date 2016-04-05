@@ -1,6 +1,8 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,7 +13,7 @@ import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.WorkPackage;
 
 @Named("projectController")
-@SessionScoped
+@ConversationScoped
 public class ProjectController implements Serializable {
 	Employee e;
 
@@ -25,8 +27,8 @@ public class ProjectController implements Serializable {
 	@Inject
 	private WorkPackageManager wpmgr;
 
-	private static Project[] pro;
-	private static WorkPackage[] wp;
+	private Project[] pro;
+	private WorkPackage[] wp;
 
 	// variable to save the current project
 	private Project editableProject;
@@ -67,20 +69,20 @@ public class ProjectController implements Serializable {
 		this.parentWP = parentWP;
 	}
 
-	public static Project[] getPro() {
+	public Project[] getPro() {
 		return pro;
 	}
 
-	public static void setPro(Project[] pro) {
-		ProjectController.pro = pro;
+	public void setPro(Project[] pro) {
+		this.pro = pro;
 	}
 
-	public static WorkPackage[] getWp() {
+	public WorkPackage[] getWp() {
 		return wp;
 	}
 
-	public static void setWp(WorkPackage[] wp) {
-		ProjectController.wp = wp;
+	public void setWp(WorkPackage[] wp) {
+		this.wp = wp;
 	}
 
 	public int getSavedProjectID() {

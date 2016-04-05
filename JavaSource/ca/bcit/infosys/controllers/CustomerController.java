@@ -3,6 +3,7 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -21,7 +22,7 @@ import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.WorkPackage;
 
 @Named("customerController")
-@SessionScoped
+@ConversationScoped
 public class CustomerController implements Serializable {
 
 	private static final long serialVersionUID = 1L;

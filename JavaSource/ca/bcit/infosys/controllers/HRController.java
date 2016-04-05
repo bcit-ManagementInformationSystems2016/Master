@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -20,7 +21,7 @@ import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 
 @Named("hrController")
-@SessionScoped
+@ConversationScoped
 public class HRController implements Serializable {
 	Employee e;
 
@@ -51,10 +52,10 @@ public class HRController implements Serializable {
 	private Credential crd = new Credential();
 
 	// variables used for caching
-	private static Employee[] minions;
-	private static List<SelectItem> employeeList;
-	private static List<SelectItem> payLevelList;
-	private static List<SelectItem> roleList;
+	private Employee[] minions;
+	private List<SelectItem> employeeList;
+	private List<SelectItem> payLevelList;
+	private List<SelectItem> roleList;
 
 	// GETTERS AND SETTERS
 	public Credential getCrd() {
@@ -81,8 +82,8 @@ public class HRController implements Serializable {
 		viewableEmp = emp;
 	}
 
-	public static void setMinions(Employee[] minions) {
-		HRController.minions = minions;
+	public void setMinions(Employee[] minions) {
+		this.minions = minions;
 	}
 
 	public Employee[] getMinions() {
@@ -96,8 +97,8 @@ public class HRController implements Serializable {
 		return payLevelList;
 	}
 
-	public static void setPayLevelList(List<SelectItem> roleList) {
-		HRController.payLevelList = roleList;
+	public void setPayLevelList(List<SelectItem> payLevelList) {
+		this.payLevelList = payLevelList;
 	}
 
 	public List<SelectItem> getEmployeeList() {
@@ -114,12 +115,12 @@ public class HRController implements Serializable {
 		return roleList;
 	}
 
-	public static void setRoleList(List<SelectItem> roleList) {
-		HRController.roleList = roleList;
+	public void setEmployeeList(List<SelectItem> employeeList) {
+		this.employeeList = employeeList;
 	}
 
-	public static void setEmployeeList(List<SelectItem> employeeList) {
-		HRController.employeeList = employeeList;
+	public void setRoleList(List<SelectItem> roleList) {
+		this.roleList = roleList;
 	}
 
 	// Other Methods
@@ -183,7 +184,7 @@ public class HRController implements Serializable {
 
 	public String changePassword() {
 		crd.setEmployeeID(e.getEmployeeID());
-		//crd.setUsername(l.getUsername());
+		// crd.setUsername(l.getUsername());
 		crd.setUsername("username");
 		crdmgr.merge(crd);
 		crd = new Credential();

@@ -39,12 +39,13 @@ public class LoginValidator implements Validator {
 	@Inject
 	CredentialManager crmgr;
 	public static String pw;
+
 	@Override
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
 		Login.setMaps();
 		String username = value.toString();
 		boolean active = false;
-		
+
 		if (Login.map.containsKey(username)) {
 			pw = Login.map.get(username);
 			active = Login.activeMap.get(Login.map2.get(username));

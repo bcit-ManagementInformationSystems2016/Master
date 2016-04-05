@@ -36,8 +36,8 @@ public class PasswordValidator implements Validator {
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
 
 		String password = value.toString();
-//		System.out.println("password: " + password);
-		if (!password.toString().equals(LoginValidator.pw)){
+		// System.out.println("password: " + password);
+		if (!password.toString().equals(LoginValidator.pw)) {
 			FacesMessage msg = new FacesMessage("Password validation failed", "Incorrect Password");
 			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 			throw new ValidatorException(msg);

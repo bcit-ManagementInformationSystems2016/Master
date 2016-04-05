@@ -2,6 +2,7 @@ package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +15,7 @@ import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Timesheet;
 
 @Named("timesheetValidatorController")
-@SessionScoped
+@ConversationScoped
 public class TimesheetValidatorController implements Serializable {
 	Employee e;
 
@@ -37,17 +38,10 @@ public class TimesheetValidatorController implements Serializable {
 	private Employee currentEmployee;
 
 	// variables used for caching
-	private static Employee[] validatees;
-	private static Timesheet[] unapprovedTimesheets;
+	private Employee[] validatees;
+	private Timesheet[] unapprovedTimesheets;
 
 	// Getters and Setters
-	public Employee[] getValidatees() {
-		return validatees;
-	}
-
-	public void setValidatees(Employee[] validatees) {
-		TimesheetValidatorController.validatees = validatees;
-	}
 
 	public Employee getCurrentEmployee() {
 		return currentEmployee;
@@ -57,15 +51,23 @@ public class TimesheetValidatorController implements Serializable {
 		this.currentEmployee = currentEmployee;
 	}
 
-	public static Timesheet[] getUnapprovedTimesheets() {
+	// Other methods
+
+	public Employee[] getValidatees() {
+		return validatees;
+	}
+
+	public void setValidatees(Employee[] validatees) {
+		this.validatees = validatees;
+	}
+
+	public Timesheet[] getUnapprovedTimesheets() {
 		return unapprovedTimesheets;
 	}
 
-	public static void setUnapprovedTimesheets(Timesheet[] unapprovedTimesheets) {
-		TimesheetValidatorController.unapprovedTimesheets = unapprovedTimesheets;
+	public void setUnapprovedTimesheets(Timesheet[] unapprovedTimesheets) {
+		this.unapprovedTimesheets = unapprovedTimesheets;
 	}
-
-	// Other methods
 
 	public Employee[] getYourValidatees() {
 		if (validatees == null) {

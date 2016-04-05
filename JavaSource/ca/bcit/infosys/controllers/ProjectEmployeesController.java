@@ -3,6 +3,7 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ import ca.bcit.infosys.models.ProjectEmployees;
 //import ca.bcit.infosys.models.ProjectEmployeesKey;
 
 @Named("projectEmployeesController")
-@SessionScoped
+@ConversationScoped
 public class ProjectEmployeesController implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -27,93 +28,105 @@ public class ProjectEmployeesController implements Serializable {
 	private EmployeeManager empmgr;
 	@Inject
 	private ProjectEmployeesManager pjtEmpMgr;
-	
+
 	// variables
 	private Project viewableProject;
 	private Employee viewableEmployee;
 	private String assignedProject;
 	private int assignedProjectID;
-	
+
 	// variables used for caching
-	private static Project[] pros;
-	private static List<SelectItem> availableProjects;
-	private static Employee[] availableEmps;
-	
-	//Getters and Setters
+	private Project[] pros;
+	private List<SelectItem> availableProjects;
+	private Employee[] availableEmps;
+
+	// Getters and Setters
 	public Project getViewableProject() {
 		return viewableProject;
 	}
+
 	public void setViewableProject(Project viewableProject) {
 		this.viewableProject = viewableProject;
-	}	
+	}
+
 	public Employee getViewableEmployee() {
 		return viewableEmployee;
 	}
+
 	public void setViewableEmployee(Employee viewableEmployee) {
 		this.viewableEmployee = viewableEmployee;
 	}
+
 	public String getAssignedProject() {
 		return assignedProject;
 	}
+
 	public void setAssignedProject(String assignedProject) {
 		this.assignedProject = assignedProject;
 	}
+
 	public int getAssignedProjectID() {
 		return assignedProjectID;
 	}
+
 	public void setAssignedProjectID(int assignedProjectID) {
 		this.assignedProjectID = assignedProjectID;
 	}
-	public void setPros(Project[] pros) {
-		ProjectEmployeesController.pros = pros;
-	}
+
 	public Project[] getPros() {
 		return pros;
 	}
-	public void setAvailableEmps(Employee[] availableEmps) {
-		ProjectEmployeesController.availableEmps = availableEmps;
+
+	public void setPros(Project[] pros) {
+		this.pros = pros;
 	}
+
+	public List<SelectItem> getAvailableProjects() {
+		return availableProjects;
+	}
+
+	public void setAvailableProjects(List<SelectItem> availableProjects) {
+		this.availableProjects = availableProjects;
+	}
+
 	public Employee[] getAvailableEmps() {
 		return availableEmps;
 	}
-	public static List<SelectItem> getAvailableProjects() {
-		return availableProjects;
+
+	public void setAvailableEmps(Employee[] availableEmps) {
+		this.availableEmps = availableEmps;
 	}
-	public static void setAvailableProjects(List<SelectItem> availableProjects) {
-		ProjectEmployeesController.availableProjects = availableProjects;
-	}
-	
-	
+
 	// Other Methods
 	public String showAssignedEmps(Project p) {
 		setViewableProject(p);
 		return "listEmpsForProject";
 	}
-	
+
 	public String showAssignedProjects(Employee e) {
 		setViewableEmployee(e);
 		return "listProjectsForEmps";
 	}
-	
+
 	public String goToAssignPage(Employee e) {
 		setViewableEmployee(e);
 		return "assignEmpToProject";
 	}
-	
+
 	public Employee[] allEmployeesForProject() {
 		if (availableEmps == null) {
 			availableEmps = empmgr.getAllWithinProject(viewableProject.getProjectID());
 		}
 		return availableEmps;
 	}
-	
+
 	public Project[] allProjectsForEmployee() {
 		if (pros == null) {
 			setPros(pjtmgr.getAllProjectsForEmp(viewableEmployee.getEmployeeID()));
 		}
 		return pros;
 	}
-	
+
 	public List<SelectItem> getDropdownForProjects() {
 		if (viewableEmployee == null) {
 			System.out.println("ProjectEmployeesController - There is no employee yet");
@@ -123,7 +136,7 @@ public class ProjectEmployeesController implements Serializable {
 		}
 		return availableProjects;
 	}
-	
+
 	public String assignEmployee() {
 		int n = new Integer(assignedProject);
 		ProjectEmployees pe = new ProjectEmployees();
@@ -135,25 +148,25 @@ public class ProjectEmployeesController implements Serializable {
 		setAvailableProjects(null);
 		return "viewMinions";
 	}
-	
+
 	public String unassignEmployee(Project p) {
 		pjtEmpMgr.remove(p, viewableEmployee);
 		return "viewMinions";
 	}
-	
+
 	public String goToViewMinionsPage() {
 		setPros(null);
 		return "viewMinions";
 	}
-	
+
 	public String cancelAssignment() {
 		setAvailableProjects(null);
 		return "viewMinions";
 	}
-	
+
 	public String goToViewProjectsPage() {
 		setAvailableEmps(null);
 		return "showAllProjects";
 	}
-	
+
 }

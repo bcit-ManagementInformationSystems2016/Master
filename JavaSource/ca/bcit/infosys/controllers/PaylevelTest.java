@@ -8,12 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.annotation.Resource;
+import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.sql.DataSource;
 
 @Named("PayLevel")
-@SessionScoped
+@ConversationScoped
 public class PaylevelTest implements Serializable {
 	
 	@Resource(mappedName = "java:jboss/datasources/bluehost")
