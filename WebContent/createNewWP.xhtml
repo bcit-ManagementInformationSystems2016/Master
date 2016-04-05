@@ -14,26 +14,26 @@
 	<h:form>
 	<b:panelGrid colSpans="6,6">
 	<b:panel look="info" title="Work Package Info" collapsible="false">			  
-		<h:outputText value="Project Name" />
+		<h:outputText value="Project Name" style="font-weight: bold"/>
 		<br />		
-		<h:outputText value="#{treeController.editableProject.projectName}" style="font-weight: bold"></h:outputText>
+		<h:outputText value="#{treeController.editableProject.projectName}" ></h:outputText>
 		<br /><br />	
-		<h:outputText value="Project ID"></h:outputText>
+		<h:outputText value="Project ID" style="font-weight: bold"></h:outputText>
 		<br />
-		<h:outputText value="#{treeController.editableProject.projectID}" style="font-weight: bold"></h:outputText>
+		<h:outputText value="#{treeController.editableProject.projectID}" ></h:outputText>
 		<br /><br />
-		<h:outputText value="Work Package ID" />
+		<h:outputText value="Work Package ID" style="font-weight: bold"/>
 		<br />
-		<h:outputText value="#{treeController.newWPID}" style="font-weight: bold"/>
+		<h:outputText value="#{treeController.newWPID}" />
 		<br /><br />
-		<h:outputText value="Parent Work Package ID" />
+		<h:outputText value="Parent Work Package ID" style="font-weight: bold"/>
 		<br />
-		<h:outputText value="#{treeController.newWPPID}" style="font-weight: bold"/>
+		<h:outputText value="#{treeController.newWPPID}" />
 		<br /><br />		
-		<h:outputText value="Work Package Name" /><br />
+		<h:outputText value="Work Package Name" style="font-weight: bold"/><br />
 		<b:inputText value="#{treeController.wpToAdd.wpName}" required="true"/>		  
 		<br />
-		<h:outputText value="Work Package Description" />
+		<h:outputText value="Work Package Description" style="font-weight: bold"/>
 		<br />
 		<b:inputTextarea value="#{treeController.wpToAdd.description}" required="true"/>		
 	</b:panel>

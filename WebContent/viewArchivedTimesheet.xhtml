@@ -23,25 +23,30 @@
                 <b:panelGrid colSpans="6,6">
                     <b:panel look="info" title="Current Timesheet" collapsible="false">
                         <h3 class="panel-title test">            
+<<<<<<< Updated upstream
 						Employee ID: <h:outputText value="#{timesheet.employeeId()}" style="font-weight: bold" /><br/> 
 						Employee Name: <h:outputText value="#{timesheet.archivedFirstName}" style="margin-right: 10px" />
+=======
+						<strong>Employee ID: </strong><h:outputText value="#{timesheet.employeeId}" /><br/> 
+						<strong>Employee Name:</strong> <h:outputText value="#{timesheet.archivedFirstName}" style="margin-right: 10px" />
+>>>>>>> Stashed changes
 									  <h:outputText value="#{timesheet.archivedLastName}" /><br/>
-						#{msgs.wk_num}<h:outputText value="#{timesheet.archivedWeekNumber}"/><br/>
+						<strong>#{msgs.wk_num}</strong><h:outputText value="#{timesheet.archivedWeekNumber}"/><br/>
 						<br/><br/>
-						<h:outputText value="Flextime :"/><br/>        
-			        	<h:outputText value="Overtime :"/><br/><br/>
+						<h:outputText value="Flextime :" style="font-weight: bold"/><br/>        
+			        	<h:outputText value="Overtime :" style="font-weight: bold"/><br/><br/>
 			
 					</h3>
 
                     </b:panel>
                     <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allArchivedTotalHours}" collapsible="false" class="test">
-                        #{msgs.totalSun}
-                        <h:outputText value="#{timesheetRow.archivedSunTotalHours}" /><br/> #{msgs.totalMon}
-                        <h:outputText value="#{timesheetRow.archivedMonTotalHours}" /><br/> #{msgs.totalTue}
-                        <h:outputText value="#{timesheetRow.archivedTuesTotalHours}" /><br/> #{msgs.totalWed}
-                        <h:outputText value="#{timesheetRow.archivedWedTotalHours}" /><br/> #{msgs.totalThu}
-                        <h:outputText value="#{timesheetRow.archivedThursTotalHours}" /><br/> #{msgs.totalFri}
-                        <h:outputText value="#{timesheetRow.archivedFriTotalHours}" /><br/> #{msgs.totalSat}
+                        <strong>#{msgs.totalSun}</strong>
+                        <h:outputText value="#{timesheetRow.archivedSunTotalHours}" /><br/> <strong>#{msgs.totalMon}</strong>
+                        <h:outputText value="#{timesheetRow.archivedMonTotalHours}" /><br/> <strong>#{msgs.totalTue}</strong>
+                        <h:outputText value="#{timesheetRow.archivedTuesTotalHours}" /><br/> <strong>#{msgs.totalWed}</strong>
+                        <h:outputText value="#{timesheetRow.archivedWedTotalHours}" /><br/> <strong>#{msgs.totalThu}</strong>
+                        <h:outputText value="#{timesheetRow.archivedThursTotalHours}" /><br/> <strong>#{msgs.totalFri}</strong>
+                        <h:outputText value="#{timesheetRow.archivedFriTotalHours}" /><br/> <strong>#{msgs.totalSat}</strong>
                         <h:outputText value="#{timesheetRow.archivedSatTotalHours}" />
 
                     </b:panel>

@@ -23,22 +23,29 @@
                 <b:panelGrid colSpans="6,6">
                     <b:panel look="info" title="Current Timesheet" collapsible="false">
                         <h3 class="panel-title test">            
-					Employee ID: <h:outputText value="#{login.currentUser.employeeID}" style="font-weight: bold" /><br/> 
-					Employee Name: <h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" />
+					<strong>Employee ID: </strong><h:outputText value="#{login.currentUser.employeeID}" /><br/> 
+					<strong>Employee Name: </strong><h:outputText value="#{timesheet.firstName}" style="margin-right: 10px" />
 								  <h:outputText value="#{timesheet.lastName}" /><br/>
-					#{msgs.wk_num}<h:outputText value="#{timesheet.weekNumber}"/><br/>
+					<strong>#{msgs.wk_num}</strong><h:outputText value="#{timesheet.weekNumber}"/><br/>
 					<br/><br/>
-					<h:outputText value="Flextime :"/><br/>        
-		        	<h:outputText value="Overtime :"/><br/><br/>
+					<h:outputText value="Flextime :" style="font-weight: bold"/><br/>        
+		        	<h:outputText value="Overtime :" style="font-weight: bold"/><br/><br/>
 		
 				</h3>
 
                     </b:panel>
                     <b:panel look="info" title="Info" collapsible="false" class="test">
+<<<<<<< Updated upstream
                         Total Pending : <h:outputText value="#{timesheetRow.countPending()}" />
                         <br />
                         <br />
                         Total Approved :<h:outputText value="#{timesheet.countApproved()}" />
+=======
+                        <h:outputText value="Total Pending :" style="font-weight: bold"/>
+                        <br />
+                        <br />
+                        <h:outputText value="Total Approved :" style="font-weight: bold"/>
+>>>>>>> Stashed changes
                         <br />
                         <br />
                     </b:panel>

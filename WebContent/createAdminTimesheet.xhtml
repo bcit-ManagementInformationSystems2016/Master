@@ -22,18 +22,18 @@
                 <b:panelGrid colSpans="6,6">
                     <b:panel look="info" title="Current Timesheet" collapsible="false">
                         <h3 class="panel-title test">
-							<br /> Employee ID:
-							<h:outputText value="#{timesheet.currentID}" style="font-weight: bold" />
-							<br /> Employee Name:
+							<br /> <strong> Employee ID: </strong>
+							<h:outputText value="#{timesheet.currentID}" />
+							<br /> <strong>Employee Name: </strong>
 							<h:outputText value="#{timesheet.firstName}"
 								style="margin-right: 10px" />
 							<h:outputText value="#{timesheet.lastName}" />
-							<br /> #{msgs.wk_num}
+							<br /> <strong>#{msgs.wk_num} </strong>
 							<h:outputText value="#{timesheet.weekNumber}" />
 							<br /> <br />
-							<h:outputText value="Flextime :" />
+							<h:outputText value="Flextime :" style="font-weight: bold"/>
 							<br />
-							<h:outputText value="Overtime :" />
+							<h:outputText value="Overtime :" style="font-weight: bold"/>
 							<br /> <br />
 
 						</h3>
@@ -44,19 +44,19 @@
 
                     </b:panel>
                     <b:panel look="info" title="#{msgs.allTotal} #{timesheetRow.allTotalHours}" collapsible="false" class="test">
-                        #{msgs.totalSun}
+                        <strong>#{msgs.totalSun}</strong>
                         <h:outputText value="#{timesheetRow.sunTotalHours}" />
-                        <br /> #{msgs.totalMon}
+                        <br /> <strong>#{msgs.totalMon}</strong>
                         <h:outputText value="#{timesheetRow.monTotalHours}" />
-                        <br /> #{msgs.totalTue}
+                        <br /> <strong>#{msgs.totalTue}</strong>
                         <h:outputText value="#{timesheetRow.tuesTotalHours}" />
-                        <br /> #{msgs.totalWed}
+                        <br /> <strong>#{msgs.totalWed}</strong>
                         <h:outputText value="#{timesheetRow.wedTotalHours}" />
-                        <br /> #{msgs.totalThu}
+                        <br /> <strong>#{msgs.totalThu}</strong>
                         <h:outputText value="#{timesheetRow.thursTotalHours}" />
-                        <br /> #{msgs.totalFri}
+                        <br /> <strong>#{msgs.totalFri}</strong>
                         <h:outputText value="#{timesheetRow.friTotalHours}" />
-                        <br /> #{msgs.totalSat}
+                        <br /> <strong>#{msgs.totalSat}</strong>
                         <h:outputText value="#{timesheetRow.satTotalHours}" />
                         <!-- 
                 <h:commandButton value="#{msgs.submit}" action="#{timesheetData.save}" styleClass="btn btn-info" /> 
