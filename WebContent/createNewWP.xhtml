@@ -40,54 +40,66 @@
 	<b:panel look="info" title="Enter Work Package Details" collapsible="false">			
 		<h:outputText value="Man Hours per Pay Level" style="font-weight: bold"/>		
 		<br />		
-		<b:inputText value="#{treeController.budget.p1Day}" >
+		<b:inputText value="#{treeController.budget.p1Day}" id="p1">
 		<f:facet name="prepend">
                 <h:outputText value="Pay Level 1" />
             </f:facet>
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p1Cost}" tooltip-position="auto left"/>
             </f:facet>
+            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 	
-		<b:inputText value="#{treeController.budget.p2Day}" >
+        <h:message for="p1" style="color:red" />
+		<b:inputText value="#{treeController.budget.p2Day}" id="p2">
 		<f:facet name="prepend">
                 <h:outputText value="Pay Level 2" />
             </f:facet>
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p2Cost}" tooltip-position="auto left"/>
             </f:facet>
+            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 	
-		<b:inputText value="#{treeController.budget.p3Day}" >
+         <h:message for="p2" style="color:red" />
+		<b:inputText value="#{treeController.budget.p3Day}" id="p3">
 		<f:facet name="prepend">
                 <h:outputText value="Pay Level 3" />
             </f:facet>
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p3Cost}" tooltip-position="auto left"/>
             </f:facet>
+            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
-		<b:inputText value="#{treeController.budget.p4Day}" >
+         <h:message for="p3" style="color:red" />
+		<b:inputText value="#{treeController.budget.p4Day}" id="p4">
 		<f:facet name="prepend">
                 <h:outputText value="Pay Level 4" />
             </f:facet>
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p4Cost}" tooltip-position="auto left"/>
             </f:facet>
+            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
-		<b:inputText value="#{treeController.budget.p5Day}" >
+         <h:message for="p4" style="color:red" />
+		<b:inputText value="#{treeController.budget.p5Day}" id="p5">
 		<f:facet name="prepend">
                 <h:outputText value="Pay Level 5" />
             </f:facet>
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p5Cost}" tooltip-position="auto left"/>
             </f:facet>
+             <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
+        <h:message for="p5" style="color:red" />
 		<b:inputText value="#{treeController.budget.p6Day}" >
 		<f:facet name="prepend">
-                <h:outputText value="Pay Level 6" />
+                <h:outputText value="Pay Level 6" id="p6"/>
             </f:facet>
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p6Cost}" tooltip-position="auto left"/>
             </f:facet>
+             <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
+         <h:message for="p6" style="color:red" />
         <br />
 		<h:outputText value="Responsible Engineer:" style="font-weight: bold"/>
 		<br />
