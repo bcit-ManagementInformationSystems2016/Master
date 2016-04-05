@@ -1,7 +1,6 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,7 +12,6 @@ import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -51,23 +49,12 @@ public class WorkPackage implements Serializable{
 	@Column(name="isChild")
 	private boolean isChild;
 	
-	//bi-directional one-to-one association to Employee
-//	@OneToOne
-//	@JoinColumn(name="BudgetPDays")
 	@Column(name="BudgetPDays")
 	private int budgetedDaysID;
 		
-	//bi-directional one-to-one association to Employee
-//	@OneToOne
-//	@JoinColumn(name="RemainingDays")
 	@Column(name="RemainingDays")
 	private int remainingDaysID;
 
-	//bi-directional one-to-many association to Employee
-	// This is the one side
-//	@Id
-//	@ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name="ResponsibleEngineer")
 	@Column(name="ResponsibleEngineer")
     private int responsibleEngineerID;
 	

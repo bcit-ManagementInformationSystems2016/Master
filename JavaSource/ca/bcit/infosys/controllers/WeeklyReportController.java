@@ -65,91 +65,69 @@ public class WeeklyReportController implements Serializable {
 	private WorkPackage wpForReport;
 	
 
-	// Getters and Setters
+	// GETTERS AND SETTERS
 
 	public String getEngineer() {
 		return engineer;
 	}
-
 	public TimesheetRow[] getTsrows() {
 		
 		return tsrows;
 	}
-
 	public WorkPackage getWpForReport() {
 		return wpForReport;
 	}
-
 	public void setWpForReport(WorkPackage wpForReport) {
 		this.wpForReport = wpForReport;
 	}
-
 	public PayLevelCost getPlc() {
 		return plc;
 	}
-
 	public void setPlc(PayLevelCost plc) {
 		this.plc = plc;
 	}
-
 	public void setTsrows(TimesheetRow[] tsrows) {
 		this.tsrows = tsrows;
 	}
-
-	/**
-	 * @return the pld
-	 */
 	public PayLevelDays getPld() {
 		return pld;
 	}
-
-	/**
-	 * @param pld the pld to set
-	 */
 	public void setPld(PayLevelDays pld) {
 		this.pld = pld;
 	}
-
 	public void setEngineer(String engineer) {
 		this.engineer = engineer;
 	}
-
 	public double getPersonDays() {
 		return personDays;
 	}
-
 	public void setPersonDays(double personDays) {
 		this.personDays = personDays;
 	}
-
 	public double getPersonDollars() {
 		return personDollars;
 	}
-
 	public void setPersonDollars(double personDollars) {
 		this.personDollars = personDollars;
 	}
-
 	public double getEstToComplete() {
 		return estToComplete;
 	}
-
 	public void setEstToComplete(double estToComplete) {
 		this.estToComplete = estToComplete;
 	}
 
+	// FUNCTIONALITY METHODS
+	
 	public String showWeeklyReport(WorkPackage wp) {
-		//WorkPackage wp = wpmgr.find(proj, wpID);
 		pld = pldMgr.find(wp.getRemainingDaysID());
 		double wpDays = tsrctr.getHoursForWP(wp.getWpID());
-		//System.out.println(wpDays);
 		wpForReport = wp;
 		tsrows = tsrmgr.getRowsWithWPId(wp.getWpID());
 		plc = plcMgr.getProjectCosts(wp.getWorkingProject().getProjectID());
 		personDays = getActualDays(tsrows);
 		personDollars = getActualCost(plc, tsrows);
 		estToComplete = wpDays / 8;
-
 		return "weeklyReport";
 	}
 	
@@ -179,7 +157,6 @@ public class WeeklyReportController implements Serializable {
 		for (int i =0; i < tsrows.length; i++) {
 			days += tsrows[i].getTotalHours() / 8;
 		}
-		
 		return days;
 	}
 	
