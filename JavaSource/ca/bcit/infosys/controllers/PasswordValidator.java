@@ -29,20 +29,19 @@ public class PasswordValidator implements Validator {
 	Employee e;
 
 	public void getUser(Employee emp) {
-		System.out.println("GET USER HR CONTROLLER");
 		e = emp;
 	}
 
 	@Override
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
-//		l.setMaps();
-//		String password = value.toString();
+
+		String password = value.toString();
 //		System.out.println("password: " + password);
-//		if (!password.toString().equals(l.getPassword())){
-//			FacesMessage msg = new FacesMessage("Password validation failed", "Incorrect Password");
-//			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-//			throw new ValidatorException(msg);
-//		}
+		if (!password.toString().equals(LoginValidator.pw)){
+			FacesMessage msg = new FacesMessage("Password validation failed", "Incorrect Password");
+			msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+			throw new ValidatorException(msg);
+		}
 
 	}
 

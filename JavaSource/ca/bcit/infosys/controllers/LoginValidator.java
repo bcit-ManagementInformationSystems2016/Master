@@ -38,17 +38,17 @@ public class LoginValidator implements Validator {
 
 	@Inject
 	CredentialManager crmgr;
-
+	public static String pw;
 	@Override
 	public void validate(FacesContext facesContext, UIComponent component, Object value) throws ValidatorException {
 		Login.setMaps();
 		String username = value.toString();
 		boolean active = false;
-
-		 if (Login.map.containsKey(username)) {
-
-		active = Login.activeMap.get(Login.map2.get(username));
-		if (active == false) {
+		
+		if (Login.map.containsKey(username)) {
+			pw = Login.map.get(username);
+			active = Login.activeMap.get(Login.map2.get(username));
+			if (active == false) {
 				FacesMessage msg = new FacesMessage("Username validation failed", "Account is not active");
 				msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 				throw new ValidatorException(msg);
