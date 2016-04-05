@@ -165,7 +165,7 @@ public class WorkPackageManager {
 	}
 	
 	public WorkPackage[] getWPforEng(int empID) {
-		TypedQuery<WorkPackage> query = em.createQuery("select c from WorkPackage c WHERE ResponsibleEngineer = " + empID + "", WorkPackage.class);
+		TypedQuery<WorkPackage> query = em.createQuery("select c from WorkPackage c WHERE ResponsibleEngineer = " + empID + " AND isChild = 1", WorkPackage.class);
 		List<WorkPackage> wps = query.getResultList();
 		WorkPackage[] wpArray = new WorkPackage[wps.size()];
 		for (int i=0; i < wpArray.length; i++) {

@@ -258,6 +258,7 @@ public class TreeController implements Serializable {
 				(budget.getP4Day() * projectCost.getP4Cost()) + (budget.getP5Day() * projectCost.getP5Cost()) + (budget.getP6Day() * projectCost.getP6Cost());
 		wpToAdd.setTotalBudgetCost(wpCost);
 		wpToAdd.setTotalBudgetDays(manDays);
+		wpToAdd.setChild(true);
 		wpmgr.merge(w);
 		if (!wpToAdd.getParentWPID().equals("0")) {
 			updateBudget(wpToAdd);
@@ -274,6 +275,9 @@ public class TreeController implements Serializable {
 				empwpmgr.merge(ewp);
 			}
 		}
+		WorkPackage parent = wpmgr.find(projectToAdd, wpToAdd.getParentWPID());
+		parent.setChild(false);
+		wpmgr.merge(parent);
 		WorkPackage top = wpmgr.getTopWorkPackage(editableProject.getProjectID());
 		projectTree = new TreeManagedBean(top, wpmgr.getProjectWorkPackagesForTree(editableProject.getProjectID()));
 		selectedWP = wpToAdd;
