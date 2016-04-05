@@ -23,7 +23,7 @@
 			<b:panel look="info" title="Employee Details" collapsible="false">
 				<h3 class="panel-title test">
 					Employee Name:
-					<h:outputText value="#{login.empName}" />
+					<h:outputText value="#{login.currentUser.firstName} #{login.currentUser.lastName}" />
 					<br /> Total days allowed:
 					<h:outputText value="#{vacation.totalDaysAllowed}" />
 					<br /> Total days remaining:
