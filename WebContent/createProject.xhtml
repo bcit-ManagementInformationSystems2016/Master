@@ -15,7 +15,7 @@
 				<b:panelGrid colSpans="4,8">
 					<b:panel look="info" title="Create New Project for: #{customerController.editableCustomer.companyName}"
 						collapsible="false">
-						<b:inputText value="#{customerController.newProject.projectName}" required="true">
+						<b:inputText value="#{customerController.newProject.projectName}" required="true" id="pName" requiredMessage="Project Name required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -23,10 +23,12 @@
 								<h:outputText value="Project Name" />
 							</f:facet>
 						</b:inputText>
+						<h:message for="pName" style="color:red" />
 						<br />
 						<h:outputText value="Project Description" />
 						<br />
-						<b:inputTextarea value="#{customerController.newProject.description}" required="true" />
+						<b:inputTextarea value="#{customerController.newProject.description}" required="true" id="desc"requiredMessage="Project Description required"/>
+						<h:message for="desc" style="color:red" />
 						<b:selectOneMenu value="#{customerController.projectManager}">
 							<f:selectItems value="#{customerController.getEmployeeDropdown()}" />
 							<f:facet name="append">
