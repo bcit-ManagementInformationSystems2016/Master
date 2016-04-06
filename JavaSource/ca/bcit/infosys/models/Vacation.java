@@ -55,14 +55,9 @@ public class Vacation implements Serializable {
 		return requestDate;
 	}
 
-	public void setRequestDate(Date requestDate) throws ParseException {
-		DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+	public void setRequestDate(Date requestDate) {
 		
-		requestDate = new Date();
-		
-		Date todayWithoutTime = formatter.parse(formatter.format(requestDate));
-		
-		this.requestDate = todayWithoutTime;
+		this.requestDate = requestDate;
 	}
 
 	public int getVacationDaysLeft() {

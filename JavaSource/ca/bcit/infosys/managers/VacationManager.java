@@ -67,16 +67,21 @@ public class VacationManager {
 	}
 
 	public int getDaysRemaining(int empID) {
-		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE EmployeeID = " + empID,
+		int count = 0;
+		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE EmployeeID = " + empID + " AND IsApproved = " + true,
 				Vacation.class);
 		java.util.List<Vacation> categories = query.getResultList();
 		Vacation[] vacayArray = new Vacation[categories.size()];
 		for (int i = 0; i < vacayArray.length; i++) {
 			vacayArray[i] = categories.get(i);
 		}
+		for(int i = 0; i < categories.size(); i++){
+			count += vacayArray[i].getVacationDaysLeft();
+		}
 		if (categories.size() > 1)
-			return vacayArray[categories.size() - 1].getVacationDaysLeft();
+			return vacayArray[categories.size() - 1].getVacationDaysLeft() - count;
 		else
-			return getDaysAllowed(empID);
+			return getDaysAllowed(empID) - count;
+		
 	}
 }

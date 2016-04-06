@@ -1,7 +1,9 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.enterprise.context.ConversationScoped;
@@ -48,6 +50,7 @@ public class VacationController implements Serializable {
 		if (daysRemaining == 0) {
 			daysRemaining = vacationManager.getDaysRemaining(e.getEmployeeID());
 		}
+		
 		return daysRemaining;
 	}
 
@@ -114,15 +117,19 @@ public class VacationController implements Serializable {
 		return "viewVacation";
 	}
 
-	public String createVacation(Vacation v) throws ParseException {
+	public String createVacation(Vacation v) {
 
 		Date date = new Date();
+		boolean isApproved = false;
+		
+		v.setIsApproved(isApproved);
 		v.setEmployeeID(e.getEmployeeID());
 		v.setRequestDate(date);
+		
 		v.setVacationDaysLeft(vacationManager.getDaysRemaining(e.getEmployeeID()) - days);
 		vacationManager.persist(v);
 
-		return "created";
+		return "viewVacation";
 	}
 
 	public Vacation getV() {
