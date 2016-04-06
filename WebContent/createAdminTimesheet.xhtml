@@ -30,12 +30,7 @@
 							<h:outputText value="#{timesheet.lastName}" />
 							<br /> <strong>#{msgs.wk_num} </strong>
 							<h:outputText value="#{timesheet.weekNumber}" />
-							<br /> <br />
-							<h:outputText value="Flextime :" style="font-weight: bold"/>
-							<br />
-							<h:outputText value="Overtime :" style="font-weight: bold"/>
-							<br /> <br />
-
+							<br /> <br /> <br />
 						</h3>
                         <h:commandButton value="Add row" action="createTimesheetRow.xhtml" styleClass="btn btn-info" style="margin-right: 10px" disabled="#{timesheetRow.isSubmitted()}"></h:commandButton>
                         <h:commandButton value="Reset" action="#{timesheetRow.resetTimesheet}" styleClass="btn btn-info" style="margin-right: 10px" disabled="#{timesheetRow.isSubmitted()}"></h:commandButton>

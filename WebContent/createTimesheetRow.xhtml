@@ -78,34 +78,26 @@
                             </f:facet>
                         </b:inputText>
                         <!-- <p:outputLabel for="project" value="Project: " /> -->
-                        <p:selectOneMenu id="project" value="#{timesheetRow.tsr.projectID}">
+                        <b:selectOneMenu id="project" value="#{timesheetRow.tsr.projectID}" required="true"
+                  			requiredMessage="project ERROR" validatorMessage="projectERROR">
                             <p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
                             <f:selectItem itemLabel="Select Project" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{timesheetRow.getProjectList()}" />
-                            <f:validateRequired/>
-                            <f:ajax event="blur" render="titleError"/>
-                        </p:selectOneMenu>
+                            <f:validateRequired/>                           
+  							<f:ajax event="blur" render="projectError" />
+                        </b:selectOneMenu>
+                        <h:message for="project" errorClass="invalid" id="projectError" style="color:red"/>
 
                         <!-- <p:outputLabel for="wp" value="Work Package: " /> -->
-                        <p:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}">
+                        <b:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}" required="true"
+                  			requiredMessage="Work Package ERROR" validatorMessage="wpERROR">
                             <f:selectItem itemLabel="Select Work Package" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
                             <f:validateRequired/>
-                            <f:ajax event="blur" render="titleError"/>
-                        </p:selectOneMenu>
-                        <!-- <b:selectOneMenu value="#{timesheetRow.tsr.projectID}">
-							<f:selectItems value="#{timesheetRow.getProjectList()}" />
-							<f:facet name="append">
-								<h:outputText value="Project ID" />
-							</f:facet>
-						</b:selectOneMenu>
-						<b:selectOneMenu value="#{timesheetRow.tsr.workPackageID}">
-							<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
-							<f:facet name="append">
-								<h:outputText value="Work Package ID" />
-							</f:facet>
-						</b:selectOneMenu> -->
-                        <br />
+  							<f:ajax event="blur" render="wpError" />
+                        </b:selectOneMenu>
+                        <h:message for="wp" errorClass="invalid" id="wpError" style="color:red"/><br/>
+                        
                         <h:commandButton value="Create Row" action="#{timesheetRow.createTsr(timesheetRow.tsr)}" styleClass="btn btn-info"></h:commandButton>
                     </b:panel>
                 </b:panelGrid>

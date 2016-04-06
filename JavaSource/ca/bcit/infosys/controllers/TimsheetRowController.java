@@ -141,6 +141,7 @@ public class TimsheetRowController implements Serializable {
 				}
 			}
 		}
+		tsr = new TimesheetRow();
 		System.out.println("Updated timesheetRow");
 		return "updated";
 	}
@@ -166,6 +167,7 @@ public class TimsheetRowController implements Serializable {
 		newTsr.setStatus("new");
 		databaseRows.add(newTsr);
 		System.out.println("Created timesheetRow");
+		tsr = new TimesheetRow();
 		return "created";
 	}
 
