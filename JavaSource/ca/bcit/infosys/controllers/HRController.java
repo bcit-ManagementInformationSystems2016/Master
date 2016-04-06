@@ -159,7 +159,6 @@ public class HRController implements Serializable {
 
 	public String viewMinionsPage() {
 		setMinions(null);
-		System.out.println("HR: test");
 		return "viewMinions";
 	}
 

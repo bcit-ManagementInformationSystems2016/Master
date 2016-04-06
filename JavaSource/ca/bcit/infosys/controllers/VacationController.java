@@ -168,6 +168,7 @@ public class VacationController implements Serializable {
 	public String goBack() {
 		setVacayArray(null);
 		totalDaysAllowed = 0;
+		daysRemaining = 0;
 		return "adminLanding";
 	}
 
