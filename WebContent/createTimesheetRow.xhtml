@@ -78,24 +78,24 @@
                             </f:facet>
                         </b:inputText>
                         <!-- <p:outputLabel for="project" value="Project: " /> -->
-                        <b:selectOneMenu id="project" value="#{timesheetRow.tsr.projectID}" required="true"
+                        <p:selectOneMenu id="project" value="#{timesheetRow.tsr.projectID}" required="true"
                   			requiredMessage="project ERROR" validatorMessage="projectERROR">
                             <p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
                             <f:selectItem itemLabel="Select Project" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{timesheetRow.getProjectList()}" />
                             <f:validateRequired/>                           
   							<f:ajax event="blur" render="projectError" />
-                        </b:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message for="project" errorClass="invalid" id="projectError" style="color:red"/>
 
                         <!-- <p:outputLabel for="wp" value="Work Package: " /> -->
-                        <b:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}" required="true"
+                        <p:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}" required="true"
                   			requiredMessage="Work Package ERROR" validatorMessage="wpERROR">
                             <f:selectItem itemLabel="Select Work Package" itemValue="" noSelectionOption="true" />
                             <f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
                             <f:validateRequired/>
   							<f:ajax event="blur" render="wpError" />
-                        </b:selectOneMenu>
+                        </p:selectOneMenu>
                         <h:message for="wp" errorClass="invalid" id="wpError" style="color:red"/><br/>
                         
                         <h:commandButton value="Create Row" action="#{timesheetRow.createTsr(timesheetRow.tsr)}" styleClass="btn btn-info"></h:commandButton>

@@ -128,8 +128,8 @@ public class Login implements Serializable {
 	public String logout() {
 		System.out.println("logout");
 		conversation.end();
-		TimsheetRowController.localRows = null;
-		TimsheetRowController.workPackageList = null;
+		//TimsheetRowController.localRows = null;
+		//TimsheetRowController.workPackageList = null;
 		return "logout";
 	}
 

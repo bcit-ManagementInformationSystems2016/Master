@@ -35,8 +35,8 @@ public class TimsheetRowController implements Serializable {
 	@Inject
 	private TimesheetRowManager timesheetRowManager;
 	/** Manager from Product objects. */
-	//@Inject
-	//private WorkPackageManager workPackageManager;
+	// @Inject
+	// private WorkPackageManager workPackageManager;
 
 	@Inject
 	private EmployeeWPManager ewpManager;
@@ -46,12 +46,12 @@ public class TimsheetRowController implements Serializable {
 	private TimesheetRow tsr = new TimesheetRow();
 	private Timesheet ts;
 	public static Timesheet archivedTs;
-	static ArrayList<TimesheetRow> localRows;
-	private static ArrayList<TimesheetRow> databaseRows;
-	private static TimesheetRow[] archivedRows;
+	private ArrayList<TimesheetRow> localRows;
+	private ArrayList<TimesheetRow> databaseRows;
+	private TimesheetRow[] archivedRows;
 	private int archivedTimesheetId;
-	static List<SelectItem> workPackageList;
-	static List<SelectItem> projectList;
+	private List<SelectItem> workPackageList;
+	private List<SelectItem> projectList;
 	private static int timesheetRowId = 13123;
 
 	public TimesheetRow getTsr() {
@@ -105,13 +105,13 @@ public class TimsheetRowController implements Serializable {
 		archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
 		return "viewArchivedTimesheet";
 	}
-	
+
 	public String gotoValidatingTimesheet(Timesheet ts) {
-        archivedTimesheetId = ts.getTimesheetID();
-        archivedTs = timesheetManager.find(archivedTimesheetId);
-        archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
-        return "viewValidatingArchivedTimesheet";
-    }
+		archivedTimesheetId = ts.getTimesheetID();
+		archivedTs = timesheetManager.find(archivedTimesheetId);
+		archivedRows = timesheetRowManager.getRowsWithTimesheetId(archivedTimesheetId);
+		return "viewValidatingArchivedTimesheet";
+	}
 
 	public void setTsr(TimesheetRow tsr) {
 		this.tsr = tsr;
@@ -270,15 +270,15 @@ public class TimsheetRowController implements Serializable {
 		init();
 		return getTs().getSubmitted();
 	}
-    
-    public int countPending() {
-        if (isSubmitted()) {
-            return 1;
-        } else {
-            return 0;
-        }
-    }
-    
+
+	public int countPending() {
+		if (isSubmitted()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
 	public double getAllTotalHours() {
 		double allHours = 0.0;
 		ArrayList<TimesheetRow> rows = getAllTimesheetRow();
