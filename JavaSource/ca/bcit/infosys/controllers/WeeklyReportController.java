@@ -175,6 +175,24 @@ public class WeeklyReportController implements Serializable {
 	}
 
 	public String createReport() {
+		if (pld.getP1Day() < 0) {
+			pld.setP1Day(0);
+		}
+		if (pld.getP2Day() < 0) {
+			pld.setP2Day(0);
+		}
+		if (pld.getP3Day() < 0) {
+			pld.setP3Day(0);
+		}
+		if (pld.getP4Day() < 0) {
+			pld.setP4Day(0);
+		}
+		if (pld.getP5Day() < 0) {
+			pld.setP5Day(0);
+		}
+		if (pld.getP6Day() < 0) {
+			pld.setP6Day(0);
+		}
 		pldMgr.merge(pld);
 		return "createReport";
 	}
