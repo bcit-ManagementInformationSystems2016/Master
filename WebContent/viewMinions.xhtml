@@ -22,7 +22,7 @@
 			
 			<h:column>
 				<f:facet name="header">Name</f:facet>
-				<h:outputText value="#{emp.firstName} #{emp.lastName}"/>
+				<h:outputText value="#{emp.fullName}"/>
 			</h:column>
 			
 			<h:column>
@@ -50,7 +50,7 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header">
-				<h:outputText value="Disapprove Vacation Request"
+				<h:outputText value="Decline Vacation Request"
 					style="font-weight: bold" />
 			</f:facet>
 			<h:commandLink value="Decline"

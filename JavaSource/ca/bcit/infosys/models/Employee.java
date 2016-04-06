@@ -153,10 +153,7 @@ public class Employee implements Serializable {
 	public void setAssignedWorkPackages(List<EmployeeWP> assignedWorkPackages) {
 		this.assignedWorkPackages = assignedWorkPackages;
 	}
-//	public List<WorkPackage> getResponsibleEngineers() {
-//		return responsibleEngineers;
-//	}
-//	public void setResponsibleEngineers(List<WorkPackage> responsibleEngineers) {
-//		this.responsibleEngineers = responsibleEngineers;
-//	}
+	public String getFullName() {
+		return firstName + " " + lastName;
+	}
 }

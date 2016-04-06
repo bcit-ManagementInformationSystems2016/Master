@@ -153,4 +153,10 @@ public class WorkPackage implements Serializable{
 	public void setRemainingDaysID(int remainingDaysID) {
 		this.remainingDaysID = remainingDaysID;
 	}
+	public String getWorkPackageStatus() {
+		if (isChild) {
+			return "Project does not have any child WorkPackages and is ABLE to have employees assigned to it.";
+		}
+		return "Project has child Work Packages and is UNABLE to have employees assigned to it.";
+	}
 } 

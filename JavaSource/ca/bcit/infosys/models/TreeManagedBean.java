@@ -102,7 +102,7 @@ public class TreeManagedBean {
         this.checkboxSelectedTreeNodes = checkboxSelectedTreeNodes;
     }
  
-    public void onNodeSelect(NodeSelectEvent event){        
+    public void onNodeSelect(NodeSelectEvent event){  
     }
  
     public void onNodeUnSelect(NodeUnselectEvent event){

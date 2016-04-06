@@ -177,7 +177,7 @@ public class EmployeeManager {
 	}
 
 	public List<SelectItem> getEmployeeIDs() {
-		TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c where isActive = 1", Employee.class);
+		TypedQuery<Employee> proQuery = em.createQuery("select c from Employee c where isActive = 1 order by EmployeeID asc", Employee.class);
 		List<Employee> employees = proQuery.getResultList();
 		List<SelectItem> selectableEmployees = new ArrayList<SelectItem>();
 		for (int i = 0; i < employees.size(); i++) {
