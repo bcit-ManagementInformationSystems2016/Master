@@ -8,7 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.PayLevel;
 import ca.bcit.infosys.models.Vacation;

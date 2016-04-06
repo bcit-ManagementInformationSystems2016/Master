@@ -13,8 +13,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import ca.bcit.infosys.controllers.Login;
-import ca.bcit.infosys.models.EmployeeWP;
 import ca.bcit.infosys.models.Project;
 import ca.bcit.infosys.models.ProjectEmployees;
 

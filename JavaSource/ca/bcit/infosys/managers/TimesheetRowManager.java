@@ -11,9 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
-import ca.bcit.infosys.models.WorkPackage;
 
 /**
  * 
