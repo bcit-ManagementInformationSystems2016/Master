@@ -301,3 +301,7 @@ a {
 .input-group-btn, .input-group .form-control:focus { 
     border-color: #23E875 !important;
 }
+
+textarea.form-control:focus {
+   border-color: #23E875 !important;
+}
