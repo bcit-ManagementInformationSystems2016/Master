@@ -15,7 +15,7 @@
 				<b:panelGrid colSpans="3,9">
 					<b:panel look="info" title="Create New Customer"
 						collapsible="false">
-						<b:inputText value="#{customerController.editableCustomer.companyName}" required="true">
+						<b:inputText value="#{customerController.editableCustomer.companyName}" required="true" id="cName" requiredMessage="Customer Name required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -23,7 +23,8 @@
 								<h:outputText value="Customer Name" />
 							</f:facet>
 						</b:inputText>
-						<b:inputText value="#{customerController.editableCustomer.contactFName}" required="true">
+						<h:message for="cName" style="color:red" />
+						<b:inputText value="#{customerController.editableCustomer.contactFName}" required="true" id="fName" requiredMessage="Contact First Name required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -31,7 +32,8 @@
 								<h:outputText value="Contact First Name" />
 							</f:facet>
 						</b:inputText>
-						<b:inputText value="#{customerController.editableCustomer.contactLName}" required="true">
+						<h:message for="fName" style="color:red" />
+						<b:inputText value="#{customerController.editableCustomer.contactLName}" required="true" id="lName" requiredMessage="Contact Last Name required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -39,10 +41,12 @@
 								<h:outputText value="Contact Last Name" />
 							</f:facet>
 						</b:inputText>
+						<h:message for="lName" style="color:red" />
 						<br />
 						<h:outputText value="Customer Description" />
 						<br />
-						<b:inputTextarea value="#{customerController.editableCustomer.description}" required="true" />	
+						<b:inputTextarea value="#{customerController.editableCustomer.description}" required="true" id="desc" requiredMessage="Description required"/>	
+						<h:message for="desc" style="color:red" />
 						<h:commandButton value="Back" action="#{customerController.goBack()}"
 							immediate="true" styleClass="btn btn-info"
 							style="margin-right: 10px"></h:commandButton>
