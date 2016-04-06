@@ -288,3 +288,8 @@ a {
     font-size: 15px !important;
     font-family: 'Exo', sans-serif;
 }
+
+.ui-widget {    
+    font-family: 'Exo', sans-serif;
+    font-size: 1.1em;
+}
