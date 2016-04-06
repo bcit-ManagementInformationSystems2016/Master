@@ -47,6 +47,8 @@ public class TreeController implements Serializable {
 	@Inject
 	private TimesheetRowManager tsrMgr;
 
+	
+	private boolean emptySelected;
 	// variable used to display tree
 	private TreeManagedBean projectTree;
 	private WorkPackage selectedWP;
@@ -61,6 +63,26 @@ public class TreeController implements Serializable {
 	private PayLevelDays budget;
 	private PayLevelDays remaining;
 	private PayLevelCost projectCost;
+	
+	
+	
+	
+
+
+
+	/**
+	 * @return the emptySelected
+	 */
+	public boolean isEmptySelected() {
+		return emptySelected;
+	}
+
+	/**
+	 * @param emptySelected the emptySelected to set
+	 */
+	public void setEmptySelected(boolean emptySelected) {
+		this.emptySelected = emptySelected;
+	}
 
 	// variables used for assigning Employees to Workpackages
 	private static List<SelectItem> availableEmployees;
@@ -211,6 +233,7 @@ public class TreeController implements Serializable {
 
 	public void showWorkPackageDetails() {
 		if (projectTree.getSingleSelectedTreeNode() != null) {
+			emptySelected = false;
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
 			selectedWP = wpmgr.find(editableProject, "0");
@@ -243,8 +266,11 @@ public class TreeController implements Serializable {
 			wpToAdd = new WorkPackage();
 		}
 		if (projectTree.getSingleSelectedTreeNode() != null) {
+			emptySelected = false;
+			
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
+			emptySelected = true;
 			return "viewProjectDetails";
 		}
 		if (tsrMgr.verifyIfCharges(editableProject.getProjectID(), selectedWP.getWpID()) > 0) {
@@ -339,8 +365,10 @@ public class TreeController implements Serializable {
 			return "viewProjectDetails";
 		}
 		if (projectTree.getSingleSelectedTreeNode() != null) {
+			emptySelected = false;
 			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		} else {
+			emptySelected = true;
 			return "viewProjectDetails";
 		}
 		return "assignEmpToWP";

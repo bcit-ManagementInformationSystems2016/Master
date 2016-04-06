@@ -22,7 +22,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
 				<h:commandButton styleClass="btn btn-info btn-margin" value="View Work Package Details" actionListener="#{treeController.showWorkPackageDetails()}"/>
 				<h:commandButton styleClass="btn btn-info btn-margin" value="Assign Employee to Work Package" action="#{treeController.assignEmpToWP()}" rendered="#{!projectController.showAllPros}"/>
-				<h:commandButton styleClass="btn btn-info btn-margin" value="Create Child Work Package" action="#{treeController.createNewWorkPackage()}" rendered="#{!projectController.showAllPros}"/>
+				<h:commandButton styleClass="btn btn-info btn-margin" value="Create Child Work Package" id="wp" action="#{treeController.createNewWorkPackage()}" rendered="#{!projectController.showAllPros}"/>
 				<h:commandButton styleClass="btn btn-info btn-margin" value="Create New Branch" action="#{treeController.createNewBranch()}" rendered="#{!projectController.showAllPros}"/>
 				<p:tree value="#{treeController.projectTree.root}" var="node" dynamic="true" orientation="vertical"
                 selectionMode="single" selection="#{treeController.projectTree.singleSelectedTreeNode}">
@@ -43,6 +43,8 @@
 			        <p:ajax event="expand" listener="#{treeManagedBean.onNodeExpand}"></p:ajax>
 			        <p:ajax event="collapse" listener="#{treeManagedBean.onNodeCollapse}"></p:ajax>                                 
 			    </p:tree>
+			    <h:outputText value="no WorkPackage selected" style="color:red" rendered="#{treeController.emptySelected}"/>
+			     
 			</div>
 			<!-- Start the WP details -->
 			<div class="col-lg-6 col-md-6 col-sm-12 white-space">
