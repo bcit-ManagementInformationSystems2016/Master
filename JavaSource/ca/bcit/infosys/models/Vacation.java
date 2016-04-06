@@ -73,4 +73,11 @@ public class Vacation implements Serializable {
 		this.isApproved = isApproved;
 	}
 	
+	public String getApprovalStatus() {
+		if (isApproved) {
+			return "Approved";
+		}
+		return "Pending";
+	}
+	
 }
