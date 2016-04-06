@@ -273,7 +273,7 @@ a {
     padding: 4px 10px;
 }
 
-tr:hover{ 
+.ui-datatable-tablewrapper tr:hover{ 
 	background-color: #c4c4c4; 
 }
 
