@@ -31,6 +31,10 @@ public class VacationManager {
 		vacation = find(vacation.getVacationID());
 		em.remove(vacation);
 	}
+	
+	public void merge(Vacation vacay) {
+		em.merge(vacay);
+	}
 
 	public int getDaysAllowed(int empID) {
 		int plID;
@@ -64,23 +68,45 @@ public class VacationManager {
 		}
 		return vacayArray;
 	}
+	
+	public Vacation[] getUnapprovedVacations (int empID) {
+		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE isApproved = 0", Vacation.class);
+		java.util.List<Vacation> allUnapprovedVacations = query.getResultList();
+		TypedQuery<Employee> empQuery = em.createQuery("select c from Employee c WHERE SupervisorID = " + empID + "", Employee.class);
+		java.util.List<Employee> minions = empQuery.getResultList();
+		java.util.List<Vacation> yourUnapprovedVacations = new java.util.ArrayList<Vacation>();
+		for (int i = 0; i < allUnapprovedVacations.size(); i++) {
+			for (int j = 0; j < minions.size(); j++) {
+				if (allUnapprovedVacations.get(i).getEmployeeID() == minions.get(j).getEmployeeID()) {
+					yourUnapprovedVacations.add(allUnapprovedVacations.get(i));
+					break;
+				}
+			}
+		}
+		Vacation[] vacayArray = new Vacation[yourUnapprovedVacations.size()];
+		for (int i = 0; i < vacayArray.length; i++) {
+			vacayArray[i] = yourUnapprovedVacations.get(i);
+		}
+		return vacayArray;
+	}
 
 	public int getDaysRemaining(int empID) {
 		int count = 0;
 		TypedQuery<Vacation> query = em.createQuery("select c from Vacation c WHERE EmployeeID = " + empID + " AND IsApproved = " + true,
 				Vacation.class);
 		java.util.List<Vacation> categories = query.getResultList();
-		Vacation[] vacayArray = new Vacation[categories.size()];
-		for (int i = 0; i < vacayArray.length; i++) {
+		//Vacation[] vacayArray = new Vacation[categories.size()];
+		/*for (int i = 0; i < vacayArray.length; i++) {
 			vacayArray[i] = categories.get(i);
-		}
+		} */
 		for(int i = 0; i < categories.size(); i++){
-			count += vacayArray[i].getVacationDaysLeft();
+			count += categories.get(i).getVacationDaysLeft();
 		}
-		if (categories.size() > 1)
+		/*if (categories.size() > 1)
 			return vacayArray[categories.size() - 1].getVacationDaysLeft() - count;
 		else
-			return getDaysAllowed(empID) - count;
+			return getDaysAllowed(empID) - count; */
+		return count;
 		
 	}
 }

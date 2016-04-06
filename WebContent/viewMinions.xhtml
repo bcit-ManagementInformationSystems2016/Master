@@ -39,14 +39,14 @@
 	  </b:dataTable>
 	  </b:panel>		
 	  <b:panel look="info" title="Requested Vacations:" collapsible="false">	
-	  <b:dataTable value="#{hrController.getYourMinions()}" var="vacays">
+	  <b:dataTable value="#{vacation.viewAllUnapprovedVacations()}" var="vacays">
 	  	<h:column>
 			<f:facet name="header">
 				<h:outputText value="Approve Vacation Request"
 					style="font-weight: bold" />
 			</f:facet>
 			<h:commandLink value="Approve"
-				action="#{weekly.goBack()}" />
+				action="#{vacation.approveVacation(vacays)}" />
 		</h:column>
 		<h:column>
 			<f:facet name="header">
@@ -54,23 +54,25 @@
 					style="font-weight: bold" />
 			</f:facet>
 			<h:commandLink value="Disapprove"
-				action="#{weekly.goBack()}" />
+				action="#{vacation.disapproveVacation(vacays)}" />
 		</h:column>
 	  	<h:column>
-			<f:facet name="header">Employee</f:facet>
-			<h:outputText value="Emp"/>
+			<f:facet name="header">Employee ID</f:facet>
+			<h:outputText value="#{vacays.employeeID}"/>
 		</h:column>
 		<h:column>
 			<f:facet name="header">Date Requested</f:facet>
-			<h:outputText value="Date"/>
+			<h:outputText value="#{vacays.requestDate}"/>
 		</h:column>
 		
 		<h:column>
 			<f:facet name="header">Number of Days</f:facet>
-			<h:outputText value="####"/>
+			<h:outputText value="#{vacays.vacationDaysLeft}"/>
 		</h:column>	
 	  </b:dataTable>	
-	 <h:commandButton value="Go To Home Page" action="#{hrController.leaveMinionsPage()}"></h:commandButton>
+	 <h:commandButton value="Go To Home Page" action="#{hrController.leaveMinionsPage()}">
+	 	<f:actionListener binding="#{vacation.leaveSupervisorPage()}" />
+	 </h:commandButton>
      </b:panel>		
 	</h:form>
  </ui:define>

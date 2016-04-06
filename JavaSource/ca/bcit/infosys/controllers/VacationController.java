@@ -17,14 +17,14 @@ import ca.bcit.infosys.models.Vacation;
 @Named("vacation")
 @ConversationScoped
 public class VacationController implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	Employee e;
 
 	public void getUser(Employee emp) {
 		System.out.println("GET USER HR CONTROLLER");
 		e = emp;
 	}
-
-	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private VacationManager vacationManager;
@@ -42,20 +42,23 @@ public class VacationController implements Serializable {
 	private int totalDaysAllowed;
 	private int days;
 	private int daysRemaining;
+	
+	private Vacation v = new Vacation();
 
 	public int getDaysRemaining() {
 		if (daysRemaining == 0) {
-			daysRemaining = vacationManager.getDaysRemaining(e.getEmployeeID());
+			int count = vacationManager.getDaysRemaining(e.getEmployeeID());
+			if (totalDaysAllowed == 0) {
+				setTotalDaysAllowed();
+			}
+			daysRemaining = totalDaysAllowed - count;
 		}
-		
 		return daysRemaining;
 	}
 
 	public void setDaysRemaining(int daysRemaining) {
 		this.daysRemaining = daysRemaining;
 	}
-
-	private Vacation v = new Vacation();
 
 	// Getters and Setters
 	public Employee getEmp() {
@@ -113,19 +116,40 @@ public class VacationController implements Serializable {
 		setPayLvl(plvlmgr.getPayLevelInfo(emp.getPayLevelID()));
 		return "viewVacation";
 	}
+	
+	public Vacation[] viewAllUnapprovedVacations() {
+		if (vacayArray == null) {
+			setVacayArray(vacationManager.getUnapprovedVacations(e.getEmployeeID()));
+		}
+		return vacayArray;
+	}
+	
+	public void leaveSupervisorPage() {
+		setVacayArray(null);
+	}
+	
+	public String approveVacation(Vacation vacay) {
+		vacay.setIsApproved(true);
+		vacationManager.merge(vacay);
+		setVacayArray(vacationManager.getUnapprovedVacations(e.getEmployeeID()));
+		return "viewMinions";
+	}
+	
+	public String disapproveVacation(Vacation vacay) {
+		vacationManager.remove(vacay);
+		setVacayArray(vacationManager.getUnapprovedVacations(e.getEmployeeID()));
+		return "viewMinions";
+	}
 
 	public String createVacation(Vacation v) {
-
 		Date date = new Date();
 		boolean isApproved = false;
-		
 		v.setIsApproved(isApproved);
 		v.setEmployeeID(e.getEmployeeID());
 		v.setRequestDate(date);
-		
-		v.setVacationDaysLeft(vacationManager.getDaysRemaining(e.getEmployeeID()) - days);
-		vacationManager.persist(v);
-
+		v.setVacationDaysLeft(days);
+		vacationManager.merge(v);
+		setVacayArray(vacationManager.getEmployeeVacationRequests(e.getEmployeeID()));
 		return "viewVacation";
 	}
 
@@ -139,6 +163,12 @@ public class VacationController implements Serializable {
 
 	public String goViewVacation() {
 		return "viewVacation";
+	}
+	
+	public String goBack() {
+		setVacayArray(null);
+		totalDaysAllowed = 0;
+		return "adminLanding";
 	}
 
 }
