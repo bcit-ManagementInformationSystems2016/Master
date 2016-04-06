@@ -2,34 +2,24 @@ package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
-import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 
-import ca.bcit.infosys.controllers.EditableTimesheet;
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.TimesheetManager;
-import ca.bcit.infosys.managers.TimesheetRowManager;
-import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Timesheet;
-import ca.bcit.infosys.models.TimesheetRow;
 
 @Named("timesheet")
 @ConversationScoped
 
 public class TimesheetController implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	Employee e;
 
 	public void getUser(Employee emp) {

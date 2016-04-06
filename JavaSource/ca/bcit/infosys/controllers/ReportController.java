@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -26,12 +25,12 @@ public class ReportController implements Serializable {
 	private ProjectManager pjtmgr;
 	@Inject
 	private WorkPackageManager wpmgr;
-	@Inject
-	private ProjectController projctr;
+	//@Inject
+	//private ProjectController projctr;
 
-	private double budget;
+	//private double budget;
 
-	private double cost;
+	//private double cost;
 
 	private String projName;
 

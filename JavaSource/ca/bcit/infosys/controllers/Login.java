@@ -19,6 +19,7 @@ import ca.bcit.infosys.models.Employee;
 @Named("login")
 @ConversationScoped
 public class Login implements Serializable {
+	private static final long serialVersionUID = 1L;
 	@PersistenceContext(unitName = "BluehostTesty")
 	static EntityManager em;
 	private String username;
@@ -74,6 +75,7 @@ public class Login implements Serializable {
 	static Map<Integer, String> nameMap = new HashMap<Integer, String>();
 	static Map<Integer, Integer> roleMap = new HashMap<Integer, Integer>();
 
+	@SuppressWarnings("unchecked")
 	public static void setMaps() {
 		System.out.println("set maps");
 		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";

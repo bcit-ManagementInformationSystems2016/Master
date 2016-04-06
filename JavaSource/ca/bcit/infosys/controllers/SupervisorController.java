@@ -4,18 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.models.Employee;
-import ca.bcit.infosys.models.ProjectEmployees;
 
 @Named("supervisorController")
 @ConversationScoped
 public class SupervisorController implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Inject
 	private EmployeeManager empmgr;

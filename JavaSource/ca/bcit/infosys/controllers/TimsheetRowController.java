@@ -6,7 +6,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,7 +14,6 @@ import ca.bcit.infosys.managers.EmployeeWPManager;
 import ca.bcit.infosys.managers.ProjectManager;
 import ca.bcit.infosys.managers.TimesheetManager;
 import ca.bcit.infosys.managers.TimesheetRowManager;
-import ca.bcit.infosys.managers.WorkPackageManager;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.Timesheet;
 import ca.bcit.infosys.models.TimesheetRow;
@@ -23,7 +21,7 @@ import ca.bcit.infosys.models.TimesheetRow;
 @Named("timesheetRow")
 @ConversationScoped
 public class TimsheetRowController implements Serializable {
-
+	private static final long serialVersionUID = 1L;
 	Employee e;
 
 	public void getUser(Employee emp) {
@@ -37,8 +35,8 @@ public class TimsheetRowController implements Serializable {
 	@Inject
 	private TimesheetRowManager timesheetRowManager;
 	/** Manager from Product objects. */
-	@Inject
-	private WorkPackageManager workPackageManager;
+	//@Inject
+	//private WorkPackageManager workPackageManager;
 
 	@Inject
 	private EmployeeWPManager ewpManager;

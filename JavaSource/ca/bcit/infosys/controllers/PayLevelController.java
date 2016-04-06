@@ -1,20 +1,13 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.TypedQuery;
 
 import ca.bcit.infosys.managers.PayLevelManager;
-import ca.bcit.infosys.managers.VacationManager;
-import ca.bcit.infosys.models.Credential;
-import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.PayLevel;
-import ca.bcit.infosys.models.Vacation;
 
 @Named("payLevel")
 @ConversationScoped

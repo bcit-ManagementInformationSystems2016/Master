@@ -3,7 +3,6 @@ package ca.bcit.infosys.controllers;
 import java.io.Serializable;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -35,8 +34,8 @@ public class WeeklyReportController implements Serializable {
 	// @Inject
 	// private WorkPackageManager wpmgr;
 
-	@Inject
-	private WorkPackageController wpctr;
+	//@Inject
+	//private WorkPackageController wpctr;
 
 	@Inject
 	private TimsheetRowController tsrctr;

@@ -3,11 +3,6 @@
  */
 package ca.bcit.infosys.controllers;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.ejb.Stateful;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -15,11 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
-import ca.bcit.infosys.models.Credential;
 import ca.bcit.infosys.models.Employee;
 
 /**

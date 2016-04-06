@@ -1,10 +1,8 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,6 +16,8 @@ import ca.bcit.infosys.models.WorkPackage;
 @Named("workPackageController")
 @ConversationScoped
 public class WorkPackageController implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	Employee e;
 
 	public void getUser(Employee emp) {

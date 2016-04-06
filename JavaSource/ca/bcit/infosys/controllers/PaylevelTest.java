@@ -2,21 +2,19 @@ package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.annotation.Resource;
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.sql.DataSource;
 
 @Named("PayLevel")
 @ConversationScoped
 public class PaylevelTest implements Serializable {
-	
+	private static final long serialVersionUID = 1L;
 	@Resource(mappedName = "java:jboss/datasources/bluehost")
 
 	
