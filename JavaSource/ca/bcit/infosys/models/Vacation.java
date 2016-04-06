@@ -53,7 +53,6 @@ public class Vacation implements Serializable {
 	}
 
 	public void setRequestDate(Date requestDate) {
-		
 		this.requestDate = requestDate;
 	}
 

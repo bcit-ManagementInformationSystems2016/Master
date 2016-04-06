@@ -14,7 +14,7 @@
 		<ui:define name="content">
 			<h:form>
 				<b:panel look="info"
-					title="Timesheet Validation for #{timesheetValidatorController.currentEmployee.firstName} #{supervisorController.timesheetValidator.lastName}"
+					title="Employees #{timesheetValidatorController.currentEmployee.fullName} validates timesheets for:"
 					collapsible="false">
 					<b:dataTable
 						value="#{timesheetValidatorController.getYourValidatees()}"
