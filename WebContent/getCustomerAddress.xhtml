@@ -43,9 +43,8 @@
 			</h:column>
 		
 	  </b:dataTable>		
-	 <h:commandButton value="Create New Customer" action="#{customerController.createNewCust()}" rendered="#{login.hr}"></h:commandButton>
-	 <br />
-	 <h:commandButton value="Go To Home Page" action="#{customerController.leaveAddressBook()}"></h:commandButton>
+	 <h:commandButton value="Create New Customer" action="#{customerController.createNewCust()}" rendered="#{login.hr}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+	 <h:commandButton value="Go To Home Page" action="#{customerController.leaveAddressBook()}" styleClass="btn btn-info"></h:commandButton>
      </b:panel>		
 	</h:form>
  </ui:define>
