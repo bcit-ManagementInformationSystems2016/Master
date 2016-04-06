@@ -293,3 +293,11 @@ a {
     font-family: 'Exo', sans-serif;
     font-size: 1.1em;
 }
+
+.input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child), .input-group .form-control:not(:first-child):not(:last-child):focus {   
+    border-color: #23E875; 
+}
+
+.input-group-btn, .input-group .form-control:focus { 
+    border-color: #23E875 !important;
+}
