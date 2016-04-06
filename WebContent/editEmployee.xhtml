@@ -15,7 +15,7 @@
 				<b:panelGrid colSpans="3,9">
 					<b:panel look="info" title="Update Employee Information"
 						collapsible="false">
-						<b:inputText value="#{hrController.emp.firstName}">
+						<b:inputText value="#{hrController.emp.firstName}" id="fName" required="true" requiredMessage="First Name required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -23,7 +23,8 @@
 								<h:outputText value="First Name" />
 							</f:facet>
 						</b:inputText>
-						<b:inputText value="#{hrController.emp.lastName}">
+						<h:message for="fName" style="color:red" />
+						<b:inputText value="#{hrController.emp.lastName}" id="lName" required="true" requiredMessage="Last Name is required">
 							<f:facet name="prepend">
 								<b:iconAwesome name="pencil-square-o" />
 							</f:facet>
@@ -31,6 +32,7 @@
 								<h:outputText value="Last Name" />
 							</f:facet>
 						</b:inputText>
+						<h:message for="lName" style="color:red" />
 						<b:selectOneMenu value="#{hrController.emp.roleID}">
 							<f:selectItems value="#{hrController.getRoleList()}" />
 							<!-- <f:facet name="prepend">
