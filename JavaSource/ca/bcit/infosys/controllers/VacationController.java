@@ -1,6 +1,8 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.enterprise.context.ConversationScoped;
@@ -143,6 +145,7 @@ public class VacationController implements Serializable {
 
 	public String createVacation(Vacation v) {
 		Date date = new Date();
+		
 		boolean isApproved = false;
 		v.setIsApproved(isApproved);
 		v.setEmployeeID(e.getEmployeeID());

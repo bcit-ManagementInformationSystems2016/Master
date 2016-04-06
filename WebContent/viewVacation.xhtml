@@ -38,7 +38,9 @@
 					<b:dataTable value="#{vacation.vacayArray}" var="v">
 						<h:column>
 							<f:facet name="header">Date</f:facet>
-							<h:outputText value="#{v.requestDate}" />
+							<h:outputText value="#{v.requestDate}" >
+								<f:convertDateTime pattern="yyyy-MM-dd" />
+							</h:outputText>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Number of Days Requested</f:facet>
