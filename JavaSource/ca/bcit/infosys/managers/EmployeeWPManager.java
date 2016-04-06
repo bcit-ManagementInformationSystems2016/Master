@@ -1,9 +1,7 @@
 package ca.bcit.infosys.managers;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
@@ -12,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.models.Employee;
 import ca.bcit.infosys.models.EmployeeWP;
 import ca.bcit.infosys.models.EmployeeWPKey;
