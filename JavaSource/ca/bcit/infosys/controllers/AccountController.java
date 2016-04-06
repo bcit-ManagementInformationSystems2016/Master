@@ -1,10 +1,8 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -16,6 +14,8 @@ import ca.bcit.infosys.models.Employee;
 @Named("account")
 @ConversationScoped
 public class AccountController implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	Employee em;
 
 	public void getUser(Employee emp) {

@@ -1,18 +1,15 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import ca.bcit.infosys.controllers.Login;
 import ca.bcit.infosys.managers.CredentialManager;
 import ca.bcit.infosys.managers.EmployeeManager;
 import ca.bcit.infosys.managers.PayLevelManager;
@@ -23,6 +20,7 @@ import ca.bcit.infosys.models.Employee;
 @Named("hrController")
 @ConversationScoped
 public class HRController implements Serializable {
+	private static final long serialVersionUID = 1L;
 	Employee e;
 
 	public void getUser(Employee emp) {
@@ -61,64 +59,51 @@ public class HRController implements Serializable {
 	public Credential getCrd() {
 		return crd;
 	}
-
 	public void setCrd(Credential crd) {
 		this.crd = crd;
 	}
-
 	public Employee getEmp() {
 		return emp;
 	}
-
 	public void setEmp(Employee emp) {
 		HRController.emp = emp;
 	}
-
 	public Employee getViewableEmp() {
 		return viewableEmp;
 	}
-
 	public void setViewableEmp(Employee emp) {
 		viewableEmp = emp;
 	}
-
 	public void setMinions(Employee[] minions) {
 		this.minions = minions;
 	}
-
 	public Employee[] getMinions() {
 		return empmgr.getAllMinions(e.getEmployeeID());
 	}
-
 	public List<SelectItem> getPayLevelList() {
 		if (payLevelList == null) {
 			setPayLevelList(plmgr.getPayLevelIDs());
 		}
 		return payLevelList;
 	}
-
 	public void setPayLevelList(List<SelectItem> payLevelList) {
 		this.payLevelList = payLevelList;
 	}
-
 	public List<SelectItem> getEmployeeList() {
 		if (employeeList == null) {
 			setEmployeeList(empmgr.getEmployeeIDs());
 		}
 		return employeeList;
 	}
-
 	public List<SelectItem> getRoleList() {
 		if (roleList == null) {
 			setRoleList(rmgr.getRolesIDs());
 		}
 		return roleList;
 	}
-
 	public void setEmployeeList(List<SelectItem> employeeList) {
 		this.employeeList = employeeList;
 	}
-
 	public void setRoleList(List<SelectItem> roleList) {
 		this.roleList = roleList;
 	}
