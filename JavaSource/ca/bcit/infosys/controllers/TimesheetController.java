@@ -27,7 +27,6 @@ public class TimesheetController implements Serializable {
 		e = emp;
 	}
 
-
 	/** Manager from Product objects. */
 	@Inject
 	private TimesheetManager timesheetManager;
@@ -38,7 +37,7 @@ public class TimesheetController implements Serializable {
 	private Employee em;
 
 	private Employee[] employeeRows;
-	
+	private int countApproved;
 	private static Timesheet[] allTimesheetRows;
 
 	public Employee getEm() {
@@ -56,11 +55,11 @@ public class TimesheetController implements Serializable {
 	public int getEmployeeId() {
 		return TimsheetRowController.archivedTs.getEmployeeID();
 	}
-	
+
 	public int getCurrentID() {
 		return e.getEmployeeID();
 	}
-	
+
 	public String getFirstName() {
 		init();
 		String firstName = null;
@@ -71,7 +70,7 @@ public class TimesheetController implements Serializable {
 		}
 		return firstName;
 	}
-	
+
 	public String getArchivedFirstName() {
 		init();
 		String firstName = null;
@@ -94,7 +93,7 @@ public class TimesheetController implements Serializable {
 		}
 		return lastName;
 	}
-	
+
 	public String getArchivedLastName() {
 		init();
 		String lastName = null;
@@ -164,12 +163,14 @@ public class TimesheetController implements Serializable {
 		allTimesheetRows = timesheetManager.getArchivedTimesheetsWithEmpId(empId);
 		return allTimesheetRows;
 	}
-	
-	public int countApproved() {
-	    if (allTimesheetRows == null) {
-	        getAllTimesheet();
-	    }
-	    return allTimesheetRows.length;
+
+	public int getCountApproved() {
+		getAllTimesheet();
+		return allTimesheetRows.length;
+	}
+
+	public void setCountApproved(int countApproved) {
+		this.countApproved = countApproved;
 	}
 
 	public int getWeekNumber() throws ParseException {
@@ -181,7 +182,7 @@ public class TimesheetController implements Serializable {
 		return week;
 
 	}
-	
+
 	public int getArchivedWeekNumber() throws ParseException {
 		init();
 		return TimsheetRowController.archivedTs.getWeekNumber();
