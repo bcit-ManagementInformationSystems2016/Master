@@ -1,220 +1,223 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
-<!-- <converter>
-    <converter-for-class>ca.bcit.infosys.models.Project</converter-for-class>
-    <converter-class>ca.bcit.infosys.controllers.ProjectConverter</converter-class>
-</converter> -->
+	<!-- <converter> <converter-for-class>ca.bcit.infosys.models.Project</converter-for-class> 
+		<converter-class>ca.bcit.infosys.controllers.ProjectConverter</converter-class> 
+		</converter> -->
 
-<navigation-rule>
-	<from-view-id>/showAllProjects.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>wpDetails</from-outcome>
-   		<to-view-id>/showWP.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/showAllProjects.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>displayReport</from-outcome>
-   		<to-view-id>/getReports.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/showWP.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>showProjects</from-outcome>
-   		<to-view-id>/showAllProjects.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<!-- <navigation-rule>
-  	<from-view-id>/projectsLanding.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>showProjects</from-outcome>
-   		<to-view-id>/showAllProjects.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule> -->
-<navigation-rule>
- 	<from-view-id>/humanResources.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>employee</from-outcome>
-   		<to-view-id>/editEmployee.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/editEmployee.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>updated</from-outcome>
-   		<to-view-id>/humanResources.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/createEmployee.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>created</from-outcome>
-   		<to-view-id>/humanResources.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/archivedTimesheet.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>edit</from-outcome>
-   		<to-view-id>/editTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/createAdminTimesheet.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>edit</from-outcome>
-   		<to-view-id>/editTimesheetRow.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/createTimesheetRow.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>created</from-outcome>
-   		<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/editTimesheetRow.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>updated</from-outcome>
-   		<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-  	<from-view-id>/editTimesheet.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>updated</from-outcome>
-   		<to-view-id>/archivedTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/showWP.xhtml</from-view-id>
-	<navigation-case>
-    	<from-outcome>createWP</from-outcome>
-        <to-view-id>/createNewWP.xhtml</to-view-id>
-     </navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/createNewWP.xhtml</from-view-id>
-	<navigation-case>
-    	<from-outcome>wpDetails</from-outcome>
-        <to-view-id>/showWP.xhtml</to-view-id>
-     </navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/*</from-view-id>
-  	<navigation-case>
-   		<from-outcome>logout</from-outcome>
-   		<to-view-id>/login.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/changePassword.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>changed</from-outcome>
-   		<to-view-id>/login.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/*</from-view-id>
-  	<navigation-case>
-   		<from-outcome>home</from-outcome>
-   		<to-view-id>/adminLanding.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/adminLanding.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>projectsLanding</from-outcome>
-   		<to-view-id>/projectsLanding.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/adminLanding.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>timesheetLanding</from-outcome>
-   		<to-view-id>/timesheetAdmin.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/adminLanding.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>wpLanding</from-outcome>
-   		<to-view-id>/getWorkpackages.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/getWorkpackages.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>weeklyReport</from-outcome>
-   		<to-view-id>/createWeeklyReport.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/*</from-view-id>
-  	<navigation-case>
-   		<from-outcome>hrLanding</from-outcome>
-   		<to-view-id>/humanResources.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/timesheetAdmin.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>create</from-outcome>
-   		<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/timesheetAdmin.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>archive</from-outcome>
-   		<to-view-id>/archivedTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/archivedTimesheet.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>viewArchivedTimesheet</from-outcome>
-   		<to-view-id>/viewArchivedTimesheet.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/humanResources.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>editP</from-outcome>
-   		<to-view-id>/editPayLevel.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/editPayLevel.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>PLupdated</from-outcome>
-   		<to-view-id>/humanResources.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/adminLanding.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>viewVacation</from-outcome>
-   		<to-view-id>/viewVacation.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<navigation-rule>
-	<from-view-id>/createWeeklyReport.xhtml</from-view-id>
-  	<navigation-case>
-   		<from-outcome>createReport</from-outcome>
-   		<to-view-id>/getWorkpackages.xhtml</to-view-id>
-  	</navigation-case>
-</navigation-rule>
-<application>
-	<resource-bundle>
-   		<base-name>META-INF.messages</base-name>
-   		<var>msgs</var>
-  	</resource-bundle>
-</application>
+	<navigation-rule>
+		<from-view-id>/showAllProjects.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>wpDetails</from-outcome>
+			<to-view-id>/showWP.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/showAllProjects.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>displayReport</from-outcome>
+			<to-view-id>/getReports.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/showWP.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>showProjects</from-outcome>
+			<to-view-id>/showAllProjects.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<!-- <navigation-rule> <from-view-id>/projectsLanding.xhtml</from-view-id> 
+		<navigation-case> <from-outcome>showProjects</from-outcome> <to-view-id>/showAllProjects.xhtml</to-view-id> 
+		</navigation-case> </navigation-rule> -->
+	<navigation-rule>
+		<from-view-id>/humanResources.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>employee</from-outcome>
+			<to-view-id>/editEmployee.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/editEmployee.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>updated</from-outcome>
+			<to-view-id>/humanResources.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/createEmployee.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>created</from-outcome>
+			<to-view-id>/humanResources.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/archivedTimesheet.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/editTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/createAdminTimesheet.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>edit</from-outcome>
+			<to-view-id>/editTimesheetRow.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/createTimesheetRow.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>created</from-outcome>
+			<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/editTimesheetRow.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>updated</from-outcome>
+			<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/editTimesheet.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>updated</from-outcome>
+			<to-view-id>/archivedTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/showWP.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createWP</from-outcome>
+			<to-view-id>/createNewWP.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/createNewWP.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>wpDetails</from-outcome>
+			<to-view-id>/showWP.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>logout</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/changePassword.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>changed</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/adminLanding.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/adminLanding.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>projectsLanding</from-outcome>
+			<to-view-id>/projectsLanding.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/adminLanding.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>timesheetLanding</from-outcome>
+			<to-view-id>/timesheetAdmin.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/adminLanding.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>wpLanding</from-outcome>
+			<to-view-id>/getWorkpackages.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/getWorkpackages.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>weeklyReport</from-outcome>
+			<to-view-id>/createWeeklyReport.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>hrLanding</from-outcome>
+			<to-view-id>/humanResources.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/timesheetAdmin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>create</from-outcome>
+			<to-view-id>/createAdminTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/timesheetAdmin.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>archive</from-outcome>
+			<to-view-id>/archivedTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/archivedTimesheet.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>viewArchivedTimesheet</from-outcome>
+			<to-view-id>/viewArchivedTimesheet.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/humanResources.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>editP</from-outcome>
+			<to-view-id>/editPayLevel.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/editPayLevel.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>PLupdated</from-outcome>
+			<to-view-id>/humanResources.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/adminLanding.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>viewVacation</from-outcome>
+			<to-view-id>/viewVacation.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/createWeeklyReport.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>createReport</from-outcome>
+			<to-view-id>/getWorkpackages.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/*</from-view-id>
+		<navigation-case>
+			<from-outcome>changePassword</from-outcome>
+			<to-view-id>/changePassword.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	<application>
+		<resource-bundle>
+			<base-name>META-INF.messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
 </faces-config>
 

@@ -24,7 +24,6 @@ public class HRController implements Serializable {
 	Employee e;
 
 	public void getUser(Employee emp) {
-		System.out.println("GET USER HR CONTROLLER");
 		e = emp;
 	}
 
@@ -169,8 +168,8 @@ public class HRController implements Serializable {
 
 	public String changePassword() {
 		crd.setEmployeeID(e.getEmployeeID());
-		// crd.setUsername(l.getUsername());
-		crd.setUsername("username");
+		crd.setUsername(crdmgr.getUsername(e.getEmployeeID()));
+		//crd.setUsername("username");
 		crdmgr.merge(crd);
 		crd = new Credential();
 		return "changed";

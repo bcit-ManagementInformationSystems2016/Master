@@ -230,4 +230,11 @@
   PATH="/viewArchivedTimesheet.xhtml" SHAPE="944,785,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#viewVacation.xhtml"
   PATH="/viewVacation.xhtml" SHAPE="496,1521,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#*:3" PATH="/*" SHAPE="32,1745,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#*:3" NAME="item" PATH="/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="changePassword::#changePassword.xhtml"
+    NAME="output" PATH="/changePassword.xhtml"
+    TARGET="rules:#changePassword.xhtml" TITLE="changePassword" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

@@ -92,7 +92,6 @@ public class CredentialManager {
 	}
 
 	public boolean usernameExists(String username) {
-		System.out.println("username exists method");
 		TypedQuery<Credential> query = em
 				.createQuery("select c from Credential c where EmpUserName = '" + username + "'", Credential.class);
 		java.util.List<Credential> categories = query.getResultList();
@@ -100,7 +99,17 @@ public class CredentialManager {
 			return true;
 		} else
 			return false;
+	}
 
+	public String getUsername(int empID) {
+		TypedQuery<Credential> query = em.createQuery("select c from Credential c where EmployeeID = " + empID,
+				Credential.class);
+		java.util.List<Credential> categories = query.getResultList();
+		Credential[] catarray = new Credential[categories.size()];
+		for (int i = 0; i < catarray.length; i++) {
+			catarray[i] = categories.get(i);
+		}
+		return catarray[0].getUsername();
 	}
 
 }

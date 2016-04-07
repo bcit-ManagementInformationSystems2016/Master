@@ -18,7 +18,6 @@ public class ProjectController implements Serializable {
 	Employee e;
 
 	public void getUser(Employee emp) {
-		System.out.println("GET USER HR CONTROLLER");
 		e = emp;
 	}
 

@@ -25,7 +25,6 @@ public class LoginValidator implements Validator {
 	Employee e;
 
 	public void getUser(Employee emp) {
-		System.out.println("GET USER HR CONTROLLER");
 		e = emp;
 	}
 

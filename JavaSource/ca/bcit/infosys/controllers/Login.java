@@ -77,7 +77,6 @@ public class Login implements Serializable {
 
 	@SuppressWarnings("unchecked")
 	public static void setMaps() {
-		System.out.println("set maps");
 		String jpaQuery = "select c.username, c.password, c.employeeID from Credential c";
 		String eQuery = "select e.employeeID, e.isActive from Employee e";
 		String nameQuery = "select e.employeeID, e.firstName, e.lastName from Employee e";
@@ -106,19 +105,6 @@ public class Login implements Serializable {
 
 	public String validate() {
 		conversation.begin();
-		System.out.println("VALIDATE");
-		// Employee e = emgr.getLoginEmployee(1);
-		// setCurrentUser(e);
-		// String jpaQuery3 = "select e.employeeID, e.roleID from Employee e
-		// where e.employeeID ="
-		// + getCurrentUser().getEmployeeID();
-		// List<Object[]> roleList = em.createQuery(jpaQuery3).getResultList();
-		// for (Object[] object : roleList) {
-		// if (((int) object[1] == 1) || (int) object[1] == 3 || (int) object[1]
-		// == 5) {
-		// setHr(true);
-		// }
-		// }
 		int roleID = roleMap.get(getCurrentUser().getEmployeeID());
 		if (roleID == 1 || roleID == 3 || roleID == 5)
 			setHr(true);
@@ -128,13 +114,19 @@ public class Login implements Serializable {
 	public String logout() {
 		System.out.println("logout");
 		conversation.end();
-		//TimsheetRowController.localRows = null;
-		//TimsheetRowController.workPackageList = null;
 		return "logout";
+	}
+
+	public void logout2() {
+		conversation.end();
 	}
 
 	public String goHome() {
 		return "home";
+	}
+
+	public String changePassword() {
+		return "changePassword";
 	}
 
 }
