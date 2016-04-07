@@ -31,8 +31,12 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 	margin:0 auto;
 }
 .ui-widget{
-	font-size:1em !important;
+	font-size:1.5em !important;
 }
+.ui-tree .ui-tree-container{
+	overflow: visible !important;
+}
+
 .white-space{
 	padding-top:1em;
 }
@@ -44,7 +48,14 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 	padding: 50px;
 	text-align: left;
 }
-
+.ui-tree .ui-tree-toggler{
+	vertical-align: middle !important;
+}
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight{
+	
+}
 figure.menuIcon {
 	margin: 0;
 }
@@ -204,16 +215,16 @@ figure.menuIcon img {
 	content:none !important;
 }
 .link-btn{
-	background-color: #05B767 !important;
+	background-color: white !important;
 	cursor: pointer;
-	color: white !important;
-	border-color: #0CAD4F !important;
+	color: #0CAD4F !important;
+	border-color: #ccc !important;
 }
 .link-btn:hover, .link-btn:focus{
-	background-color: #05C66F !important;
+	background-color: white !important;
 	cursor: pointer;
-	color: white !important;
-	border-color: #05B767 !important;
+	color: #0CAD4F !important;
+	border-color: #ccc !important;
 }
 .link-btn span.link-btn-txt {
 
@@ -253,7 +264,7 @@ input[type="reset"]:hover, input[type="submit"]:hover
 	-webkit-appearance : button;
 	cursor: pointer;
 /* 	background-color: #0CAD4F !important; */
-	color: white !important;
+	color: white;
 /* 	border-color: #0CAD4F !important; */
 }
 .backBtn-padding{
@@ -346,7 +357,7 @@ a {
 textarea.form-control:focus {
    border-color: #23E875 !important;
 }
-
+/*
 .btn-info {    
     background-color: white !important;
 }
@@ -363,6 +374,21 @@ textarea.form-control:focus {
     color: #0CAD4F;    
 }
 
-.link-btn:hover span.link-btn-txt, .link-btn:focus span.link-btn-txt {
-    color: #0CAD4F;  
+ .link-btn:hover span.link-btn-txt, .link-btn:focus span.link-btn-txt { */
+/*     color: #0CAD4F;   */
+/* } */
+
+.ui-icon-folder-open{
+	background-image: url("#{resource['images/bamboo-trunk-outline.png']}") !important;
+	background-size: contain;	
+	background-position: inherit !important;
+	height: 35px;
+	width:  35px;
+}
+.ui-icon-folder-collapsed{
+	background-image: url("#{resource['images/bamboo-trunk-solid.png']}") !important;
+	background-size: contain;
+	background-position: inherit !important;
+	height: 35px;
+	width:  35px;	
 }
