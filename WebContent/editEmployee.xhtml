@@ -11,112 +11,116 @@
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
 		<ui:define name="content">
-			<h:form>
-				<b:panelGrid colSpans="3,9">
-					<b:panel look="info" title="Update Employee Information"
-						collapsible="false">
-						<b:inputText value="#{hrController.emp.firstName}" id="fName" required="true" requiredMessage="First Name required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="First Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="fName" style="color:red" />
-						<b:inputText value="#{hrController.emp.lastName}" id="lName" required="true" requiredMessage="Last Name is required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Last Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="lName" style="color:red" />
-						<b:selectOneMenu value="#{hrController.emp.roleID}">
-							<f:selectItems value="#{hrController.getRoleList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
-							<f:facet name="append">
-								<h:outputText value="Role" />
-							</f:facet>
-						</b:selectOneMenu>
-						<b:selectOneMenu value="#{hrController.emp.validatorID}">
-							<f:selectItems value="#{hrController.getEmployeeList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
-							<f:facet name="append">
-								<h:outputText value="Validator ID" />
-							</f:facet>
-						</b:selectOneMenu>
-						<!-- <b:inputText value="#{hrController.emp.salary}">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Salary" />
-							</f:facet>
-						</b:inputText> -->
+		 <div class="row">
+		 	<div class="col-lg-4"></div>
+		 	<div class="col-lg-4">
+			<h:form>			
+				<b:panel look="info" title="Update Employee Information"
+					collapsible="false">
+					<b:inputText value="#{hrController.emp.firstName}" id="fName" required="true" requiredMessage="First Name required">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="First Name" />
+						</f:facet>
+					</b:inputText>
+					<h:message for="fName" style="color:red" />
+					<b:inputText value="#{hrController.emp.lastName}" id="lName" required="true" requiredMessage="Last Name is required">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Last Name" />
+						</f:facet>
+					</b:inputText>
+					<h:message for="lName" style="color:red" />
+					<b:selectOneMenu value="#{hrController.emp.roleID}">
+						<f:selectItems value="#{hrController.getRoleList()}" />
+						<!-- <f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet> -->
+						<f:facet name="append">
+							<h:outputText value="Role" />
+						</f:facet>
+					</b:selectOneMenu>
+					<b:selectOneMenu value="#{hrController.emp.validatorID}">
+						<f:selectItems value="#{hrController.getEmployeeList()}" />
+						<!-- <f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet> -->
+						<f:facet name="append">
+							<h:outputText value="Validator ID" />
+						</f:facet>
+					</b:selectOneMenu>
+					<!-- <b:inputText value="#{hrController.emp.salary}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Salary" />
+						</f:facet>
+					</b:inputText> -->
 
-						<b:selectOneMenu value="#{hrController.emp.supervisorID}">
-							<f:selectItems value="#{hrController.getEmployeeList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
-							<f:facet name="append">
-								<h:outputText value="Supervisor ID" />
-							</f:facet>
-						</b:selectOneMenu>
-						<b:selectOneMenu value="#{hrController.emp.payLevelID}">
-							<f:selectItems value="#{hrController.getPayLevelList()}" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
-							<f:facet name="append">
-								<h:outputText value="Pay Level ID" />
-							</f:facet>
-						</b:selectOneMenu>
-						<b:selectOneMenu value="#{hrController.emp.isActive}">
-							<f:selectItem itemValue="#{true}" itemLabel="True" />
-							<f:selectItem itemValue="#{false}" itemLabel="False" />
-							<!-- <f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet> -->
-							<f:facet name="append">
-								<h:outputText value="Is Active" />
-							</f:facet>
-						</b:selectOneMenu>
-						<h:message for="username" style="color:red" />
-						<b:inputText value="#{hrController.crd.username}" required="true"
-							id="username" requiredMessage="Username is required">
-							<f:validator validatorId="hrValidator" />
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Username" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="password" style="color:red" />
-						<b:inputText value="#{hrController.crd.password}" required="true"
-							id="password" requiredMessage="Password is required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Password" />
-							</f:facet>
-						</b:inputText>
-						<h:commandButton value="Back" action="#{hrController.hrLanding()}" immediate="true"
-							styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-						<h:commandButton value="Save Changes"
-							action="#{hrController.updateEmp(hrController.emp)}"
-							styleClass="btn btn-info"></h:commandButton>
-					</b:panel>
-				</b:panelGrid>
-			</h:form>
+					<b:selectOneMenu value="#{hrController.emp.supervisorID}">
+						<f:selectItems value="#{hrController.getEmployeeList()}" />
+						<!-- <f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet> -->
+						<f:facet name="append">
+							<h:outputText value="Supervisor ID" />
+						</f:facet>
+					</b:selectOneMenu>
+					<b:selectOneMenu value="#{hrController.emp.payLevelID}">
+						<f:selectItems value="#{hrController.getPayLevelList()}" />
+						<!-- <f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet> -->
+						<f:facet name="append">
+							<h:outputText value="Pay Level ID" />
+						</f:facet>
+					</b:selectOneMenu>
+					<b:selectOneMenu value="#{hrController.emp.isActive}">
+						<f:selectItem itemValue="#{true}" itemLabel="True" />
+						<f:selectItem itemValue="#{false}" itemLabel="False" />
+						<!-- <f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet> -->
+						<f:facet name="append">
+							<h:outputText value="Is Active" />
+						</f:facet>
+					</b:selectOneMenu>
+					<h:message for="username" style="color:red" />
+					<b:inputText value="#{hrController.crd.username}" required="true"
+						id="username" requiredMessage="Username is required">
+						<f:validator validatorId="hrValidator" />
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Username" />
+						</f:facet>
+					</b:inputText>
+					<h:message for="password" style="color:red" />
+					<b:inputText value="#{hrController.crd.password}" required="true"
+						id="password" requiredMessage="Password is required">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Password" />
+						</f:facet>
+					</b:inputText>
+					<h:commandButton value="Back" action="#{hrController.hrLanding()}" immediate="true"
+						styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+					<h:commandButton value="Save Changes"
+						action="#{hrController.updateEmp(hrController.emp)}"
+						styleClass="btn btn-info"></h:commandButton>
+				</b:panel>				
+			</h:form>		 	
+		 	</div>
+		 	<div class="col-lg-4"></div>
+		 </div>
 		</ui:define>
 	</ui:composition>
 </h:body>

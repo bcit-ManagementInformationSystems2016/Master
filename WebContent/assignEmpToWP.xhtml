@@ -11,20 +11,24 @@
 </h:head>
 <h:body>
 <ui:composition template="/templates/masterLayout.xhtml">      
-    <ui:define name="content">
-	<h:form>	
-	<b:panelGrid colSpans="4,8">
-     <b:panel look="info" title="Select Employee to Assign to #{treeController.selectedWP.wpName}" collapsible="false">
-	  <h:outputLabel value="EMPLOYEE:" />
-	  <br />
-	  <b:selectOneMenu value="#{treeController.selectedEmployee}">
-		  <f:selectItems value="#{treeController.getDropdownForWP()}" />
-	  </b:selectOneMenu>	 	
-	  <h:commandButton value="Back" action="#{treeController.cancelAssignment()}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-	  <h:commandButton value="Assign Employee" action="#{treeController.assignEmployee()}" styleClass="btn btn-info"></h:commandButton>			
-     </b:panel>		
-     </b:panelGrid>
-	</h:form>
+  <ui:define name="content">
+  	<div class="row">
+  		<div class="col-lg-4"></div>
+  		<div class="col-lg-4">
+			<h:form>
+		        <b:panel look="info" title="Select Employee to Assign to #{treeController.selectedWP.wpName}" collapsible="false">
+		            <h:outputLabel value="EMPLOYEE:" />
+		            <br />
+		            <b:selectOneMenu value="#{treeController.selectedEmployee}">
+		              <f:selectItems value="#{treeController.getDropdownForWP()}" />
+		            </b:selectOneMenu>	 	
+		            <h:commandButton value="Back" action="#{treeController.cancelAssignment()}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+		            <h:commandButton value="Assign Employee" action="#{treeController.assignEmployee()}" styleClass="btn btn-info"></h:commandButton>			
+		        </b:panel>
+			</h:form>	 		
+  		</div>
+  		<div class="col-lg-4"></div>
+  	</div>
  </ui:define>
 </ui:composition>	
 </h:body>

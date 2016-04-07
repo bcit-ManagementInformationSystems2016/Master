@@ -11,43 +11,47 @@
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
 		<ui:define name="content">
-			<h:form>
-				<b:panelGrid colSpans="3,9">
-					<b:panel look="info" title="Update Pay Level Details"
-						collapsible="false">
-						<b:inputText value="#{payLevel.plevel.payLevelID}" readonly="true">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Pay Level ID" />
-							</f:facet>
-						</b:inputText>
-						<b:inputText value="#{payLevel.plevel.totalVacationDays}">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Total Vacation Days" />
-							</f:facet>
-						</b:inputText>
-						<b:inputText value="#{payLevel.plevel.avgPayRate}">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Average Pay Rate" />
-							</f:facet>
-						</b:inputText>
-						<h:commandButton value="Back" action="#{hrController.hrLanding()}"
-							immediate="true" styleClass="btn btn-info"
-							style="margin-right: 10px"></h:commandButton>
-						<h:commandButton value="Save Changes"
-							action="#{payLevel.updateP(payLevel.plevel)}"
-							styleClass="btn btn-info"></h:commandButton>
-					</b:panel>
-				</b:panelGrid>
-			</h:form>
+		 <div class="row">
+		 	<div class="col-lg-4"></div>
+		 	<div class="col-lg-4">
+			<h:form>				
+				<b:panel look="info" title="Update Pay Level Details"
+					collapsible="false">
+					<b:inputText value="#{payLevel.plevel.payLevelID}" readonly="true">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Pay Level ID" />
+						</f:facet>
+					</b:inputText>
+					<b:inputText value="#{payLevel.plevel.totalVacationDays}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Total Vacation Days" />
+						</f:facet>
+					</b:inputText>
+					<b:inputText value="#{payLevel.plevel.avgPayRate}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Average Pay Rate" />
+						</f:facet>
+					</b:inputText>
+					<h:commandButton value="Back" action="#{hrController.hrLanding()}"
+						immediate="true" styleClass="btn btn-info"
+						style="margin-right: 10px"></h:commandButton>
+					<h:commandButton value="Save Changes"
+						action="#{payLevel.updateP(payLevel.plevel)}"
+						styleClass="btn btn-info"></h:commandButton>
+				</b:panel>				
+			</h:form>		 	
+		 	</div>
+		 	<div class="col-lg-4"></div>
+		 </div>
 		</ui:define>
 	</ui:composition>
 </h:body>

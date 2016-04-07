@@ -6,104 +6,109 @@
     <title>IGNORED</title>
 </h:head>
 <h:body>
-    <ui:composition template="/templates/masterLayout.xhtml">
-        <ui:define name="windowTitle">
-            Create TimesheetRow
-        </ui:define>
-        <ui:define name="backBtn">
-            <h:commandLink action="createAdminTimesheet">
-                <!-- TODO change to go back to archived timesheets page -->
-                <span class="icomoon-circle-left backBtn-ico"></span>
-                <span class="backBtn-txt">Go Back</span>
-            </h:commandLink>
-        </ui:define>
-        <ui:define name="content">
-            <h:form>
-                <b:panelGrid colSpans="3,9">
-                    <b:panel look="info" title="New Timesheet Row Details" collapsible="false">
-                        <b:inputText value="#{timesheetRow.tsr.hoursSun}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Sunday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <b:inputText value="#{timesheetRow.tsr.hoursMon}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Monday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <b:inputText value="#{timesheetRow.tsr.hoursTues}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Tuesday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <b:inputText value="#{timesheetRow.tsr.hoursWed}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Wednesday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <b:inputText value="#{timesheetRow.tsr.hoursThurs}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Thursday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <b:inputText value="#{timesheetRow.tsr.hoursFri}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Friday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <b:inputText value="#{timesheetRow.tsr.hoursSat}">
-                            <f:facet name="prepend">
-                                <b:iconAwesome name="pencil-square-o" />
-                            </f:facet>
-                            <f:facet name="append">
-                                <h:outputText value="Saturday Hours" />
-                            </f:facet>
-                        </b:inputText>
-                        <!-- <p:outputLabel for="project" value="Project: " /> -->
-                        <p:selectOneMenu id="project" value="#{timesheetRow.tsr.projectID}" required="true"
-                  			requiredMessage="project ERROR" validatorMessage="projectERROR">
-                            <p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
-                            <f:selectItem itemLabel="Select Project" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{timesheetRow.getProjectList()}" />
-                            <f:validateRequired/>                           
-  							<f:ajax event="blur" render="projectError" />
-                        </p:selectOneMenu>
-                        <h:message for="project" errorClass="invalid" id="projectError" style="color:red"/>
+<ui:composition template="/templates/masterLayout.xhtml">
+    <ui:define name="windowTitle">
+        Create TimesheetRow
+    </ui:define>
+    <ui:define name="backBtn">
+        <h:commandLink action="createAdminTimesheet">
+            <!-- TODO change to go back to archived timesheets page -->
+            <span class="icomoon-circle-left backBtn-ico"></span>
+            <span class="backBtn-txt">Go Back</span>
+        </h:commandLink>
+    </ui:define>
+    <ui:define name="content">
+     <div class="row">
+     	<div class="col-lg-4"></div>
+     	<div class="col-lg-4">
+	      <h:form>
+	       <b:panel look="info" title="New Timesheet Row Details" collapsible="false">
+	           <b:inputText value="#{timesheetRow.tsr.hoursSun}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Sunday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <b:inputText value="#{timesheetRow.tsr.hoursMon}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Monday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <b:inputText value="#{timesheetRow.tsr.hoursTues}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Tuesday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <b:inputText value="#{timesheetRow.tsr.hoursWed}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Wednesday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <b:inputText value="#{timesheetRow.tsr.hoursThurs}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Thursday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <b:inputText value="#{timesheetRow.tsr.hoursFri}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Friday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <b:inputText value="#{timesheetRow.tsr.hoursSat}">
+	               <f:facet name="prepend">
+	                   <b:iconAwesome name="pencil-square-o" />
+	               </f:facet>
+	               <f:facet name="append">
+	                   <h:outputText value="Saturday Hours" />
+	               </f:facet>
+	           </b:inputText>
+	           <!-- <p:outputLabel for="project" value="Project: " /> -->
+	               <p:selectOneMenu id="project" value="#{timesheetRow.tsr.projectID}" required="true"
+	         			requiredMessage="project ERROR" validatorMessage="projectERROR">
+	                   <p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
+	                   <f:selectItem itemLabel="Select Project" itemValue="" noSelectionOption="true" />
+	                   <f:selectItems value="#{timesheetRow.getProjectList()}" />
+	                   <f:validateRequired/>                           
+	<f:ajax event="blur" render="projectError" />
+	               </p:selectOneMenu>
+	               <h:message for="project" errorClass="invalid" id="projectError" style="color:red"/>
+	
+	           <!-- <p:outputLabel for="wp" value="Work Package: " /> -->
+	               <p:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}" required="true"
+	         			requiredMessage="Work Package ERROR" validatorMessage="wpERROR">
+	                   <f:selectItem itemLabel="Select Work Package" itemValue="" noSelectionOption="true" />
+	                   <f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
+	                   <f:validateRequired/>
+	<f:ajax event="blur" render="wpError" />
+	               </p:selectOneMenu>
+	               <h:message for="wp" errorClass="invalid" id="wpError" style="color:red"/><br/>
+	           
+	           <h:commandButton value="Create Row" action="#{timesheetRow.createTsr(timesheetRow.tsr)}" styleClass="btn btn-info"></h:commandButton>
+	       </b:panel>           
+	     </h:form>    		
+     	</div>
+     	<div class="col-lg-4"></div>
+     </div>
 
-                        <!-- <p:outputLabel for="wp" value="Work Package: " /> -->
-                        <p:selectOneMenu id="wp" value="#{timesheetRow.tsr.workPackageID}" required="true"
-                  			requiredMessage="Work Package ERROR" validatorMessage="wpERROR">
-                            <f:selectItem itemLabel="Select Work Package" itemValue="" noSelectionOption="true" />
-                            <f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
-                            <f:validateRequired/>
-  							<f:ajax event="blur" render="wpError" />
-                        </p:selectOneMenu>
-                        <h:message for="wp" errorClass="invalid" id="wpError" style="color:red"/><br/>
-                        
-                        <h:commandButton value="Create Row" action="#{timesheetRow.createTsr(timesheetRow.tsr)}" styleClass="btn btn-info"></h:commandButton>
-                    </b:panel>
-                </b:panelGrid>
-            </h:form>
-        </ui:define>
-    </ui:composition>
+    </ui:define>
+</ui:composition>
 </h:body>
 
 </html>

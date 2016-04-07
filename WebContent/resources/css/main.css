@@ -16,6 +16,14 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 	background-color: #0CAD4F !important;
     border-color: #0CAD4F !important;
 }
+.pagination > .disabled > span, 
+.pagination > .disabled > span:hover, 
+.pagination > .disabled > span:focus, 
+.pagination > .disabled > a, 
+.pagination > .disabled > a:hover,
+ .pagination > .disabled > a:focus{
+	background-color:#eee !important;
+}
 .ui-widget-content{
 	border:none;
 }
