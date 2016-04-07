@@ -346,3 +346,23 @@ a {
 textarea.form-control:focus {
    border-color: #23E875 !important;
 }
+
+.btn-info {    
+    background-color: white !important;
+}
+
+.glyphicon {    
+    color: #0CAD4F;    
+}
+
+.btn-info:hover {    
+    background-color: white !important;
+}
+
+.glyphicon:hover {    
+    color: #0CAD4F;    
+}
+
+.link-btn:hover span.link-btn-txt, .link-btn:focus span.link-btn-txt {
+    color: #0CAD4F;  
+}
