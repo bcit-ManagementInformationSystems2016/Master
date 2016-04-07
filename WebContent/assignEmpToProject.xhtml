@@ -13,16 +13,18 @@
 <ui:composition template="/templates/masterLayout.xhtml">      
     <ui:define name="content">
 	<h:form>	
+	<b:panelGrid colSpans="5,7">
      <b:panel look="info" title="Select Project to Assign to #{projectEmployeesController.viewableEmployee.firstName}  #{projectEmployeesController.viewableEmployee.lastName}" collapsible="false">
 	  <h:outputLabel value="PROJECT:" />
 	  <br />
-	  <h:selectOneMenu value="#{projectEmployeesController.assignedProject}">
+	  <b:selectOneMenu value="#{projectEmployeesController.assignedProject}">
 		  <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
-	  </h:selectOneMenu>
-	  <br/><br/>
-	  <h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}"></h:commandButton>		
-	  <h:commandButton value="Back" action="#{projectEmployeesController.cancelAssignment()}"></h:commandButton>			
-     </b:panel>		
+	  </b:selectOneMenu>
+	 
+	  <h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
+	  <h:commandButton value="Back" action="#{projectEmployeesController.cancelAssignment()}" styleClass="btn btn-info"></h:commandButton>			
+     </b:panel>	
+     </b:panelGrid>	
 	</h:form>
  </ui:define>
 </ui:composition>	

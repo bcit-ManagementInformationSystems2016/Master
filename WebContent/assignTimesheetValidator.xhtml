@@ -12,16 +12,18 @@
 <ui:composition template="/templates/masterLayout.xhtml">      
     <ui:define name="content">
 	<h:form>	
+	<b:panelGrid colSpans="5,7">
      <b:panel look="info" title="Current Timesheet Validator: #{supervisorController.timesheetValidator.firstName} #{supervisorController.timesheetValidator.lastName}" collapsible="false">
 	  <h:outputLabel value="New Timesheet Validator:" />
 	  <br />
-		<h:selectOneMenu value="#{supervisorController.newTimesheetValidator}">
+		<b:selectOneMenu value="#{supervisorController.newTimesheetValidator}">
 		    <f:selectItems value="#{supervisorController.getDropdownForValidators()}" />
-		</h:selectOneMenu>
-		<br /><br/>
-		<h:commandButton value="Back" action="#{supervisorController.cancelAssignment()}"></h:commandButton>
-		<h:commandButton value="Save" action="#{supervisorController.assignValidator()}"></h:commandButton>			
-     </b:panel>		
+		</b:selectOneMenu>
+		
+		<h:commandButton value="Back" action="#{supervisorController.cancelAssignment()}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+		<h:commandButton value="Save" action="#{supervisorController.assignValidator()}" styleClass="btn btn-info"></h:commandButton>			
+     </b:panel>	
+     </b:panelGrid>		
 	</h:form>
  </ui:define>
 </ui:composition>
