@@ -62,12 +62,6 @@ public class TreeController implements Serializable {
 	private PayLevelDays budget;
 	private PayLevelDays remaining;
 	private PayLevelCost projectCost;
-	
-	
-	
-	
-
-
 
 	/**
 	 * @return the emptySelected

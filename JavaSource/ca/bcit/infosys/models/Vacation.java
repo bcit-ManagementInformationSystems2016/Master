@@ -1,7 +1,6 @@
 package ca.bcit.infosys.models;
 
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;

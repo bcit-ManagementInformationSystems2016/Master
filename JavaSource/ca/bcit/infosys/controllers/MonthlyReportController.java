@@ -105,8 +105,11 @@ public class MonthlyReportController implements Serializable {
 	}
 
 	public String viewMonthlyReport(Project p) {
+		System.out.println("Project is: " + p.getProjectName());
 		viewableProject = p;
+		System.out.println("Viewable Project is: " + viewableProject.getProjectName());
 		setProjectWorkPackages(wpMgr.getProjectWorkPackages(viewableProject.getProjectID()));
+		System.out.println("WorkPacakges[] size: " + projectWorkPackages.length);
 		createMonthlyReportObjects(projectWorkPackages);
 		return "viewMonthlyReport";
 	}
@@ -114,7 +117,9 @@ public class MonthlyReportController implements Serializable {
 	public void createMonthlyReportObjects(WorkPackage[] wps) {
 		MonthlyReport[] data = new MonthlyReport[wps.length];
 		PayLevelCost plc = plcMgr.getProjectCosts(viewableProject.getProjectID());
+		System.out.println("size of workpackages: " + wps.length);
 		for (int i = 0; i < wps.length; i++) {
+			System.out.println("going through work package: " + wps[i].getWpID());
 			MonthlyReport mr = new MonthlyReport();
 			//boolean isChild = isChild(wps[i], wps);
 			mr.setWpID(wps[i].getWpID() + ": " + wps[i].getWpName());
@@ -122,13 +127,17 @@ public class MonthlyReportController implements Serializable {
 			mr.setBudgetHours(wps[i].getTotalBudgetDays());
 			TimesheetRow[] timesheetRows = tsrMgr.getSpecificTimesheetRows(viewableProject.getProjectID(),
 					wps[i].getWpID());
+			System.out.println("tsr size is: " + timesheetRows.length);
 			if (actualCostMap.containsKey(wps[i].getWpID())) {
+				System.out.println("Contains!");
 				mr.setActualCost(actualCostMap.get(wps[i].getWpID()));
 			} else {
 				if (wps[i].getIsChild()) {
+					System.out.println("Is child");
 					mr.setActualCost(calculateTotalActualCost(wps[i], plc, timesheetRows));
 					actualCostMap.put(wps[i].getWpID(), mr.getActualCost());
 				} else {
+					System.out.println("Is Parent");
 					mr.setActualCost(parentTotalCostActual(wps[i], plc, wps));
 				}
 			}
@@ -169,6 +178,7 @@ public class MonthlyReportController implements Serializable {
 					Math.round(((mr.getEstimatedHours() - mr.getBudgetHours()) / mr.getBudgetHours()) * 100));
 			mr.setPercentComplete(Math.round((mr.getActualCost() / mr.getEstimatedCost()) * 100));
 			data[i] = mr;
+			System.out.println("Added Monthly Report: " + mr.getWpID());
 		}
 		dataItems = data;
 	}
@@ -300,6 +310,7 @@ public class MonthlyReportController implements Serializable {
 	}
 
 	public double calculateTotalActualCost(WorkPackage wp, PayLevelCost plc, TimesheetRow[] tsrs) {
+		System.out.println("Work Package: " + wp.getWpID() + " - PLC: " + plc.getP1Cost() + " - Tsrs: " + tsrs.length);
 		double totalCost = 0;
 		for (int i = 0; i < tsrs.length; i++) {
 			int empID = tsrs[i].getTimesheet().getEmployeeID();
@@ -312,6 +323,8 @@ public class MonthlyReportController implements Serializable {
 	public String leaveReportPage() {
 		hoursMap = new HashMap<String, Double>();
 		costMap = new HashMap<String, Double>();
+		dataItems = null;
+		projectWorkPackages = null;
 		return "showAllProjects";
 	}
 

@@ -55,16 +55,21 @@ public class TreeManagedBean {
     	root = newNodeWithChildren(top, null, wps);
     }
     
-    public TreeNode newNodeWithChildren(WorkPackage wpParent, TreeNode parent, List<WorkPackage> wps){
-        TreeNode newNode= new DefaultTreeNode(wpParent, parent);
+    @SuppressWarnings("unused")
+	public TreeNode newNodeWithChildren(WorkPackage wpParent, TreeNode parent, List<WorkPackage> wps){
+    	TreeNode newNode;
         List<WorkPackage> childrenArray = new ArrayList<WorkPackage>();
         for (int i = 0; i < wps.size(); i++) {
         	if (wps.get(i).getParentWPID().equals(wpParent.getWpID())) {
         		childrenArray.add(wps.get(i));
         	}
         }
+        if (childrenArray.size() == 0) {
+        	newNode= new DefaultTreeNode("image", wpParent, parent);
+        } else {
+        	newNode= new DefaultTreeNode(wpParent, parent);
+        }
         for (WorkPackage wp : childrenArray){
-             @SuppressWarnings("unused")
 			TreeNode newNode2= newNodeWithChildren(wp, newNode, wps);
         }
         return newNode;

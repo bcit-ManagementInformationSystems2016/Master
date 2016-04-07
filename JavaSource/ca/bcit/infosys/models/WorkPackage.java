@@ -159,4 +159,7 @@ public class WorkPackage implements Serializable{
 		}
 		return "Project has child Work Packages and is UNABLE to have employees assigned to it.";
 	}
+	public String toString() {
+		return wpID + " " + wpName;
+	}
 } 
