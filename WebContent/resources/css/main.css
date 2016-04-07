@@ -71,7 +71,8 @@ figure.menuIcon img {
 	transition: transform 0.4s;
 }
 
-.no-touch .cs-style figure:hover img, .cs-style figure.cs-hover img {
+.no-touch .cs-style figure:hover img, .cs-style figure.cs-hover img,
+.no-touch .cs-style figure:active img, .cs-style figure.cs-active img  {
 	-webkit-transform: scale(0.4);
 	-moz-transform: scale(0.4);
 	-ms-transform: scale(0.4);
@@ -94,8 +95,10 @@ figure.menuIcon img {
 	transition: transform 0.4s, opacity 0.4s;
 }
 
-.no-touch .cs-style figure:hover figcaption, .cs-style figure.cs-hover figcaption
-	{
+.no-touch .cs-style figure:hover figcaption, 
+.cs-style figure.cs-hover figcaption,
+.no-touch .cs-style figure:active figcaption, 
+.cs-style figure.cs-active figcaption {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -179,7 +182,8 @@ figure.menuIcon img {
 	right: 10px;
 }
 
-.panel-info>.panel-heading {
+.panel-info > .panel-heading,
+.panel-body > .panel-heading {
 	background-color: #0CAD4F !important;
 	color: white !important;
 	border-color: #0CAD4F !important;
@@ -188,7 +192,35 @@ figure.menuIcon img {
 .panel-info {
 	border-color: #0CAD4F !important;
 }
+.panel-heading a:after{
+	content:none !important;
+}
+.link-btn{
+	background-color: #05B767 !important;
+	cursor: pointer;
+	color: white !important;
+	border-color: #0CAD4F !important;
+}
+.link-btn:hover, .link-btn:focus{
+	background-color: #05C66F !important;
+	cursor: pointer;
+	color: white !important;
+	border-color: #05B767 !important;
+}
+.link-btn span.link-btn-txt {
 
+    display: none;
+}
+.link-btn:hover span.link-btn-txt,
+.link-btn:focus span.link-btn-txt {
+	margin:0;
+    padding-left: 5px;
+    display: inherit;
+}
+.link-btn, .link-btn:hover, .link-btn:focus{
+	text-decoration: none !important;
+	-webkit-appearance: inherit !important;
+}
 button, html input[type="button"], input[type="reset"], input[type="submit"]
 	{
 	-webkit-appearance: button;
@@ -198,7 +230,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"]
 	border-color: #0CAD4F !important;
 }
 
-button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover
+button:hover, html input[type="button"]:hover, 
+input[type="reset"]:hover, input[type="submit"]:hover
 	{
 	-webkit-appearance: button;
 	cursor: pointer;
@@ -211,9 +244,9 @@ button:hover, html input[type="button"]:hover, input[type="reset"]:hover, input[
 	margin: 10px 5px;
 	-webkit-appearance : button;
 	cursor: pointer;
-	background-color: #0CAD4F !important;
+/* 	background-color: #0CAD4F !important; */
 	color: white !important;
-	border-color: #0CAD4F !important;
+/* 	border-color: #0CAD4F !important; */
 }
 .backBtn-padding{
 	padding-left:66px;
@@ -278,7 +311,7 @@ a {
 }
 
 .ui-widget-content {
-    border: 1px solid #a8a8a8;
+/*     border: 1px solid #a8a8a8; */
     background: transparent;   
 }
 

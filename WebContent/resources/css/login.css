@@ -12,7 +12,7 @@
 
 body {
 	font-family: Arial;
-	background-image: url(http://images7.alphacoders.com/500/500046.jpg);
+	background-image: url("#{resource['images/login-bg.jpg']}");
 	padding: 50px;
 }
 

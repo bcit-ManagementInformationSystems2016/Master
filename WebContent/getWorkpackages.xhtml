@@ -11,8 +11,15 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
+        <ui:define name="backBtn">
+            <h:commandLink action="adminLanding.xhtml">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+        </ui:define>
 		<ui:define name="content">
-			<h:form>
+			<h:form styleClass="white-space">
 				<b:panel look="info"
 					title="Assigned Work Packages for: #{timesheetValidatorController.currentEmployee.firstName} #{timesheetValidatorController.currentEmployee.lastName}"
 					collapsible="false">
