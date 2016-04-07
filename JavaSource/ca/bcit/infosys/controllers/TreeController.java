@@ -360,16 +360,15 @@ public class TreeController implements Serializable {
 	}
 
 	public String assignEmpToWP() {
-		if (!projectTree.getSingleSelectedTreeNode().isLeaf()) {
-			return "viewProjectDetails";
-		}
-		if (projectTree.getSingleSelectedTreeNode() != null) {
-			emptySelected = false;
-			selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
-		} else {
+		if (projectTree.getSingleSelectedTreeNode() == null) {
 			emptySelected = true;
 			return "viewProjectDetails";
 		}
+		if (!projectTree.getSingleSelectedTreeNode().isLeaf()) {
+			return "viewProjectDetails";
+		}
+		emptySelected = false;
+		selectedWP = (WorkPackage) projectTree.getSingleSelectedTreeNode().getData();
 		return "assignEmpToWP";
 	}
 

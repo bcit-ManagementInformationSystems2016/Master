@@ -1,8 +1,6 @@
 package ca.bcit.infosys.controllers;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.enterprise.context.ConversationScoped;
