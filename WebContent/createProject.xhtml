@@ -10,6 +10,14 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
+	<ui:define name="backBtn">
+            <h:commandLink action="#{customerController.goBack()}">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+            <br /><br />
+        </ui:define>  
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="4,8">
@@ -27,7 +35,11 @@
 						<br />
 						<h:outputText value="Project Description" />
 						<br />
+<<<<<<< Updated upstream
 						<b:inputTextarea value="#{customerController.newProject.description}" required="true" id="desc" requiredMessage="Project Description required" />
+=======
+						<b:inputTextarea value="#{customerController.newProject.description}" required="true" id="desc" requiredMessage="Project Description required"/>
+>>>>>>> Stashed changes
 						<h:message for="desc" style="color:red" />
 						<b:selectOneMenu value="#{customerController.projectManager}">
 							<f:selectItems value="#{customerController.getEmployeeDropdown()}" />
@@ -35,9 +47,7 @@
 								<h:outputText value="Project Manager" />
 							</f:facet>
 						</b:selectOneMenu>							
-						<h:commandButton value="Back" action="#{customerController.goBack()}"
-							immediate="true" styleClass="btn btn-info"
-							style="margin-right: 10px"></h:commandButton>
+						
 						<h:commandButton value="Create"
 							action="#{customerController.createProject()}"
 							styleClass="btn btn-info"></h:commandButton>
