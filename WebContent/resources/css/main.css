@@ -392,3 +392,10 @@ textarea.form-control:focus {
 	height: 35px;
 	width:  35px;	
 }
+.ui-icon-image{
+	background-image: url("#{resource['images/leaf.png']}") !important;
+	background-size: contain;
+	background-position: inherit !important;
+	height: 35px;
+	width:  35px;	
+}
