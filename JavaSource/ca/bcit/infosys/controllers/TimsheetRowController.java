@@ -134,13 +134,11 @@ public class TimsheetRowController implements Serializable {
 			if (localRows.get(i).getTimesheetRowID() == tsr.getTimesheetRowID()) {
 				databaseRows.set(i, tsr);
 				if (!(tsr.getStatus() == "new")) {
-					System.out.println("set status to old editted");
 					databaseRows.get(i).setStatus("old-editted");
 				}
 			}
 		}
 		tsr = new TimesheetRow();
-		System.out.println("Updated timesheetRow");
 		return "updated";
 	}
 
@@ -164,7 +162,6 @@ public class TimsheetRowController implements Serializable {
 		localRows.add(newTsr);
 		newTsr.setStatus("new");
 		databaseRows.add(newTsr);
-		System.out.println("Created timesheetRow");
 		tsr = new TimesheetRow();
 		return "created";
 	}
