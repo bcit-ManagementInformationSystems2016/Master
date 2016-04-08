@@ -29,61 +29,75 @@
 					<h:form>
 						<b:panel look="info" title="New Timesheet Row Details"
 							collapsible="false">
-							<b:inputText value="#{timesheetRow.tsr.hoursSun}">
+							<b:inputText value="#{timesheetRow.tsr.hoursSun}" id="sun">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Sunday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
-							<b:inputText value="#{timesheetRow.tsr.hoursMon}">
+							<b:inputText value="#{timesheetRow.tsr.hoursMon}" id="mon">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Monday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
-							<b:inputText value="#{timesheetRow.tsr.hoursTues}">
+							<b:inputText value="#{timesheetRow.tsr.hoursTues}" id="tues">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Tuesday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
-							<b:inputText value="#{timesheetRow.tsr.hoursWed}">
+							<b:inputText value="#{timesheetRow.tsr.hoursWed}" id="wed">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Wednesday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
-							<b:inputText value="#{timesheetRow.tsr.hoursThurs}">
+							<b:inputText value="#{timesheetRow.tsr.hoursThurs}" id="thurs">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Thursday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
-							<b:inputText value="#{timesheetRow.tsr.hoursFri}">
+							<b:inputText value="#{timesheetRow.tsr.hoursFri}" id="fri">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Friday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
-							<b:inputText value="#{timesheetRow.tsr.hoursSat}">
+							<b:inputText value="#{timesheetRow.tsr.hoursSat}" id="sat">
 								<f:facet name="prepend">
 									<b:iconAwesome name="pencil-square-o" />
 								</f:facet>
 								<f:facet name="append">
 									<h:outputText value="Saturday Hours" />
 								</f:facet>
+								<f:convertNumber longOnly="true" type="number" />
+								<f:validateLongRange minimum="0" />
 							</b:inputText>
 							<!-- <p:outputLabel for="project" value="Project: " /> -->
 							<p:selectOneMenu id="project" style="width:100%"
@@ -117,6 +131,7 @@
 								action="#{timesheetRow.createTsr(timesheetRow.tsr)}"
 								styleClass="btn btn-info"></h:commandButton>
 						</b:panel>
+						<h:messages style="color:red;margin:8px;" />
 					</h:form>
 				</div>
 				<div class="col-lg-4"></div>

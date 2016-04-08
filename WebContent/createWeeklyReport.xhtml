@@ -10,14 +10,15 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
-	<ui:define name="backBtn">
-            <h:commandLink action="#{workPackageController.wpLanding}">
-                <!-- TODO change to go back to archived timesheets page -->
-                <span class="icomoon-circle-left backBtn-ico"></span>
-                <span class="backBtn-txt">Go Back</span>
-            </h:commandLink>
-            <br /><br />
-        </ui:define>  
+		<ui:define name="backBtn">
+			<h:commandLink action="#{workPackageController.wpLanding}">
+				<!-- TODO change to go back to archived timesheets page -->
+				<span class="icomoon-circle-left backBtn-ico"></span>
+				<span class="backBtn-txt">Go Back</span>
+			</h:commandLink>
+			<br />
+			<br />
+		</ui:define>
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="6,6">
@@ -79,6 +80,7 @@
 									tooltip-position="auto left" />
 							</f:facet>
 							<f:convertNumber longOnly="true" type="number" />
+							<f:validateLongRange minimum="0" />
 						</b:inputText>
 						<h:message for="p1" style="color:red" />
 						<b:inputText value="#{weekly.pld.p2Day}" id="p2">
@@ -90,6 +92,7 @@
 									tooltip-position="auto left" />
 							</f:facet>
 							<f:convertNumber longOnly="true" type="number" />
+							<f:validateLongRange minimum="0" />
 						</b:inputText>
 						<h:message for="p2" style="color:red" />
 						<b:inputText value="#{weekly.pld.p3Day}" id="p3">
@@ -101,6 +104,7 @@
 									tooltip-position="auto left" />
 							</f:facet>
 							<f:convertNumber longOnly="true" type="number" />
+							<f:validateLongRange minimum="0" />
 						</b:inputText>
 						<h:message for="p3" style="color:red" />
 						<b:inputText value="#{weekly.pld.p4Day}" id="p4">
@@ -112,6 +116,7 @@
 									tooltip-position="auto left" />
 							</f:facet>
 							<f:convertNumber longOnly="true" type="number" />
+							<f:validateLongRange minimum="0" />
 						</b:inputText>
 						<h:message for="p4" style="color:red" />
 						<b:inputText value="#{weekly.pld.p5Day}" id="p5">
@@ -123,6 +128,7 @@
 									tooltip-position="auto left" />
 							</f:facet>
 							<f:convertNumber longOnly="true" type="number" />
+							<f:validateLongRange minimum="0" />
 						</b:inputText>
 						<h:message for="p5" style="color:red" />
 						<b:inputText value="#{weekly.pld.p6Day}" id="p6">
@@ -134,10 +140,11 @@
 									tooltip-position="auto left" />
 							</f:facet>
 							<f:convertNumber longOnly="true" type="number" />
+							<f:validateLongRange minimum="0" />
 						</b:inputText>
 						<h:message for="p6" style="color:red" />
 						<br />
-						
+
 						<h:commandButton value="Save Updates"
 							action="#{weekly.createReport}" styleClass="btn btn-info"></h:commandButton>
 					</b:panel>
