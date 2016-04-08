@@ -11,6 +11,13 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
+	<ui:define name="backBtn">
+			<h:commandLink action="#{timesheetValidatorController.leaveTimesheetValidating()}">
+				<span class="icomoon-circle-left backBtn-ico"></span>
+				<span class="backBtn-txt">Go Back</span>
+			</h:commandLink>
+			<br /><br />
+		</ui:define>
 		<ui:define name="content">
 			<h:form>
 				<b:panel look="info"
@@ -83,12 +90,7 @@
 
 					</b:dataTable>
 				</b:panel>
-			</h:form>
-			<h:form>
-				<br />
-				<h:commandButton value="Back"
-					action="#{timesheetValidatorController.leaveTimesheetValidating()}"></h:commandButton>
-			</h:form>
+			</h:form>			
 		</ui:define>
 	</ui:composition>
 </h:body>

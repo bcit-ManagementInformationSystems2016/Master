@@ -12,7 +12,7 @@
 <h:body>
 <ui:composition template="/templates/masterLayout.xhtml">  
     <ui:define name="backBtn">
-        <h:commandLink action="adminLanding.xhtml">
+        <h:commandLink action="#{hrController.leaveMinionsPage()}">
             <!-- TODO change to go back to archived timesheets page -->
             <span class="icomoon-circle-left backBtn-ico"></span>
             <span class="backBtn-txt">Go Back</span>
@@ -77,9 +77,6 @@
 			<h:outputText value="#{vacays.vacationDaysLeft}"/>
 		</h:column>	
 	  </b:dataTable>	
-	 <h:commandButton value="Go To Home Page" action="#{hrController.leaveMinionsPage()}">
-	 	<f:actionListener binding="#{vacation.leaveSupervisorPage()}" />
-	 </h:commandButton>
      </b:panel>		
 	</h:form>
  </ui:define>

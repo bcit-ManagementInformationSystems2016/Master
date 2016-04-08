@@ -11,7 +11,15 @@
 
 </h:head>
 <h:body>
-<ui:composition template="/templates/masterLayout.xhtml">      
+<ui:composition template="/templates/masterLayout.xhtml"> 
+  <ui:define name="backBtn">
+            <h:commandLink action="#{monthlyReportController.leaveReportPage()}">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+            <br /><br />
+        </ui:define>   
     <ui:define name="content">
 	<h:form>	
      <b:panel look="info" title="Project Status Report for: #{monthlyReportController.viewableProject.projectName}" collapsible="false">
@@ -128,9 +136,7 @@
 			</p:column>
     	
     	
-	  </p:dataTable>
-	  		<br />
-	 <h:commandButton value="Go Back" action="#{monthlyReportController.leaveReportPage()}" styleClass="btn btn-info"></h:commandButton>
+	  </p:dataTable>	 
      </b:panel>		
 	</h:form>
  </ui:define>

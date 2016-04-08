@@ -268,7 +268,7 @@ input[type="reset"]:hover, input[type="submit"]:hover
 /* 	border-color: #0CAD4F !important; */
 }
 .backBtn-padding{
-	padding-left:66px;
+	padding-left:0px;
 }
 @media all and (max-width: 970px) {
 	.backBtn-padding{
@@ -391,3 +391,4 @@ textarea.form-control:focus {
 .ui-tree .ui-treenode{
 	padding: 3px 0 0 !important;
 }
+

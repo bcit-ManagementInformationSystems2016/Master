@@ -10,6 +10,14 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
+	<ui:define name="backBtn">
+            <h:commandLink action="#{customerController.goBack()}">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+            <br /><br />
+        </ui:define> 
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="3,9">
@@ -43,9 +51,7 @@
 						<h:outputText value="Customer Description" />
 						<br />
 						<b:inputTextarea value="#{customerController.editableCustomer.description}" />	
-						<h:commandButton value="Back" action="#{customerController.goBack()}"
-							immediate="true" styleClass="btn btn-info"
-							style="margin-right: 10px"></h:commandButton>
+						
 						<h:commandButton value="Save Changes"
 							action="#{customerController.update(customerController.editableCustomer)}"
 							styleClass="btn btn-info"></h:commandButton>

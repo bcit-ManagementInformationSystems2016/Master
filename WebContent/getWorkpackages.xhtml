@@ -12,7 +12,7 @@
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
         <ui:define name="backBtn">
-            <h:commandLink action="adminLanding.xhtml">
+            <h:commandLink action="#{weekly.goBack()}">
                 <!-- TODO change to go back to archived timesheets page -->
                 <span class="icomoon-circle-left backBtn-ico"></span>
                 <span class="backBtn-txt">Go Back</span>
@@ -88,12 +88,7 @@
 
 					</b:dataTable>
 				</b:panel>
-			</h:form>
-			<h:form>
-				<br />
-				<h:commandButton value="Back"
-					action="#{weekly.goBack()}"></h:commandButton>
-			</h:form>
+			</h:form>		
 		</ui:define>
 	</ui:composition>
 </h:body>

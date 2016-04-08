@@ -10,7 +10,14 @@
 
 </h:head>
 <h:body>
-<ui:composition template="/templates/masterLayout.xhtml">      
+<ui:composition template="/templates/masterLayout.xhtml">   
+<ui:define name="backBtn">
+			<h:commandLink action="#{vacation.goBack()}">
+				<span class="icomoon-circle-left backBtn-ico"></span>
+				<span class="backBtn-txt">Go Back</span>
+			</h:commandLink>
+			<br /><br />
+		</ui:define>   
     <ui:define name="content">
 	<h:form>	
      <b:panel look="info" title="Customer Address Book" collapsible="false">
@@ -43,8 +50,7 @@
 			</h:column>
 		
 	  </b:dataTable>		
-	 <h:commandButton value="Create New Customer" action="#{customerController.createNewCust()}" rendered="#{login.hr}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
-	 <h:commandButton value="Go To Home Page" action="#{customerController.leaveAddressBook()}" styleClass="btn btn-info"></h:commandButton>
+	 <h:commandButton value="Create New Customer" action="#{customerController.createNewCust()}" rendered="#{login.hr}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>	
      </b:panel>		
 	</h:form>
  </ui:define>

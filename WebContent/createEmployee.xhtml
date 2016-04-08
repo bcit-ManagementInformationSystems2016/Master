@@ -10,6 +10,14 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
+	 <ui:define name="backBtn">
+            <h:commandLink action="humanResources">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+            <br /><br />
+        </ui:define>  
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="4,8">
@@ -85,9 +93,7 @@
 							<f:facet name="append">
 								<h:outputText value="Password" />
 							</f:facet>
-						</b:inputText>
-						<h:commandButton value="Back" action="humanResources" immediate="true"
-							styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>
+						</b:inputText>						
 						<h:commandButton value="Add New"
 							action="#{hrController.createEmp(hrController.emp)}"
 							styleClass="btn btn-info"></h:commandButton>
