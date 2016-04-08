@@ -357,26 +357,6 @@ a {
 textarea.form-control:focus {
    border-color: #23E875 !important;
 }
-/*
-.btn-info {    
-    background-color: white !important;
-}
-
-.glyphicon {    
-    color: #0CAD4F;    
-}
-
-.btn-info:hover {    
-    background-color: white !important;
-}
-
-.glyphicon:hover {    
-    color: #0CAD4F;    
-}
-
- .link-btn:hover span.link-btn-txt, .link-btn:focus span.link-btn-txt { */
-/*     color: #0CAD4F;   */
-/* } */
 
 .ui-icon-folder-open{
 	background-image: url("#{resource['images/bamboo-trunk-outline.png']}") !important;
@@ -396,6 +376,18 @@ textarea.form-control:focus {
 	background-image: url("#{resource['images/leaf.png']}") !important;
 	background-size: contain;
 	background-position: inherit !important;
-	height: 35px;
-	width:  35px;	
+	height: 30px;
+	width:  30px;	
+}
+.ui-state-hover{
+	background:rgba(12, 173, 79, 0.65) !important;
+	box-shadow:none !important;
+}
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight{
+	background:#0CAD4F !important;
+}
+.ui-tree .ui-treenode{
+	padding: 3px 0 0 !important;
 }
