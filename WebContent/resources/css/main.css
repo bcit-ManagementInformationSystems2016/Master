@@ -1,8 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
 
-@import
-	url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300)
-	;
+@import	url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300)	;
 
 @import url("icomoon.css");
 
@@ -245,13 +243,7 @@ figure.menuIcon img {
 	padding-left: 5px;
 	display: inherit;
 }
-
-//
-media query /*
-margin: 0;
-    padding-left: 5px;
-    display: inherit;
-*/         
+        
 .link-btn, .link-btn:hover, .link-btn:focus {
 	text-decoration: none !important;
 	-webkit-appearance: inherit !important;
@@ -353,13 +345,10 @@ a {
 	padding: 4px 10px;
 }
 
-<<<<<<< Updated upstream
-.ui-datatable-tablewrapper tr:hover {
-	background-color: #c4c4c4;
-=======
+
 .ui-datatable-tablewrapper tr:hover{ 
 /* 	background-color: #c4c4c4;  */
->>>>>>> Stashed changes
+
 }
 
 .ui-widget-content {
@@ -380,8 +369,8 @@ a {
 }
 
 .input-group-addon:not (:first-child ):not (:last-child ),
-	.input-group-btn:not (:first-child ):not (:last-child ), .input-group .form-control:not
-	 (:first-child ):not (:last-child ):focus {
+.input-group-btn:not (:first-child ):not (:last-child ), 
+.input-group .form-control:not (:first-child ):not (:last-child ):focus {
 	border-color: #23E875;
 }
 
