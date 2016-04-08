@@ -336,7 +336,9 @@ public class TreeController implements Serializable {
 	}
 
 	public String cancelCreateWP() {
+		System.out.println("go back");
 		setAvailableEmployees(null);
+		System.out.println("availableEmps = null");
 		return "viewProjectDetails";
 	}
 

@@ -47,7 +47,6 @@
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p1Cost}" tooltip-position="auto left"/>
             </f:facet>
-            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 	
         <h:message for="p1" style="color:red" />
 		<b:inputText value="#{treeController.budget.p2Day}" id="p2">
@@ -57,7 +56,6 @@
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p2Cost}" tooltip-position="auto left"/>
             </f:facet>
-            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 	
          <h:message for="p2" style="color:red" />
 		<b:inputText value="#{treeController.budget.p3Day}" id="p3">
@@ -67,7 +65,6 @@
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p3Cost}" tooltip-position="auto left"/>
             </f:facet>
-            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
          <h:message for="p3" style="color:red" />
 		<b:inputText value="#{treeController.budget.p4Day}" id="p4">
@@ -77,7 +74,6 @@
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p4Cost}" tooltip-position="auto left"/>
             </f:facet>
-            <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
          <h:message for="p4" style="color:red" />
 		<b:inputText value="#{treeController.budget.p5Day}" id="p5">
@@ -87,7 +83,6 @@
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p5Cost}" tooltip-position="auto left"/>
             </f:facet>
-             <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
         <h:message for="p5" style="color:red" />
 		<b:inputText value="#{treeController.budget.p6Day}" >
@@ -97,7 +92,6 @@
             <f:facet name="append">
                 <b:button value="Cost Per Day" tooltip="$#{treeController.projectCost.p6Cost}" tooltip-position="auto left"/>
             </f:facet>
-             <f:convertNumber longOnly="true" type="number" />
         </b:inputText> 
          <h:message for="p6" style="color:red" />
         <br />
@@ -108,7 +102,7 @@
 	  	</b:selectOneMenu>
 		
 		<br />
-		<h:commandButton value="Go Back" action="#{treeController.cancelCreateWP()}" styleClass="btn btn-info" style="margin-right: 10px"/>		
+		<h:commandButton value="Go Back" action="#{treeController.cancelCreateWP()}" immediate="true" styleClass="btn btn-info" style="margin-right: 10px"/>		
 		<h:commandButton value="Save Updates" action="#{treeController.saveNewWP(treeController.wpToAdd)}" styleClass="btn btn-info"></h:commandButton>
 		</b:panel>		
 		</b:panelGrid>
