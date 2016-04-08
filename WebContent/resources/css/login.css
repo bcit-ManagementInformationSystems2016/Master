@@ -13,6 +13,7 @@
 body {
 	font-family: Arial;
 	background-image: url("#{resource['images/login-bg.jpg']}");
+	background-repeat:no-repeat;
 	padding: 50px;
 }
 
