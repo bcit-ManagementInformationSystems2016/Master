@@ -408,3 +408,6 @@ textarea.form-control:focus {
 	padding: 3px 0 0 !important;
 }
 
+.ui-selectonemenu-list { 
+    background: white;
+}
