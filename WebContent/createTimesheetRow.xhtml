@@ -100,7 +100,8 @@
 								<f:validateLongRange minimum="0" />
 							</b:inputText>
 							<!-- <p:outputLabel for="project" value="Project: " /> -->
-							<p:selectOneMenu id="project" style="width:100%"
+							<p:selectOneMenu id="project"
+								style="width:100%;font-size: 1em;padding-right:0em"
 								value="#{timesheetRow.tsr.projectID}" required="true"
 								requiredMessage="project ERROR" validatorMessage="projectERROR">
 								<p:ajax listener="#{timesheetRow.dropdownChange}" update="wp" />
@@ -114,7 +115,8 @@
 								style="color:red" />
 
 							<!-- <p:outputLabel for="wp" value="Work Package: " /> -->
-							<p:selectOneMenu id="wp" style="width:100%"
+							<p:selectOneMenu id="wp"
+								style="width:100%; font-size: 1em; padding-right:0em"
 								value="#{timesheetRow.tsr.workPackageID}" required="true"
 								requiredMessage="Work Package ERROR" validatorMessage="wpERROR">
 								<f:selectItem itemLabel="Select Work Package" itemValue=""
@@ -122,6 +124,7 @@
 								<f:selectItems value="#{timesheetRow.getWorkPackageList()}" />
 								<f:validateRequired />
 								<f:ajax event="blur" render="wpError" />
+
 							</p:selectOneMenu>
 							<h:message for="wp" errorClass="invalid" id="wpError"
 								style="color:red" />

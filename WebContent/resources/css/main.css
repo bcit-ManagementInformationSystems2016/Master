@@ -1,56 +1,63 @@
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
 
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+@import
+	url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300)
+	;
 
 @import url("icomoon.css");
 
-html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li, ul, input {
+html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6,
+	h7, li, ul, input {
 	font-family: 'Exo', sans-serif;
 }
-.pagination>.active>a, 
-.pagination>.active>span, 
-.pagination>.active>a:hover, 
-.pagination>.active>span:hover, 
-.pagination>.active>a:focus, 
-.pagination>.active>span:focus{
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+	.pagination>.active>span:hover, .pagination>.active>a:focus,
+	.pagination>.active>span:focus {
 	background-color: #0CAD4F !important;
-    border-color: #0CAD4F !important;
+	border-color: #0CAD4F !important;
 }
-.pagination > .disabled > span, 
-.pagination > .disabled > span:hover, 
-.pagination > .disabled > span:focus, 
-.pagination > .disabled > a, 
-.pagination > .disabled > a:hover,
- .pagination > .disabled > a:focus{
-	background-color:#eee !important;
+
+.pagination>.disabled>span, .pagination>.disabled>span:hover,
+	.pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover,
+	.pagination>.disabled>a:focus {
+	background-color: #eee !important;
 }
-.ui-widget-content{
-	border:none;
+
+.ui-widget-content {
+	border: none;
 }
-.ui-tree{
-	margin:0 auto;
+
+.ui-tree {
+	margin: 0 auto;
 }
-.ui-tree{
-	font-size:1.5em !important;
+
+.ui-tree {
+	font-size: 1.5em !important;
 }
-.ui-tree .ui-tree-container{
+
+.ui-tree .ui-tree-container {
 	overflow: visible !important;
 }
 
-.white-space{
-	padding-top:1em;
+.white-space {
+	padding-top: 1em;
 }
-.white-txt{
-	color:#ffffff;
+
+.white-txt {
+	color: #ffffff;
 }
+
 .cs-style div {
 	margin: 0;
 	padding: 50px;
 	text-align: left;
 }
-.ui-tree .ui-tree-toggler{
+
+.ui-tree .ui-tree-toggler {
 	vertical-align: middle !important;
 }
+
 figure.menuIcon {
 	margin: 0;
 }
@@ -85,13 +92,11 @@ figure.menuIcon img {
 	transition: transform 0.4s;
 }
 
-
-.cs-style figure:hover img, .cs-style figure.cs-hover img,
-.cs-style figure:active img, .cs-style figure.cs-active img,
-.cs-style figure:focus img, .cs-style figure.cs-focus img,
-a figure:hover img, .cs-style figure.cs-hover img,
-a figure:active img, .cs-style figure.cs-active img,
-a figure:focus img, .cs-style figure.cs-focus img   {
+.cs-style figure:hover img, .cs-style figure.cs-hover img, .cs-style figure:active img,
+	.cs-style figure.cs-active img, .cs-style figure:focus img, .cs-style figure.cs-focus img,
+	a figure:hover img, .cs-style figure.cs-hover img, a figure:active img,
+	.cs-style figure.cs-active img, a figure:focus img, .cs-style figure.cs-focus img
+	{
 	-webkit-transform: scale(0.4);
 	-moz-transform: scale(0.4);
 	-ms-transform: scale(0.4);
@@ -114,18 +119,12 @@ a figure:focus img, .cs-style figure.cs-focus img   {
 	transition: transform 0.4s, opacity 0.4s;
 }
 
-.cs-style figure:hover figcaption, 
-.cs-style figure.cs-hover figcaption,
-.cs-style figure:active figcaption, 
-.cs-style figure.cs-active figcaption,
-.cs-style figure:focus figcaption, 
-.cs-style figure.cs-focus figcaption,
-a figure:hover figcaption, 
-a figure.cs-hover figcaption,
-a figure:active figcaption, 
-a figure.cs-active figcaption,
-a figure:focus figcaption, 
-a figure.cs-focus figcaption {
+.cs-style figure:hover figcaption, .cs-style figure.cs-hover figcaption,
+	.cs-style figure:active figcaption, .cs-style figure.cs-active figcaption,
+	.cs-style figure:focus figcaption, .cs-style figure.cs-focus figcaption,
+	a figure:hover figcaption, a figure.cs-hover figcaption, a figure:active figcaption,
+	a figure.cs-active figcaption, a figure:focus figcaption, a figure.cs-focus figcaption
+	{
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -209,8 +208,7 @@ a figure.cs-focus figcaption {
 	right: 10px;
 }
 
-.panel-info > .panel-heading,
-.panel-body > .panel-heading {
+.panel-info>.panel-heading, .panel-body>.panel-heading {
 	background-color: #0CAD4F !important;
 	color: white !important;
 	border-color: #0CAD4F !important;
@@ -219,42 +217,46 @@ a figure.cs-focus figcaption {
 .panel-info {
 	border-color: #0CAD4F !important;
 }
-.panel-heading a:after{
-	content:none !important;
+
+.panel-heading a:after {
+	content: none !important;
 }
-.link-btn{
+
+.link-btn {
 	background-color: white !important;
 	cursor: pointer;
 	color: #0CAD4F !important;
 	border-color: #ccc !important;
 }
-.link-btn:hover, .link-btn:focus{
+
+.link-btn:hover, .link-btn:focus {
 	background-color: white !important;
 	cursor: pointer;
 	color: #0CAD4F !important;
 	border-color: #ccc !important;
 }
+
 .link-btn span.link-btn-txt {
-
-    display: none;
-}
-.link-btn:hover span.link-btn-txt,
-.link-btn:focus span.link-btn-txt {
-	margin:0;
-    padding-left: 5px;
-    display: inherit;
+	display: none;
 }
 
-//media query 
-/*
+.link-btn:hover span.link-btn-txt, .link-btn:focus span.link-btn-txt {
+	margin: 0;
+	padding-left: 5px;
+	display: inherit;
+}
+
+//
+media query /*
 margin: 0;
     padding-left: 5px;
     display: inherit;
-*/
-.link-btn, .link-btn:hover, .link-btn:focus{
+*/         
+.link-btn, .link-btn:hover, .link-btn:focus {
 	text-decoration: none !important;
 	-webkit-appearance: inherit !important;
 }
+
 button, html input[type="button"], input[type="reset"], input[type="submit"]
 	{
 	-webkit-appearance: button;
@@ -264,9 +266,8 @@ button, html input[type="button"], input[type="reset"], input[type="submit"]
 	border-color: #0CAD4F !important;
 }
 
-button:hover, html input[type="button"]:hover, 
-input[type="reset"]:hover, input[type="submit"]:hover
-	{
+button:hover, html input[type="button"]:hover, input[type="reset"]:hover,
+	input[type="submit"]:hover {
 	-webkit-appearance: button;
 	cursor: pointer;
 	background-color: #05B767 !important;
@@ -276,138 +277,166 @@ input[type="reset"]:hover, input[type="submit"]:hover
 
 .btn-margin {
 	margin: 10px 5px;
-	-webkit-appearance : button;
+	-webkit-appearance: button;
 	cursor: pointer;
-/* 	background-color: #0CAD4F !important; */
+	/* 	background-color: #0CAD4F !important; */
 	color: white;
-/* 	border-color: #0CAD4F !important; */
+	/* 	border-color: #0CAD4F !important; */
 }
-.backBtn-padding{
-	padding-left:0px;
+
+.backBtn-padding {
+	padding-left: 0px;
 }
+
 @media all and (max-width: 970px) {
-	.backBtn-padding{
-		padding-left:36px;
+	.backBtn-padding {
+		padding-left: 36px;
 	}
 }
+
 @media all and (max-width: 600px) {
-	.backBtn-padding{
-		padding-left:10px;
+	.backBtn-padding {
+		padding-left: 10px;
 	}
 }
-.backBtn-ico, .backBtn-txt{
-	color:#0CAD4F;
+
+.backBtn-ico, .backBtn-txt {
+	color: #0CAD4F;
 	vertical-align: middle;
 }
+
 .backBtn-padding:hover a, .backBtn-padding:hover a:hover
-.backBtn-padding a:hover, form a:hover{
-	text-decoration:none;
+.backBtn-padding a:hover, form a:hover {
+	text-decoration: none;
 }
-.backBtn-padding:hover a span{
-	color:#05B767;
+
+.backBtn-padding:hover a span {
+	color: #05B767;
 }
-.backBtn-padding:hover a span.backBtn-txt,
-.backBtn-padding:active a span.backBtn-txt{
-	opacity:1;
-	margin:0;
+
+.backBtn-padding:hover a span.backBtn-txt, .backBtn-padding:active a span.backBtn-txt
+	{
+	opacity: 1;
+	margin: 0;
 }
-.backBtn-ico{
-	font-size:3em;
+
+.backBtn-ico {
+	font-size: 3em;
 }
-.backBtn-txt{
+
+.backBtn-txt {
 	transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
-    -moz-transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
-    -webkit-transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
-    opacity:0;
-    margin-left:-100px;
-	font-size: 2.5em;    
-    padding-left: 5px;
+	-moz-transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
+	-webkit-transition: margin-left 0.75s ease-out, opacity 0.25s ease-in;
+	opacity: 0;
+	margin-left: -100px;
+	font-size: 2.5em;
+	padding-left: 5px;
 }
 
 a {
 	color: #0CAD4F !important;
 }
 
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
-    background-color: #0CAD4F !important;
-    border-color: #0CAD4F !important;
-    color: white !important;
-} 
-
-.ui-panelgrid .ui-panelgrid-cell {
-    border-width: 1px;
-    border-style: solid;
-    border-color: transparent !important;    
-    padding: 4px 10px;
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+	.pagination>.active>span:hover, .pagination>.active>a:focus,
+	.pagination>.active>span:focus {
+	background-color: #0CAD4F !important;
+	border-color: #0CAD4F !important;
+	color: white !important;
 }
 
-.ui-datatable-tablewrapper tr:hover{ 
-	background-color: #c4c4c4; 
+.ui-panelgrid .ui-panelgrid-cell {
+	border-width: 1px;
+	border-style: solid;
+	border-color: transparent !important;
+	padding: 4px 10px;
+}
+
+.ui-datatable-tablewrapper tr:hover {
+	background-color: #c4c4c4;
 }
 
 .ui-widget-content {
-/*     border: 1px solid #a8a8a8; */
-    background: transparent;   
+	/*     border: 1px solid #a8a8a8; */
+	background: transparent;
 }
 
 .header-fixed .header-limiter a {
-    color: #ffffff !important;
-    text-decoration: none;
-    font-size: 15px !important;
-    font-family: 'Exo', sans-serif;
+	color: #ffffff !important;
+	text-decoration: none;
+	font-size: 15px !important;
+	font-family: 'Exo', sans-serif;
 }
 
-.ui-widget {    
-    font-family: 'Exo', sans-serif;
-    font-size: 1.1em;
+.ui-widget {
+	font-family: 'Exo', sans-serif;
+	font-size: 1.1em;
 }
 
-.input-group-addon:not(:first-child):not(:last-child), .input-group-btn:not(:first-child):not(:last-child), .input-group .form-control:not(:first-child):not(:last-child):focus {   
-    border-color: #23E875; 
+.input-group-addon:not (:first-child ):not (:last-child ),
+	.input-group-btn:not (:first-child ):not (:last-child ), .input-group .form-control:not
+	 (:first-child ):not (:last-child ):focus {
+	border-color: #23E875;
 }
 
-.input-group-btn, .input-group .form-control:focus { 
-    border-color: #23E875 !important;
+.input-group-btn, .input-group .form-control:focus {
+	border-color: #23E875 !important;
 }
 
 textarea.form-control:focus {
-   border-color: #23E875 !important;
+	border-color: #23E875 !important;
 }
 
-.ui-icon-folder-open{
-	background-image: url("#{resource['images/bamboo-trunk-outline.png']}") !important;
-	background-size: contain;	
-	background-position: inherit !important;
-	height: 35px;
-	width:  35px;
-}
-.ui-icon-folder-collapsed{
-	background-image: url("#{resource['images/bamboo-trunk-solid.png']}") !important;
+.ui-icon-folder-open {
+	background-image: url("#{resource['images/bamboo-trunk-outline.png']}")
+		!important;
 	background-size: contain;
 	background-position: inherit !important;
 	height: 35px;
-	width:  35px;	
+	width: 35px;
 }
-.ui-icon-image{
+
+.ui-icon-folder-collapsed {
+	background-image: url("#{resource['images/bamboo-trunk-solid.png']}")
+		!important;
+	background-size: contain;
+	background-position: inherit !important;
+	height: 35px;
+	width: 35px;
+}
+
+.ui-icon-image {
 	background-image: url("#{resource['images/leaf.png']}") !important;
 	background-size: contain;
 	background-position: inherit !important;
 	height: 30px;
-	width:  30px;	
+	width: 30px;
 }
-.ui-state-hover{
-	background:rgba(12, 173, 79, 0.65) !important;
-	box-shadow:none !important;
+
+.ui-state-hover {
+	background: rgba(12, 173, 79, 0.65) !important;
+	box-shadow: none !important;
 }
-.ui-state-highlight, 
-.ui-widget-content .ui-state-highlight, 
-.ui-widget-header .ui-state-highlight{
-	background:#0CAD4F !important;
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight,
+	.ui-widget-header .ui-state-highlight {
+	background: #0CAD4F !important;
 }
-.ui-tree .ui-treenode{
+
+.ui-tree .ui-treenode {
 	padding: 3px 0 0 !important;
 }
 
-.ui-selectonemenu-list { 
-    background: white;
+.ui-selectonemenu-list {
+	background: white;
+}
+
+.ui-selectonemenu-list-item {
+	width: 100%;
+	font-size: 1.2em;
+}
+
+.ui-inputfield {
+	box-shadow: none;
 }
