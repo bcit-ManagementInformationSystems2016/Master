@@ -10,6 +10,14 @@
 </h:head>
 <h:body>
 	<ui:composition template="/templates/masterLayout.xhtml">
+	<ui:define name="backBtn">
+            <h:commandLink action="#{workPackageController.wpLanding}">
+                <!-- TODO change to go back to archived timesheets page -->
+                <span class="icomoon-circle-left backBtn-ico"></span>
+                <span class="backBtn-txt">Go Back</span>
+            </h:commandLink>
+            <br /><br />
+        </ui:define>  
 		<ui:define name="content">
 			<h:form>
 				<b:panelGrid colSpans="6,6">
@@ -129,9 +137,7 @@
 						</b:inputText>
 						<h:message for="p6" style="color:red" />
 						<br />
-						<h:commandButton value="Go Back"
-							action="#{workPackageController.wpLanding}"
-							styleClass="btn btn-info" style="margin-right: 10px" />
+						
 						<h:commandButton value="Save Updates"
 							action="#{weekly.createReport}" styleClass="btn btn-info"></h:commandButton>
 					</b:panel>
@@ -139,101 +145,5 @@
 			</h:form>
 		</ui:define>
 	</ui:composition>
-=======
-<ui:composition template="/templates/masterLayout.xhtml">      
-        <ui:define name="content">
-	<h:form>
-	<b:panelGrid colSpans="6,6">
-	<b:panel look="info" title="Work Package Info" collapsible="false">			  
-		<h:outputText value="Project Name" style="font-weight: bold"/>
-		<br />		
-		<h:outputText value="#{weekly.wpForReport.workingProject.projectID} - #{weekly.wpForReport.workingProject.projectName}" ></h:outputText>
-		<br /><br />
-		<h:outputText value="Work Package" style="font-weight: bold"/>
-		<br />
-		<h:outputText value="#{weekly.wpForReport.wpID} - #{weekly.wpForReport.wpName}" />
-		<br /><br />		
-		<h:outputText value="Budgeted Man Days" style="font-weight: bold"></h:outputText>
-		<br />
-		<h:outputText value="#{weekly.wpForReport.totalBudgetDays}" ></h:outputText>
-		<br /><br />
-		<h:outputText value="Budgeted Cost" style="font-weight: bold"/>
-		<br />
-		<h:outputText value="#{weekly.wpForReport.totalBudgetCost}" >
-			<f:convertNumber type="currency" currencySymbol="$" />
-		</h:outputText>
-		<br /><br />
-		<h:outputText value="Current Man Days Charged" style="font-weight: bold"/>
-		<br />
-		<h:outputText value="#{weekly.personDays}" />
-		<br /><br />
-		<h:outputText value="Current Costs Charged" style="font-weight: bold"/>
-		<br />
-		<h:outputText value="#{weekly.personDollars}" >
-			<f:convertNumber type="currency" currencySymbol="$" />
-		</h:outputText>	
-		<br />
-				
-	</b:panel>
-	<b:panel look="info" title="Enter Work Package Details" collapsible="false">			
-		<h:outputText value="Estimated Man Days Remaining" style="font-weight: bold"/>		
-		<br />		
-		<b:inputText value="#{weekly.pld.p1Day}" >
-		<f:facet name="prepend">
-                <h:outputText value="Pay Level 1" />
-            </f:facet>
-            <f:facet name="append">
-                <b:button value="Cost Per Day" tooltip="$#{weekly.plc.p1Cost}" tooltip-position="auto left"/>
-            </f:facet>
-        </b:inputText> 	
-		<b:inputText value="#{weekly.pld.p2Day}" >
-		<f:facet name="prepend">
-                <h:outputText value="Pay Level 2" />
-            </f:facet>
-            <f:facet name="append">
-                <b:button value="Cost Per Day" tooltip="$#{weekly.plc.p2Cost}" tooltip-position="auto left"/>
-            </f:facet>
-        </b:inputText> 	
-		<b:inputText value="#{weekly.pld.p3Day}" >
-		<f:facet name="prepend">
-                <h:outputText value="Pay Level 3" />
-            </f:facet>
-            <f:facet name="append">
-                <b:button value="Cost Per Day" tooltip="$#{weekly.plc.p3Cost}" tooltip-position="auto left"/>
-            </f:facet>
-        </b:inputText> 
-		<b:inputText value="#{weekly.pld.p4Day}" >
-		<f:facet name="prepend">
-                <h:outputText value="Pay Level 4" />
-            </f:facet>
-            <f:facet name="append">
-                <b:button value="Cost Per Day" tooltip="$#{weekly.plc.p4Cost}" tooltip-position="auto left"/>
-            </f:facet>
-        </b:inputText> 
-		<b:inputText value="#{weekly.pld.p5Day}" >
-		<f:facet name="prepend">
-                <h:outputText value="Pay Level 5" />
-            </f:facet>
-            <f:facet name="append">
-                <b:button value="Cost Per Day" tooltip="$#{weekly.plc.p5Cost}" tooltip-position="auto left"/>
-            </f:facet>
-        </b:inputText> 
-		<b:inputText value="#{weekly.pld.p6Day}" >
-		<f:facet name="prepend">
-                <h:outputText value="Pay Level 6" />
-            </f:facet>
-            <f:facet name="append">
-                <b:button value="Cost Per Day" tooltip="$#{weekly.plc.p6Cost}" tooltip-position="auto left"/>
-            </f:facet>
-        </b:inputText> 
-        <br />
-		<h:commandButton value="Go Back" action="#{workPackageController.wpLanding}" styleClass="btn btn-info" style="margin-right: 10px"/>		
-		<h:commandButton value="Save Updates" action="#{weekly.createReport}" styleClass="btn btn-info"></h:commandButton>
-		</b:panel>		
-		</b:panelGrid>
-	</h:form>
-	  </ui:define>
-    </ui:composition>
-
 </h:body>
 </html>
