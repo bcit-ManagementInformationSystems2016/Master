@@ -353,8 +353,13 @@ a {
 	padding: 4px 10px;
 }
 
+<<<<<<< Updated upstream
 .ui-datatable-tablewrapper tr:hover {
 	background-color: #c4c4c4;
+=======
+.ui-datatable-tablewrapper tr:hover{ 
+/* 	background-color: #c4c4c4;  */
+>>>>>>> Stashed changes
 }
 
 .ui-widget-content {
@@ -439,4 +444,42 @@ textarea.form-control:focus {
 
 .ui-inputfield {
 	box-shadow: none;
+}
+
+.ui-selectonemenu-list { 
+    background: white;
+} 
+/*Prime faces table CSS overwrite*/
+.ui-datatable tbody td{
+	border-color: #ddd !important;
+}
+.ui-datatable tbody td, 
+.ui-datatable tfoot td, 
+.ui-datatable tfoot th{
+	border:1px solid #ddd !important;
+	padding: 0px 8px !important;
+}
+.ui-datatable thead th{
+	border-bottom-width: 3px !important;
+	border:1px solid #ddd;
+}
+.ui-datatable-tablewrapper table {
+	font-size: 14px;
+}
+.ui-datatable-odd{
+	background:#f9f9f9 !important;
+}
+.ui-state-default, 
+.ui-widget-content .ui-state-default, 
+.ui-widget-header .ui-state-default{
+    font-weight: bolder !important;
+    font-size: 14px !important;
+    text-align: left !important;
+    background-color: white;
+}
+th.ui-state-default{
+	border-bottom-width: 2px !important;
+}
+td > table tr:hover{
+	background-color: transparent !important;
 }
