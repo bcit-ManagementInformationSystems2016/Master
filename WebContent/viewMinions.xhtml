@@ -69,7 +69,9 @@
 		</h:column>
 		<h:column>
 			<f:facet name="header">Date Requested</f:facet>
-			<h:outputText value="#{vacays.requestDate}"/>
+			<h:outputText value="#{vacays.requestDate}">
+				<f:convertDateTime pattern="yyyy-MM-dd" />
+			</h:outputText>
 		</h:column>
 		
 		<h:column>
