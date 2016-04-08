@@ -112,3 +112,34 @@ h1, input, p, a {
 :-ms-input-placeholder {
     font-family: 'Exo', sans-serif;
 }
+
+/* for 411 * 731 */
+.mobile {   
+    margin: -50px;
+    position: relative;
+    top: 70px;
+}
+
+.login {
+    margin: 150px auto;
+    width: 300px;
+}
+
+/* for 360 * 640 */
+@media all and (max-width: 640px) {
+	p {
+    	text-align: center;
+    	font-size: 40px;
+    	font-weight: 700;
+    	margin-left: 10px;
+	}
+
+	.login {
+   		 margin: 150px auto;
+   		 width: 250px;
+	}	
+	
+	.login-field {
+		width: 210px;
+	}
+}
