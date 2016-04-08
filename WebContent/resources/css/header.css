@@ -53,19 +53,21 @@ body > div.header-fixed > div > a > h1 {
 }
 
 /* Making the header responsive */
-
-@media all and (max-width: 600px) {
+@media all and (max-width: 640px) {
 	.header-fixed {
 		padding: 20px 0;
 		height: 75px;
 	}
 
 	.header-fixed .header-limiter h1 {
-		float: none;
+		float: right;
 		margin: -8px 0 10px;
 		text-align: center;
-		font-size: 24px;
+		font-size: 25px;
 		line-height: 1;
+		position: absolute;
+		left: 20px;
+		top: 35px;
 	}
 
 	.header-fixed .header-limiter nav {
@@ -80,4 +82,8 @@ body > div.header-fixed > div > a > h1 {
 	body.fixed .header-fixed {
 		display: none;
 	}	
+	.header-user-menu {
+		position: absolute;
+		left: 250px;
+	}
 }
