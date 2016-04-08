@@ -19,20 +19,23 @@
             <br /><br />
         </ui:define> 
     <ui:define name="content">
-	<h:form>	
-	<b:panelGrid colSpans="5,7">
-     <b:panel look="info" title="Current Timesheet Validator: #{supervisorController.timesheetValidator.firstName} #{supervisorController.timesheetValidator.lastName}" collapsible="false">
-	  <h:outputLabel value="New Timesheet Validator:" />
-	  <br />
-		<b:selectOneMenu value="#{supervisorController.newTimesheetValidator}">
-		    <f:selectItems value="#{supervisorController.getDropdownForValidators()}" />
-		</b:selectOneMenu>
-		
-		
-		<h:commandButton value="Save" action="#{supervisorController.assignValidator()}" styleClass="btn btn-info"></h:commandButton>			
-     </b:panel>	
-     </b:panelGrid>		
-	</h:form>
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<h:form>		
+		     <b:panel look="info" title="Current Timesheet Validator: #{supervisorController.timesheetValidator.firstName} #{supervisorController.timesheetValidator.lastName}" collapsible="false">
+			  <h:outputLabel value="New Timesheet Validator:" />
+			  <br />
+				<b:selectOneMenu value="#{supervisorController.newTimesheetValidator}">
+				    <f:selectItems value="#{supervisorController.getDropdownForValidators()}" />
+				</b:selectOneMenu>
+				
+				<h:commandButton value="Save" action="#{supervisorController.assignValidator()}" styleClass="btn btn-info"></h:commandButton>			
+		     </b:panel>	     
+			</h:form>		
+		</div>
+		<div class="col-lg-4"></div>
+	</div>
  </ui:define>
 </ui:composition>
 </h:body>

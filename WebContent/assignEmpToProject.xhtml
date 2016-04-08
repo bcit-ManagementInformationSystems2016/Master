@@ -20,20 +20,23 @@
             <br /><br />
         </ui:define>    
     <ui:define name="content">
-	<h:form>	
-	<b:panelGrid colSpans="5,7">
-     <b:panel look="info" title="Select Project to Assign to #{projectEmployeesController.viewableEmployee.firstName}  #{projectEmployeesController.viewableEmployee.lastName}" collapsible="false">
-	  <h:outputLabel value="PROJECT:" />
-	  <br />
-	  <b:selectOneMenu value="#{projectEmployeesController.assignedProject}">
-		  <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
-	  </b:selectOneMenu>
-	 
-	  <h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>		
-	  			
-     </b:panel>	
-     </b:panelGrid>	
-	</h:form>
+	<div class="row">
+		<div class="col-lg-4"></div>
+		<div class="col-lg-4">
+			<h:form>	
+		     <b:panel look="info" title="Select Project to Assign to #{projectEmployeesController.viewableEmployee.firstName}  #{projectEmployeesController.viewableEmployee.lastName}" collapsible="false">
+			  <h:outputLabel value="PROJECT:" />
+			  <br />
+			  <b:selectOneMenu value="#{projectEmployeesController.assignedProject}">
+				  <f:selectItems value="#{projectEmployeesController.getDropdownForProjects()}" />
+			  </b:selectOneMenu>
+			 
+			  <h:commandButton value="Assign Employee" action="#{projectEmployeesController.assignEmployee()}" styleClass="btn btn-info" style="margin-right: 10px"></h:commandButton>					
+		     </b:panel>	     
+			</h:form>		
+		</div>
+		<div class="col-lg-4"></div>
+	</div>    
  </ui:define>
 </ui:composition>	
 </h:body>

@@ -19,8 +19,10 @@
             <br /><br />
         </ui:define> 
 		<ui:define name="content">
-			<h:form>
-				<b:panelGrid colSpans="3,9">
+			<div class="row">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+				<h:form>				
 					<b:panel look="info" title="Update Customer Information"
 						collapsible="false">
 						<b:inputText value="#{customerController.editableCustomer.companyName}">
@@ -55,9 +57,11 @@
 						<h:commandButton value="Save Changes"
 							action="#{customerController.update(customerController.editableCustomer)}"
 							styleClass="btn btn-info"></h:commandButton>
-					</b:panel>
-				</b:panelGrid>
-			</h:form>
+					</b:panel>				
+				</h:form>				
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

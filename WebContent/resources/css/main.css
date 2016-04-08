@@ -30,7 +30,7 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 .ui-tree{
 	margin:0 auto;
 }
-.ui-widget{
+.ui-tree{
 	font-size:1.5em !important;
 }
 .ui-tree .ui-tree-container{
@@ -50,11 +50,6 @@ html, body, form, a, div, p, span, figurecaption, h1, h2, h3, h4, h5, h6, h7, li
 }
 .ui-tree .ui-tree-toggler{
 	vertical-align: middle !important;
-}
-.ui-state-highlight, 
-.ui-widget-content .ui-state-highlight, 
-.ui-widget-header .ui-state-highlight{
-	
 }
 figure.menuIcon {
 	margin: 0;
@@ -90,8 +85,13 @@ figure.menuIcon img {
 	transition: transform 0.4s;
 }
 
-.no-touch .cs-style figure:hover img, .cs-style figure.cs-hover img,
-.no-touch .cs-style figure:active img, .cs-style figure.cs-active img  {
+
+.cs-style figure:hover img, .cs-style figure.cs-hover img,
+.cs-style figure:active img, .cs-style figure.cs-active img,
+.cs-style figure:focus img, .cs-style figure.cs-focus img,
+a figure:hover img, .cs-style figure.cs-hover img,
+a figure:active img, .cs-style figure.cs-active img,
+a figure:focus img, .cs-style figure.cs-focus img   {
 	-webkit-transform: scale(0.4);
 	-moz-transform: scale(0.4);
 	-ms-transform: scale(0.4);
@@ -114,10 +114,18 @@ figure.menuIcon img {
 	transition: transform 0.4s, opacity 0.4s;
 }
 
-.no-touch .cs-style figure:hover figcaption, 
+.cs-style figure:hover figcaption, 
 .cs-style figure.cs-hover figcaption,
-.no-touch .cs-style figure:active figcaption, 
-.cs-style figure.cs-active figcaption {
+.cs-style figure:active figcaption, 
+.cs-style figure.cs-active figcaption,
+.cs-style figure:focus figcaption, 
+.cs-style figure.cs-focus figcaption,
+a figure:hover figcaption, 
+a figure.cs-hover figcaption,
+a figure:active figcaption, 
+a figure.cs-active figcaption,
+a figure:focus figcaption, 
+a figure.cs-focus figcaption {
 	-webkit-transform: scale(1);
 	-moz-transform: scale(1);
 	-ms-transform: scale(1);
@@ -236,6 +244,13 @@ figure.menuIcon img {
     padding-left: 5px;
     display: inherit;
 }
+
+//media query 
+/*
+margin: 0;
+    padding-left: 5px;
+    display: inherit;
+*/
 .link-btn, .link-btn:hover, .link-btn:focus{
 	text-decoration: none !important;
 	-webkit-appearance: inherit !important;
@@ -291,7 +306,8 @@ input[type="reset"]:hover, input[type="submit"]:hover
 .backBtn-padding:hover a span{
 	color:#05B767;
 }
-.backBtn-padding:hover a span.backBtn-txt{
+.backBtn-padding:hover a span.backBtn-txt,
+.backBtn-padding:active a span.backBtn-txt{
 	opacity:1;
 	margin:0;
 }

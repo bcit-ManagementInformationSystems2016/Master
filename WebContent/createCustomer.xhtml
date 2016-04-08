@@ -19,49 +19,52 @@
             <br /><br />
         </ui:define> 
 		<ui:define name="content">
-			<h:form>
-				<b:panelGrid colSpans="3,9">
-					<b:panel look="info" title="Create New Customer"
-						collapsible="false">
-						<b:inputText value="#{customerController.editableCustomer.companyName}" required="true" id="cName" requiredMessage="Customer Name required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Customer Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="cName" style="color:red" />
-						<b:inputText value="#{customerController.editableCustomer.contactFName}" required="true" id="fName" requiredMessage="Contact First Name required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Contact First Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="fName" style="color:red" />
-						<b:inputText value="#{customerController.editableCustomer.contactLName}" required="true" id="lName" requiredMessage="Contact Last Name required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Contact Last Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="lName" style="color:red" />
-						<br />
-						<h:outputText value="Customer Description" />
-						<br />
-						<b:inputTextarea value="#{customerController.editableCustomer.description}" required="true" id="desc" requiredMessage="Description required"/>	
-						<h:message for="desc" style="color:red" />
-						
-						<h:commandButton value="Save Changes"
-							action="#{customerController.save(customerController.editableCustomer)}"
-							styleClass="btn btn-info"></h:commandButton>
-					</b:panel>
-				</b:panelGrid>
-			</h:form>
+			<div class="row">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<h:form>				
+						<b:panel look="info" title="Create New Customer"
+							collapsible="false">
+							<b:inputText value="#{customerController.editableCustomer.companyName}" required="true" id="cName" requiredMessage="Customer Name required">
+								<f:facet name="prepend">
+									<b:iconAwesome name="pencil-square-o" />
+								</f:facet>
+								<f:facet name="append">
+									<h:outputText value="Customer Name" />
+								</f:facet>
+							</b:inputText>
+							<h:message for="cName" style="color:red" />
+							<b:inputText value="#{customerController.editableCustomer.contactFName}" required="true" id="fName" requiredMessage="Contact First Name required">
+								<f:facet name="prepend">
+									<b:iconAwesome name="pencil-square-o" />
+								</f:facet>
+								<f:facet name="append">
+									<h:outputText value="Contact First Name" />
+								</f:facet>
+							</b:inputText>
+							<h:message for="fName" style="color:red" />
+							<b:inputText value="#{customerController.editableCustomer.contactLName}" required="true" id="lName" requiredMessage="Contact Last Name required">
+								<f:facet name="prepend">
+									<b:iconAwesome name="pencil-square-o" />
+								</f:facet>
+								<f:facet name="append">
+									<h:outputText value="Contact Last Name" />
+								</f:facet>
+							</b:inputText>
+							<h:message for="lName" style="color:red" />
+							<br />
+							<h:outputText value="Customer Description" />
+							<br />
+							<b:inputTextarea value="#{customerController.editableCustomer.description}" required="true" id="desc" requiredMessage="Description required"/>	
+							<h:message for="desc" style="color:red" />
+							<h:commandButton value="Save Changes"
+								action="#{customerController.save(customerController.editableCustomer)}"
+								styleClass="btn btn-info"></h:commandButton>
+						</b:panel>				
+					</h:form>				
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

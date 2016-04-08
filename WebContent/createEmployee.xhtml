@@ -19,41 +19,43 @@
             <br /><br />
         </ui:define>  
 		<ui:define name="content">
-			<h:form>
-				<b:panelGrid colSpans="4,8">
-					<b:panel look="info" title="Enter Employee Details"
-						collapsible="false">
-						<b:inputText value="#{hrController.emp.firstName}" id="fName" required="true" requiredMessage="First name required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="First Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="fName" style="color:red" />
-						<b:inputText value="#{hrController.emp.lastName}" id="lName" required="true" requiredMessage="Last Name required">
-							<f:facet name="prepend">
-								<b:iconAwesome name="pencil-square-o" />
-							</f:facet>
-							<f:facet name="append">
-								<h:outputText value="Last Name" />
-							</f:facet>
-						</b:inputText>
-						<h:message for="lName" style="color:red" />
-						<b:selectOneMenu value="#{hrController.emp.roleID}">
-							<f:selectItems value="#{hrController.getRoleList()}" />
-							<f:facet name="append">
-								<h:outputText value="Role" />
-							</f:facet>
-						</b:selectOneMenu>
-						<b:selectOneMenu value="#{hrController.emp.validatorID}">
-							<f:selectItems value="#{hrController.getEmployeeList()}" />
-							<f:facet name="append">
-								<h:outputText value="Validator ID" />
-							</f:facet>
-						</b:selectOneMenu>
-
+			<div class="row">
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+				<h:form>				
+				<b:panel look="info" title="Enter Employee Details"
+					collapsible="false">
+					<b:inputText value="#{hrController.emp.firstName}" id="fName" required="true" requiredMessage="First name required">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="First Name" />
+						</f:facet>
+					</b:inputText>
+					<h:message for="fName" style="color:red" />
+					<b:inputText value="#{hrController.emp.lastName}" id="lName" required="true" requiredMessage="Last Name required">
+						<f:facet name="prepend">
+							<b:iconAwesome name="pencil-square-o" />
+						</f:facet>
+						<f:facet name="append">
+							<h:outputText value="Last Name" />
+						</f:facet>
+					</b:inputText>
+					<h:message for="lName" style="color:red" />
+					<b:selectOneMenu value="#{hrController.emp.roleID}">
+						<f:selectItems value="#{hrController.getRoleList()}" />
+						<f:facet name="append">
+							<h:outputText value="Role" />
+						</f:facet>
+					</b:selectOneMenu>
+					<b:selectOneMenu value="#{hrController.emp.validatorID}">
+						<f:selectItems value="#{hrController.getEmployeeList()}" />
+						<f:facet name="append">
+							<h:outputText value="Validator ID" />
+						</f:facet>
+					</b:selectOneMenu>
+	
 						<b:selectOneMenu value="#{hrController.emp.supervisorID}">
 							<f:selectItems value="#{hrController.getEmployeeList()}" />
 							<f:facet name="append">
@@ -97,9 +99,11 @@
 						<h:commandButton value="Add New"
 							action="#{hrController.createEmp(hrController.emp)}"
 							styleClass="btn btn-info"></h:commandButton>
-					</b:panel>
-				</b:panelGrid>
-			</h:form>
+				</b:panel>				
+				</h:form>				
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>
