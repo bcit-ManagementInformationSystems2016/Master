@@ -386,6 +386,10 @@ public class TreeController implements Serializable {
 		return availableEmployees;
 	}
 
+	/**
+	 * When in the assignEmp page, this method is called when assigning an employee to a work package
+	 * @return string used for navigation
+	 */
 	public String assignEmployee() {
 		int n = new Integer(selectedEmployee);
 		EmployeeWP empWP = new EmployeeWP();
@@ -406,6 +410,11 @@ public class TreeController implements Serializable {
 		return "viewProjectDetails";
 	}
 
+	/**
+	 * method that takes in a work pacakge and updates the parent work package's
+	 * in terms of total budget cost and total budget man days
+	 * @param child Work Package
+	 */
 	public void updateBudget(WorkPackage wp) {
 		boolean isRoot = false;
 		String currentWpID = wp.getParentWPID();
