@@ -431,6 +431,11 @@ public class TreeController implements Serializable {
 		}
 	}
 
+	/**
+	 * Action for unassigning an employee from a work package within the Work Package Details
+	 * @param EmployeeWP - the employee / workpackage composite class
+	 * @return a string for navigation
+	 */
 	public String unassignEmployee(EmployeeWP ewp) {
 		empwpmgr.remove(ewp.getWp(), ewp.getEmp());
 		setAssignedEmps(

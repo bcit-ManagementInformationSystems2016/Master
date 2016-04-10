@@ -179,7 +179,6 @@ public class TimsheetRowController implements Serializable {
 			}
 		}
 		System.out.println("Delete timesheetRow ");
-		// list.remove(tsr);
 		return null;
 	}
 
