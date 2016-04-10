@@ -379,6 +379,10 @@ public class TreeController implements Serializable {
 		return availableEmployees;
 	}
 
+	/**
+	 * Gets a list for the dropdown for available Employees to be a responsible engineer for new Work Package
+	 * @return a List of SelectItems returned from ProjectEmployeeManager 
+	 */
 	public List<SelectItem> getDropdownForNewWP() {
 		if (availableEmployees == null) {
 			setAvailableEmployees(pjtEmpMgr.getAllAvailableEmployees(editableProject.getProjectID()));
